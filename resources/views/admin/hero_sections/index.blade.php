@@ -13,39 +13,85 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
-
-                @forelse ($hero_sections as $hero_section)
-                    <div class="flex flex-row items-center justify-between item-card">
-                        <div class="flex flex-row items-center gap-x-3">
-                            <img src="{{ Storage::url($hero_section->banner) }}" alt=""
-                                class="rounded-2xl object-cover w-[90px] h-[90px]">
-                            <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->heading }}</h3>
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @forelse ($hero_sections as $hero_section)
+                            <div class="swiper-slide flex flex-row items-center justify-between item-card p-10">
+                                <div class="flex flex-row items-center gap-x-3">
+                                    <img src="{{ Storage::url($hero_section->banner) }}" alt=""
+                                        class="rounded-2xl object-cover w-[90px] h-[90px]">
+                                    <div class="flex flex-col">
+                                        <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->heading }}</h3>
+                                    </div>
+                                </div>
+                                <div class="flex-col hidden md:flex">
+                                    <p class="text-sm text-slate-500">Date</p>
+                                    <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->created_at->format('Y-m-d') }}</h3>
+                                </div>
+                                <div class="flex-row items-center hidden md:flex gap-x-3">
+                                    <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
+                                        class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex-col hidden md:flex">
-                            <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->created_at }}</h3>
-                        </div>
-                        <div class="flex-row items-center hidden md:flex gap-x-3">
-                            <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
-                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
-                                Edit
-                            </a>
-                            <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
+                        @empty
+                            <p class="p-10 text-center">No recent data available</p>
+                        @endforelse
                     </div>
-                @empty
-                    <p>belum ada data terbaru</p>
-                @endforelse
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                slidesPerView: 1,
+                spaceBetween: 10,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 50,
+                    },
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                effect: 'slide', // You can change this to 'fade', 'cube', etc.
+            });
+        });
+    </script>
 </x-app-layout>

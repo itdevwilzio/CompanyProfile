@@ -150,28 +150,31 @@
         </div>
     </div>
     <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+    <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($products as $product)
-            <div class="product flex flex-wrap justify-center items-center gap-[60px] even:flex-row-reverse">
-                <div class="w-[470px] h-[550px] flex shrink-0 overflow-hidden">
-                    <img src="{{ asset(Storage::url($product->thumbnail)) }}" class="object-contain w-full h-full"
-                        alt="thumbnail">
+            <div class="product flex flex-col items-center bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="w-full h-[200px] flex overflow-hidden">
+                    <img src="{{ asset(Storage::url($product->thumbnail)) }}" class="object-cover w-full h-full" alt="thumbnail">
                 </div>
-                <div class="flex flex-col gap-[30px] py-[50px] h-fit max-w-[500px]">
-                    <p
-                        class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                        {{ $product->tagline }}</p>
-                    <div class="flex flex-col gap-[10px]">
-                        <h2 class="font-bold text-4xl leading-[45px]">{{ $product->name }}</h2>
-                        <p class="leading-[30px] text-cp-light-grey">{{ $product->about }}</p>
-                    </div>
+                <div class="flex flex-col gap-4 p-4 text-center">
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        {{ $product->tagline }}
+                    </p>
+                    <h2 class="font-bold text-lg">{{ $product->name }}</h2>
+                    <p class="text-cp-light-grey">{{ $product->about }}</p>
                     <a href="{{ route('front.appointment') }}"
-                        class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Book
-                        Appointment</a>
+                       class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
+                        Book Appointment
+                    </a>
                 </div>
             </div>
         @empty
-            <p>Belum ada data terbaru</p>
+            <p class="col-span-full text-center">Belum ada data terbaru</p>
         @endforelse
+    </div>
+</div>
+
     </div>
     <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">
         <div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] items-center">
