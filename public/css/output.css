@@ -572,7 +572,8 @@ video {
 
 @media (min-width: 768px) {
   .container {
-    max-width: 768px;
+    max-width: 100%;
+    padding: 0 15px;
   }
 }
 
