@@ -39,10 +39,12 @@ class FrontController extends Controller
 
     public function about()
     {
-        $statistics = CompanyStatistic::take(4)->get();
-        $abouts = CompanyAbout::take(2)->get();
+        // $statistics = CompanyStatistic::take(4)->get();
+        // $abouts = CompanyAbout::take(2)->get();
+        $testimonials = Testimonial::take(4)->get();
+        $products = Product::take(3)->get();
 
-        return view('front.about', compact('statistics', 'abouts'));
+        return view('front.about', compact('products', 'testimonials'));
     }
 
     public function appointment()

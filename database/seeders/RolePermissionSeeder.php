@@ -35,7 +35,7 @@ class RolePermissionSeeder extends Seeder
         }
 
         $designManagerRole = Role::firstOrCreate([
-            'name' => 'design_manager'
+        'name' => 'design_manager'
         ]);
         $designManagePermissions = [
             'manage products',

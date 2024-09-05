@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
-@section('content')
-    <div id="header" class="bg-[#0C3C94] relative overflow-hidden">
+{{-- @section('content')
+    <div id="header" class="bg-[#F6F7FA] relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
             @forelse ($hero_section as $hero)
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div> --}}
-    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+    {{-- <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
         <div class="flex items-center justify-between">
             <div class="flex flex-col gap-[14px]">
                 <p
@@ -120,8 +120,8 @@
                     </div>
                     <div class="flex flex-col p-[0_30px_30px_30px] gap-5">
                         <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            {{-- <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon"> --}}
+                            <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
+                                alt="icon">
                         </div>
                         <div class="flex flex-col gap-1">
                             <p class="title font-bold text-xl leading-[30px]">{{ $principle->name }}</p>
@@ -134,7 +134,7 @@
                 <p>Belum ada data terbaru</p>
             @endforelse
         </div>
-    </div>
+    </div> --}}
     {{-- <div id="Stats" class="w-full mt-20 bg-cp-black">
         <div class="container max-w-[1000px] mx-auto py-10">
             <div class="flex flex-wrap items-center justify-between p-[10px]">
@@ -153,7 +153,7 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+    <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
     <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($products as $product)
@@ -176,8 +176,8 @@
         @empty
             <p class="col-span-full text-center">Belum ada data terbaru</p>
         @endforelse
-    </div> --}}
-</div>
+    </div>
+</div> --}}
 
     </div>
     {{-- <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">

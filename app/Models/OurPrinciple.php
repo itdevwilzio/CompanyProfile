@@ -14,6 +14,6 @@ class OurPrinciple extends Model
         'subtitle',
         'name',
         'thumbnail',
-        'icon'
+        // 'icon'
     ];
 }

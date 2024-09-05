@@ -33,7 +33,7 @@
                     <div class="flex w-6 h-6 shrink-0">
                         <img src="assets/icons/monitor-mobbile.svg" alt="icon">
                     </div>
-                    <p class="font-semibold text-cp-dark-blue">shaynacomp.com</p>
+                    <p class="font-semibold text-cp-dark-blue">wilzio</p>
                 </div>
             </div>
         </div>

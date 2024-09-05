@@ -21,9 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Ensure that super_admin can bypass all Gates
         Gate::before(function ($user, $ability) {
-            if ($user->hasRole('super_admin')) {
+            // Replace with the specific email or user ID of the admin
+            if ($user->email === 'super@admin.com') {  // or $user->id === 1
                 return true;
             }
         });

@@ -42,6 +42,10 @@ class OurPrincipleController extends Controller
                 $iconPath = $request->file('icon')->store('icons', 'public');
                 $validated['icon'] = $iconPath;
             }
+            else {
+                // If icon is not uploaded, set a default value or keep it null
+                $validated['icon'] = null; // or set a default icon if needed
+            }
 
             if ($request->hasFile('thumbnail')) {
                 $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -83,7 +87,7 @@ class OurPrincipleController extends Controller
             if ($request->hasFile('icon')) {
                 $iconPath = $request->file('icon')->store('icons', 'public');
                 $validated['icon'] = $iconPath;
-            }
+            } 
 
             if ($request->hasFile('thumbnail')) {
                 $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');

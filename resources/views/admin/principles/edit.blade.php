@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="icon" :value="__('icon')" />
+                        <x-input-label for="icon" :value="__('icon' (Optional))" />
                         <img src="{{ Storage::url($principle->icon) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="icon" class="block w-full mt-1" type="file" name="icon" autofocus

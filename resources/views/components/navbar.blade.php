@@ -4,31 +4,31 @@
             <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
         </div>
         <div class="flex flex-col">
-            <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">ShaynaComp</p>
+            <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Wilzio</p>
             <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
         </div>
     </div>
     <ul class="flex flex-wrap items-center gap-[30px]">
         <li
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue  {{ request()->routeIs('front.index') ? 'text-cp-dark-blue' : '' }}">
-            <a href="{{ route('front.index') }}">Home</a>
+            <a href="{{ route('front.index') }}">Beranda</a>
         </li>
         <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue">
-            <a href="">Products</a>
+            <a href="{{ route('front.about') }}">Produk</a>
         </li>
         <li
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
-            <a href="{{ route('front.team') }}">Company</a>
+            <a href="{{ route('front.team') }}">Tentang Kami</a>
         </li>
         <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue">
-            <a href="">Blog</a>
+            <a href="">Client Area</a>
         </li>
-        <li
+        {{-- <li
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.about') ? 'text-cp-dark-blue' : '' }}">
             <a href="{{ route('front.about') }}">About</a>
-        </li>
+        </li> --}}
     </ul>
-    <a href="{{ route('front.appointment') }}"
+    {{-- <a href="{{ route('front.appointment') }}"
         class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Get
-        a Quote</a>
+        a Quote</a> --}}
 </nav>
