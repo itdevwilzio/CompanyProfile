@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('achievement');
             $table->string('subheading');
             $table->string('heading');
-            $table->string('path_video');
-            $table->string('banner');
+            $table->json('banners')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
