@@ -3,42 +3,67 @@
     <div id="header" class="bg-[#0C3C94] relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
-            @forelse ($hero_section as $hero)
-                <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
-                <div id="Hero" class="flex flex-col gap-[30px] mt-20 pb-20">
-                    <div class="flex items-center bg-white p-[8px_16px] gap-[10px] rounded-full w-fit">
-                        <div class="flex w-5 h-5 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/crown.svg') }}" class="object-contain" alt="icon">
-                        </div>
-                        <p class="text-sm font-semibold">{{ $hero->achievement }}</p>
-                    </div>
-                    <div class="flex flex-col gap-[10px]">
-                        <h1 class="font-extrabold text-[50px] leading-[65px] max-w-[536px]">{{ $hero->heading }}</h1>
-                        <p class="text-cp-light-grey leading-[30px] max-w-[437px]">{{ $hero->subheading }}</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <a href=""
-                            class="bg-cp-dark-blue p-5 w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Explore
-                            Now</a>
-                        <button class="bg-cp-black p-5 w-fit rounded-xl font-bold text-white flex items-center gap-[10px]"
-                            onclick="{modal.show()}">
-                            <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                                <img src="{{ asset('assets/icons/play-circle.svg') }}" class="object-contain w-full h-full"
-                                    alt="icon">
+
+            <!-- Swiper Wrapper for Banner Carousel -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @forelse ($hero_section as $hero)
+                        <div class="swiper-slide">
+                            <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
+
+                            <!-- Banner Image -->
+                            <div class="relative">
+                                <img src="{{ asset(Storage::url($hero->banner)) }}"
+                                    srcset="{{ asset(Storage::url($hero->banner)) }} 1024w,
+                                            {{ asset(Storage::url('small/'.$hero->banner)) }} 640w"
+                                    sizes="(max-width: 768px) 640px, 1024px"
+                                    class="object-cover w-full h-full" alt="banner">
                             </div>
-                            <span>Watch Video</span>
-                        </button>
-                    </div>
+
+                            <!-- Optional Hero Section Text -->
+                            <div class="absolute bottom-10 left-10 text-white">
+                                <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
+                                <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No hero sections available</p>
+                    @endforelse
                 </div>
+
+                <!-- Swiper Pagination (dots) -->
+                <div class="swiper-pagination"></div>
+
+                <!-- Swiper Navigation (arrows) -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
         </div>
-        <div class="absolute w-[43%] h-full top-0 right-0 overflow-hidden z-0">
-            <img src="{{ asset(Storage::url($hero->banner)) }}" class="object-cover w-full h-full" alt="banner">
-        </div>
-    @empty
-        @endforelse
     </div>
 
-    
+<!-- Initialize Swiper.js with Autoplay -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,  // Enable infinite looping of the banners
+        autoplay: {
+            delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
+            disableOnInteraction: false,  // Keep autoplay enabled after user interaction
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,  // Make the pagination dots clickable
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+
+
+
+
+
 
 
     {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
@@ -445,7 +470,7 @@
                         <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
                     </div>
                 </div>
-            
+
                 <!-- Social Media Icons -->
                 <div class="flex items-center justify-center gap-4">
                     <a href="https://youtube.com" target="_blank">
@@ -470,7 +495,7 @@
                     </a>
                 </div>
             </div>
-            
+
             {{-- <div class="flex flex-wrap gap-[50px]">
                 <div class="flex flex-col w-[200px] gap-3">
                     <p class="text-lg font-bold text-white">Products</p>
@@ -556,4 +581,23 @@
     <script src="{{ asset('js/accordion.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ asset('js/modal-video.js') }}"></script>
+
+    <!-- Initialize Swiper.js with Autoplay -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,  // Enable infinite looping of the banners
+            autoplay: {
+                delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
+                disableOnInteraction: false,  // Keep autoplay enabled after user interaction
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,  // Make the pagination dots clickable
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 @endpush
