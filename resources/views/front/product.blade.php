@@ -156,290 +156,63 @@
 
 
     <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
-    <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @forelse ($products as $product)
-            <div class="product flex flex-col items-center bg-white shadow-lg rounded-lg overflow-hidden">
-                <!-- Adjusted the width and height to make the images smaller squares -->
-                <div class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] flex overflow-hidden">
-                    <img src="{{ asset(Storage::url($product->thumbnail)) }}"
-                        class="object-cover w-full h-full rounded-lg"
-                        alt="{{ $product->name }}"
-                        loading="lazy"> <!-- Lazy loading the image -->
-                </div>
-                <div class="flex flex-col gap-4 p-4 text-center">
-                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
-                        {{ $product->tagline }}
-                    </p>
-                    <h2 class="font-bold text-lg">{{ $product->name }}</h2>
-                    <p class="text-cp-light-grey">{{ $product->about }}</p>
-                    <a href="{{ route('front.appointment') }}"
-                    class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
-                        Book Appointment
-                    </a>
-                </div>
-            </div>
-        @empty
-            <p class="col-span-full text-center">Belum ada data terbaru</p>
-        @endforelse
-    </div>
-
-    </div>
-    </div>
-
-
-    {{-- <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">
-        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] items-center">
-            <div class="flex flex-col gap-[14px] items-center">
-                <p class="badge w-fit bg-cp-dark-blue text-white p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR POWERFUL TEAM</p>
-                <h2 class="font-bold text-4xl leading-[45px] text-center">We Share Same Dreams <br> Change The World
-                </h2>
-            </div>
-            <div
-                class="teams-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
-                @forelse ($teams as $team)
-                    <div
-                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] px-[29px] gap-[30px] rounded-[20px] border border-white hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300">
-                        <div
-                            class="w-[100px] h-[100px] flex shrink-0 items-center justify-center rounded-full bg-[linear-gradient(150.55deg,_#007AFF_8.72%,_#312ECB_87.11%)]">
-                            <div class="w-[90px] h-[90px] rounded-full overflow-hidden">
-                                <img src="{{ asset(Storage::url($team->avatar)) }}"
-                                    class="object-cover object-center w-full h-full" alt="photo">
-                            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @forelse ($products as $product)
+                    <div class="product flex flex-col items-center bg-white shadow-lg rounded-lg overflow-hidden">
+                        <!-- Adjusted the width and height to make the images smaller squares -->
+                        <div class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] flex overflow-hidden">
+                            <img src="{{ asset(Storage::url($product->thumbnail)) }}"
+                                class="object-cover w-full h-full rounded-lg"
+                                alt="{{ $product->name }}"
+                                loading="lazy"> <!-- Lazy loading the image -->
                         </div>
-                        <div class="flex flex-col gap-1 text-center">
-                            <p class="font-bold text-xl leading-[30px]">{{ $team->name }}</p>
-                            <p class="text-cp-light-grey">{{ $team->occupation }}</p>
-                        </div>
-                        <div class="flex items-center justify-center gap-[10px]">
-                            <div class="flex w-6 h-6 shrink-0">
-                                <img src="{{ asset('assets/icons/global.svg') }}" alt="icon">
-                            </div>
-                            <p class="font-semibold text-cp-dark-blue">{{ $team->location }}</p>
+                        <div class="flex flex-col gap-4 p-4 text-center">
+                            <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                                {{ $product->tagline }}
+                            </p>
+                            <h2 class="font-bold text-lg">{{ $product->name }}</h2>
+                            <p class="text-cp-light-grey">{{ $product->about }}</p>
+                            <a href="{{ route('front.appointment') }}"
+                            class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
+                                Book Appointment
+                            </a>
                         </div>
                     </div>
                 @empty
-                    <p>Belum ada data terbaru</p>
+                    <p class="col-span-full text-center">Belum ada data terbaru</p>
                 @endforelse
-                <a href="{{ route('front.team') }}" class="view-all-card">
-                    <div
-                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] gap-[30px] rounded-[20px] border border-white hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300">
-                        <div class="w-[60px] h-[60px] flex shrink-0">
-                            <img src="{{ asset('assets/icons/profile-2user.svg') }}" alt="icon">
-                        </div>
-                        <div class="flex flex-col gap-1 text-center">
-                            <p class="font-bold text-xl leading-[30px]">View All</p>
-                            <p class="text-cp-light-grey">Our Great People</p>
-                        </div>
-                    </div>
-                </a>
             </div>
-        </div>
-    </div> --}}
-    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
-        <div class="flex flex-col gap-[14px] items-center">
-            <p
-                class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                SUCCESS CLIENTS</p>
-            <h2 class="font-bold text-4xl leading-[45px] text-center">Our Satisfied Clients<br>From Worldwide Company
-            </h2>
-        </div>
-        <div class="w-full main-carousel">
-            @forelse ($testimonials as $testimonial)
-                <div
-                    class="carousel-card container max-w-[1130px] w-full flex flex-wrap justify-between items-center lg:mx-[calc((100vw-1130px)/2)]">
-                    <div class="testimonial-container flex flex-col gap-[112px] w-[565px]">
-                        <div class="flex flex-col gap-[30px]">
-                            <div class="overflow-hidden h-9">
-                                <img src="{{ asset(Storage::url($testimonial->client->logo)) }}" class="object-contain"
-                                    alt="icon">
-                            </div>
-                            <div class="relative pt-[27px] pl-[30px]">
-                                <div class="absolute top-0 left-0">
-                                    <img src="{{ asset('assets/icons/quote.svg') }}" alt="icon">
-                                </div>
-                                <p class="font-semibold text-2xl leading-[46px] relative z-10">{{ $testimonial->message }}
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pl-[30px]">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-[60px] h-[60px] flex shrink-0 rounded-full overflow-hidden">
-                                        <img src="{{ asset(Storage::url($testimonial->client->avatar)) }}"
-                                            class="object-cover w-full h-full" alt="photo">
-                                    </div>
-                                    <div class="flex flex-col justify-center gap-1">
-                                        <p class="font-bold">{{ $testimonial->client->name }}</p>
-                                        <p class="text-sm text-cp-light-grey">{{ $testimonial->client->occupation }}</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-nowrap">
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center h-4 gap-2 carousel-indicator shrink-0">
-                        </div>
-                    </div>
-                    <div class="testimonial-thumbnail w-[470px] h-[550px] rounded-[20px] overflow-hidden bg-[#D9D9D9]">
-                        <img src="{{ asset(Storage::url($testimonial->thumbnail)) }}"
-                            class="object-cover object-center w-full h-full" alt="thumbnail">
-                    </div>
-                </div>
-            @empty
-                <p>Belum ada data terbaru</p>
-            @endforelse
         </div>
     </div>
-    {{-- <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col gap-[14px]">
-                <p
-                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR AWARDS</p>
-                <h2 class="font-bold text-4xl leading-[45px]">We’ve Dedicated Our<br>Best Team Efforts</h2>
-            </div>
-            <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
-        </div>
-        <div
-            class="awards-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Solid Fundamental Crafter Async</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Bali, 2020</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Most Crowded Yet Harmony Place</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Shanghai, 2021</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Small Things Made Much Big Impacts</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Zurich, 2022</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Teamwork and Solidarity</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Bandung, 2023</p>
-            </div>
-        </div>
-    </div> --}}
-    <div id="FAQ" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20 -mb-20">
-        <div class="container max-w-[1000px] mx-auto">
-            <div class="flex flex-col lg:flex-row gap-[50px] sm:gap-[70px] items-center">
-                <div class="flex flex-col gap-[30px]">
-                    <div class="flex flex-col gap-[10px]">
-                        <h2 class="font-bold text-4xl leading-[45px]">Frequently Asked Questions</h2>
+
+        <!-- Product Modal -->
+    <div id="productModal" class="fixed inset-0 hidden z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4 text-center">
+            <div class="relative bg-white rounded-lg shadow-xl w-full max-w-lg p-6 text-left">
+                <!-- Modal close button -->
+                <button id="closeModal" class="absolute top-0 right-0 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <!-- Modal content -->
+                <div id="modalContent" class="flex flex-col gap-4">
+                    <div class="w-full h-[150px] overflow-hidden rounded-lg">
+                        <img id="modalThumbnail" src="" alt="Product Image" class="object-cover w-full h-full">
                     </div>
-                    <a href="{{ route('front.appointment') }}"
-                        class="p-5 font-bold text-white bg-cp-black rounded-xl w-fit">Contact
-                        Us</a>
-                </div>
-                <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-1">
-                            <span class="font-bold text-lg leading-[27px] text-left">Can installments be beneficial for
-                                both?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-1" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-2">
-                            <span class="font-bold text-lg leading-[27px] text-left">What kind of framework you popular
-                                with?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-2" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-3">
-                            <span class="font-bold text-lg leading-[27px] text-left">What insurance provider do you
-                                use?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-3" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-4">
-                            <span class="font-bold text-lg leading-[27px] text-left">What if we have other
-                                questions?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-4" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
+                    <h2 id="modalName" class="text-xl font-bold"></h2>
+                    <p id="modalAbout" class="text-gray-700"></p>
                 </div>
             </div>
         </div>
     </div>
+
+      <!-- Modal overlay -->
+    <div id="modalOverlay" class="hidden fixed inset-0 bg-black opacity-50 z-40"></div>
+
+
     <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
         <div
             class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-center pt-[100px] pb-[220px] relative z-10">
@@ -520,38 +293,9 @@
             <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
         </div>
     </footer>
-    <div id="video-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative w-full max-h-full p-4 lg:w-1/2">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-[20px] overflow-hidden shadow">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5">
-                    <h3 class="text-xl font-semibold text-cp-black">
-                        Company Profile Video
-                    </h3>
-                    <button type="button"
-                        class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
-                        onclick="{modal.hide()}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="">
-                    <!-- video src added from the js script (modal-video.js) to prevent video running in the backgroud -->
-                    <iframe id="videoFrame" class="aspect-[16/9]" width="100%" src=""
-                        title="Demo Project Laravel Portfolio" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
 @endsection
 
 @push('after-scripts')
@@ -565,4 +309,43 @@
     <script src="{{ asset('js/accordion.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ asset('js/modal-video.js') }}"></script>
+    <script>
+        const products = document.querySelectorAll('.product');
+        const modal = document.getElementById('productModal');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalName = document.getElementById('modalName');
+        const modalAbout = document.getElementById('modalAbout');
+        const modalThumbnail = document.getElementById('modalThumbnail');
+        const closeModal = document.getElementById('closeModal');
+
+        // Open modal when a product is clicked
+        products.forEach(product => {
+            product.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product-name');
+                const productAbout = this.getAttribute('data-product-about');
+                const productThumbnail = this.getAttribute('data-product-thumbnail');
+
+                // Set modal content
+                modalName.textContent = productName;
+                modalAbout.textContent = productAbout;
+                modalThumbnail.src = productThumbnail;
+
+                // Show modal and overlay
+                modal.classList.remove('hidden');
+                modalOverlay.classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            modalOverlay.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside the modal
+        modalOverlay.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            modalOverlay.classList.add('hidden');
+        });
+    </script>
 @endpush

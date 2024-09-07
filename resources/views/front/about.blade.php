@@ -38,7 +38,7 @@
         @endforelse --}}
     </div>
 
-    
+
 
 
     {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
@@ -55,7 +55,7 @@
                 <div class="overflow-hidden h-9">
                     <img src="{{ asset('assets/logo/logo-52.svg') }}" class="object-contain w-full h-full" alt="logo">
                 </div>
-            </div>  
+            </div>
             <div
                 class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
                 <div class="overflow-hidden h-9">
@@ -100,41 +100,7 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col gap-[14px]">
-                <p
-                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR PRINCIPLES</p>
-                <h2 class="font-bold text-4xl leading-[45px]">We Might Best Choice <br> For Your Company</h2>
-            </div>
-            <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
-        </div>
-        <div class="flex flex-wrap items-center gap-[30px] justify-center">
-            @forelse ($principles as $principle)
-                <div
-                    class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-                    <div class="thumbnail h-[200px] flex shrink-0 overflow-hidden">
-                        <img src="{{ asset(Storage::url($principle->thumbnail)) }}"
-                            class="object-cover object-center w-full h-full" alt="thumbnails">
-                    </div>
-                    <div class="flex flex-col p-[0_30px_30px_30px] gap-5">
-                        <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon">
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <p class="title font-bold text-xl leading-[30px]">{{ $principle->name }}</p>
-                            <p class="leading-[30px] text-cp-light-grey">{{ $principle->subtitle }}</p>
-                        </div>
-                        <a href="" class="font-semibold text-cp-dark-blue">Learn More</a>
-                    </div>
-                </div>
-            @empty
-                <p>Belum ada data terbaru</p>
-            @endforelse
-        </div>
-    </div> --}}
+
     {{-- <div id="Stats" class="w-full mt-20 bg-cp-black">
         <div class="container max-w-[1000px] mx-auto py-10">
             <div class="flex flex-wrap items-center justify-between p-[10px]">
@@ -445,7 +411,7 @@
                         <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
                     </div>
                 </div>
-            
+
                 <!-- Social Media Icons -->
                 <div class="flex items-center justify-center gap-4">
                     <a href="https://youtube.com" target="_blank">
@@ -470,7 +436,7 @@
                     </a>
                 </div>
             </div>
-            
+
             {{-- <div class="flex flex-wrap gap-[50px]">
                 <div class="flex flex-col w-[200px] gap-3">
                     <p class="text-lg font-bold text-white">Products</p>
