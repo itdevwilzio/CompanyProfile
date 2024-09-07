@@ -55,7 +55,7 @@
                 <div class="overflow-hidden h-9">
                     <img src="{{ asset('assets/logo/logo-52.svg') }}" class="object-contain w-full h-full" alt="logo">
                 </div>
-            </div>
+            </div>  
             <div
                 class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
                 <div class="overflow-hidden h-9">

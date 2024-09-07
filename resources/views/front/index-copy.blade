@@ -1,44 +1,38 @@
 @extends('front.layouts.app')
-{{-- @section('content')
-    <div id="header" class="bg-[#F6F7FA] relative overflow-hidden">
+@section('content')
+    <div id="header" class="bg-[#0C3C94] relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
-            @forelse ($hero_section as $hero)
-                <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
-                <div id="Hero" class="flex flex-col gap-[30px] mt-20 pb-20">
-                    <div class="flex items-center bg-white p-[8px_16px] gap-[10px] rounded-full w-fit">
-                        <div class="flex w-5 h-5 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/crown.svg') }}" class="object-contain" alt="icon">
-                        </div>
-                        <p class="text-sm font-semibold">{{ $hero->achievement }}</p>
-                    </div>
-                    <div class="flex flex-col gap-[10px]">
-                        <h1 class="font-extrabold text-[50px] leading-[65px] max-w-[536px]">{{ $hero->heading }}</h1>
-                        <p class="text-cp-light-grey leading-[30px] max-w-[437px]">{{ $hero->subheading }}</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <a href=""
-                            class="bg-cp-dark-blue p-5 w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Explore
-                            Now</a>
-                        <button class="bg-cp-black p-5 w-fit rounded-xl font-bold text-white flex items-center gap-[10px]"
-                            onclick="{modal.show()}">
-                            <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                                <img src="{{ asset('assets/icons/play-circle.svg') }}" class="object-contain w-full h-full"
-                                    alt="icon">
+
+            <!-- Swiper Wrapper for Banner Carousel -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @forelse ($hero_section as $hero)
+                        <div class="swiper-slide">
+                            <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
+
+                            <!-- Banner Image -->
+                            <div class="relative">
+                                <img src="{{ asset(Storage::url($hero->banner)) }}"
+                                    srcset="{{ asset(Storage::url($hero->banner)) }} 1024w,
+                                            {{ asset(Storage::url('small/'.$hero->banner)) }} 640w"
+                                    sizes="(max-width: 768px) 640px, 1024px"
+                                    class="object-cover w-full h-full" alt="banner">
                             </div>
-                            <span>Watch Video</span>
-                        </button>
-                    </div>
+
+                            <!-- Optional Hero Section Text -->
+                            <div class="absolute bottom-10 left-10 text-white">
+                                <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
+                                <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No hero sections available</p>
+                    @endforelse
                 </div>
+            </div>
         </div>
-        <div class="absolute w-[43%] h-full top-0 right-0 overflow-hidden z-0">
-            <img src="{{ asset(Storage::url($hero->banner)) }}" class="object-cover w-full h-full" alt="banner">
-        </div>
-    @empty
-        @endforelse
     </div>
-
-
 
 
     {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
@@ -100,7 +94,8 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+
+    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
         <div class="flex items-center justify-between">
             <div class="flex flex-col gap-[14px]">
                 <p
@@ -120,8 +115,8 @@
                     </div>
                     <div class="flex flex-col p-[0_30px_30px_30px] gap-5">
                         <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon">
+                            {{-- <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
+                                alt="icon"> --}}
                         </div>
                         <div class="flex flex-col gap-1">
                             <p class="title font-bold text-xl leading-[30px]">{{ $principle->name }}</p>
@@ -134,7 +129,7 @@
                 <p>Belum ada data terbaru</p>
             @endforelse
         </div>
-    </div> --}}
+    </div>
     {{-- <div id="Stats" class="w-full mt-20 bg-cp-black">
         <div class="container max-w-[1000px] mx-auto py-10">
             <div class="flex flex-wrap items-center justify-between p-[10px]">
@@ -153,20 +148,13 @@
             </div>
         </div>
     </div> --}}
-
-
-    <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
+    {{-- <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
     <div class="container mx-auto px-4">
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($products as $product)
             <div class="product flex flex-col items-center bg-white shadow-lg rounded-lg overflow-hidden">
-                <!-- Adjusted the width and height to make the images smaller squares -->
-                <div class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] flex overflow-hidden">
-                    <img src="{{ asset(Storage::url($product->thumbnail)) }}"
-                        class="object-cover w-full h-full rounded-lg"
-                        alt="{{ $product->name }}"
-                        loading="lazy"> <!-- Lazy loading the image -->
+                <div class="w-full h-[200px] flex overflow-hidden">
+                    <img src="{{ asset(Storage::url($product->thumbnail)) }}" class="object-cover w-full h-full" alt="thumbnail">
                 </div>
                 <div class="flex flex-col gap-4 p-4 text-center">
                     <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
@@ -175,7 +163,7 @@
                     <h2 class="font-bold text-lg">{{ $product->name }}</h2>
                     <p class="text-cp-light-grey">{{ $product->about }}</p>
                     <a href="{{ route('front.appointment') }}"
-                    class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
+                       class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
                         Book Appointment
                     </a>
                 </div>
@@ -183,12 +171,10 @@
         @empty
             <p class="col-span-full text-center">Belum ada data terbaru</p>
         @endforelse
-    </div>
+    </div> --}}
+</div>
 
     </div>
-    </div>
-
-
     {{-- <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">
         <div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] items-center">
             <div class="flex flex-col gap-[14px] items-center">
@@ -565,4 +551,23 @@
     <script src="{{ asset('js/accordion.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ asset('js/modal-video.js') }}"></script>
+
+    <!-- Initialize Swiper.js with Autoplay -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,  // Enable infinite looping of the banners
+            autoplay: {
+                delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
+                disableOnInteraction: false,  // Keep autoplay enabled after user interaction
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,  // Make the pagination dots clickable
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 @endpush

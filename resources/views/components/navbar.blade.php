@@ -14,7 +14,7 @@
             <a href="{{ route('front.index') }}">Beranda</a>
         </li>
         <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue">
-            <a href="{{ route('front.about') }}">Produk</a>
+            <a href="{{ route('front.product') }}">Produk</a>
         </li>
         <li
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
