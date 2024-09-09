@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 @section('content')
-    <div id="header" class="bg-[#0C3C94] relative overflow-hidden">
+    <div id="header" class="relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
 
@@ -21,13 +21,13 @@
                             </div>
 
                             <!-- Optional Hero Section Text -->
-                            <div class="absolute bottom-10 left-10 text-white">
+                            <div class="absolute bottom-10 left-10">
                                 <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
                                 <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
                             </div>
                         </div>
                     @empty
-                        <p>No hero sections available</p>
+                        {{-- <p>No hero sections available</p> --}}
                     @endforelse
                 </div>
 
@@ -125,13 +125,13 @@
             </div>
         </div>
     </div> --}}
-    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 ">
         <div class="flex items-center justify-between">
             <div class="flex flex-col gap-[14px]">
                 <p
                     class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
                     OUR PRINCIPLES</p>
-                <h2 class="font-bold text-4xl leading-[45px]">We Might Best Choice <br> For Your Company</h2>
+                <h2 class="font-bold text-4xl leading-[45px] text-white">We Might Best Choice <br> For Your Company</h2>
             </div>
             <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
         </div>
@@ -254,7 +254,7 @@
             </div>
         </div>
     </div> --}}
-    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
+    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
         <div class="flex flex-col gap-[14px] items-center">
             <p
                 class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">

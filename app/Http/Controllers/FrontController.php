@@ -11,8 +11,10 @@ use App\Models\OurPrinciple;
 use App\Models\OurTeam;
 use App\Models\Product;
 use App\Models\Testimonial;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class FrontController extends Controller
 {
@@ -47,6 +49,14 @@ class FrontController extends Controller
         return view('front.about', compact('products', 'testimonials'));
     }
 
+    public function product()
+    {
+        $testimonials = Testimonial::take(4)->get();
+        $products = Product::take(3)->get();
+
+        return view('front.product', compact('products', 'testimonials'));
+    }
+
     public function appointment()
     {
         $testimonials = Testimonial::take(4)->get();
@@ -63,5 +73,52 @@ class FrontController extends Controller
         });
 
         return redirect()->route('front.index');
+    }
+
+    public function orderProduct(Request $request) {
+        $request->validate([
+            'product_id' => 'required',
+            'nama' => 'required',
+            'no_wa' => 'required',
+            'foto_ktp' => 'required',
+        ]);
+
+        // save file
+        $imagePath = $request->file('foto_ktp')->store('private/images');
+        $imageFullPath = Storage::path($imagePath);
+
+        $product = Product::find($request->product_id);
+
+        $nama = $request->nama;
+        $no_wa = $request->no_wa;
+        $product_name = $product->name;
+        $msg = "
+        *Permintaan Pemasangan Baru*\n\nNama : ".$nama."\nNomor WA : ".$no_wa."\nProduk : ".$product_name;
+
+        $BOT_TOKEN = env('BOT_TOKEN');
+        $USER_ID = env('CHAT_ID');
+        $client = new Client();
+        $response = $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
+            'multipart' => [
+                [
+                    'name' => 'chat_id',
+                    'contents' => $USER_ID
+                ],
+                [
+                    'name' => 'photo',
+                    'contents' => fopen($imageFullPath, 'r')
+                ],
+                [
+                    'name' => 'caption',
+                    'contents' => $msg
+                ],
+                [
+                    'name' => 'parse_mode',
+                    'contents' => 'MarkdownV2'
+                ]
+            ]
+            ]);
+
+        return redirect()->back()->with('success_order', true);
     }
 }

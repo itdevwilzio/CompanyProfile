@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fade@2/flickity-fade.css">
 
+    {{-- Tailwind CSS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- CSS for floating WhatsApp button -->
     <style>
         .whatsapp-float {
@@ -55,7 +58,7 @@
 
 </head>
 
-<body class="font-poppins text-cp-black bg-blue-500">
+<body class="font-poppins text-cp-black bg-primary">
 
     @yield('content')
 
