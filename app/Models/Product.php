@@ -12,9 +12,12 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'tagline',
+        'tagline1',
+        'tagline2',
+        'tagline3',
+        'tagline4',
         'thumbnail',
-        'about'
+        'price',
     ];
 
     public function appointments()

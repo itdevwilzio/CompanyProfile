@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('subtitle');
             $table->string('name');
             $table->string('thumbnail');
-            $table->string('icon')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

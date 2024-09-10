@@ -27,10 +27,38 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="tagline" :value="__('tagline')" />
-                        <x-text-input id="tagline" class="block w-full mt-1" type="text" name="tagline"
-                            :value="old('tagline')" required autofocus autocomplete="tagline" />
-                        <x-input-error :messages="$errors->get('tagline')" class="mt-2" />
+                        <x-input-label for="tagline1" :value="__('tagline1')" />
+                        <x-text-input id="tagline1" class="block w-full mt-1" type="text" name="tagline1"
+                            :value="old('tagline1')" required autofocus autocomplete="tagline1" />
+                        <x-input-error :messages="$errors->get('tagline1')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="tagline2" :value="__('tagline2')" />
+                        <x-text-input id="tagline2" class="block w-full mt-1" type="text" name="tagline2"
+                            :value="old('tagline2')" required autofocus autocomplete="tagline2" />
+                        <x-input-error :messages="$errors->get('tagline2')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="tagline3" :value="__('tagline3')" />
+                        <x-text-input id="tagline3" class="block w-full mt-1" type="text" name="tagline3"
+                            :value="old('tagline3')" required autofocus autocomplete="tagline3" />
+                        <x-input-error :messages="$errors->get('tagline3')" class="mt-2" />
+                    </div>
+           
+                    <div class="mt-4">
+                        <x-input-label for="tagline4" :value="__('tagline4')" />
+                        <x-text-input id="tagline4" class="block w-full mt-1" type="text" name="tagline4"
+                            :value="old('tagline4')" required autofocus autocomplete="tagline4" />
+                        <x-input-error :messages="$errors->get('tagline4')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="tagline4" :value="__('tagline4')" />
+                        <x-text-input id="tagline4" class="block w-full mt-1" type="text" name="tagline4"
+                            :value="old('tagline4')" required autofocus autocomplete="tagline4" />
+                        <x-input-error :messages="$errors->get('tagline4')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
@@ -41,9 +69,10 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="about" :value="__('about')" />
-                        <textarea name="about" id="about" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl"></textarea>
-                        <x-input-error :messages="$errors->get('about')" class="mt-2" />
+                        <x-input-label for="price" :value="__('Price')" />
+                        <x-text-input id="price" class="block w-full mt-1" type="number" name="price"
+                            :value="old('price')" required autofocus autocomplete="price" min="0" />
+                        <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">

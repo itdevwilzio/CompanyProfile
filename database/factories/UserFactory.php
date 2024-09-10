@@ -41,4 +41,13 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function superAdmin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'name' => 'super_admin',
+            'email' => 'super_admin@example.com',
+            'password' => Hash::make('password'), // Default super_admin password
+        ]);
+    }
 }

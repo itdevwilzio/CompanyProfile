@@ -196,11 +196,33 @@
                   <!-- Lazy loading the image -->
                 </div>
                 <div class="flex flex-col gap-4 p-4 text-center w-full px-8">
-                  <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
-                    {{ $product->tagline }}
-                  </p>
-                  <h2 class="font-bold text-lg">{{ $product->name }}</h2>
-                  <p class="text-cp-light-grey whitespace-pre-wrap">{{ $product->about }}</p>
+                    <h2 class="font-bold text-lg">{{ $product->name }}</h2>
+ 
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        <i class="fa-solid fa-screwdriver-wrench"></i> <!-- Example icon for tagline1 -->
+                        {{ $product->tagline1 }}
+                    </p>
+                
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        <i class="fa-solid fa-infinity"></i> <!-- Example icon for tagline2 -->
+                        {{ $product->tagline2 }}
+                    </p>
+                
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        <i class="fa-solid fa-gauge-high"></i> <!-- Example icon for tagline3 -->
+                        {{ $product->tagline3 }}
+                    </p>
+                
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        <i class="bi bi-phone"></i><!-- Example icon for tagline4 -->
+                        {{ $product->tagline4 }}
+                    </p>
+                
+                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
+                        <i class="fa-solid fa-rupiah-sign"></i> <!-- Example icon for tagline4 -->
+                        {{ $product->price }}
+                    </p>
+
                   <button onclick="selectProduct({{ $product->id }})"
                     class="btn-pilih-paket bg-primary p-3 w-full rounded-full hover:shadow-lg transition-all duration-300 font-bold text-white">
                     Pilih Paket
@@ -395,6 +417,92 @@
     //     modal.classList.add('hidden');
     //     modalOverlay.classList.add('hidden');
     // });
+
+    /* select data-location-id */
+
+    let step = 1;
+
+    function selectProduct(id) {
+      let selectedProduct = id;  // Store the selected product's id
+      $('#product_id').val(id);  // Store the selected product in a hidden field
+
+      if (step == 1) {
+        $('[data-product-id]').each(function () {
+          if (id == $(this).data('product-id')) {
+            $(this).show(400);  // Show the selected product
+
+            // Conditionally show locations only if the id equals 1
+            if (id == 1) {
+              showLocationsForProduct(id);  // Show locations related to product with id 1
+            }
+          } else {
+            $(this).hide(400);  // Hide other products
+          }
+        });
+        changeStep2();  // Proceed to step 2
+      } else {
+        $('[data-product-id]').each(function () {
+          $(this).show(400);  // Show all products again
+        });
+        backToStep1();  // Go back to step 1
+      }
+    }
+
+    function showLocationsForProduct(productId) {
+      // Hide all locations first
+      $('[data-location-id]').hide();
+
+      // Show locations related to the selected product
+      $('[data-product-location]').each(function () {
+        if ($(this).data('product-location') == productId) {
+          $(this).show(400);  // Show locations associated with the product
+        }
+      });
+    }
+
+    function changeStep2() {
+      step = 2;
+      $('[data-step]').each(function () {
+        if (step == $(this).data('step')) {
+          $(this).addClass('step-active');
+          $('#form-pemesanan').slideDown(400);
+          $('.btn-pilih-paket').text('Batal');  // Change button text to "Cancel"
+        } else {
+          $(this).removeClass('step-active');
+        }
+      });
+    }
+
+    function setStep(s) {
+      $('[data-step]').each(function () {
+        if (s == $(this).data('step')) {
+          $(this).addClass('step-active');
+        } else {
+          $(this).removeClass('step-active');
+        }
+      });
+    }
+
+    function backToStep1() {
+      step = 1;
+      $('[data-step]').each(function () {
+        if (step == $(this).data('step')) {
+          $(this).addClass('step-active');
+          $('#form-pemesanan').slideUp(400);
+          $('.btn-pilih-paket').text('Pilih Paket');  // Change button text to "Select Package"
+        } else {
+          $(this).removeClass('step-active');
+        }
+      });
+      $('[data-location-id]').hide();  // Hide all locations when going back to step 1
+    }
+
+    @if (session()->has('success_order'))
+      setStep(3);
+    @endif
+
+
+    /* select data-product-id */
     let step = 1;
 
     function selectProduct(id) {
