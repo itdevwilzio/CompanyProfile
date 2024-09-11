@@ -110,7 +110,7 @@
         </div>
     </div>
 
-    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
+    <div id="OurPrinciples" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
         <div class="flex flex-col gap-[14px] items-center">
             <p
                 class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
@@ -118,7 +118,7 @@
             <h2 class="font-bold text-4xl leading-[45px] text-center">We Might Best Choice<br>From Your Company
             </h2>
         </div>
-        <div class="flex flex-wrap items-center gap-[30px] justify-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px] justify-center">
             @forelse ($principles as $principle)
                 <div
                     class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">

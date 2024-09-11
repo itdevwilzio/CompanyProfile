@@ -6,46 +6,7 @@
         </div>
     </div>
 
-    <div id="Teams" class="w-full px-[10px] relative z-10 animate__animated animate__fadeInUp" data-aos="fade-up">
-        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[50px] items-center animate__animated animate__fadeInUp">
-            <div class="flex flex-col gap-[50px] items-center">
-                <div class="breadcrumb flex items-center justify-center gap-[30px] animate__animated animate__fadeInDown">
-                    <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
-                    <span class="text-cp-light-grey">/</span>
-                    <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Our Team</p>
-                </div>
-                <h2 class="font-bold text-4xl leading-[45px] text-center animate__animated animate__fadeInUp">
-                    We’re Here to Build <br> Your Awesome Projects
-                </h2>
-            </div>
-            <div class="teams-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
-                @forelse ($teams as $team)
-                    <div
-                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] px-[29px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300 animate__animated animate__fadeInUp">
-                        <div
-                            class="w-[100px] h-[100px] flex shrink-0 items-center justify-center rounded-full bg-[linear-gradient(150.55deg,_#007AFF_8.72%,_#312ECB_87.11%)]">
-                            <div class="w-[90px] h-[90px] rounded-full overflow-hidden">
-                                <img src="{{ asset(Storage::url($team->avatar)) }}" class="object-cover object-center w-full h-full" alt="photo">
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-1 text-center">
-                            <p class="font-bold text-xl leading-[30px]">{{ $team->name }}</p>
-                            <p class="text-cp-light-grey">{{ $team->occupation }}</p>
-                        </div>
-                        <div class="flex items-center justify-center gap-[10px]">
-                            <div class="flex w-6 h-6 shrink-0">
-                                <img src="assets/icons/global.svg" alt="icon">
-                            </div>
-                            <p class="font-semibold text-cp-dark-blue">{{ $team->location }}</p>
-                        </div>
-                    </div>
-                @empty
-                @endforelse
-            </div>
-        </div>
-    </div>
-
-    <div id="aboutUs" class="relative py-20 px-6 text-white animate__animated animate__fadeInLeft" data-aos="fade-left">
+    <div id="aboutUs" class="relative py-20 px-6 text-white animate__animated animate__fadeInLeft" >
         <div class="container max-w-[1130px] mx-auto flex flex-wrap items-center justify-between gap-10">
             <div class="w-full lg:w-[50%] flex flex-col gap-6">
                 <h2 class="text-xl font-bold uppercase tracking-wide">Tentang Kami</h2>
@@ -62,7 +23,7 @@
         </div>
     </div>
     
-    <div id="ProductIdentity" class="container max-w-[1130px] mx-auto flex items-start justify-between py-10 px-6 rounded-lg animate__animated animate__fadeInRight" data-aos="fade-right">
+    <div id="ProductIdentity" class="container max-w-[1130px] mx-auto flex items-start justify-between py-10 px-6 rounded-lg animate__animated animate__fadeInRight" >
         <div class="w-full lg:w-[40%] flex flex-col items-start justify-center">
             <h2 class="text-white text-2xl font-bold mb-4">Identitas Produk</h2>
             <img src="{{ asset('assets/images/wija-backbone-logo.png') }}" alt="WIJA BACKBONE Logo" class="object-contain w-[300px] h-auto animate__animated animate__zoomIn">
@@ -106,8 +67,7 @@
         </div>
     </div>
     
-    <!-- Super Team Section -->
-    <div id="SuperTeam" class="container max-w-[1130px] mx-auto flex flex-wrap gap-10 mt-20 items-center animate__animated animate__fadeInBottom">
+    <div id="SuperTeam" class="container max-w-[1130px] mx-auto flex flex-wrap gap-10 mt-20 mb-20 items-center animate__animated animate__fadeInBottom">
         <!-- Left Section (Image) -->
         <div class="w-full lg:w-[50%] flex justify-center">
             <img src="{{ asset('assets/images/teamwork-illustration.png') }}" alt="Super Team" class="object-cover w-full rounded-lg shadow-lg">
@@ -125,6 +85,41 @@
             </p>
         </div>
     </div>
+
+    <div id="Teams" class="w-full px-[10px] relative z-10 text-white animate__animated animate__fadeInUp" >
+        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[50px] items-center animate__animated animate__fadeInUp">
+            <div class="flex flex-col gap-[50px] items-center">
+                <div class="breadcrumb flex items-center justify-center gap-[30px] animate__animated animate__fadeInDown">
+                    <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Home</p>
+                    <span class="text-cp-light-grey">/</span>
+                    <p class="text-cp-light-grey last-of-type:text-cp-black last-of-type:font-semibold">Our Team</p>
+                </div>
+                <h2 class="font-bold text-4xl leading-[45px] text-center animate__animated animate__fadeInUp">
+                    We’re Here to Build <br> Your Awesome Projects
+                </h2>
+            </div>
+            <div class="teams-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
+                @forelse ($teams as $team)
+                    <div
+                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] px-[29px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300 animate__animated animate__fadeInUp">
+                        <div
+                            class="w-[100px] h-[100px] flex shrink-0 items-center justify-center rounded-full bg-[linear-gradient(150.55deg,_#007AFF_8.72%,_#312ECB_87.11%)]">
+                            <div class="w-[90px] h-[90px] rounded-full overflow-hidden">
+                                <img src="{{ asset(Storage::url($team->avatar)) }}" class="object-cover object-center w-full h-full" alt="photo">
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1 text-center">
+                            <p class="font-bold text-cp-dark-blue leading-[30px]">{{ $team->name }}</p>
+                            <p class="text-cp-light-grey">{{ $team->occupation }}</p>
+                        </div>
+                    </div>
+                @empty
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+
 
     <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
         <div
