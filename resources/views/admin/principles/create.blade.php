@@ -34,13 +34,6 @@
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
-                    {{-- <div class="mt-4">
-                        <x-input-label for="icon" :value="__('icon')" />
-                        <x-text-input id="icon" class="block w-full mt-1" type="file" name="icon" required
-                            autofocus autocomplete="icon" />
-                        <x-input-error :messages="$errors->get('icon')" class="mt-2" />
-                    </div> --}}
-
                     <div class="mt-4">
                         <x-input-label for="subtitle" :value="__('subtitle')" />
                         <textarea name="subtitle" id="subtitle" cols="30" rows="5"

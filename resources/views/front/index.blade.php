@@ -41,27 +41,6 @@
         </div>
     </div>
 
-<!-- Initialize Swiper.js with Autoplay -->
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        loop: true,  // Enable infinite looping of the banners
-        autoplay: {
-            delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
-            disableOnInteraction: false,  // Keep autoplay enabled after user interaction
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,  // Make the pagination dots clickable
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
-
-
-
     <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
         <div class="flex flex-col gap-[14px] items-center">
             <p
@@ -131,96 +110,13 @@
         </div>
     </div>
 
-    <div id="FAQ" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20 -mb-20">
-        <div class="container max-w-[1000px] mx-auto">
-            <div class="flex flex-col lg:flex-row gap-[50px] sm:gap-[70px] items-center">
-                <div class="flex flex-col gap-[30px]">
-                    <div class="flex flex-col gap-[10px]">
-                        <h2 class="font-bold text-4xl leading-[45px]">Frequently Asked Questions</h2>
-                    </div>
-                    <a href="{{ route('front.appointment') }}"
-                        class="p-5 font-bold text-white bg-cp-black rounded-xl w-fit">Contact
-                        Us</a>
-                </div>
-                <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-1">
-                            <span class="font-bold text-lg leading-[27px] text-left">Can installments be beneficial for
-                                both?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-1" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-2">
-                            <span class="font-bold text-lg leading-[27px] text-left">What kind of framework you popular
-                                with?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-2" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-3">
-                            <span class="font-bold text-lg leading-[27px] text-left">What insurance provider do you
-                                use?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-3" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-4">
-                            <span class="font-bold text-lg leading-[27px] text-left">What if we have other
-                                questions?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-4" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 ">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col gap-[14px]">
-                <p
-                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR PRINCIPLES</p>
-                <h2 class="font-bold text-4xl leading-[45px] text-white">We Might Best Choice <br> For Your Company</h2>
-            </div>
-            <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
+    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
+        <div class="flex flex-col gap-[14px] items-center">
+            <p
+                class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
+                OUR PRINCIPLES</p>
+            <h2 class="font-bold text-4xl leading-[45px] text-center">We Might Best Choice<br>From Your Company
+            </h2>
         </div>
         <div class="flex flex-wrap items-center gap-[30px] justify-center">
             @forelse ($principles as $principle)
@@ -231,15 +127,10 @@
                             class="object-cover object-center w-full h-full" alt="thumbnails">
                     </div>
                     <div class="flex flex-col p-[0_30px_30px_30px] gap-5">
-                        <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            {{-- <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon"> --}}
-                        </div>
                         <div class="flex flex-col gap-1">
-                            <p class="title font-bold text-xl leading-[30px]">{{ $principle->name }}</p>
+                            <p class="font-semibold text-cp-dark-blue item-center">{{ $principle->name }}</p>
                             <p class="leading-[30px] text-cp-light-grey">{{ $principle->subtitle }}</p>
                         </div>
-                        <a href="" class="font-semibold text-cp-dark-blue">Learn More</a>
                     </div>
                 </div>
             @empty
@@ -247,6 +138,8 @@
             @endforelse
         </div>
     </div>
+
+
     <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
         <div
             class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-center pt-[100px] pb-[220px] relative z-10">
@@ -287,47 +180,12 @@
                 </div>
             </div>
 
-            {{-- <div class="flex flex-wrap gap-[50px]">
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Products</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">General
-                        Contract</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Building
-                        Assessment</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">3D Paper
-                        Builder</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Legal
-                        Constructions</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">About</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">We’re
-                        Hiring</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Our Big
-                        Purposes</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Investor
-                        Relations</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Media
-                        Press</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Useful Links</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Privacy
-                        & Policy</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Terms &
-                        Conditions</a>
-                    <a href="contact.html" class="transition-all duration-300 text-cp-light-grey hover:text-white">Contact
-                        Us</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Download
-                        Template</a>
-                </div>
-            </div> --}}
         </div>
         <div class="absolute -bottom-[135px] w-full">
             <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
         </div>
     </footer>
-    <div id="video-modal" tabindex="-1" aria-hidden="true"
+    {{-- <div id="video-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-h-full p-4 lg:w-1/2">
             <!-- Modal content -->
@@ -358,7 +216,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @push('after-scripts')
