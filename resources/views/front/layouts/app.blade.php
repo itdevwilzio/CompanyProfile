@@ -23,8 +23,8 @@
     <style>
         .whatsapp-float {
             position: fixed;
-            bottom: 60px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             z-index: 9999;
         }
 
@@ -37,7 +37,7 @@
             height: 60px;
             text-align: center;
             line-height: 60px;
-            font-size: 32px;
+            font-size: 24px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
         }
@@ -84,17 +84,6 @@
     <div class="whatsapp-float">
         <a href="https://wa.me/6282211376074" target="_blank" title="Chat with our Customer Service on WhatsApp">
             <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
-    <div class="whatsapp-hover">
-        <a href="https://wa.me/6282211376074" target="_blank">
-            <img src="https://example.com/path/to/photo1.jpg" alt="Customer Care 1" width="30" height="30">
-            <span>+62 822 1137 6074</span>
-        </a>
-        <a href="https://wa.me/6282211376075" target="_blank">
-            <img src="https://example.com/path/to/photo2.jpg" alt="Customer Care 2" width="30" height="30">
-            <span>+62 822 1137 6075</span>
         </a>
     </div>
 
