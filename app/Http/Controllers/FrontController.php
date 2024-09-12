@@ -11,10 +11,8 @@ use App\Models\OurPrinciple;
 use App\Models\OurTeam;
 use App\Models\Product;
 use App\Models\Testimonial;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class FrontController extends Controller
 {
@@ -46,11 +44,16 @@ class FrontController extends Controller
         return view('front.about', compact('products', 'testimonials'));
     }
 
+<<<<<<< HEAD
     public function product()
+=======
+    public function appointment()
+>>>>>>> parent of b3d7029 (add product page & add send message with telegram)
     {
         $testimonials = Testimonial::take(4)->get();
         $products = Product::take(3)->get();
 
+<<<<<<< HEAD
         return view('front.product', compact('products', 'testimonials'));
     }
 
@@ -99,5 +102,18 @@ class FrontController extends Controller
             ]);
 
         return redirect()->back()->with('success_order', true);
+=======
+        return view('front.appointment', compact('testimonials', 'products'));
+    }
+
+    public function appointment_store(StoreAppointmentRequest $request)
+    {
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+            $newAppointment = Appointment::create($validated);
+        });
+
+        return redirect()->route('front.index');
+>>>>>>> parent of b3d7029 (add product page & add send message with telegram)
     }
 }

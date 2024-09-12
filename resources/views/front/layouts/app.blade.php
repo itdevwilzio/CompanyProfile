@@ -19,9 +19,6 @@
 
 
 
-    {{-- Tailwind CSS --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <!-- CSS for floating WhatsApp button -->
     <style>
         .whatsapp-float {
@@ -67,7 +64,7 @@
 
 </head>
 
-<body class="font-poppins text-cp-black bg-primary">
+<body class="font-poppins text-cp-black bg-blue-500">
 
     @yield('content')
 
