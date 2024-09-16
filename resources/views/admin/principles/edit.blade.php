@@ -38,15 +38,6 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="icon" :value="__('icon' (Optional))" />
-                        <img src="{{ Storage::url($principle->icon) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="icon" class="block w-full mt-1" type="file" name="icon" autofocus
-                            autocomplete="icon" />
-                        <x-input-error :messages="$errors->get('icon')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
                         <x-input-label for="subtitle" :value="__('subtitle')" />
                         <textarea name="subtitle" id="subtitle" cols="30" rows="5"
                             class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
