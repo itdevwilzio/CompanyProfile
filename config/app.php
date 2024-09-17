@@ -123,4 +123,20 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Payment Methods
+    |--------------------------------------------------------------------------
+    |
+    | Contains payment methods array. You can add your own payment methods
+    | to this array to grant expanded functionality to your applications.
+    | For example, you can add Bank or E-Wallet.
+    |
+    */
+
+    'payment_methods' => [
+        "Bank BRI" => "45758618316173376\nA/N. Rizal Firdaus",
+        "Bank BCA" => "45758618316173376\nA/N. Rizal Firdaus",
+    ],
+
 ];

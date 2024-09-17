@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 @section('content')
-    <div id="header" class="bg-[#F6F7FA] relative overflow-hidden">
+    <div id="header" class="bg-[#F6F7FA] relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
             {{-- @forelse ($hero_section as $hero)

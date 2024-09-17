@@ -51,6 +51,9 @@
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                         {{ __('Our Products') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.locations.index')" :active="request()->routeIs('admin.locations.index')">
+                        {{ __('Locations') }}
+                    </x-nav-link>
 
                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                         <x-dropdown align="right" width="48">

@@ -13,6 +13,9 @@
     {{-- Tailwind CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Feather icon --}}
+    <link rel="stylesheet" href="{{ asset('assets/feather/feather.css') }}">
+
     <!-- CSS for floating WhatsApp button -->
     <style>
         .whatsapp-float {
@@ -74,6 +77,10 @@
 
     @stack('after-scripts')
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
     <!-- Floating WhatsApp Button -->
     <div class="whatsapp-float">
         <a href="https://wa.me/6282211376074" target="_blank" title="Chat with our Customer Service on WhatsApp">
@@ -83,6 +90,20 @@
 
     <!-- Font Awesome for WhatsApp icon -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#toggle-navbar-mobile').on('click', function() {
+                $('#navbar').toggleClass('opened');
+                $('#navbar-overlay').toggleClass('hidden')
+            });
+
+            $('#close-navbar-mobile').on('click', function() {
+                $('#navbar').removeClass('opened');
+                $('#navbar-overlay').addClass('hidden')
+            });
+        })
+    </script>
 </body>
 
 </html>
