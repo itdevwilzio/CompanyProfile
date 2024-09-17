@@ -229,6 +229,8 @@
               <input type="file" id="foto_ktp" name="foto_ktp" required
                 class="file:bg-white file:rounded-full file:border-none file:px-3 rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
                 accept="image/*" placeholder="Upload foto KTP">
+                <!-- Preview Image -->
+                <img id="preview" class="w-full h-auto rounded-xl mt-3 hidden" />
               <button type="submit" class="w-full p-3 bg-green-600 mt-5 text-white rounded-full">Selanjutnya</button>
             </form>
           </div>
@@ -457,5 +459,23 @@
     @if (session()->has('success_order'))
         setStep(3);
     @endif
+
+    document.getElementById('foto_ktp').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('preview');
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.classList.remove('hidden'); // Show the preview image
+      };
+      reader.readAsDataURL(file); // Read the image file
+    } else {
+      preview.src = ''; // Clear preview if no file selected
+      preview.classList.add('hidden'); // Hide the image
+    }
+  });
+
   </script>
 @endpush

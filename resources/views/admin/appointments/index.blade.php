@@ -36,13 +36,50 @@
                                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                 Details
                             </a>
+
+                            <!-- Delete Form -->
+                            <form id="delete-form-{{ $appointment->id }}" action="{{ route('admin.appointments.destroy', $appointment) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn"
+                                    data-id="{{ $appointment->id }}">
+                                    Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @empty
                     <p>Belum ada data terbaru</p>
                 @endforelse
+
+                <!-- Pagination -->
                 {{ $appointments->links() }}
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const appointmentId = this.getAttribute('data-id');
+                const deleteForm = document.getElementById(`delete-form-${appointmentId}`);
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteForm.submit(); // Submit the form if confirmed
+                    }
+                });
+            });
+        });
+    </script>
 </x-app-layout>

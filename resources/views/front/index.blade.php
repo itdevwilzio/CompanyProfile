@@ -24,7 +24,7 @@
                             <div class="absolute bottom-10 left-10">
                                 <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
                                 <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
-                            </div>
+                            </div>nnnn
                         </div>
                     @empty
                         {{-- <p>No hero sections available</p> --}}

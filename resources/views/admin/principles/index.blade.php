@@ -33,18 +33,45 @@
                                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                 Edit
                             </a>
-                            <form action="{{ route('admin.principles.destroy', $principle) }}" method="POST">
+                            <!-- Delete Form -->
+                            <form id="delete-form-{{ $principle->id }}" action="{{ route('admin.principles.destroy', $principle) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn"
+                                    data-id="{{ $principle->id }}">
                                     Delete
                                 </button>
                             </form>
                         </div>
                     </div>
                 @empty
-                    <p>belum ada data terbaru</p>
+                    <p>Belum ada data terbaru</p>
                 @endforelse
+
+                <!-- SweetAlert Script -->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const principleId = this.getAttribute('data-id');
+                            const deleteForm = document.getElementById(`delete-form-${principleId}`);
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    deleteForm.submit(); // Submit the form if confirmed
+                                }
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
