@@ -135,8 +135,21 @@ return [
     */
 
     'payment_methods' => [
-        "Bank BRI" => "45758618316173376\nA/N. Rizal Firdaus",
-        "Bank BCA" => "45758618316173376\nA/N. Rizal Firdaus",
+        [
+            "bank_name" => "Bank BRI",
+            "account_number" => "1234567890",
+            "account_name" => "Rizal Firdaus"
+        ],
+        [
+            "bank_name" => "Bank BCA",
+            "account_number" => "1234567890",
+            "account_name" => "Rizal Firdaus"
+        ],
+        [
+            "bank_name" => "DANA",
+            "account_number" => "0856736237",
+            "account_name" => "Rizal Firdaus"
+        ],
     ],
 
 ];

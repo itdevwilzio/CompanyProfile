@@ -33,8 +33,8 @@
         <div class="mb-2">
           <label for="payment_method" class="block text-sm font-medium text-gray-700">Metode Pembayaran</label>
           <select id="voucher_package" name="payment_method" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-            @foreach ($payment_methods as $key => $val)
-              <option value="{{ $key }}">{{ $key }}</option>
+            @foreach ($payment_methods as $pm)
+              <option value="{{ $pm['bank_name'] }}">{{ $pm['bank_name'] }}</option>
             @endforeach
           </select>
         </div>

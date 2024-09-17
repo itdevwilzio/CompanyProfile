@@ -1,6 +1,13 @@
 @php
     $payment_methods = config('app.payment_methods');
-    $payment_detail = $payment_methods[$selected_payment_method];
+    // $payment_detail = $payment_methods[$selected_payment_method];
+    $filtered_array = array_filter($payment_methods, function ($method) use ($selected_payment_method) {
+    return $method['bank_name'] === $selected_payment_method;
+});
+
+    // Untuk mengambil array pertama yang cocok
+    $selected_bank = reset($filtered_array);
+
 @endphp
 
 @extends('front.layouts.app')
@@ -29,7 +36,7 @@
                         Lokasi : {{ $location->name }} <br>
                         Voucher : {{ $voucher_package->name }} <br>
                         Harga : Rp {{ $voucher_package->price }} <br>
-                        Metode Bayar : {{ $selected_payment_method }}
+                        Metode Bayar : {{ $selected_bank['bank_name'] }}
                     </p>
                 </div>
                 <div class="mb-5">
@@ -40,16 +47,17 @@
                 </div>
                 <div class="mb-5">
                     <label for="payment_method" class="block font-medium text-gray-700">Silahkan Transfer ke :</label>
-                    <p class="text-center bg-white text-gray-900 p-1 rounded-md">
-                        {{ $selected_payment_method }} <br>
-                        {!! nl2br(e($payment_detail)) !!}
-                    </p>
+                    <div class="text-center bg-white text-gray-900 p-1 rounded-md">
+                        <p class="text-center">{{ $selected_bank['bank_name'] }}</p>
+                        <p class="text-center">{{ $selected_bank['account_number'] }}</p>
+                        <p class="text-center">A/N. {{ $selected_bank['account_name'] }}</p>
+                    </div>
+                    <button type="button" id="copy-rekening" class="flex text-sm bg-pimary hover:bg-pimary-dark bg-white py-2 px-4 rounded-md text-primary mt-1 ml-auto transition-all active:bg-blue-50">Salin Nomor Rekening</button>
                 </div>
 
                 <div class="mb-5">
                     <label for="payment_method" class="block font-medium text-gray-700">Upload Bukti Pembayaran :</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran"
-                        class="bg-white w-full rounded-md file:text-white file:border-0 file:text-sm p-2 file:mr-5 file:m-0 file:bg file:bg-primary file:rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="bg-white border border-gray-300 w-full rounded-md file:text-white file:border-0 file:text-sm p-2 file:mr-5 file:m-0 file:bg file:bg-primary file:rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         accept="image/*" required>
                     <div class="mt-2 flex flex-col items-center justify-center">
                         <img id="upload-preview" src="" class="rounded-md w-full" alt="Preview" style="display: none; max-width: 100%; height: auto;">
@@ -85,6 +93,17 @@
             } else {
                 preview.style.display = 'none';
             }
+        });
+
+        const no_rek = '{{ $selected_bank['account_number'] }}'; 
+
+        document.getElementById('copy-rekening').addEventListener('click', function() {
+            // Meng-copy nomor rekening ke clipboard
+            navigator.clipboard.writeText(no_rek).then(function() {
+                alert('Nomor rekening berhasil di-copy!');
+            }).catch(function(error) {
+                alert('Gagal meng-copy nomor rekening: ' + error);
+            });
         });
     </script>
 @endsection
