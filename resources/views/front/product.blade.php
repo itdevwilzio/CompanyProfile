@@ -229,7 +229,7 @@
               <input type="file" id="foto_ktp" name="foto_ktp" required
                 class="file:bg-white file:rounded-full file:border-none file:px-3 rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
                 accept="image/*" placeholder="Upload foto KTP">
-                <!-- Preview Image -->
+               <!-- Preview Image -->
                 <img id="preview" class="w-full h-auto rounded-xl mt-3 hidden" />
               <button type="submit" class="w-full p-3 bg-green-600 mt-5 text-white rounded-full">Selanjutnya</button>
             </form>
