@@ -5,18 +5,24 @@ use App\Http\Controllers\CompanyAboutController;
 use App\Http\Controllers\CompanyStatisticController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HeroSectionController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OurPrincipleController;
 use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectClientController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\VoucherPackageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/about', [FrontController::class, 'about'])->name('front.about');
 Route::get('/product', [FrontController::class, 'about'])->name('front.product');
+Route::get('/location', [FrontController::class, 'location'])->name('front.location');
+Route::get('/location/{location}', [FrontController::class, 'locationOrder'])->name('front.location_order');
+Route::post('/location/{location}/order', [FrontController::class, 'locationOrderContinue'])->name('front.location_order_continue');
+Route::post('/location/{location}/confirm-order/{voucher}', [FrontController::class, 'confirmOrderVoucher'])->name('front.confirm_order_voucher');
 Route::get('/appointment', [FrontController::class, 'appointment'])->name('front.appointment');
 Route::post('/appointment/store', [FrontController::class, 'appointment_store'])->name('front.appointment_store');
 
@@ -65,6 +71,14 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage hero sections')->group(function () {
             Route::resource('hero_sections', HeroSectionController::class);
         });
+
+        Route::middleware('can:manage locations')->group(function () {
+            Route::resource('locations', LocationController::class);
+        });
+
+        // Route::middleware('can:manage voucher packages')->group(function () {
+            Route::resource('locations/{location}/voucher_packages', VoucherPackageController::class);
+        // });
     });
 });
 

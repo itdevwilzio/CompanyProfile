@@ -26,6 +26,9 @@ class RolePermissionSeeder extends Seeder
             'manage abouts',
             'manage appointments',
             'manage hero sections',
+            'manage locations',
+            'manage voucher packages',
+            'manage payment methods'
         ];
 
         // Create permissions

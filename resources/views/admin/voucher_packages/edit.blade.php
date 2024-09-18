@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Edit Principle') }}
+            {{ __('Edit Voucher Package') }}
         </h2>
     </x-slot>
 
@@ -17,37 +17,27 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.principles.update', $principle) }}"
-                    enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.voucher_packages.update', ['location' => $location->id, 'voucher_package' => $voucherPackage] ) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            value="{{ $principle->name }}" required autofocus autocomplete="name" />
+                            value="{{ $voucherPackage->name }}" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
-                        <img src="{{ Storage::url($principle->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
-                            autocomplete="thumbnail" />
-                        <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="subtitle" :value="__('subtitle')" />
-                        <textarea name="subtitle" id="subtitle" cols="30" rows="5"
-                            class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
-                        <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
+                        <x-input-label for="price" :value="__('Price')" />
+                        <x-text-input id="price" class="block w-full mt-1" type="text" name="price"
+                            value="{{ $voucherPackage->price }}" required autofocus autocomplete="price" />
+                        <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
 
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
-                            Update Principle
+                            Update Voucher Package
                         </button>
                     </div>
                 </form>

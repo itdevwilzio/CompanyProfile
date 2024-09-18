@@ -13,6 +13,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Feather icon -->
+        <link rel="stylesheet" href="{{ asset('assets/feather/feather.css') }}">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-blue-100">
