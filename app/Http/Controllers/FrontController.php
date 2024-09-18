@@ -50,19 +50,6 @@ class FrontController extends Controller
         return view('front.about', compact('products', 'testimonials'));
     }
 
-<<<<<<< HEAD
-    public function product()
-=======
-    public function appointment()
->>>>>>> parent of b3d7029 (add product page & add send message with telegram)
-    {
-        $testimonials = Testimonial::take(4)->get();
-        $products = Product::take(3)->get();
-
-<<<<<<< HEAD
-        return view('front.product', compact('products', 'testimonials'));
-    }
-
     public function appointment()
     {
         $testimonials = Testimonial::take(4)->get();
@@ -79,66 +66,6 @@ class FrontController extends Controller
         });
 
         return redirect()->route('front.index');
-    }
-
-    public function orderProduct(Request $request) {
-        $request->validate([
-            'product_id' => 'required',
-            'nama' => 'required',
-            'no_wa' => 'required',
-            'foto_ktp' => 'required',
-        ]);
-
-        // save file
-        $imagePath = $request->file('foto_ktp')->store('private/images');
-        $imageFullPath = Storage::path($imagePath);
-
-        $product = Product::find($request->product_id);
-
-        $nama = $request->nama;
-        $no_wa = $request->no_wa;
-        $product_name = $product->name;
-        $msg = "
-        *Permintaan Pemasangan Baru*\n\nNama : ".$nama."\nNomor WA : ".$no_wa."\nProduk : ".$product_name;
-
-        $BOT_TOKEN = env('BOT_TOKEN_2');
-        $USER_ID = env('CHAT_ID_2');
-        $client = new Client();
-        $response = $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
-            'multipart' => [
-                [
-                    'name' => 'chat_id',
-                    'contents' => $USER_ID
-                ],
-                [
-                    'name' => 'photo',
-                    'contents' => fopen($imageFullPath, 'r')
-                ],
-                [
-                    'name' => 'caption',
-                    'contents' => $msg
-                ],
-                [
-                    'name' => 'parse_mode',
-                    'contents' => 'MarkdownV2'
-                ]
-            ]
-            ]);
-
-        return redirect()->back()->with('success_order', true);
-=======
-        return view('front.appointment', compact('testimonials', 'products'));
-    }
-
-    public function appointment_store(StoreAppointmentRequest $request)
-    {
-        DB::transaction(function () use ($request) {
-            $validated = $request->validated();
-            $newAppointment = Appointment::create($validated);
-        });
-
-        return redirect()->route('front.index');
->>>>>>> parent of b3d7029 (add product page & add send message with telegram)
     }
 
     public function location(Request $request) 
