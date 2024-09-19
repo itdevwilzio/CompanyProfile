@@ -77,25 +77,6 @@ class FrontController extends Controller
         return redirect()->route('front.index');
     }
 
-    
-
-    public function orderNumber()
-    {
-        $now = new \DateTime();
-        
-        return sprintf(
-            '%s-%s-%s-%s-%s-%s-%03d-wbbku.com',
-            $now->format('d'),
-            $now->format('m'),
-            $now->format('Y'),
-            $now->format('H'),
-            $now->format('i'),
-            $now->format('s'),
-            (int) ($now->format('v')) // milliseconds
-        );
-    }
-
-
     public function orderProduct(Request $request) {
         $request->validate([
             'product_id' => 'required',
@@ -103,9 +84,6 @@ class FrontController extends Controller
             'no_wa' => 'required',
             'foto_ktp' => 'required',
         ]);
-
-        // Generate order number
-        // $orderNumber = $this->orderNumber();
 
         // save file
         $imagePath = $request->file('foto_ktp')->store('private/images');
@@ -146,8 +124,6 @@ class FrontController extends Controller
         return redirect()->back()->with('success_order', true);
     }
 
-    
-
     public function location(Request $request) 
     {
         if ($request->filled('search')) {
@@ -173,28 +149,18 @@ class FrontController extends Controller
 
     public function confirmOrderVoucher(Request $request, Location $location, VoucherPackage $voucher) 
     {
-        // Generate the order number
-        $orderNumber = $this->orderNumber();
-    
+        // dd($request->all(), $location, $voucher);
         $BOT_TOKEN = env('BOT_TOKEN_2');
         $CHAT_ID = env('CHAT_ID_2');
-    
-        // Save the uploaded payment proof file
+        // dd($BOT_TOKEN, $CHAT_ID);
+
+        // save files
         $imagePath = $request->file('bukti_pembayaran')->store('private/images');
         $imageFullPath = Storage::path($imagePath);
         $whatsapp = $request->no_whatsapp;
-    
-        // Escape special characters for Telegram Markdown
-        $orderNumber = str_replace(['-', '_', '.'], ['\-', '\_', '\.'], $orderNumber);
-        $locationName = str_replace(['-', '_', '.'], ['\-', '\_', '\.'], $location->name);
-        $voucherName = str_replace(['-', '_', '.'], ['\-', '\_', '\.'], $voucher->name);
-        $paymentMethod = str_replace(['-', '_', '.'], ['\-', '\_', '\.'], $request->payment_method);
-    
-        // Prepare the message to send to Telegram
+
         $msg = "
-        *Pembelian Voucher Wi\\-Fi*\n\nOrder Number : ".$orderNumber."\nLokasi : ".$locationName."\nVoucher : ".$voucherName."\nHarga : ".$voucher->price."\nMetode Bayar : ".$paymentMethod."\nNomor WhatsApp : ".$whatsapp;
-    
-        // Send the payment proof to Telegram
+        *Pembelian Voucher Wi\\-Fi*\n\nLokasi : ".$location->name . "\nVoucher : " . $voucher->name . "\nHarga : " . $voucher->price . "\nMetode Bayar : " . $request->payment_method."\nNomor WhatsApp : ".$whatsapp;
         $client = new Client();
         $response = $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
             'multipart' => [
@@ -215,13 +181,10 @@ class FrontController extends Controller
                     'contents' => 'MarkdownV2'
                 ]
             ]
-        ]);
-    
-        // Redirect back with success message
+            ]);
+
         return redirect()->route('front.location')->with('success', 'Pembelian voucher berhasil. Silahkan tunggu konfirmasi Admin');
     }
-    
-    
 
     // public function confirmOrderVoucher(Request $request, Location $location, VoucherPackage $voucher) 
     // {
