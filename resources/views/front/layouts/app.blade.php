@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fade@2/flickity-fade.css">
 
+
+
     {{-- Tailwind CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -43,20 +45,6 @@
             background-color: #128C7E;
         }
 
-        /* Wave SVG Background */
-        /* .wave-container {
-            position: relative;
-            margin-bottom: 100px; /* Add some space for the WhatsApp button */
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: auto;
-        } */
     </style>
 
 </head>
@@ -79,6 +67,8 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 
     <!-- Floating WhatsApp Button -->

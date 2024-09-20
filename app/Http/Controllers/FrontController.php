@@ -24,7 +24,7 @@ class FrontController extends Controller
     public function index()
     {
         $statistics = CompanyStatistic::take(4)->get();
-        $principles = OurPrinciple::take(4)->get();
+        $principles = OurPrinciple::take(6)->get();
         $products = Product::take(3)->get();
         $teams = OurTeam::take(3)->get();
         $testimonials = Testimonial::take(4)->get();
@@ -154,13 +154,31 @@ class FrontController extends Controller
         $CHAT_ID = env('CHAT_ID_2');
         // dd($BOT_TOKEN, $CHAT_ID);
 
-        // save files
+        // Save files
         $imagePath = $request->file('bukti_pembayaran')->store('private/images');
         $imageFullPath = Storage::path($imagePath);
         $whatsapp = $request->no_whatsapp;
 
+        // Escape special characters for Telegram MarkdownV2
+        $locationName = str_replace(['-', '_', '.', '*', '[', ']', '(', ')'], ['\-', '\_', '\.', '\*', '\[', '\]', '\(', '\)'], $location->name);
+        $voucherName = str_replace(['-', '_', '.', '*', '[', ']', '(', ')'], ['\-', '\_', '\.', '\*', '\[', '\]', '\(', '\)'], $voucher->name);
+        $paymentMethod = str_replace(['-', '_', '.', '*', '[', ']', '(', ')'], ['\-', '\_', '\.', '\*', '\[', '\]', '\(', '\)'], $request->payment_method);
+        $whatsappEscaped = str_replace(['-', '_', '.', '*', '[', ']', '(', ')'], ['\-', '\_', '\.', '\*', '\[', '\]', '\(', '\)'], $whatsapp);
+
+        // Generate public link for the image file (assuming you're storing it in a public storage or use a service like Cloudinary)
+        $publicImageUrl = Storage::url($imagePath); // If using Laravel's public disk
+
+        // Prepare the message to send to Telegram, including the clickable image link
         $msg = "
-        *Pembelian Voucher Wi\\-Fi*\n\nLokasi : ".$location->name . "\nVoucher : " . $voucher->name . "\nHarga : " . $voucher->price . "\nMetode Bayar : " . $request->payment_method."\nNomor WhatsApp : ".$whatsapp;
+        *Pembelian Voucher Wi\\-Fi*\n\n
+        Lokasi : " . $locationName . "\n
+        Voucher : " . $voucherName . "\n
+        Harga : " . $voucher->price . "\n
+        Metode Bayar : " . $paymentMethod . "\n
+        Nomor WhatsApp : " . $whatsappEscaped . "\n\n
+        [Klik untuk melihat bukti pembayaran](" . $publicImageUrl . ")";
+
+        // Send the payment proof to Telegram
         $client = new Client();
         $response = $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
             'multipart' => [
@@ -181,7 +199,7 @@ class FrontController extends Controller
                     'contents' => 'MarkdownV2'
                 ]
             ]
-            ]);
+        ]);
 
         return redirect()->route('front.location')->with('success', 'Pembelian voucher berhasil. Silahkan tunggu konfirmasi Admin');
     }

@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Manage Teams') }}
             </h2>
-            <a href="{{ route('admin.teams.create') }}" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+            <a href="{{ route('admin.teams.create') }}" class="px-6 py-4 font-bold text-white bg-primary rounded-full">
                 Add New
             </a>
         </div>
@@ -29,22 +29,55 @@
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
                             <a href="{{ route('admin.teams.edit', $team) }}"
-                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-4 font-bold text-white bg-primary rounded-full">
                                 Edit
                             </a>
-                            <form action="{{ route('admin.teams.destroy', $team) }}" method="POST">
+                            <form id="delete-team-form-{{ $team->id }}" action="{{ route('admin.teams.destroy', $team) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn"
+                                    data-id="{{ $team->id }}">
                                     Delete
                                 </button>
                             </form>
                         </div>
                     </div>
                 @empty
-                    <p>belum ada data terbaru</p>
+                    <p>Belum ada data terbaru</p>
                 @endforelse
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Add event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const teamId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-team-form-${teamId}`);
+
+                    // Trigger SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Naha anjeun yakin?',
+                        text: "Anjeun moal tiasa ngabalikeun ieu!",
+                        icon: 'peringatan',
+                        showCancelButton: true,
+                        confirmButtonColor: '#0C3C94',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Enya, paminta ti hapuskeun!',
+                        cancelButtonText: 'Ngebatalkeun'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </x-app-layout>

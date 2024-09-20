@@ -1,100 +1,44 @@
 @extends('front.layouts.app')
 @section('content')
     <div id="header" class="relative">
-        <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
+        <div class="container max-w-[1130px] mx-auto relative pt-10 z-10 main-carousel">
             <x-navbar></x-navbar>
 
-            <!-- Swiper Wrapper for Banner Carousel -->
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
+     
+            <div class="carousel-container mt-20 relative overflow-hidden">
+                <!-- Flickity Carousel -->
+                <div class="carousel" 
+                    data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true }'
+                    style="height: 400px;">
+                    
                     @forelse ($hero_section as $hero)
-                        <div class="swiper-slide">
-                            <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
-
-                            <!-- Banner Image -->
-                            <div class="relative">
-                                <img src="{{ asset(Storage::url($hero->banner)) }}"
-                                    srcset="{{ asset(Storage::url($hero->banner)) }} 1024w,
-                                            {{ asset(Storage::url('small/'.$hero->banner)) }} 640w"
-                                    sizes="(max-width: 768px) 640px, 1024px"
-                                    class="object-cover w-full h-full" alt="banner">
-                            </div>
-
-                            <!-- Optional Hero Section Text -->
-                            <div class="absolute bottom-10 left-10">
-                                <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
-                                <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
-                            </div>nnnn
+                    <div class="carousel-cell w-full h-full">
+                        <!-- Banner Image -->
+                        <div class="relative w-full h-full">
+                            <img src="{{ asset(Storage::url($hero->banners)) }}"
+                                 srcset="{{ asset(Storage::url($hero->banners)) }} 1024w,
+                                         {{ asset(Storage::url('small/'.$hero->banners)) }} 640w"
+                                 sizes="(max-width: 768px) 640px, 1024px"
+                                 class="object-cover w-full h-full" alt="banner" loading="lazy">
                         </div>
+                    </div>
                     @empty
-                        {{-- <p>No hero sections available</p> --}}
+                    <div class="carousel-cell w-full h-full">
+                        <div class="relative">
+                            <img src="{{ asset('banners/banner.png') }}" class="object-cover w-full h-full" alt="No banners available">
+                        </div>
+                    </div>
                     @endforelse
                 </div>
-
-                <!-- Swiper Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Swiper Navigation (arrows) -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
             </div>
+            
+            
+            
+            
         </div>
     </div>
 
-<!-- Initialize Swiper.js with Autoplay -->
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        loop: true,  // Enable infinite looping of the banners
-        autoplay: {
-            delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
-            disableOnInteraction: false,  // Keep autoplay enabled after user interaction
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,  // Make the pagination dots clickable
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-</script>
 
-    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 ">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col gap-[14px]">
-                <p
-                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR PRINCIPLES</p>
-                <h2 class="font-bold text-4xl leading-[45px] text-white">We Might Best Choice <br> For Your Company</h2>
-            </div>
-            <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
-        </div>
-        <div class="flex flex-wrap items-center gap-[30px] justify-center">
-            @forelse ($principles as $principle)
-                <div
-                    class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-                    <div class="thumbnail h-[200px] flex shrink-0 overflow-hidden">
-                        <img src="{{ asset(Storage::url($principle->thumbnail)) }}"
-                            class="object-cover object-center w-full h-full" alt="thumbnails">
-                    </div>
-                    <div class="flex flex-col p-[0_30px_30px_30px] gap-5">
-                        <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            {{-- <img src="{{ asset(Storage::url($principle->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon"> --}}
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <p class="title font-bold text-xl leading-[30px]">{{ $principle->name }}</p>
-                            <p class="leading-[30px] text-cp-light-grey">{{ $principle->subtitle }}</p>
-                        </div>
-                        <a href="" class="font-semibold text-cp-dark-blue">Learn More</a>
-                    </div>
-                </div>
-            @empty
-                <p>Belum ada data terbaru</p>
-            @endforelse
-        </div>
-    </div>
 </div>
 
     </div>
@@ -102,12 +46,10 @@
     <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
         <div class="flex flex-col gap-[14px] items-center">
             <p
-                class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
+                class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-4xl tracking-[1.2px]">
                 SUCCESS CLIENTS</p>
-            <h2 class="font-bold text-4xl leading-[45px] text-center">Our Satisfied Clients<br>From Worldwide Company
-            </h2>
         </div>
-        <div class="w-full main-carousel">
+        {{-- <div class="w-full main-carousel">
             @forelse ($testimonials as $testimonial)
                 <div
                     class="carousel-card container max-w-[1130px] w-full flex flex-wrap justify-between items-center lg:mx-[calc((100vw-1130px)/2)]">
@@ -165,95 +107,99 @@
             @empty
                 <p>Belum ada data terbaru</p>
             @endforelse
-        </div>
-    </div>
-    <div id="FAQ" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20 -mb-20">
-        <div class="container max-w-[1000px] mx-auto">
-            <div class="flex flex-col lg:flex-row gap-[50px] sm:gap-[70px] items-center">
-                <div class="flex flex-col gap-[30px]">
-                    <div class="flex flex-col gap-[10px]">
-                        <h2 class="font-bold text-4xl leading-[45px]">Frequently Asked Questions</h2>
-                    </div>
-                    <a href="{{ route('front.appointment') }}"
-                        class="p-5 font-bold text-white bg-cp-black rounded-xl w-fit">Contact
-                        Us</a>
-                </div>
-                <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-1">
-                            <span class="font-bold text-lg leading-[27px] text-left">Can installments be beneficial for
-                                both?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
+        </div> --}}
+        <div class="w-full main-carousel bg-blue-900 py-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-yellow-400 mb-6">4.85 / 5 Rating Pelanggan</h2>
+                <h3 class="text-3xl font-semibold text-center text-white mb-12">Apa Kata Mereka?</h3>
+        
+                <!-- Flickity Carousel -->
+                <div class="carousel"
+                    data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": true, "pageDots": true }'>
+                    @forelse ($testimonials as $testimonial)
+                    <div class="carousel-cell bg-white p-6 rounded-lg shadow-lg relative">
+                        <!-- Client Info and Avatar -->
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-full overflow-hidden">
+                                <img src="{{ asset(Storage::url($testimonial->client->avatar)) }}" alt="Client Avatar"
+                                    class="object-cover w-full h-full">
                             </div>
-                        </button>
-                        <div id="accordion-faq-1" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-2">
-                            <span class="font-bold text-lg leading-[27px] text-left">What kind of framework you popular
-                                with?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
+                            <div>
+                                <p class="font-bold text-lg">{{ $testimonial->client->name }}</p>
+                                <p class="text-sm text-gray-500">{{ $testimonial->client->occupation }}</p>
                             </div>
-                        </button>
-                        <div id="accordion-faq-2" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-3">
-                            <span class="font-bold text-lg leading-[27px] text-left">What insurance provider do you
-                                use?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
+                            <div class="absolute top-4 right-4">
+                                <!-- WhatsApp Icon -->
+                                <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6">
                             </div>
-                        </button>
-                        <div id="accordion-faq-3" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
                         </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-4">
-                            <span class="font-bold text-lg leading-[27px] text-left">What if we have other
-                                questions?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-4" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
+        
+                        <!-- Stars Rating -->
+                        <div class="flex items-center mb-4">
+                            @for($i = 0; $i < 5; $i++)
+                            <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6" alt="star">
+                            @endfor
                         </div>
+        
+                        <!-- Testimonial Message -->
+                        <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
+                            @if(strlen($testimonial->message) > 150)
+                            <a href="#" class="text-blue-500">...Lihat selengkapnya</a>
+                            @endif
+                        </p>
                     </div>
+                    @empty
+                    <p class="text-center text-white">Belum ada data terbaru</p>
+                    @endforelse
                 </div>
             </div>
         </div>
+        
+
     </div>
+
+    <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 ">
+
+            <div class="flex flex-col gap-[14px] items-center">
+                <p
+                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-4xl">
+                    Keunggulan Kami</p>
+            </div>
+
+        <div class="flex flex-wrap items-center gap-[20px] justify-center"> <!-- Reduced gap between cards -->
+            @forelse ($principles as $principle)
+            <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[5px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300 min-h-[400px] mb-0"> <!-- Removed margin bottom -->
+                <!-- Thumbnail section (image) with optimized sizing and margin -->
+                <div class="thumbnail w-full max-h-[150px] flex items-center justify-center overflow-hidden mt-2"> <!-- Updated for max height -->
+                    <img src="{{ asset(Storage::url($principle->thumbnail)) }}" class="object-contain max-w-full max-h-full" alt="thumbnails"> <!-- Ensure proper scaling and containment -->
+                </div>
+            
+                <!-- Content section with reduced gap and optimized padding -->
+                <div class="flex flex-col items-center text-center p-[10px_20px_20px_20px] gap-[5px] flex-grow"> <!-- Added top padding and ensured flex-grow -->
+                    <div class="flex flex-col gap-[2px] items-center">
+                        <p class="title font-bold text-xl leading-[24px] text-cp-dark-blue">{{ $principle->name }}</p> <!-- Adjusted line height -->
+                        <p class="leading-[22px] text-cp-light-grey">{{ $principle->subtitle }}</p> <!-- Adjusted line height -->
+                    </div>
+                </div>
+            </div>
+            
+
+            @empty
+                <p>Belum ada data terbaru</p>
+            @endforelse
+        </div>
+        
+        
+        </div>
+    </div>
+
     <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
         <div
             class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-center pt-[100px] pb-[220px] relative z-10">
             <div class="flex flex-col gap-10 items-start">
                 <!-- Company Logo and Info -->
                 <div class="flex items-center gap-3">
-                    <div class="flex shrink-0 h-[43px] overflow-hidden">
+                    <div class="h-[43px] w-auto">
                         <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="Company logo">
                     </div>
                     <div class="flex flex-col">
@@ -261,28 +207,23 @@
                         <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
                     </div>
                 </div>
-
+            
                 <!-- Social Media Icons -->
-                <div class="flex items-center justify-center gap-4">
+                <div class="flex items-center justify-between w-full max-w-[200px]">
                     <a href="https://youtube.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/youtube.svg') }}" class="object-contain w-full h-full" alt="YouTube">
-                        </div>
+                        <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-6 h-6 object-contain" alt="YouTube">
                     </a>
                     <a href="https://wa.me/your-number" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="object-contain w-full h-full" alt="WhatsApp">
-                        </div>
+                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-6 h-6 object-contain" alt="WhatsApp">
                     </a>
                     <a href="https://facebook.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/facebook.svg') }}" class="object-contain w-full h-full" alt="Facebook">
-                        </div>
+                        <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-6 h-6 object-contain" alt="Facebook">
                     </a>
                     <a href="https://instagram.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/instagram.svg') }}" class="object-contain w-full h-full" alt="Instagram">
-                        </div>
+                        <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-6 h-6 object-contain" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com" target="_blank">
+                        <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-6 h-6 object-contain" alt="Instagram">
                     </a>
                 </div>
             </div>
@@ -291,38 +232,7 @@
             <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
         </div>
     </footer>
-    <div id="video-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative w-full max-h-full p-4 lg:w-1/2">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-[20px] overflow-hidden shadow">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5">
-                    <h3 class="text-xl font-semibold text-cp-black">
-                        Company Profile Video
-                    </h3>
-                    <button type="button"
-                        class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
-                        onclick="{modal.hide()}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="">
-                    <!-- video src added from the js script (modal-video.js) to prevent video running in the backgroud -->
-                    <iframe id="videoFrame" class="aspect-[16/9]" width="100%" src=""
-                        title="Demo Project Laravel Portfolio" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
 
 @push('after-scripts')
@@ -333,24 +243,8 @@
     <script src="{{ asset('js/carousel.js') }}"></script>
     <script src="{{ asset('js/accordion.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script src="{{ asset('js/modal-video.js') }}"></script>
 
     <!-- Initialize Swiper.js with Autoplay -->
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            loop: true,  // Enable infinite looping of the banners
-            autoplay: {
-                delay: 5000,  // Set the delay to 5000 milliseconds (5 seconds)
-                disableOnInteraction: false,  // Keep autoplay enabled after user interaction
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,  // Make the pagination dots clickable
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
     </script>
 @endpush
