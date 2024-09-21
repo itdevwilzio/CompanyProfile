@@ -73,7 +73,7 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel' // You can change this to the desired language
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('update-team-form').submit(); // Submit the form if confirmed

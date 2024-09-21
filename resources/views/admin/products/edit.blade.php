@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.products.update', $product) }}" enctype="multipart/form-data">
+                <form id="update-product-form" method="POST" action="{{ route('admin.products.update', $product) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
@@ -28,14 +28,14 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="tagline" :value="__('tagline')" />
+                        <x-input-label for="tagline" :value="__('Tagline')" />
                         <x-text-input id="tagline" class="block w-full mt-1" type="text" name="tagline"
                             value="{{ $product->tagline }}" required autofocus autocomplete="tagline" />
                         <x-input-error :messages="$errors->get('tagline')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <img src="{{ Storage::url($product->thumbnail) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
@@ -44,14 +44,13 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="about" :value="__('about')" />
+                        <x-input-label for="about" :value="__('About')" />
                         <textarea name="about" id="about" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl">{{ $product->about }}</textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Product
                         </button>
                     </div>
@@ -60,4 +59,25 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to update this product!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-product-form').submit(); // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

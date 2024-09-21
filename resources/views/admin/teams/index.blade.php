@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>Belum ada data terbaru</p>
+                    <p>No recent data available</p>
                 @endforelse
             </div>
         </div>
@@ -61,16 +61,16 @@
                     const teamId = this.getAttribute('data-id');
                     const form = document.getElementById(`delete-team-form-${teamId}`);
 
-                    // Trigger SweetAlert confirmation
+                    // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Naha anjeun yakin?',
-                        text: "Anjeun moal tiasa ngabalikeun ieu!",
-                        icon: 'peringatan',
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Enya, paminta ti hapuskeun!',
-                        cancelButtonText: 'Ngebatalkeun'
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

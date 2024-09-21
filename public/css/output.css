@@ -595,6 +595,14 @@ video {
   }
 }
 
+/* nav {
+  color: white;
+}
+nav a {
+  color: white;
+} */
+
+
 .sr-only {
   position: absolute;
   width: 1px;
