@@ -1,10 +1,10 @@
-// public/js/sidedrawer.js
-
 document.addEventListener("DOMContentLoaded", function () {
     const hamburgerButton = document.getElementById("hamburgerButton");
     const closeButton = document.getElementById("closeButton");
     const sidedrawer = document.getElementById("sidedrawer");
     const overlay = document.getElementById("overlay");
+    const dropdownToggle = document.getElementById("dropdownToggle");
+    const dropdownMenu = document.getElementById("dropdownMenu");
 
     // Show the sidedrawer and overlay when hamburger icon is clicked
     hamburgerButton.addEventListener("click", function () {
@@ -21,5 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
     overlay.addEventListener("click", function () {
         sidedrawer.classList.add("-translate-x-full");
         overlay.classList.add("hidden");
+    });
+
+    // Toggle dropdown visibility when the "Produk" button is clicked
+    dropdownToggle.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("hidden");
     });
 });

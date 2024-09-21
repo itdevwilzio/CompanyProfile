@@ -15,11 +15,11 @@
                     <div class="carousel-cell w-full h-full">
                         <!-- Banner Image -->
                         <div class="relative w-full h-full">
-                            <img src="{{ asset(Storage::url($hero->banners)) }}"
-                                 srcset="{{ asset(Storage::url($hero->banners)) }} 1024w,
-                                         {{ asset(Storage::url('small/'.$hero->banners)) }} 640w"
-                                 sizes="(max-width: 768px) 640px, 1024px"
-                                 class="object-cover w-full h-full" alt="banner" loading="lazy">
+                            <img src="{{ asset('images/banners/' . $hero->banners) }}"
+         srcset="{{ asset('images/banners/' . $hero->banners) }} 1024w,
+                 {{ asset('images/banners/small/' . $hero->banners) }} 640w"
+         sizes="(max-width: 768px) 640px, 1024px"
+         class="object-cover w-full h-full" alt="banner" loading="lazy">
                         </div>
                     </div>
                     @empty
@@ -31,14 +31,8 @@
                     @endforelse
                 </div>
             </div>
-            
-            
-            
-            
         </div>
     </div>
-
-
 </div>
 
     </div>

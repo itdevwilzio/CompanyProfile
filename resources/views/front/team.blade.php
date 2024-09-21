@@ -12,7 +12,7 @@
                 <div class="w-full lg:w-1/2 text-white">
                     <h2 class="font-bold text-4xl mb-4">Born For Indonesia</h2>
                     <p class="text-lg leading-7 mb-4">
-                        PT Pasifik Wija Teknologi Adalah Perusahaan Teknologi Yang Didirikan Oleh Putra-Putri Kalimantan Utara Untuk Membawa Manfaat Bagi Masyarakat Indonesia, Khususnya Di Daerah Terpencil Yang Belum Terjangkau Oleh Provider Lain.
+                        PT Pasific Adalah Perusahaan Teknologi Yang Didirikan Oleh Putra-Putri Kalimantan Utara Untuk Membawa Manfaat Bagi Masyarakat Indonesia, Khususnya Di Daerah Terpencil Yang Belum Terjangkau Oleh Provider Lain.
                     </p>
                 </div>
                 <div class="w-full lg:w-1/2 flex justify-center">

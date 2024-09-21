@@ -28,15 +28,15 @@ class FrontController extends Controller
         $products = Product::take(3)->get();
         $teams = OurTeam::take(3)->get();
         $testimonials = Testimonial::take(4)->get();
-        $hero_section = HeroSection::orderByDesc('id')->take(1)->get();
+        $hero_section = HeroSection::orderByDesc('id')->get();
 
-        return view('front.index', compact('statistics', 'principles', 'products', 'teams', 'testimonials', 'hero_section'));
+        return view('front.index', compact('principles', 'products', 'teams', 'testimonials', 'hero_section'));
     }
 
     public function team()
     {
         $statistics = CompanyStatistic::take(4)->get();
-        $teams = OurTeam::take(7)->get();
+        $teams = OurTeam::all();
 
         return view('front.team', compact('statistics', 'teams'));
     }
@@ -203,63 +203,4 @@ class FrontController extends Controller
 
         return redirect()->route('front.location')->with('success', 'Pembelian voucher berhasil. Silahkan tunggu konfirmasi Admin');
     }
-
-    // public function confirmOrderVoucher(Request $request, Location $location, VoucherPackage $voucher) 
-    // {
-    //     // Define the necessary variables
-    //     $BOT_TOKEN = env('BOT_TOKEN_2');
-    //     $CHAT_ID = env('CHAT_ID_2');
-    //     $TWILIO_SID = env('TWILIO_SID');
-    //     $TWILIO_AUTH_TOKEN = env('TWILIO_AUTH_TOKEN');
-    //     $TWILIO_WHATSAPP_FROM = env('TWILIO_WHATSAPP_FROM');
-    //     $whatsapp = $request->no_whatsapp;
-
-    //     // Save the uploaded image file
-    //     $imagePath = $request->file('bukti_pembayaran')->store('private/images');
-    //     $imageFullPath = Storage::path($imagePath);
-
-    //     // Prepare the message for both Telegram and WhatsApp
-    //     $msg = "
-    //     *Pembelian Voucher Wi\\-Fi*\n\nLokasi : " . $location->name . "\nVoucher : " . $voucher->name . "\nHarga : " . $voucher->price . "\nMetode Bayar : " . $request->payment_method . "\nNomor WhatsApp : " . $whatsapp;
-
-    //     // Send message to Telegram
-    //     $client = new Client();
-    //     $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
-    //         'multipart' => [
-    //             [
-    //                 'name' => 'chat_id',
-    //                 'contents' => $CHAT_ID
-    //             ],
-    //             [
-    //                 'name' => 'photo',
-    //                 'contents' => fopen($imageFullPath, 'r')
-    //             ],
-    //             [
-    //                 'name' => 'caption',
-    //                 'contents' => $msg
-    //             ],
-    //             [
-    //                 'name' => 'parse_mode',
-    //                 'contents' => 'MarkdownV2'
-    //             ]
-    //         ]
-    //     ]);
-
-    //     // Send message to WhatsApp via Twilio
-    //     $twilio = new TwilioClient($TWILIO_SID, $TWILIO_AUTH_TOKEN);
-    //     $twilioMessage = "*Pembelian Voucher Wi-Fi*\n\nLokasi : " . $location->name . "\nVoucher : " . $voucher->name . "\nHarga : " . $voucher->price . "\nMetode Bayar : " . $request->payment_method . "\nNomor WhatsApp : " . $whatsapp;
-
-    //     $twilio->messages->create(
-    //         "whatsapp:" . $whatsapp, // Recipient's WhatsApp number
-    //         [
-    //             "from" => $TWILIO_WHATSAPP_FROM, // Your Twilio WhatsApp number
-    //             "body" => $twilioMessage
-    //         ]
-    //     );
-
-    //     // Redirect after successful message sending
-    //     return redirect()->route('front.location')->with('success', 'Pembelian voucher berhasil. Silahkan tunggu konfirmasi Admin');
-    // }
-
-    
 }
