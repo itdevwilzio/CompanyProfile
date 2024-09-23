@@ -1,40 +1,40 @@
 @extends('front.layouts.app')
 @section('content')
     <div id="header" class="relative">
-        <div class="container max-w-[1130px] mx-auto relative pt-10 z-10 main-carousel">
-            <x-navbar></x-navbar>
+            <div class="container max-w-[1130px] mx-auto relative pt-10 z-10 main-carousel">
+                <x-navbar></x-navbar>
 
-     
-            <div class="carousel-container mt-20 relative overflow-hidden">
-                <!-- Flickity Carousel -->
-                <div class="carousel" 
-                    data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true }'
-                    style="height: 400px;">
-                    
-                    @forelse ($hero_section as $hero)
-                    <div class="carousel-cell w-full h-full">
-                        <!-- Banner Image -->
-                        <div class="relative w-full h-full">
-                            <img src="{{ asset('images/banners/' . $hero->banners) }}"
-         srcset="{{ asset('images/banners/' . $hero->banners) }} 1024w,
-                 {{ asset('images/banners/small/' . $hero->banners) }} 640w"
-         sizes="(max-width: 768px) 640px, 1024px"
-         class="object-cover w-full h-full" alt="banner" loading="lazy">
+                FIXME:  Image cann't displayed
+                <div class="carousel-container mt-20 relative overflow-hidden">
+                    <!-- Flickity Carousel -->
+                    <div class="carousel" 
+                        data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true }'
+                        style="height: 400px;">
+                        
+                        @forelse ($hero_section as $hero)
+                        <div class="carousel-cell w-full h-full">
+                            <div class="relative w-full h-full">
+                                <img src="{{ Storage::url($hero->banners) }}"
+                                    srcset="{{ Storage::url('images/banners/' . $hero->banners) }} 1024w,
+                                            {{ Storage::url('images/banners/small/' . $hero->banners) }} 640w"
+                                    sizes="(max-width: 768px) 640px, 1024px"
+                                    class="object-cover w-full h-full" alt="banner" loading="lazy">
+                            </div>
                         </div>
-                    </div>
-                    @empty
-                    <div class="carousel-cell w-full h-full">
-                        <div class="relative">
-                            <img src="{{ asset('banners/banner.png') }}" class="object-cover w-full h-full" alt="No banners available">
+                        @empty
+                        <div class="carousel-cell w-full h-full">
+                            <div class="relative">
+                                <img src="{{ asset('banners/banner.png') }}" class="object-cover w-full h-full" alt="No banners available">
+                            </div>
                         </div>
+                        @endforelse
                     </div>
-                    @endforelse
                 </div>
             </div>
-        </div>
     </div>
-</div>
-
+    FIXME: Image cann't displayed
+    <div class="container mx-auto my-10">
+        <img src="{{ asset('images/carousel-banner.png') }}" alt="Internet Banner" class="w-full h-auto rounded-lg shadow-lg">
     </div>
 
     <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
@@ -43,65 +43,7 @@
                 class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-4xl tracking-[1.2px]">
                 SUCCESS CLIENTS</p>
         </div>
-        {{-- <div class="w-full main-carousel">
-            @forelse ($testimonials as $testimonial)
-                <div
-                    class="carousel-card container max-w-[1130px] w-full flex flex-wrap justify-between items-center lg:mx-[calc((100vw-1130px)/2)]">
-                    <div class="testimonial-container flex flex-col gap-[112px] w-[565px]">
-                        <div class="flex flex-col gap-[30px]">
-                            <div class="overflow-hidden h-9">
-                                <img src="{{ asset(Storage::url($testimonial->client->logo)) }}" class="object-contain"
-                                    alt="icon">
-                            </div>
-                            <div class="relative pt-[27px] pl-[30px]">
-                                <div class="absolute top-0 left-0">
-                                    <img src="{{ asset('assets/icons/quote.svg') }}" alt="icon">
-                                </div>
-                                <p class="font-semibold text-2xl leading-[46px] relative z-10">{{ $testimonial->message }}
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pl-[30px]">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-[60px] h-[60px] flex shrink-0 rounded-full overflow-hidden">
-                                        <img src="{{ asset(Storage::url($testimonial->client->avatar)) }}"
-                                            class="object-cover w-full h-full" alt="photo">
-                                    </div>
-                                    <div class="flex flex-col justify-center gap-1">
-                                        <p class="font-bold">{{ $testimonial->client->name }}</p>
-                                        <p class="text-sm text-cp-light-grey">{{ $testimonial->client->occupation }}</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-nowrap">
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center h-4 gap-2 carousel-indicator shrink-0">
-                        </div>
-                    </div>
-                    <div class="testimonial-thumbnail w-[470px] h-[550px] rounded-[20px] overflow-hidden bg-[#D9D9D9]">
-                        <img src="{{ asset(Storage::url($testimonial->thumbnail)) }}"
-                            class="object-cover object-center w-full h-full" alt="thumbnail">
-                    </div>
-                </div>
-            @empty
-                <p>Belum ada data terbaru</p>
-            @endforelse
-        </div> --}}
+        FIXME: there is pop up images
         <div class="w-full main-carousel bg-blue-900 py-12">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 class="text-4xl font-bold text-center text-yellow-400 mb-6">4.85 / 5 Rating Pelanggan</h2>
@@ -148,12 +90,9 @@
                 </div>
             </div>
         </div>
-        
-
     </div>
 
     <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 ">
-
             <div class="flex flex-col gap-[14px] items-center">
                 <p
                     class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-4xl">

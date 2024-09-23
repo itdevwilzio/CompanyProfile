@@ -19,8 +19,8 @@
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue  {{ request()->routeIs('front.index') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
             <a href="{{ route('front.index') }}">Beranda</a>
         </li>
-        <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue nav-item has-sub">
-            <button href="#">Produk</button>
+        <li class="font-semibold transition-all duration-300 nav-item has-sub relative">
+            <button href="#" id="dropdownToggle" class="font-semibold transition-all duration-300 click:text-cp-dark-blue focus:outline-none">Produk</button>
             <div class="w-full lg:w-fit bg-blue-800 mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 shadow-lg">
                 <ul class="flex flex-col">
                     <li

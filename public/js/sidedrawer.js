@@ -27,4 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdownToggle.addEventListener("click", function () {
         dropdownMenu.classList.toggle("hidden");
     });
+
+      // Close dropdown if clicked outside
+      document.addEventListener("click", function (event) {
+        if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add("hidden");
+        }
+    });
 });

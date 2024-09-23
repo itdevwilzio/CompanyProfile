@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('front.index')" :active="request()->routeIs('front.index')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
 
@@ -35,7 +35,7 @@
                                     {{ __('Hero Section') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.principles.index')">
-                                    {{ __('Our Principles') }}
+                                    {{ __('Keunggulan Kami') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.statistics.index')">
                                     {{ __('Company Stats') }}
@@ -45,21 +45,22 @@
                     </div>
 
                     <x-nav-link :href="route('admin.teams.index')" :active="request()->routeIs('admin.teams.index')">
-                        {{ __('Our Teams') }}
+                        {{ __('Tim Kami') }}
                     </x-nav-link>
 
+                    FIXME: 2 dropdowns
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
-                        {{ __('Our Products') }}
+                        {{ __('Produk') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.locations.index')" :active="request()->routeIs('admin.locations.index')">
-                        {{ __('Locations') }}
+                        {{ __('Voucher') }}
                     </x-nav-link>
 
                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    <div>Stories</div>
+                                    <div>Cerita</div>
         
                                     <div class="ms-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -71,10 +72,10 @@
         
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('admin.testimonials.index')">
-                                    {{ __('Testimonials') }}
+                                    {{ __('Testimoni') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.clients.index')">
-                                    {{ __('Our Clients') }}
+                                    {{ __('Client Kami') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
@@ -83,11 +84,6 @@
                     <x-nav-link :href="route('admin.abouts.index')" :active="request()->routeIs('admin.abouts.index')">
                         {{ __('About') }}
                     </x-nav-link>
-
-                    {{-- <x-nav-link :href="route('admin.appointments.index')" :active="request()->routeIs('admin.appointments.index')">
-                        {{ __('Appointments') }}
-                    </x-nav-link> --}}
-
                 </div>
             </div>
 
@@ -128,7 +124,7 @@
             <!-- Hamburger -->
             <div x-data="{ open: false }" class="-me-2 flex items-center sm:hidden">
                 <button @click="open = !open"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-white-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center p-2 rounded-md text-white-400 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <!-- Hamburger icon -->
                         <path :class="{'hidden': open, 'inline-flex': !open}" 

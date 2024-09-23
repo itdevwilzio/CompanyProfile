@@ -18,6 +18,9 @@
     {{-- Feather icon --}}
     <link rel="stylesheet" href="{{ asset('assets/feather/feather.css') }}">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <!-- CSS for floating WhatsApp button -->
     <style>
         .whatsapp-float {
