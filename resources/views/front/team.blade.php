@@ -38,46 +38,45 @@
     </section>
 
     <!-- Identitas Produk Section -->
-<!-- Identitas Produk Section -->
-<div id="product-identity" class="w-full bg-blue-900 py-16">
-    <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-        
-        <!-- Logo Section -->
-        <div class="w-full lg:w-1/2 text-white flex justify-center">
-            <img src="{{ asset('path-to-your-image/wija-backbone-logo.png') }}" class="object-contain w-full rounded-lg" alt="Wija Backbone Logo">
-        </div>
-
-        <!-- Description Section -->
-        <div class="w-full lg:w-1/2 text-white">
-            <h2 class="font-bold text-4xl mb-4">Identitas Produk</h2>
-            <p class="text-lg leading-7 mb-4">
-                WIJA BACKBONE Merupakan Produk Layanan Internet Utama Yang Kami Tawarkan Dengan Teknologi Terkini, Koneksi Internet Cepat, Dan Harga Terjangkau.
-            </p>
+    <section id="product-identity" class="w-full bg-blue-900 py-16">
+        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             
-            <!-- Dropdown Button -->
-            <div x-data="{ open: false }" class="bg-white text-blue-900 p-4 rounded-lg shadow-md">
-                <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
-                    <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :class="{'transform rotate-180': open}" d="M5 15l7-7 7 7" />
-                    </svg>
-                </div>
+            <!-- Logo Section -->
+            <div class="w-full lg:w-1/2 text-white flex justify-center">
+                <img src="{{ asset('path-to-your-image/wija-backbone-logo.png') }}" class="object-contain w-full rounded-lg" alt="Wija Backbone Logo">
+            </div>
+
+            <!-- Description Section -->
+            <div class="w-full lg:w-1/2 text-white">
+                <h2 class="font-bold text-4xl mb-4">Identitas Produk</h2>
+                <p class="text-lg leading-7 mb-4">
+                    WIJA BACKBONE Merupakan Produk Layanan Internet Utama Yang Kami Tawarkan Dengan Teknologi Terkini, Koneksi Internet Cepat, Dan Harga Terjangkau.
+                </p>
                 
-                <div x-show="open" class="mt-4 transition-all duration-300 ease-in-out">
-                    <p class="text-sm mb-2">
-                        <strong>"WIJA"</strong> berasal dari bahasa Sanskerta yang artinya benih yang berpotensi menjadi luar biasa kuat dan besar di masa depan.
-                    </p>
-                    <p class="text-sm mb-2">
-                        <strong>"BACKBONE"</strong> dalam jaringan adalah fondasi vital yang mendukung koneksi dan akses, mengatur lalu lintas data, dan memastikan kinerja jaringan yang lancar dan andal.
-                    </p>
-                    <p class="text-sm">
-                        Jadi Arti <strong>"WIJA BACKBONE"</strong> adalah sebuah kekuatan dan potensi, untuk menjadi pusat dari jaringan Internet yang tumbuh dan berkembang di masa depan, dengan dasar yang kokoh dan inovatif untuk menjamin kinerja jaringan yang optimal dan terpercaya.
-                    </p>
+                <!-- Dropdown Button -->
+                <div x-data="{ open: false }" class="bg-white text-blue-900 p-4 rounded-lg shadow-md">
+                    <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
+                        <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :class="{'transform rotate-180': open}" d="M5 15l7-7 7 7" />
+                        </svg>
+                    </div>
+                    
+                    <div x-show="open" class="mt-4 transition-all duration-300 ease-in-out">
+                        <p class="text-sm mb-2">
+                            <strong>"WIJA"</strong> berasal dari bahasa Sanskerta yang artinya benih yang berpotensi menjadi luar biasa kuat dan besar di masa depan.
+                        </p>
+                        <p class="text-sm mb-2">
+                            <strong>"BACKBONE"</strong> dalam jaringan adalah pondasi vital yang mendukung koneksi dan akses, mengatur lalu lintas data, dan memastikan kinerja jaringan yang lancar dan andal.
+                        </p>
+                        <p class="text-sm">
+                            Jadi Arti <strong>"WIJA BACKBONE"</strong> adalah sebuah kekuatan dan potensi, untuk menjadi pusat dari jaringan Internet yang tumbuh dan berkembang di masa depan, dengan dasar yang kokoh dan inovatif untuk menjamin kinerja jaringan yang optimal dan terpercaya.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
     <!-- APJII Certification Section -->
     <section id="apjii-registration" class="w-full bg-blue-900 py-16">
