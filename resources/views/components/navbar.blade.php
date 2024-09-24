@@ -19,34 +19,51 @@
             class="font-semibold transition-all duration-300 hover:text-cp-dark-blue  {{ request()->routeIs('front.index') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
             <a href="{{ route('front.index') }}">Beranda</a>
         </li>
+        
+        <!-- Dropdown for Produk -->
         <li class="font-semibold transition-all duration-300 nav-item has-sub relative">
-            <button href="#" id="dropdownToggle" class="font-semibold transition-all duration-300 click:text-cp-dark-blue focus:outline-none">Produk</button>
-            <div class="w-full lg:w-fit bg-blue-800 mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 shadow-lg">
+            <button id="dropdownToggle" class="font-semibold transition-all duration-300 click:text-cp-dark-blue focus:outline-none">
+                Produk
+            </button>
+            <div id="dropdownMenu" class="hidden w-full lg:w-fit bg-blue-800 mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 shadow-lg">
                 <ul class="flex flex-col">
                     <li
-                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.index') ? 'lg:bg-white lg:bg-cp-black lg:text-cp-dark-blue' : '' }}">
+                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item">
                         <a href="{{ route('front.product') }}">Produk A</a>
                     </li>
                     <li
-                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item {{ request()->routeIs('front.index') ? 'lg:bg-white lg:bg-cp-black lg:text-cp-dark-blue' : '' }}">
+                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item">
                         <a href="{{ route('front.location') }}">Produk B</a>
                     </li>
                 </ul>
             </div>
         </li>
-        <li
-            class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
+        
+        <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
             <a href="{{ route('front.team') }}">Tentang Kami</a>
         </li>
         <li class="font-semibold transition-all duration-300 hover:text-cp-dark-blue">
             <a href="">Client Area</a>
         </li>
-        {{-- <li
-            class="font-semibold transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.about') ? 'text-cp-dark-blue' : '' }}">
-            <a href="{{ route('front.about') }}">About</a>
-        </li> --}}
     </ul>
-    {{-- <a href="{{ route('front.appointment') }}"
-        class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Get
-        a Quote</a> --}}
 </nav>
+
+<!-- Add Script for Toggle Dropdown -->
+<script>
+    // Toggle dropdown menu on button click
+    document.getElementById('dropdownToggle').addEventListener('click', function(event) {
+        event.stopPropagation();
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden'); // Toggle visibility
+    });
+
+    // Close dropdown menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownToggle = document.getElementById('dropdownToggle');
+
+        if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
+            dropdownMenu.classList.add('hidden'); // Close the menu if clicked outside
+        }
+    });
+</script>

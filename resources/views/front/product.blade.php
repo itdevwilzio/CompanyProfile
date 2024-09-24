@@ -448,7 +448,6 @@
             })
         }
 
-<<<<<<< HEAD
     @if (session()->has('success_order'))
         setStep(3);
     @endif
@@ -471,24 +470,4 @@
   });
 
   </script>
-=======
-        function backToStep1() {
-            step = 1;
-            $('[data-step]').each(function() {
-                if (step == $(this).data('step')) {
-                    $(this).addClass('step-active');
-                    $('#form-pemesanan').slideUp(400)
-                    $('.btn-pilih-paket').text('Pilih Paket');
-                } else {
-                    $(this).removeClass('step-active');
-                }
-
-            })
-        }
-
-        @if (session()->has('success_order'))
-            setStep(3);
-        @endif
-    </script>
->>>>>>> 26d2652 (Add responsive navbar, add location & voucher order, add payment method)
 @endpush
