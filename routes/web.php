@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('statistics', CompanyStatisticController::class);
         });
 
-        Route::middleware('can:manage products')->group(function () {
+        Route::middleware('role:super_admin|design_manager')->group(function () {
             Route::resource('products', ProductController::class);
         });
 

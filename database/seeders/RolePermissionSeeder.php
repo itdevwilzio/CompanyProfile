@@ -28,33 +28,53 @@ class RolePermissionSeeder extends Seeder
             'manage hero sections',
         ];
 
-        // Create permissions
+        // Create permissions if they don't exist
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
 
-        // Create 'design_manager' role and assign permissions
-        $designManagerRole = Role::firstOrCreate(['name' => 'design_manager']);
-        $designManagePermissions = [
-            'manage products',
-            'manage principles',
-            'manage testimonials',
+        // Create roles
+        $roles = [
+            'design_manager' => [
+                'manage products',
+                'manage principles',
+                'manage testimonials',
+            ],
+            'super_admin' => Permission::all()->pluck('name')->toArray(), // Assign all permissions to super_admin
         ];
-        $designManagerRole->syncPermissions($designManagePermissions);
 
-        // Create 'super_admin' role and assign all permissions
-        $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
-        $superAdminRole->syncPermissions(Permission::all());
+        foreach ($roles as $roleName => $rolePermissions) {
+            $role = Role::firstOrCreate(['name' => $roleName]);
+            $role->syncPermissions($rolePermissions);
+        }
 
-        // Create 'super_admin' user
-        $user = User::create([
-            'name' => 'super_admin',
-            'email' => 'super_admin@example.com',
-            'password' => Hash::make('password'), // Hash the password
-            'email_verified_at' => now(),
-        ]);
+        // Create users and assign roles
+        $users = [
+            'super_admin' => [
+                'email' => 'super_admin@example.com',
+                'role' => 'super_admin',
+            ],
+            'design_manager' => [
+                'email' => 'design_manager@example.com',
+                'role' => 'design_manager',
+            ],
+            'product_manager' => [
+                'email' => 'product_manager@example.com',
+                'role' => 'design_manager', // Assigning design_manager role, adjust if needed
+            ],
+        ];
 
-        // Assign 'super_admin' role to the user
-        $user->assignRole($superAdminRole);
+        foreach ($users as $userName => $userData) {
+            $user = User::firstOrCreate([
+                'email' => $userData['email'],
+            ], [
+                'name' => $userName,
+                'password' => Hash::make('password'), // Use hashed password
+                'email_verified_at' => now(),
+            ]);
+
+            // Assign role to user
+            $user->assignRole($userData['role']);
+        }
     }
 }

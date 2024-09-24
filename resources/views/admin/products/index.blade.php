@@ -16,7 +16,8 @@
             <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
 
                 @forelse ($products as $product)
-                    <div class="flex flex-row items-center justify-between item-card">
+                    <!-- Card for each product -->
+                    <div class="flex flex-row items-center justify-between item-card p-5 bg-gray-100 rounded-lg shadow-sm">
                         <div class="flex flex-row items-center gap-x-3">
                             <img src="{{ Storage::url($product->thumbnail) }}" alt=""
                                 class="rounded-2xl object-cover w-[90px] h-[90px]">
@@ -42,8 +43,39 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- Toggle Audit Log Section -->
+                    <div x-data="{ showAuditLog: false }" class="mt-4">
+                        <!-- Button to toggle audit log visibility -->
+                        <button @click="showAuditLog = !showAuditLog" 
+                            class="px-4 py-2 text-white bg-indigo-700 rounded-full hover:bg-indigo-800 focus:outline-none">
+                            Toggle Audit Log
+                        </button>
+
+                        <!-- Audit Log Box -->
+                        <div x-show="showAuditLog" x-transition 
+                            class="mt-4 p-4 bg-gray-200 border-l-4 border-indigo-600 rounded-lg shadow-md space-y-3">
+                            <h4 class="text-lg font-bold">Audit Log (Last):</h4>
+
+                            @php
+                                $lastAudit = $product->audits->last();
+                            @endphp
+
+                            @if($lastAudit)
+                                <div class="p-4 bg-white border border-gray-300 rounded-lg shadow-sm">
+                                    <p><strong>Event:</strong> {{ ucfirst($lastAudit->event) }}</p>
+                                    <p><strong>Old Values:</strong> {{ json_encode($lastAudit->old_values) }}</p>
+                                    <p><strong>New Values:</strong> {{ json_encode($lastAudit->new_values) }}</p>
+                                    <p><strong>Performed by:</strong> {{ $lastAudit->user->name ?? 'System' }}</p>
+                                    <p><strong>Date:</strong> {{ $lastAudit->created_at->format('Y-m-d H:i:s') }}</p>
+                                </div>
+                            @else
+                                <p class="mt-2 text-sm text-gray-500">No audit logs available for this product.</p>
+                            @endif
+                        </div>
+                    </div>
                 @empty
-                    <p>belum ada data terbaru</p>
+                    <p>No products available</p>
                 @endforelse
             </div>
         </div>

@@ -43,12 +43,20 @@ class LoginRequest extends FormRequest
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+    
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
-
+    
+        // Jika autentikasi berhasil, update last_login_at di model User
+        $user = Auth::user(); // Ambil pengguna yang sedang login
+        
+        if ($user instanceof \App\Models\User) {  // Pastikan user adalah instance dari model User
+            $user->last_login_at = now(); // Set waktu login saat ini
+            $user->save(); // Simpan ke database
+        }
+    
         RateLimiter::clear($this->throttleKey());
     }
 

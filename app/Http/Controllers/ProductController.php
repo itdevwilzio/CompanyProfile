@@ -43,7 +43,10 @@ class ProductController extends Controller
                 $validated['thumbnail'] = $thumbnailPath;
             }
 
-            $newProduct = Product::create($validated);
+            
+            $newProduct = Product::create(array_merge($validated, [
+                'created_by' => auth()->id(), // Logging user yang membuat produk
+            ]));
         });
 
         return redirect()->route('admin.products.index');
@@ -80,7 +83,9 @@ class ProductController extends Controller
                 $validated['thumbnail'] = $thumbnailPath;
             }
 
-            $product->update($validated);
+            $product->update(array_merge($validated, [
+                'updated_by' => auth()->id(), // Logging user yang mengupdate produk
+            ]));
         });
 
         return redirect()->route('admin.products.index');
@@ -93,6 +98,9 @@ class ProductController extends Controller
     {
         //
         DB::transaction(function () use ($product) {
+  $product->update([
+            'deleted_by' => auth()->id(), // Logging user yang menghapus produk
+        ]);
             $product->delete();
         });
         return redirect()->route('admin.products.index');
