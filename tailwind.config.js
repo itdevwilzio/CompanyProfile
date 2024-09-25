@@ -25,6 +25,8 @@ export default {
                 silver: '#ecebff',
                 'bubble-gum': '#ff77e9',
                 bermuda: '#78dcca',
+                'orange-500': '#F97316',
+                'blue-900': '#1E3A8A',
             },
         },
     },
