@@ -56,13 +56,13 @@
         <!-- Right Content - Image Grid -->
         <div class="md:w-1/2 mt-8 md:mt-0">
             <div class="grid grid-cols-2 gap-4">
-                @for($i = 0; $i < 4; $i++)
+                @foreach($hero_section as $hero)
                 <div class="col-span-1">
                     <img src="{{ Storage::url($hero->banner) }}" srcset="{{ Storage::url($hero->banner) }} 1024w,
                     {{ Storage::url($hero->banner) }} 640w"
             sizes="(max-width: 768px) 640px, 1024px" alt="photo{{ $i + 1 }}" class="rounded-lg shadow-lg w-full h-auto object-cover">
                 </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

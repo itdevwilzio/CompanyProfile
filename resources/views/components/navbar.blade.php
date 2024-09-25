@@ -9,8 +9,8 @@
         </div>
     </div>
     <button id="toggle-navbar-mobile" class="flex lg:hidden"><i class="feather icon-menu text-xl"></i></button>
-    <div class="w-full h-screen fixed bg-black/50 left-0 top-0 hidden lg:hidden" id="navbar-overlay"></div>
-    <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all" id="navbar">
+    <div class="w-full h-screen fixed bg-black/50 left-0 top-0 hidden lg:hidden z-[99]" id="navbar-overlay"></div>
+    <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all z-[999]" id="navbar">
         <button id="close-navbar-mobile"
             class="h-8 border border-red-400 bg-red-700 px-2 -mr-5 -mt-5 flex items-center justify-center text-white self-end rounded mb-10 lg:hidden">
             <i class="feather icon-x me-1"></i> Close
@@ -21,18 +21,18 @@
         </li>
         
         <!-- Dropdown for Produk -->
-        <li class="font-semibold transition-all duration-300 nav-item has-sub relative">
+        <li class="font-semibold transition-all duration-300 nav-item has-sub relative hover:text-cp-dark-blue">
             <button id="dropdownToggle" class="font-semibold transition-all duration-300 click:text-cp-dark-blue focus:outline-none">
                 Produk
             </button>
-            <div id="dropdownMenu" class="hidden w-full lg:w-fit bg-blue-800 mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 shadow-lg">
-                <ul class="flex flex-col">
+            <div id="dropdownMenu" class="hidden lg:absolute w-full lg:w-fit mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 lg:shadow-lg">
+                <ul class="flex flex-col grow">
                     <li
-                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item">
+                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.product') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
                         <a href="{{ route('front.product') }}">Produk A</a>
                     </li>
                     <li
-                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-black lg:hover:text-cp-dark-blue child-item">
+                        class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.location') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
                         <a href="{{ route('front.location') }}">Produk B</a>
                     </li>
                 </ul>
