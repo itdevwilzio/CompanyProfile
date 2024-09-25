@@ -311,42 +311,6 @@
                     </a>
                 </div>
             </div>
-
-            {{-- <div class="flex flex-wrap gap-[50px]">
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Products</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">General
-                        Contract</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Building
-                        Assessment</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">3D Paper
-                        Builder</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Legal
-                        Constructions</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">About</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">We’re
-                        Hiring</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Our Big
-                        Purposes</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Investor
-                        Relations</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Media
-                        Press</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Useful Links</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Privacy
-                        & Policy</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Terms &
-                        Conditions</a>
-                    <a href="contact.html" class="transition-all duration-300 text-cp-light-grey hover:text-white">Contact
-                        Us</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Download
-                        Template</a>
-                </div>
-            </div> --}}
         </div>
         <div class="absolute -bottom-[135px] w-full">
             <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
