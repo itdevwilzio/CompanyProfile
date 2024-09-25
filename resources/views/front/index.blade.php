@@ -3,14 +3,10 @@
     <div id="header" class="relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
-
-            <!-- Swiper Wrapper for Banner Carousel -->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @forelse ($hero_section as $hero)
                         <div class="swiper-slide">
-                            <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
-
                             <!-- Banner Image -->
                             <div class="relative">
                                 <img src="{{ asset(Storage::url($hero->banner)) }}"
@@ -19,12 +15,6 @@
                                     sizes="(max-width: 768px) 640px, 1024px"
                                     class="object-cover w-full h-full" alt="banner">
                             </div>
-
-                            <!-- Optional Hero Section Text -->
-                            <div class="absolute bottom-10 left-10">
-                                <h1 class="font-extrabold text-2xl md:text-4xl lg:text-5xl">{{ $hero->heading }}</h1>
-                                <p class="mt-2 max-w-sm md:max-w-md lg:max-w-lg">{{ $hero->subheading }}</p>
-                            </div>nnnn
                         </div>
                     @empty
                         {{-- <p>No hero sections available</p> --}}
