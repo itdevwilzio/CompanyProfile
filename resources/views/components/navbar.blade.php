@@ -1,5 +1,5 @@
-<nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3">
-    <div class="flex items-center gap-3">
+<nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3 h-[90px]">
+    <div class="flex items-center gap-3 absolute left-8">
         <div class="flex shrink-0 h-[43px] overflow-hidden">
             <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="logo">
         </div>
@@ -8,9 +8,9 @@
             <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
         </div>
     </div>
-    <button id="toggle-navbar-mobile" class="flex lg:hidden"><i class="feather icon-menu text-xl"></i></button>
+    <button id="toggle-navbar-mobile" class="flex lg:hidden ml-auto"><i class="feather icon-menu text-xl"></i></button>
     <div class="w-full h-screen fixed bg-black/50 left-0 top-0 hidden lg:hidden z-[99]" id="navbar-overlay"></div>
-    <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all z-[999]" id="navbar">
+    <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all z-[999] mx-auto" id="navbar">
         <button id="close-navbar-mobile"
             class="h-8 border border-red-400 bg-red-700 px-2 -mr-5 -mt-5 flex items-center justify-center text-white self-end rounded mb-10 lg:hidden">
             <i class="feather icon-x me-1"></i> Close
