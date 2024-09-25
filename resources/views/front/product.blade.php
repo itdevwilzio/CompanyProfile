@@ -366,77 +366,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ asset('js/modal-video.js') }}"></script>
     <script>
-        // const products = document.querySelectorAll('.product');
-        // const modal = document.getElementById('productModal');
-        // const modalOverlay = document.getElementById('modalOverlay');
-        // const modalName = document.getElementById('modalName');
-        // const modalAbout = document.getElementById('modalAbout');
-        // const modalThumbnail = document.getElementById('modalThumbnail');
-        // const closeModal = document.getElementById('closeModal');
-
-        // Open modal when a product is clicked
-        // products.forEach(product => {
-        //     product.addEventListener('click', function() {
-        //         const productName = this.getAttribute('data-product-name');
-        //         const productAbout = this.getAttribute('data-product-about');
-        //         const productThumbnail = this.getAttribute('data-product-thumbnail');
-
-        //         // Set modal content
-        //         modalName.textContent = productName;
-        //         modalAbout.textContent = productAbout;
-        //         modalThumbnail.src = productThumbnail;
-
-        //         // Show modal and overlay
-        //         modal.classList.remove('hidden');
-        //         modalOverlay.classList.remove('hidden');
-        //     });
-        // });
-
-        // Close modal
-        // closeModal.addEventListener('click', function() {
-        //     modal.classList.add('hidden');
-        //     modalOverlay.classList.add('hidden');
-        // });
-
-        // Close modal when clicking outside the modal
-        // modalOverlay.addEventListener('click', function() {
-        //     modal.classList.add('hidden');
-        //     modalOverlay.classList.add('hidden');
-        // });
         let step = 1;
 
         function selectProduct(id) {
+            // When in step 1 and product is selected
             if (step == 1) {
                 $('#product_id').val(id);
                 $('[data-product-id]').each(function() {
                     if (id != $(this).data('product-id')) {
-                        $(this).hide(400);
-                        changeStep2();
+                        $(this).hide(400); // Hide all products except selected one
                     }
-                })
-            } else {
-                $('[data-product-id]').each(function() {
-                    $(this).show(400);
                 });
-                backToStep1();
+                changeStep2(); // Move to step 2
+            } else {
+                // If in step 2 and the button is "Batal", show all products again and return to step 1
+                $('[data-product-id]').each(function() {
+                    $(this).show(400); // Show all products again
+                });
+                backToStep1(); // Return to step 1
             }
         }
 
         function changeStep2() {
-            step = 2;
+            // If the button text is "Batal", meaning user is in step 2 and wants to cancel
+            if ($('.btn-pilih-paket').text() === 'Batal') {
+                backToStep1(); // Move back to step 1 when canceling
+            } else {
+                // Move to step 2
+                step = 2;
+                $('[data-step]').each(function() {
+                    if (step == $(this).data('step')) {
+                        $(this).addClass('step-active');
+                        $('#form-pemesanan').slideDown(400); // Show the form
+                        $('.btn-pilih-paket').text('Batal'); // Change button text to "Batal"
+                    } else {
+                        $(this).removeClass('step-active');
+                    }
+                });
+            }
+        }
+
+        // Function to return to step 1
+        function backToStep1() {
+            step = 1;
             $('[data-step]').each(function() {
-                console.log($(this).data('step'))
                 if (step == $(this).data('step')) {
                     $(this).addClass('step-active');
-                    $('#form-pemesanan').slideDown(400)
-                    $('.btn-pilih-paket').text('Batal');
+                    $('#form-pemesanan').slideUp(400); // Hide the form when going back to step 1
+                    $('.btn-pilih-paket').text('Pilih Paket'); // Change button text back to "Pilih Paket"
                 } else {
                     $(this).removeClass('step-active');
                 }
-
-            })
+            });
         }
 
+        // Function to explicitly set a step
         function setStep(s) {
             $('[data-step]').each(function() {
                 console.log($(this).data('step'))
@@ -445,8 +429,9 @@
                 } else {
                     $(this).removeClass('step-active');
                 }
-            })
+            });
         }
+
 
     @if (session()->has('success_order'))
         setStep(3);

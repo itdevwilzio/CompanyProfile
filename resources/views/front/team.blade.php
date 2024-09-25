@@ -77,7 +77,7 @@
     </section>
 
     <!-- Super Team Section -->
-    <section id="super-team" class="w-full bg-blue-900 py-16">
+    <section id="super-team" class="w-full bg-blue-900 py-16">a
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             <div class="w-full lg:w-1/2 flex justify-center">
                 <img src="{{ asset('path-to-your-image/super-team.png') }}" class="object-contain w-full max-w-sm md:max-w-lg rounded-lg" alt="Super Team Image">
