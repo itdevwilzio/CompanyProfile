@@ -23,6 +23,100 @@
     <style>
        /* WhatsApp button common styles */
        .whatsapp-float {
+        position: fixed;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 25px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .whatsapp-float i {
+        font-size: 32px;
+    }
+
+    /* Hover effect for the button */
+    .whatsapp-float:hover {
+        background-color: #128C7E;
+    }
+
+    /* Modal styles (if used) */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 300px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* WhatsApp modal buttons */
+    .whatsapp-modal-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #25D366;
+        color: white;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .whatsapp-modal-btn i {
+        margin-right: 10px;
+        font-size: 24px;
+    }
+
+    .whatsapp-modal-btn:hover {
+        background-color: #128C7E;
+    }
+
+    /* Responsive styling for smaller screens */
+    @media (max-width: 640px) {
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .whatsapp-float i {
+            font-size: 20px;
+        }
+    }
             position: fixed;
             z-index: 9999;
             display: flex;
@@ -113,14 +207,31 @@
         /* Responsive enhancements for smaller screens */
         @media (max-width: 640px) {
             .whatsapp-float {
-                width: 180px;
-                font-size: 14px;
-            }
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            right: 15px;
+            bottom: 15px;
+        }
 
             .whatsapp-float i {
                 font-size: 20px;
             }
         }
+
+        @media (max-width: 320px) {
+        .whatsapp-float {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .whatsapp-float i {
+            font-size: 18px;
+        }
+    }
     </style>
 </head>
 

@@ -321,12 +321,6 @@ footer .absolute {
         margin-bottom: 20px; /* Ensures proper spacing on mobile */
     }
 
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-    }
-
     .modal-content {
         max-width: 280px;
         padding: 15px;
