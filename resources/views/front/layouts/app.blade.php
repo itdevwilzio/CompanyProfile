@@ -277,6 +277,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer></script>
 
     <script>
+        // toggle navbar mobile
+        $(document).ready(function() {
+            $('#toggle-navbar-mobile').on('click', function() {
+                $('#navbar').toggleClass('opened');
+                $('#navbar-overlay').toggleClass('hidden')
+            });
+            $('#close-navbar-mobile').on('click', function() {
+                $('#navbar').removeClass('opened');
+                $('#navbar-overlay').addClass('hidden')
+            });
+        })
+
          // Modal functionality
         const modal = document.getElementById('whatsapp-modal');
         const openModalBtn = document.getElementById('open-whatsapp-modal');
