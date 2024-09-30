@@ -107,7 +107,7 @@
                    <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6" alt="star">
                    @endfor
                </div>
-       
+    
                <!-- Testimonial Text -->
                <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                 @if(strlen($testimonial->message) > 150)
