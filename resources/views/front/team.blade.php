@@ -11,14 +11,20 @@
     <!-- Born For Indonesia Section -->
     <section id="born-for-indonesia" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            <div class="w-full lg:w-1/2 text-white">
+            
+            <!-- Text Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-gray-300">
                 <h2 class="font-bold text-4xl mb-4">Born For Indonesia</h2>
                 <p class="text-lg leading-7 mb-4">
                     PT Pasifik Wija Teknologi adalah perusahaan teknologi yang didirikan oleh putra-putri Kalimantan Utara dengan tujuan membawa manfaat bagi masyarakat Indonesia, khususnya di daerah terpencil yang belum terjangkau oleh penyedia layanan lainnya.
                 </p>
             </div>
+    
+            <!-- Image Section with Hover Effect -->
             <div class="w-full lg:w-1/2 flex justify-center">
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="object-contain w-full rounded-lg" alt="Telecom Tower">
+                <img src="{{ asset('assets/teams/athletic.png') }}" 
+                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" 
+                    alt="Telecom Tower">
             </div>
         </div>
     </section>
@@ -27,11 +33,13 @@
     <section id="product-identity" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             
-            <!-- Logo Section -->
-            <div class="w-full lg:w-1/2 text-white flex justify-center">
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="object-contain w-full rounded-lg" alt="Wija Backbone Logo">
+            <!-- Logo Section with Hover Effect -->
+            <div class="relative w-full lg:w-1/2 text-white flex justify-center bg-white p-4 rounded-lg">
+                <img src="{{ asset('assets/teams/logo-Biru-V2.png') }}" 
+                     class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-lg filter brightness-150" 
+                     alt="Wija Backbone Logo">
             </div>
-
+            
             <!-- Description Section -->
             <div class="w-full lg:w-1/2 text-white lg:text-right">
                 <h2 class="font-bold text-4xl mb-4">Identitas Produk</h2>
@@ -39,12 +47,13 @@
                     WIJA BACKBONE merupakan produk layanan internet utama yang kami tawarkan, dengan menggunakan teknologi terkini, menyediakan koneksi internet cepat, serta harga yang terjangkau.
                 </p>
                 
-                <!-- Dropdown Button -->
-                <div x-data="{ open: false }" class="bg-white text-blue-900 p-4 rounded-lg shadow-md ml-auto">
+                <!-- Dropdown Button with Hover Effect -->
+                <div x-data="{ open: false }" class="bg-white text-blue-900 p-4 rounded-lg shadow-md ml-auto transition-transform duration-300 hover:scale-105 hover:bg-blue-100">
                     <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
                         <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :class="{'transform rotate-180': open}" d="M5 15l7-7 7 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  :class="{'transform rotate-180': open}" d="M5 15l7-7 7 7" />
                         </svg>
                     </div>
                     
@@ -67,13 +76,18 @@
     <!-- APJII Certification Section -->
     <section id="apjii-registration" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            <div class="w-full lg:w-1/2 text-white">
+            <!-- Text Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-gray-300">
                 <h2 class="font-bold text-4xl mb-4">Resmi Terdaftar di APJII</h2>
                 <p class="text-lg leading-7 mb-4">
                     Kami telah terdaftar secara resmi sebagai Penyedia Layanan Internet (Internet Service Provider/ISP) di Asosiasi Penyelenggara Jasa Internet Indonesia (APJII). Dengan komitmen yang kuat untuk memberikan layanan internet terbaik, kami bertekad untuk mempercepat kemajuan teknologi di seluruh Indonesia.
+                </p>
             </div>
+            <!-- Image Section with Hover Effect -->
             <div class="w-full lg:w-1/2 flex justify-center">
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="object-contain w-full rounded-lg" alt="APJII Logo">
+                <img src="{{ asset('assets/teams/APJII.png') }}" 
+                     class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" 
+                     alt="APJII Logo">
             </div>
         </div>
     </section>
@@ -81,10 +95,14 @@
     <!-- Super Team Section -->
     <section id="super-team" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            <!-- Image Section with Hover Effect -->
             <div class="w-full lg:w-1/2 flex justify-center">
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="object-contain w-full rounded-lg" alt="Super Team Image">
+                <img src="{{ asset('assets/teams/Thank-min.png') }}" 
+                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" 
+                    alt="Super Team Image">
             </div>
-            <div class="w-full lg:w-1/2 text-white lg:text-right">
+            <!-- Text Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 text-white lg:text-right transition-all duration-300 hover:text-gray-300">
                 <h2 class="font-bold text-4xl mb-4">Super Team</h2>
                 <p class="text-lg leading-7 mb-4">
                     Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas dan handal bagi pelanggan di seluruh Indonesia. Kami berfokus pada inovasi dan kepuasan pelanggan untuk memastikan setiap layanan yang kami berikan memenuhi standar tertinggi.
@@ -97,26 +115,26 @@
     </section>
 
     <!-- Teams Section -->
-<section id="teams" class="w-full py-16">
-    <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
-        <h2 class="font-bold text-4xl text-white text-center">Staff Profesional Kami <br> Siap Melayani Anda</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            @forelse ($teams as $team)
-                <div class="border border-[#E8EAF2] hover:border-white transition-all duration-300 rounded-lg p-5 text-center text-white">
-                    <!-- Ensuring the image remains circular and doesn't stretch -->
-                    <img src="{{ asset(Storage::url($team->avatar)) }}" 
-                         class="w-[100px] h-[100px] rounded-full mx-auto mb-4 object-cover" 
-                         alt="{{ $team->name }}">
-                    <h3 class="font-bold text-xl">{{ $team->name }}</h3>
-                    <p>{{ $team->occupation }}</p>
-                    <p class="text-sm">{{ $team->location }}</p>
-                </div>
-            @empty
-                <p class="text-white">No team members available</p>
-            @endforelse
+    <section id="teams" class="w-full py-16">
+        <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
+            <h2 class="font-bold text-4xl text-white text-center">Staff Profesional Kami <br> Siap Melayani Anda</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                @forelse ($teams as $team)
+                    <div class="border border-[#E8EAF2] hover:border-white hover:bg-gray-700 hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                        <!-- Ensuring the image remains circular and doesn't stretch -->
+                        <img src="{{ asset(Storage::url($team->avatar)) }}" 
+                            class="w-[100px] h-[100px] rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
+                            alt="{{ $team->name }}">
+                        <h3 class="font-bold text-xl">{{ $team->name }}</h3>
+                        <p>{{ $team->occupation }}</p>
+                        <p class="text-sm">{{ $team->location }}</p>
+                    </div>
+                @empty
+                    <p class="text-white">No team members available</p>
+                @endforelse
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer Section -->
     <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
