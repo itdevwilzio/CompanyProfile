@@ -1,11 +1,15 @@
 <nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3 h-[90px]">
     <div class="flex items-center gap-3 absolute left-8">
         <div class="flex shrink-0 h-[43px] overflow-hidden">
-            <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="logo">
+            <a href="{{ route('front.index') }}">
+                <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="logo">
+            </a>
         </div>
         <div class="flex flex-col">
-            <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Wilzio</p>
-            <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+            <a href="{{ route('front.index') }}">
+                <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Wilzio</p>
+                <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+            </a>
         </div>
     </div>
     <button id="toggle-navbar-mobile" class="flex lg:hidden ml-auto"><i class="feather icon-menu text-xl"></i></button>
@@ -29,11 +33,11 @@
                 <ul class="flex flex-col grow">
                     <li
                         class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.product') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
-                        <a href="{{ route('front.product') }}">Produk A</a>
+                        <a href="{{ route('front.product') }}">Paket Home</a>
                     </li>
                     <li
                         class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.location') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
-                        <a href="{{ route('front.location') }}">Produk B</a>
+                        <a href="{{ route('front.location') }}">Paket Voucher</a>
                     </li>
                 </ul>
             </div>

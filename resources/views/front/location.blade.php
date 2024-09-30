@@ -1,4 +1,5 @@
 @extends('front.layouts.app')
+
 @section('content')
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
@@ -6,37 +7,53 @@
         </div>
     </div>
 
-{{-- Section Voucher --}}
-<div class="container mx-auto flex flex-col mt-20 max-w-2xl text-white p-2">
-  @if (session()->has('success'))
-  <div class="my-5 p-4 bg-green-500 text-white rounded-lg">{{ session('success') }}</div>
-  @endif
-    <h1 class="text-yellow-400 font-bold text-xl text-center mb-10">Beli Voucher Wi-Fi</h1>
-    <div class="w-full flex flex-col">
-      <form action="{{ route('front.location') }}" method="get">
-      <input type="text" class="bg-white w-full rounded mb-8 text-gray-800" value="{{ request('search') }}" name="search" placeholder="Masukkan nama lokasi atau Wi-Fi Anda">
-    </form>
-
-      <p class="text-center mb-4">Atau, pilih sesuai dengan logo Wi-Fi Anda</p>
-      <div class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2 justify-center">
-        @foreach ($locations as $location)
-          <a href="{{ route('front.location_order', $location->id) }}" class="bg-white p-4 rounded-xl flex flex-col items-center min-w-32 mx-auto text-primary hover:scale-105 transition-all duration-300">
-            <div class="bg-primary text-white rounded-full h-10 w-full mb-2 text-xs flex items-center justify-center overflow-hidden">
-                <img src="{{ asset('storage/' . $location->image) }}" alt="" class="w-full h-full object-cover">
-            </div>
-            <p class="w-full text-center text-sm" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-              {{ $location->name }}
-            </p>
-          </a>
-        @endforeach
-        @if($locations->count() == 0)
-        <p class="text-center">Tidak ada data</p>
+    {{-- Section Voucher --}}
+    <div class="container mx-auto flex flex-col mt-20 max-w-2xl text-white p-2">
+        @if (session()->has('success'))
+            <div class="my-5 p-4 bg-green-500 text-white rounded-lg">{{ session('success') }}</div>
         @endif
-      </div>
+        <h1 class="text-yellow-400 font-bold text-xl text-center mb-10">Beli Voucher Wi-Fi</h1>
 
-
+        {{-- WhatsApp Button Below Text --}}
+        <div class="text-center mt-10">
+            <a href="https://wa.me/6285179706639" target="_blank" 
+               class="whatsapp-button bg-green-500 text-white px-8 py-4 text-xl rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-400 flex items-center justify-center">
+                <i class="fab fa-whatsapp mr-2"></i> Hubungi Customer Service Wilzio
+            </a>
+        </div>
     </div>
-  </div>
-  {{-- End Section Voucher --}}
+    {{-- End Section Voucher --}}
+@endsection
 
-  @endsection
+@push('styles')
+<style>
+    .whatsapp-button {
+        background-color: #25D366;
+        color: white;
+        padding: 15px 40px; /* Increased padding for a more prominent look */
+        border-radius: 50px; /* Fully rounded button */
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for more depth */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+        font-size: 1.5rem; /* Increased font size for better readability */
+        display: inline-flex; /* Ensures the button stays in a row format */
+        align-items: center; /* Centers the text and icon vertically */
+    }
+
+    .whatsapp-button:hover {
+        background-color: #128C7E;
+        transform: translateY(-3px); /* Slight lift effect on hover */
+    }
+
+    .whatsapp-button i {
+        font-size: 2rem; /* Bigger WhatsApp icon */
+        margin-right: 10px;
+    }
+
+    @media (max-width: 640px) {
+        .whatsapp-button {
+            padding: 12px 30px; /* Slightly smaller padding for mobile */
+            font-size: 1.25rem; /* Adjusted for smaller screens */
+        }
+    }
+</style>
+@endpush

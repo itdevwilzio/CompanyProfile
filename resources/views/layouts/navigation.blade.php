@@ -48,7 +48,7 @@
                         {{ __('Tim Kami') }}
                     </x-nav-link>
 
-                    FIXME: 2 dropdowns
+
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                         {{ __('Produk') }}
                     </x-nav-link>

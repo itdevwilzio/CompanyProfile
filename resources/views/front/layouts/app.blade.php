@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fade@2/flickity-fade.css">
 
-
-
     {{-- Tailwind CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -21,35 +19,109 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
-    <!-- CSS for floating WhatsApp button -->
+    <!-- CSS for floating WhatsApp buttons -->
     <style>
-        .whatsapp-float {
+       /* WhatsApp button common styles */
+       .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
             z-index: 9999;
-        }
-
-        .whatsapp-float a {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
             background-color: #25D366;
             color: white;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
             text-align: center;
-            line-height: 60px;
-            font-size: 24px;
+            font-size: 25px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            right: 20px;
+            bottom: 20px;
         }
 
-        .whatsapp-float a:hover {
+        .whatsapp-float i {
+            font-size: 32px;
+        }
+
+        .whatsapp-float:hover {
             background-color: #128C7E;
         }
 
-    </style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
 
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Button inside modal */
+        .whatsapp-modal-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .whatsapp-modal-btn i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .whatsapp-modal-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* Close modal button */
+        .close-modal {
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive enhancements for smaller screens */
+        @media (max-width: 640px) {
+            .whatsapp-float {
+                width: 180px;
+                font-size: 14px;
+            }
+
+            .whatsapp-float i {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body class="font-poppins text-cp-black bg-primary">
@@ -64,38 +136,57 @@
     </div> --}}
 
     @stack('before-scripts')
-    {{-- file js disini.... khusus semua halaman --}}
-
+    {{-- Scripts go here --}}
     @stack('after-scripts')
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
+    <!-- WhatsApp floating button to open modal -->
+    <div class="whatsapp-float" id="open-whatsapp-modal">
+        <i class="fab fa-whatsapp"></i>
+    </div>
 
-    <!-- Floating WhatsApp Button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/6285179706639 " target="_blank" title="Chat with our Customer Service on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+    <!-- Modal Structure -->
+    <div id="whatsapp-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">&times;</button>
+            <h2 class="mb-4">Chat with Us</h2>
+            <a href="https://wa.me/6285179709387" class="whatsapp-modal-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>Marketing Wilzio
+            </a>
+            <a href="https://wa.me/6285179738286" class="whatsapp-modal-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>NOC Wilzio
+            </a>
+        </div>
     </div>
 
     <!-- Font Awesome for WhatsApp icon -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer></script>
 
     <script>
-        $(document).ready(function() {
-            $('#toggle-navbar-mobile').on('click', function() {
-                $('#navbar').toggleClass('opened');
-                $('#navbar-overlay').toggleClass('hidden')
-            });
+         // Modal functionality
+        const modal = document.getElementById('whatsapp-modal');
+        const openModalBtn = document.getElementById('open-whatsapp-modal');
+        const closeModalBtn = document.getElementById('close-modal');
 
-            $('#close-navbar-mobile').on('click', function() {
-                $('#navbar').removeClass('opened');
-                $('#navbar-overlay').addClass('hidden')
-            });
-        })
+        // Open modal when WhatsApp floating button is clicked
+        openModalBtn.addEventListener('click', function() {
+            modal.style.display = 'flex';
+        });
+
+        // Close modal when close button is clicked
+        closeModalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicked outside the modal content
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 
