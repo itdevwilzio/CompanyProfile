@@ -46,7 +46,7 @@
                 Ayo bergabung dengan WIJA BACKBONE dan jadilah bagian dari pergerakan untuk memperluas jangkauan internet cepat dan berkualitas.
             </p>
             <div class="mt-6">
-                <a href="#"
+                <a href="https://wa.me/6285179709387"
                    class="bg-orange-500 text-white px-6 py-3 rounded-full shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
                     Mulai Bergabung
                 </a>
@@ -103,10 +103,14 @@
        
                <!-- Star Rating -->
                <div class="flex items-center mb-4">
-                   @for($i = 0; $i < 5; $i++)
-                   <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6" alt="star">
-                   @endfor
-               </div>
+                @php
+                    $randomStars = rand(4, 5); 
+                @endphp
+            
+                @for($i = 0; $i < $randomStars; $i++)
+                    <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6" alt="star">
+                @endfor
+            </div>
     
                <!-- Testimonial Text -->
                <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
@@ -193,6 +197,9 @@
                 <a href="https://tiktok.com" target="_blank">
                     <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-6 h-6 object-contain" alt="TikTok">
                 </a>
+            </div>
+            <div class="mt-4 text-center">
+                <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
             </div>
         </div>
     </div>

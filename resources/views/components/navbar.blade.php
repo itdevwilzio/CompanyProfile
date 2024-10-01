@@ -1,14 +1,14 @@
 <nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3 h-[90px]">
-    <div class="flex items-center gap-3 absolute left-8">
-        <div class="flex shrink-0 h-[43px] overflow-hidden">
+    <div class="flex items-center gap-3 absolute left-0 ml-2">
+        <div class="flex shrink-0 h-[160px] overflow-hidden">
             <a href="{{ route('front.index') }}">
-                <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="logo">
+                <img src="{{ asset('assets/logo/logo.png') }}" class="object-contain w-full h-full" alt="logo">
             </a>
         </div>
         <div class="flex flex-col">
             <a href="{{ route('front.index') }}">
                 <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Wilzio</p>
-                <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+                <p id="CompanyTagline" class="text-sm text-cp-light-blue">Build Futuristic Dreams</p>
             </a>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 Produk
             </button>
             <div id="dropdownMenu" class="hidden lg:absolute w-full lg:w-fit mt-4 lg:mt-0 text-white lg:text-gray-900 lg:bg-white sub-item lg:left-1/2 lg:-translate-x-1/2 lg:shadow-lg">
-                <ul class="flex flex-col grow">
+                <ul class="flex flex-col grow text-left">
                     <li
                         class="font-semibold transition-all text-nowrap p-2 duration-300 hover:text-cp-dark-blue child-item  {{ request()->routeIs('front.product') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
                         <a href="{{ route('front.product') }}">Paket Home</a>

@@ -3095,3 +3095,67 @@ select {
         color: rgb(209 213 219 / var(--tw-text-opacity))
     }
 }
+
+#teams {
+    background-color: #0d1f44; /* Dark blue background for the section */
+    color: #ffffff; /* White text color for contrast */
+}
+
+#teams h2 {
+    padding-bottom: 1rem; /* Space below the heading */
+}
+
+#teams .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+#teams .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Single column on mobile */
+    gap: 1rem;
+}
+
+@media (min-width: 640px) { /* Small devices (tablets, 640px and up) */
+    #teams .grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+    }
+}
+
+@media (min-width: 768px) { /* Medium devices (desktops, 768px and up) */
+    #teams .grid {
+        grid-template-columns: repeat(3, 1fr); /* Three columns on desktops */
+    }
+}
+
+@media (min-width: 1024px) { /* Large devices (large desktops, 1024px and up) */
+    #teams .grid {
+        grid-template-columns: repeat(4, 1fr); /* Four columns on large desktops */
+    }
+}
+
+#teams .border {
+    background-color: #122a4a; /* Darker blue background for cards */
+    border-color: #e8eaf2; /* Light gray border color */
+    transition: all 0.3s ease-in-out;
+}
+
+#teams .border:hover {
+    background-color: #1a396f; /* Even darker on hover */
+    border-color: #ffffff; /* White border on hover */
+    transform: scale(1.05); /* Slight increase in scale on hover */
+}
+
+#teams img {
+    transition: transform 0.3s ease; /* Smooth transform for images */
+}
+
+#teams img:hover {
+    transform: scale(1.1); /* Slight increase in scale on hover */
+}
+
+#teams h3, #teams p {
+    margin: 0.5rem 0; /* Spacing for text elements */
+}

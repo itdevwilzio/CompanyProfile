@@ -263,7 +263,7 @@
     <div id="whatsapp-modal" class="modal">
         <div class="modal-content">
             <button class="close-btn" id="close-modal">&times;</button>
-            <h2 class="mb-4">Chat with Us</h2>
+            <h2 class="mb-4">Chat dengan Tim Wilzio</h2>
             <a href="https://wa.me/6285179709387" class="whatsapp-modal-btn" target="_blank">
                 <i class="fab fa-whatsapp"></i>Marketing Wilzio
             </a>

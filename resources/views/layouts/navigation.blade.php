@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('front.index') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-white" />
+                        <img src="{{ asset('assets/logo/logo.svg') }}" class="block h-9 w-auto fill-current" />
                     </a>
                 </div>
 
@@ -31,13 +31,13 @@
                             </x-slot>
         
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('admin.hero_sections.index')" class="text-white">
+                                <x-dropdown-link :href="route('admin.hero_sections.index')" class="text-primary">
                                     {{ __('Hero Section') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.principles.index')" class="text-white">
+                                <x-dropdown-link :href="route('admin.principles.index')" class="text-primary">
                                     {{ __('Keunggulan Kami') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.statistics.index')" class="text-white">
+                                <x-dropdown-link :href="route('admin.statistics.index')" class="text-primary">
                                     {{ __('Company Stats') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -70,10 +70,10 @@
                             </x-slot>
         
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('admin.testimonials.index')" class="text-white">
+                                <x-dropdown-link :href="route('admin.testimonials.index')" class="text-primary">
                                     {{ __('Testimoni') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.clients.index')" class="text-white">
+                                <x-dropdown-link :href="route('admin.clients.index')" class="text-primary">
                                     {{ __('Client Kami') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -102,7 +102,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')" class="text-white">
+                        <x-dropdown-link :href="route('profile.edit')" class="text-primary">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -110,7 +110,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')" class="text-white"
+                            <x-dropdown-link :href="route('logout')" class="text-primary"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}

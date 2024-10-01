@@ -1,8 +1,8 @@
 <x-guest-layout>
-    {{-- <!-- Logo -->
+    <!-- Logo -->
     <div class="flex justify-center mb-4">
-        <img src="{{ asset('logo/logo.svg') }}" alt="Logo" class="h-16 w-auto">
-    </div> --}}
+        <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo" class="h-16 w-auto">
+    </div>
 
 
     <!-- Session Status -->

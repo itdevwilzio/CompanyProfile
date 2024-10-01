@@ -167,6 +167,9 @@
                         <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-6 h-6 object-contain" alt="Instagram">
                     </a>
                 </div>
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
+                </div>
             </div>
         </div>
         <div class="absolute -bottom-[135px] w-full">

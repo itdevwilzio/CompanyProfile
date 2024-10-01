@@ -252,6 +252,7 @@
                         <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">Wilzio</p>
                         <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
                     </div>
+    
                 </div>
 
                 <!-- Social Media Icons -->
@@ -276,6 +277,9 @@
                             <img src="{{ asset('assets/icons/instagram.svg') }}" class="object-contain w-full h-full" alt="Instagram">
                         </div>
                     </a>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
                 </div>
             </div>
 
