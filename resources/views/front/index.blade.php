@@ -8,7 +8,6 @@
             <!-- Carousel Wrapper -->
             <div class="carousel w-full"
                 data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
-
                 @forelse ($hero_section as $hero)
                 <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
                     <div class="relative w-full h-full">
@@ -23,7 +22,7 @@
                 <!-- Fallback if no images are available -->
                 <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                     <div class="relative">
-                        <img src="{{ asset('banners/banner.png') }}" class="object-cover w-full h-full rounded-lg" alt="No banners available">
+                        <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg" alt="No banners available">
                     </div>
                 </div>
                 @endforelse
@@ -71,13 +70,16 @@
 <!-- Testimonials Section -->
 <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20 text-white">
     <div class="flex flex-col gap-[14px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-blue-700 p-[8px_16px] rounded-full uppercase font-bold text-4xl tracking-[1.2px]">
-            KLIEN KAMI</p>
+        <p id="fadeInText" class="badge w-fit bg-cp-pale-blue text-blue-700 p-[8px_16px] rounded-full uppercase font-bold text-4xl tracking-[1.2px] opacity-0 transition-opacity duration-1000">
+            KLIEN KAMI
+        </p>
     </div>
     
     <div class="w-full main-carousel py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-yellow-400 mb-6">4.85 / 5 Rating Pelanggan</h2>
+            <h2 class="text-4xl font-bold text-center text-yellow-400 mb-6">
+                <span id="rating" class="rolling-number">4.85</span> / 5 Rating Pelanggan
+            </h2>
             <h3 class="text-3xl font-semibold text-center text-white mb-12">Apa Kata Mereka?</h3>
 
             <!-- Flickity Carousel -->
@@ -142,10 +144,10 @@
 
 <!-- Principles Section -->
 <div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-    <div class="flex flex-col gap-[14px] items-center">
+    <div id="fadeInElement" class="opacity-0 transition-opacity duration-1000 flex flex-col gap-[14px] items-center">
         <p class="badge w-fit bg-cp-pale-blue text-blue-700 p-[8px_16px] rounded-full uppercase font-bold text-4xl">
             Keunggulan Kami</p>
-    </div>
+    </div>    
 
     <div class="flex flex-wrap items-stretch gap-4 justify-center">
         @forelse ($principles as $principle)
@@ -237,5 +239,51 @@
         var modal = document.getElementById('modal-' + index);
         modal.classList.add('hidden');
     }
+
+    // Function to create a rolling number effect
+    function animateNumber(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            element.textContent = (progress * (end - start) + start).toFixed(2);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Get the rating element and trigger the animation
+    document.addEventListener('DOMContentLoaded', () => {
+        const ratingElement = document.getElementById('rating');
+        const finalRating = 4.85; // Final rating value
+        animateNumber(ratingElement, 0, finalRating, 2000); // Animate from 0 to 4.85 in 2 seconds
+
+        // Intersection Observer for fade-in elements
+        const fadeInElements = ['fadeInElement', 'fadeInText']; // Multiple elements
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100'); // Add fade-in
+                }
+            });
+        };
+
+        const observerOptions = {
+            threshold: 0.5, // 50% visibility threshold
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observe each element for fade-in effect
+        fadeInElements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+    });
 </script>
 @endpush

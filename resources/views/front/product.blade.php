@@ -162,7 +162,7 @@
 
   <div id="Products" class="container mx-auto flex flex-col gap-20 mt-20">
     <div class="container mx-auto px-4">
-      <p class="text-center text-gray-200">Nikmati layanan home internet dengan 3 langkah mudah</p>
+      <p class="text-center text-gray-200">Nikmati layanan WILZIO Home Internet dengan 3 langkah mudah</p>
       <div class="flex text-white mx-auto max-w-md justify-around items-center my-5">
         <div data-step='1'
           class="h-9 w-9 rounded-full border-[3px] border-white flex items-center justify-center font-bold bg-white text-blue-500 step-active">

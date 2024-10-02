@@ -7,7 +7,7 @@
         </div>
         <div class="flex flex-col">
             <a href="{{ route('front.index') }}">
-                <p id="CompanyName" class="font-extrabold text-xl leading-[30px]">Wilzio</p>
+                <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-primary">Wilzio</p>
                 <p id="CompanyTagline" class="text-sm text-cp-light-blue">Build Futuristic Dreams</p>
             </a>
         </div>
