@@ -2,20 +2,20 @@
 
 @section('content')
 <div id="header" class="relative">
-    <div class="container max-w-[1130px] mx-auto relative pt-10 z-10 main-carousel">
+    <div class="container max-w-[1130px] mx-auto relative pt-2 z-10 main-carousel">
         <x-navbar></x-navbar>
-        <div class="carousel-container mt-20 relative overflow-hidden">
+        <div class="carousel-container mt-4 relative overflow-hidden">
             <!-- Carousel Wrapper -->
             <div class="carousel w-full"
-                data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
+                data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": false, "pauseAutoPlayOnHover": true }'>
                 @forelse ($hero_section as $hero)
                 <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative w-full h-full">
+                    <div class="relative w-full h-full flex justify-center items-center">
                         <img src="{{ Storage::url($hero->banner) }}"
                             srcset="{{ Storage::url($hero->banner) }} 1024w,
                                     {{ Storage::url($hero->banner) }} 640w"
                             sizes="(max-width: 768px) 640px, 1024px"
-                            class="object-cover w-full h-full rounded-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
+                            class="object-cover w-[800px] h-auto rounded-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
                     </div>
                 </div>
                 @empty
@@ -31,22 +31,24 @@
     </div>
 </div>
 
-<div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-    <div class="flex flex-col md:flex-row items-center justify-between">
+<div id="Bangun" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 bg-white p-10 rounded-lg shadow-lg">
+    <h2 class="text-4xl font-bold text-[#0E3995] leading-tight"
+    style="font-family: 'Permanent Marker', Sans-serif; font-size: 48px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+    Buka Peluang Baru dengan Koneksi Internet Terbaik
+    </h2>
+    <div class="flex flex-col items-center md:flex-row md:items-start justify-between">
         <!-- Left Content -->
-        <div class="md:w-1/2 text-center md:text-left">
-            <h2 class="text-4xl font-bold text-white leading-tight">
-                Buka Peluang Baru dengan Koneksi Internet Terbaik
-            </h2>
-            <p class="mt-4 text-lg text-white">
+        <div class="md:w-1/2 text-center">
+            <p class="mt-4 text-lg text-[#0E3995]">
                 Membangun Indonesia lebih maju dimulai dari akses internet yang merata.
             </p>
-            <p class="mt-2 text-lg text-white">
+            <p class="mt-2 text-lg text-[#0E3995]">
                 Ayo bergabung dengan WIJA BACKBONE dan jadilah bagian dari pergerakan untuk memperluas jangkauan internet cepat dan berkualitas.
             </p>
             <div class="mt-6">
                 <a href="https://wa.me/6285179709387"
-                   class="bg-orange-500 text-white px-6 py-3 rounded-full shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
+                   id="joinButton"
+                   class="bg-orange-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
                     Mulai Bergabung
                 </a>
             </div>
@@ -108,8 +110,7 @@
                 @php
                     $randomStars = rand(4, 5); 
                 @endphp
-            
-                @for($i = 0; $i < $randomStars; $i++)
+                @for($i = 0; $randomStars > $i; $i++)
                     <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6" alt="star">
                 @endfor
             </div>
@@ -137,78 +138,75 @@
             <p class="text-center text-white">Belum ada data terbaru</p>
             @endforelse
        </div>
-       
-        </div>
     </div>
 </div>
 
-<!-- Principles Section -->
-<div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-    <div id="fadeInElement" class="opacity-0 transition-opacity duration-1000 flex flex-col gap-[14px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-blue-700 p-[8px_16px] rounded-full uppercase font-bold text-4xl">
-            Keunggulan Kami</p>
-    </div>    
+<!-- Modal Script -->
+@push('after-scripts')
+<script>
+    function openModal(index) {
+        const modal = document.getElementById('modal-' + index);
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex'); // Ensure the modal is displayed using flex layout
+        }
+        
+        // Close modal when clicking outside the content
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal(index);
+            }
+        });
+    }
 
-    <div class="flex flex-wrap items-stretch gap-4 justify-center">
-        @forelse ($principles as $principle)
-        <div class="card w-full sm:w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-lg hover:border-cp-dark-blue transition-all duration-300 mb-6 shadow-lg">
-            <div class="thumbnail w-full h-[150px] flex items-center justify-center overflow-hidden mt-2">
-                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-contain max-w-full max-h-full" alt="thumbnails">
-            </div>
-            <div class="flex flex-col items-center text-center p-4 gap-2 flex-grow">
-                <div class="flex flex-col gap-2 items-center">
-                    <p class="title font-bold text-lg sm:text-xl leading-6 text-cp-dark-blue">{{ $principle->name }}</p>
-                    <p class="text-sm sm:text-base leading-5 text-cp-light-grey">{{ $principle->subtitle }}</p>
-                </div>
-            </div>
-        </div>
-        @empty
-        <p class="text-center text-gray-500">Belum ada data terbaru</p>
-        @endforelse
-    </div>
-    
-</div>
+    function closeModal(index) {
+        const modal = document.getElementById('modal-' + index);
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex'); // Hide the modal
+        }
+    }
+</script>
+@endpush
 
 <!-- Footer Section -->
-<footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
-    <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-center pt-[100px] pb-[220px] relative z-10">
-        <div class="flex flex-col gap-10 items-start">
-            <div class="flex items-center gap-3">
-                <div class="h-[43px] w-auto">
+<footer class="w-full mt-10 overflow-hidden bg-cp-black">
+    <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-2 items-center justify-center pt-[30px] pb-[40px] relative z-10">
+        <div class="flex flex-col gap-4 items-start">
+            <div class="flex items-center gap-2">
+                <div class="h-[25px] w-auto">
                     <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="Company logo">
                 </div>
                 <div class="flex flex-col">
-                    <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">Wilzio</p>
+                    <p id="CompanyName" class="font-extrabold text-xl leading-[28px] text-white">Wilzio</p>
                     <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
                 </div>
             </div>
 
-            <div class="flex items-center justify-between w-full max-w-[200px]">
+            <div class="flex items-center justify-between w-full max-w-[180px]">
                 <a href="https://youtube.com" target="_blank">
-                    <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-6 h-6 object-contain" alt="YouTube">
+                    <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-5 h-5 object-contain" alt="YouTube">
                 </a>
                 <a href="https://wa.me/your-number" target="_blank">
-                    <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-6 h-6 object-contain" alt="WhatsApp">
+                    <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-5 h-5 object-contain" alt="WhatsApp">
                 </a>
                 <a href="https://facebook.com" target="_blank">
-                    <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-6 h-6 object-contain" alt="Facebook">
+                    <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-5 h-5 object-contain" alt="Facebook">
                 </a>
                 <a href="https://instagram.com" target="_blank">
-                    <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-6 h-6 object-contain" alt="Instagram">
+                    <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-5 h-5 object-contain" alt="Instagram">
                 </a>
                 <a href="https://tiktok.com" target="_blank">
-                    <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-6 h-6 object-contain" alt="TikTok">
+                    <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-5 h-5 object-contain" alt="TikTok">
                 </a>
             </div>
-            <div class="mt-4 text-center">
+            <div class="mt-2 text-center">
                 <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
             </div>
         </div>
     </div>
-    <div class="absolute -bottom-[135px] w-full">
-        <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
-    </div>
 </footer>
+
 @endsection
 
 @push('after-scripts')
@@ -218,72 +216,28 @@
 <script src="{{ asset('js/accordion.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <script>
-    function openModal(index) {
-        var modal = document.getElementById('modal-' + index);
-        modal.classList.remove('hidden');
-        
-        // Add an event listener to close the modal when clicked outside
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) { // Check if the click is outside the modal content
-                closeModal(index);
-            }
-        });
+    // Join Button hover and scale effect
+    const joinButton = document.getElementById('joinButton');
 
-        // Auto-close the modal after 5 seconds (5000 milliseconds)
-        setTimeout(function() {
-            closeModal(index);
-        }, 1000); // Adjust the time in milliseconds as needed
-    }
+    // Hover effect: Scale down to 90% when mouse enters
+    joinButton.addEventListener('mouseenter', function() {
+        joinButton.style.transition = 'transform 0.3s ease-in-out';
+        joinButton.style.transform = 'scale(0.9)'; // Reduced scale for a smoother effect
+    });
 
-    function closeModal(index) {
-        var modal = document.getElementById('modal-' + index);
-        modal.classList.add('hidden');
-    }
+    // Revert to original size when mouse leaves
+    joinButton.addEventListener('mouseleave', function() {
+        joinButton.style.transform = 'scale(1)';
+    });
 
-    // Function to create a rolling number effect
-    function animateNumber(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            element.textContent = (progress * (end - start) + start).toFixed(2);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
+    // On click, scale slightly down
+    joinButton.addEventListener('mousedown', function() {
+        joinButton.style.transform = 'scale(0.95)'; // Slight scale down on click
+    });
 
-    // Get the rating element and trigger the animation
-    document.addEventListener('DOMContentLoaded', () => {
-        const ratingElement = document.getElementById('rating');
-        const finalRating = 4.85; // Final rating value
-        animateNumber(ratingElement, 0, finalRating, 2000); // Animate from 0 to 4.85 in 2 seconds
-
-        // Intersection Observer for fade-in elements
-        const fadeInElements = ['fadeInElement', 'fadeInText']; // Multiple elements
-
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100'); // Add fade-in
-                }
-            });
-        };
-
-        const observerOptions = {
-            threshold: 0.5, // 50% visibility threshold
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        // Observe each element for fade-in effect
-        fadeInElements.forEach(id => {
-            const element = document.getElementById(id);
-            if (element) {
-                observer.observe(element);
-            }
-        });
+    // On mouse up, return to the hover scale (if hovered)
+    joinButton.addEventListener('mouseup', function() {
+        joinButton.style.transform = 'scale(0.9)';
     });
 </script>
 @endpush

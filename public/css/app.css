@@ -2675,6 +2675,14 @@ select {
     opacity: .25
 }
 
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+
 @media (min-width: 640px) {
     .sm\:-my-px {
         margin-top: -1px;

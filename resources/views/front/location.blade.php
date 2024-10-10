@@ -23,6 +23,44 @@
         </div>
     </div>
     {{-- End Section Voucher --}}
+
+    <footer class="w-full mt-10 overflow-hidden bg-cp-black">
+        <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-2 items-center justify-center pt-[30px] pb-[40px] relative z-10">
+            <div class="flex flex-col gap-4 items-start">
+                <div class="flex items-center gap-2">
+                    <div class="h-[25px] w-auto">
+                        <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="Company logo">
+                    </div>
+                    <div class="flex flex-col">
+                        <p id="CompanyName" class="font-extrabold text-xl leading-[28px] text-white">Wilzio</p>
+                        <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
+                    </div>
+                </div>
+    
+                <div class="flex items-center justify-between w-full max-w-[180px]">
+                    <a href="https://youtube.com" target="_blank">
+                        <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-5 h-5 object-contain" alt="YouTube">
+                    </a>
+                    <a href="https://wa.me/your-number" target="_blank">
+                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-5 h-5 object-contain" alt="WhatsApp">
+                    </a>
+                    <a href="https://facebook.com" target="_blank">
+                        <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-5 h-5 object-contain" alt="Facebook">
+                    </a>
+                    <a href="https://instagram.com" target="_blank">
+                        <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-5 h-5 object-contain" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com" target="_blank">
+                        <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-5 h-5 object-contain" alt="TikTok">
+                    </a>
+                </div>
+                <div class="mt-2 text-center">
+                    <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 @endsection
 
 @push('styles')
