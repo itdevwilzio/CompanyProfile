@@ -1,8 +1,8 @@
 <nav class="flex flex-wrap items-center justify-between bg-white p-[20px_30px] rounded-[20px] gap-y-3 h-[90px]">
     <div class="flex items-center gap-3 absolute left-0 ml-2">
-        <div class="flex shrink-0 h-[160px] overflow-hidden">
+        <div class="flex shrink-0 h-[60px] overflow-hidden">
             <a href="{{ route('front.index') }}">
-                <img src="{{ asset('assets/logo/logo.png') }}" class="object-contain w-full h-full" alt="logo">
+                <img src="{{ asset('assets/logo/logo.png') }}" class="object-contain w-[60px] h-[60px]" alt="logo">
             </a>
         </div>
         <div class="flex flex-col">

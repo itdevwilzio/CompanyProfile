@@ -32,7 +32,7 @@
 </div>
 
 <div id="Bangun" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20 bg-white p-10 rounded-lg shadow-lg">
-    <h2 class="text-4xl font-bold text-[#0E3995] leading-tight"
+    <h2 class="font-permanent text-4xl font-bold text-[#0E3995] leading-tight"
     style="font-family: 'Permanent Marker', Sans-serif; font-size: 48px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
     Buka Peluang Baru dengan Koneksi Internet Terbaik
     </h2>
@@ -138,6 +138,32 @@
             <p class="text-center text-white">Belum ada data terbaru</p>
             @endforelse
        </div>
+    </div>
+</div>
+
+<!-- Principles Section -->
+<div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+    <div class="flex flex-col gap-[14px] items-center">
+        <p class="badge w-fit bg-cp-pale-blue text-blue-700 p-[8px_16px] rounded-full uppercase font-bold text-4xl">
+            Keunggulan Kami</p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-[20px] justify-center">
+        @forelse ($principles as $principle)
+        <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[5px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300 min-h-[400px] mb-0">
+            <div class="thumbnail w-full max-h-[150px] flex items-center justify-center overflow-hidden mt-2">
+                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-contain max-w-full max-h-full" alt="thumbnails">
+            </div>
+            <div class="flex flex-col items-center text-center p-[10px_20px_20px_20px] gap-[5px] flex-grow">
+                <div class="flex flex-col gap-[2px] items-center">
+                    <p class="title font-bold text-xl leading-[24px] text-cp-dark-blue">{{ $principle->name }}</p>
+                    <p class="leading-[22px] text-cp-light-grey">{{ $principle->subtitle }}</p>
+                </div>
+            </div>
+        </div>
+        @empty
+        <p>Belum ada data terbaru</p>
+        @endforelse
     </div>
 </div>
 
