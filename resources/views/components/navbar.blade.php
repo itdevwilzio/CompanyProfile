@@ -20,8 +20,8 @@
             <i class="feather icon-x me-1"></i> Close
         </button>
         <li
-            class="font-semibold transition-all duration-300 hover:text-cp-dark-blue  {{ request()->routeIs('front.index') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
-            <a href="{{ route('front.index') }}">Beranda</a>
+        class="font-roboto font-normal text-base leading-6 transition-all duration-300 hover:text-cp-dark-blue {{ request()->routeIs('front.index') ? 'lg:bg-white bg-cp-black lg:text-cp-dark-blue' : '' }}">
+        <a href="{{ route('front.index') }}">Beranda</a>
         </li>
         
         <!-- Dropdown for Produk -->

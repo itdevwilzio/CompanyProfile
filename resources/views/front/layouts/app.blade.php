@@ -238,7 +238,7 @@
     </style>
 </head>
 
-<body class="font-poppins text-cp-black bg-primary">
+<body class="font-poppins text-cp-black">
 
     @yield('content')
 

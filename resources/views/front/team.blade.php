@@ -5,29 +5,40 @@
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
+            
+            <h2 class="font-nunito font-bold text-white text-4xl text-center mb-12">
+                Tentang Kami
+            </h2>
         </div>
     </div>
 
     <!-- Born For Indonesia Section -->
-    <section id="born-for-indonesia" class="w-full py-16">
-        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+    <section id="born-for-indonesia" class="w-full py-16 bg-[#0E3995] relative overflow-hidden">
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+
             
-            <!-- Text Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-gray-300">
-                <h2 class="font-bold text-4xl mb-4">Born For Indonesia</h2>
-                <p class="text-lg leading-7 mb-4">
+            <!-- Text Section -->
+            <div class="w-full lg:w-1/2 text-white lg:pr-10">
+                
+                <h2 class="font-nunito font-bold text-4xl mb-6">
+                    Born For Indonesia
+                </h2>
+                <p class="font-roboto text-base leading-7 mb-8">
                     PT Pasifik Wija Teknologi adalah perusahaan teknologi yang didirikan oleh putra-putri Kalimantan Utara dengan tujuan membawa manfaat bagi masyarakat Indonesia, khususnya di daerah terpencil yang belum terjangkau oleh penyedia layanan lainnya.
                 </p>
             </div>
-    
-            <!-- Image Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 flex justify-center">
-                <img src="{{ asset('assets/teams/athletic.png') }}" 
-                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" 
-                    alt="Telecom Tower">
+
+            <!-- Image Section -->
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+                <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                    <img src="{{ asset('assets/teams/athletic.png') }}" 
+                        class="object-cover w-full h-full"
+                        alt="Telecom Tower">
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Identitas Produk Section -->
     <section id="product-identity" class="w-full py-16">
@@ -48,20 +59,37 @@
                 </p>
                 
                 <!-- Dropdown Button with Hover Effect -->
-                <div x-data="{ open: false }" class="bg-white text-blue-900 p-4 rounded-lg shadow-md ml-auto transition-transform duration-300 hover:scale-105 hover:bg-blue-100">
+                <div x-data="{ open: false }" class="bg-[#0E3995] text-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-[#0C357D]">
+                    <!-- Accordion Header -->
                     <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
-                        <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  :class="{'transform rotate-180': open}" d="M5 15l7-7 7 7" />
+                        <div class="flex items-center gap-2">
+                            <!-- Icon (Conditional Rendering) -->
+                            <template x-if="!open">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM8 12h8m-4-4v8" />
+                                </svg>
+                            </template>
+                            <template x-if="open">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 2a6 6 0 00-6 6c0 2.22 1.21 4.15 3 5.19V15a1 1 0 001 1h4a1 1 0 001-1v-1.81a6.978 6.978 0 003-5.19 6 6 0 00-6-6zm-1 13h2v2h-2v-2z"/>
+                                </svg>
+                                
+                            </template>
+                            <!-- Title -->
+                            <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
+                        </div>
+                        <!-- Arrow Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                         </svg>
                     </div>
-                    
-                    <div x-show="open" class="mt-4 transition-all duration-300 ease-in-out">
-                        <p class="text-sm mb-2">
+                
+                    <!-- Accordion Content -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-4">
+                        <p class="text-sm mb-4">
                             <strong>"WIJA"</strong> berasal dari bahasa Sanskerta yang artinya benih yang berpotensi menjadi luar biasa kuat dan besar di masa depan.
                         </p>
-                        <p class="text-sm mb-2">
+                        <p class="text-sm mb-4">
                             <strong>"BACKBONE"</strong> dalam jaringan adalah pondasi vital yang mendukung koneksi dan akses, mengatur lalu lintas data, dan memastikan kinerja jaringan yang lancar dan andal.
                         </p>
                         <p class="text-sm">
@@ -69,6 +97,7 @@
                         </p>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
