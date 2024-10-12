@@ -28,7 +28,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-primary">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

@@ -13,7 +13,7 @@
     </div>
 
     <!-- Born For Indonesia Section -->
-    <section id="born-for-indonesia" class="w-full py-16 bg-[#0E3995] relative overflow-hidden">
+    <section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
 
             
@@ -23,7 +23,7 @@
                 <h2 class="font-nunito font-bold text-4xl mb-6">
                     Born For Indonesia
                 </h2>
-                <p class="font-roboto text-base leading-7 mb-8">
+                <p class="font-nunito text-base leading-7 mb-8">
                     PT Pasifik Wija Teknologi adalah perusahaan teknologi yang didirikan oleh putra-putri Kalimantan Utara dengan tujuan membawa manfaat bagi masyarakat Indonesia, khususnya di daerah terpencil yang belum terjangkau oleh penyedia layanan lainnya.
                 </p>
             </div>
@@ -53,7 +53,7 @@
             
             <!-- Description Section -->
             <div class="w-full lg:w-1/2 text-white lg:text-right">
-                <h2 class="font-bold text-4xl mb-4">Identitas Produk</h2>
+                <h2 class="font-nunito text-4xl mb-4">Identitas Produk</h2>
                 <p class="text-lg leading-7 mb-4">
                     WIJA BACKBONE merupakan produk layanan internet utama yang kami tawarkan, dengan menggunakan teknologi terkini, menyediakan koneksi internet cepat, serta harga yang terjangkau.
                 </p>
@@ -103,11 +103,11 @@
     </section>
 
     <!-- APJII Certification Section -->
-    <section id="apjii-registration" class="w-full py-16">
+    <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             <!-- Text Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-gray-300">
-                <h2 class="font-bold text-4xl mb-4">Resmi Terdaftar di APJII</h2>
+            <div class="w-full lg:w-1/2 text-black transition-all duration-300 hover:text-white">
+                <h2 class="font-nunito font-bold text-4xl mb-4">Resmi Terdaftar di APJII</h2>
                 <p class="text-lg leading-7 mb-4">
                     Kami telah terdaftar secara resmi sebagai Penyedia Layanan Internet (Internet Service Provider/ISP) di Asosiasi Penyelenggara Jasa Internet Indonesia (APJII). Dengan komitmen yang kuat untuk memberikan layanan internet terbaik, kami bertekad untuk mempercepat kemajuan teknologi di seluruh Indonesia.
                 </p>
@@ -131,8 +131,8 @@
                     alt="Super Team Image">
             </div>
             <!-- Text Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 text-white lg:text-right transition-all duration-300 hover:text-gray-300">
-                <h2 class="font-bold text-4xl mb-4">Super Team</h2>
+            <div class="w-full lg:w-1/2 text-black lg:text-right transition-all duration-300 hover:text-primary">
+                <h2 class="font-nunito font-bold text-4xl mb-4">Super Team</h2>
                 <p class="text-lg leading-7 mb-4">
                     Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas dan handal bagi pelanggan di seluruh Indonesia. Kami berfokus pada inovasi dan kepuasan pelanggan untuk memastikan setiap layanan yang kami berikan memenuhi standar tertinggi.
                 </p>
@@ -143,62 +143,111 @@
         </div>
     </section>
 
-    <!-- Teams Section -->
     <section id="teams" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
-            <h2 class="font-bold text-4xl text-white text-center">Staff Profesional Kami <br> Siap Melayani Anda</h2>
+            
+            {{-- Section for Pimpinan --}}
+            <h2 class="font-nunito font-bold text-4xl text-primary text-center">Pimpinan</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @forelse ($teams as $team)
-                    <div class="border border-[#E8EAF2] hover:border-white hover:bg-gray-700 hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
-                        <!-- Ensuring the image remains circular and doesn't stretch -->
+                @forelse ($teams->where('team', 'Pimpinan') as $team)
+                    <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
-                            class="w-[100px] h-[100px] rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
+                            class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
                             alt="{{ $team->name }}">
-                        <h3 class="font-bold text-xl">{{ $team->name }}</h3>
-                        <p>{{ $team->occupation }}</p>
-                        <p class="text-sm">{{ $team->location }}</p>
+                        <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{{ $team->name }}</h3>
+                        <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
+                        <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
                     </div>
                 @empty
                     <p class="text-white">No team members available</p>
                 @endforelse
             </div>
+    
+            {{-- Section for IT & Administrative Team --}}
+            <h2 class="font-nunito font-bold text-4xl text-primary text-center">IT & Administrative Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                @forelse ($teams->where('team', 'IT & Administrative Team') as $team)
+                    <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                        <img src="{{ asset(Storage::url($team->avatar)) }}" 
+                            class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
+                            alt="{{ $team->name }}">
+                        <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{{ $team->name }}</h3>
+                        <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
+                        <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
+                    </div>
+                @empty
+                    <p class="text-white">No team members available</p>
+                @endforelse
+            </div>
+    
+            {{-- Section for Technician --}}
+            <h2 class="font-nunito font-bold text-4xl text-primary text-center">Technician</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                @forelse ($teams->where('team', 'Technician') as $team)
+                    <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                        <img src="{{ asset(Storage::url($team->avatar)) }}" 
+                            class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
+                            alt="{{ $team->name }}">
+                        <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{{ $team->name }}</h3>
+                        <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
+                        <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
+                    </div>
+                @empty
+                    <p class="text-white">No team members available</p>
+                @endforelse
+            </div>
+    
         </div>
     </section>
-
-    <footer class="w-full mt-10 overflow-hidden bg-cp-black">
-        <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-2 items-center justify-center pt-[30px] pb-[40px] relative z-10">
-            <div class="flex flex-col gap-4 items-start">
-                <div class="flex items-center gap-2">
-                    <div class="h-[25px] w-auto">
-                        <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="Company logo">
-                    </div>
-                    <div class="flex flex-col">
-                        <p id="CompanyName" class="font-extrabold text-xl leading-[28px] text-white">Wilzio</p>
-                        <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-                    </div>
-                </div>
     
-                <div class="flex items-center justify-between w-full max-w-[180px]">
-                    <a href="https://youtube.com" target="_blank">
-                        <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-5 h-5 object-contain" alt="YouTube">
-                    </a>
-                    <a href="https://wa.me/your-number" target="_blank">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-5 h-5 object-contain" alt="WhatsApp">
-                    </a>
-                    <a href="https://facebook.com" target="_blank">
-                        <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-5 h-5 object-contain" alt="Facebook">
-                    </a>
-                    <a href="https://instagram.com" target="_blank">
-                        <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-5 h-5 object-contain" alt="Instagram">
-                    </a>
-                    <a href="https://tiktok.com" target="_blank">
-                        <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-5 h-5 object-contain" alt="TikTok">
-                    </a>
-                </div>
-                <div class="mt-2 text-center">
-                    <p class="text-xs text-gray-500">&copy; {{ date('Y') }} Wilzio Internet Provider. All rights reserved.</p>
-                </div>
+
+    <footer class="w-full mt-10 bg-[#0E3995] text-white">
+        <div class="container max-w-7xl mx-auto flex flex-col items-center justify-center py-10">
+            <!-- Follow Us Section -->
+            <p id="CompanyName" class="font-nunito font-bold text-lg mb-4">
+                Ikuti Kami
+            </p>
+            <div class="flex items-center gap-6 mb-6">
+                <a href="https://facebook.com" target="_blank">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                        <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M22.675 0H1.325C.594 0 0 .594 0 1.326v21.348C0 23.406.594 24 1.326 24H12.82v-9.294H9.691V11.29h3.128V8.717c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.796.143v3.244l-1.918.001c-1.504 0-1.795.714-1.795 1.763v2.311h3.587l-.467 3.416h-3.12V24h6.116c.729 0 1.324-.594 1.324-1.326V1.326C24 .594 23.406 0 22.675 0z"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                        <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.334 3.608 1.309.975.976 1.247 2.243 1.309 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.334 2.633-1.309 3.608-.976.975-2.243 1.247-3.608 1.309-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.334-3.608-1.309-.975-.976-1.247-2.243-1.309-3.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.062-1.366.334-2.633 1.309-3.608.976-.975 2.243-1.247 3.608-1.309 1.265-.058 1.645-.07 4.849-.07m0-2.163C8.755 0 8.333.014 7.052.072 5.766.129 4.557.352 3.607 1.302 2.656 2.253 2.433 3.461 2.376 4.747.418 8.302.418 15.698 2.376 19.253c.057 1.286.28 2.494 1.231 3.444.95.951 2.159 1.173 3.445 1.23 1.281.058 1.703.072 4.848.072s3.567-.014 4.848-.072c1.286-.057 2.494-.279 3.445-1.23.951-.95 1.174-2.158 1.231-3.444.058-1.281.072-1.703.072-4.848s-.014-3.567-.072-4.848c-.057-1.286-.28-2.494-1.231-3.444-.951-.951-2.159-1.173-3.445-1.23-1.281-.058-1.703-.072-4.848-.072zm0 5.838c-3.403 0-6.163 2.76-6.163 6.163s2.76 6.163 6.163 6.163 6.163-2.76 6.163-6.163-2.76-6.163-6.163-6.163zm0 10.123c-2.185 0-3.96-1.775-3.96-3.96s1.775-3.96 3.96-3.96 3.96 1.775 3.96 3.96-1.775 3.96-3.96 3.96zm6.406-11.845c-.796 0-1.443-.647-1.443-1.443s.647-1.443 1.443-1.443 1.443.647 1.443 1.443-.647 1.443-1.443 1.443z"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://wa.me/your-number" target="_blank">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
+                            <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://youtube.com" target="_blank">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M23.499 6.203c-.273-1.032-1.077-1.837-2.109-2.109C19.528 3.5 12 3.5 12 3.5s-7.528 0-9.39.594c-1.032.273-1.837 1.077-2.109 2.109C0 8.064 0 12 0 12s0 3.936.501 5.797c.273 1.032 1.077 1.837 2.109 2.109C4.472 20.5 12 20.5 12 20.5s7.528 0 9.39-.594c1.032-.273 1.837-1.077 2.109-2.109.501-1.861.501-5.797.501-5.797s0-3.936-.501-5.797zm-13.908 9.44V8.358l6.253 3.643-6.253 3.642z"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://tiktok.com" target="_blank">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
+            <!-- Copyright Section -->
+            <p class="text-sm text-white">
+                &copy; {{ date('Y') }} wilzio.com - All Rights Reserved
+            </p>
         </div>
     </footer>
 @endsection

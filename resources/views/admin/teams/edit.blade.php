@@ -42,6 +42,13 @@
                     </div>
 
                     <div class="mt-4">
+                        <x-input-label for="team" :value="__('Team')" />
+                        <x-text-input id="team" class="block w-full mt-1" type="text" name="team"
+                            value="{{ $team->team }}" required autofocus autocomplete="team" />
+                        <x-input-error :messages="$errors->get('team')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
                         <x-input-label for="avatar" :value="__('Avatar')" />
                         <img src="{{ Storage::url($team->avatar) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">

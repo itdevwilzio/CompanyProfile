@@ -2,79 +2,101 @@
 
 @section('content')
 <!-- Full Screen Wave and Particle Section -->
-<div id="header" class="relative w-full bg-[#043E8A] overflow-hidden">
-    <!-- Multi-layer Wave SVG at the Top -->
-    <div class="wave-container relative">
-        <svg class="absolute top-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#043E8A" fill-opacity="1" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,122.7C672,128,768,160,864,154.7C960,149,1056,107,1152,122.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-            <path fill="#0A47B3" fill-opacity="0.7" d="M0,160L48,186.7C96,213,192,267,288,266.7C384,267,480,213,576,213.3C672,213,768,267,864,245.3C960,224,1056,144,1152,122.7C1248,101,1344,139,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-            <path fill="#1565C0" fill-opacity="0.4" d="M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,197.3C672,213,768,235,864,213.3C960,192,1056,128,1152,101.3C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
-    </div>
-
+<div id="header" class="relative w-full overflow-hidden">
     <!-- Container for Carousel and Particles -->
     <div class="container max-w-[1130px] mx-auto relative pt-2 z-10 main-carousel">
         <x-navbar></x-navbar>
-        <div class="carousel-container mt-4 relative overflow-hidden bg-[#043E8A] p-8 rounded-xl shadow-lg">
-            <!-- Carousel Wrapper -->
-            <div class="carousel w-full"
-                data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
-                @forelse ($hero_section as $hero)
-                <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative w-full h-full flex justify-center items-center">
-                        <img src="{{ Storage::url($hero->banner) }}"
-                            srcset="{{ Storage::url($hero->banner) }} 1024w,
-                                    {{ Storage::url($hero->banner) }} 640w"
-                            sizes="(max-width: 768px) 640px, 1024px"
-                            class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
-                    </div>
-                </div>
-                @empty
-                <!-- Fallback if no images are available -->
-                <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative">
-                        <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
-                    </div>
-                </div>
-                @endforelse
-            </div>
-        </div>
-    </div>
 
-    <!-- Particle Effect -->
-    <div class="wave-container">
-        <div class="particle" style="width: 8px; height: 8px; top: 50px; left: 80px;"></div>
-        <div class="particle" style="width: 12px; height: 12px; top: 100px; left: 150px;"></div>
-        <div class="particle" style="width: 6px; height: 6px; top: 150px; left: 300px;"></div>
-        <div class="particle" style="width: 10px; height: 10px; top: 70px; left: 500px;"></div>
-        <div class="particle" style="width: 14px; height: 14px; top: 120px; left: 700px;"></div>
+        <!-- Wave SVG Positioned Above the Carousel but outside the container -->
+        <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#043E8A" fill-opacity="1" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,122.7C672,128,768,160,864,154.7C960,149,1056,107,1152,122.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                <path fill="#0A47B3" fill-opacity="0.7" d="M0,160L48,186.7C96,213,192,267,288,266.7C384,267,480,213,576,213.3C672,213,768,267,864,245.3C960,224,1056,144,1152,122.7C1248,101,1344,139,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                <path fill="#1565C0" fill-opacity="0.4" d="M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,197.3C672,213,768,235,864,213.3C960,192,1056,128,1152,101.3C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                
+            </svg>
+        </div>
+        
+        <!-- Carousel Section -->
+        <section id="wave-particles" class="relative w-full h-auto  overflow-hidden">
+            <!-- Carousel Container -->
+            {{-- <div class="container mx-auto relative pt-0 z-10 main-carousel "> --}}
+                <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
+                    <!-- Carousel Wrapper -->
+                    <div class="carousel w-full"
+                        data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
+                        @forelse ($hero_section as $hero)
+                        <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
+                            <div class="relative w-full h-full flex justify-center items-center">
+                                <img src="{{ Storage::url($hero->banner) }}"
+                                    srcset="{{ Storage::url($hero->banner) }} 1024w,
+                                            {{ Storage::url($hero->banner) }} 640w"
+                                    sizes="(max-width: 768px) 640px, 1024px"
+                                    class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
+                            </div>
+                        </div>
+                        @empty
+                        <!-- Fallback if no images are available -->
+                        <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                            <div class="relative">
+                                <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
+                            </div>
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+            {{-- </div> --}}
+        </section>
+
+        <!-- CSS for Carousel and Wave -->
+        <style>
+            .wave-container {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .carousel-container {
+                position: relative;
+                z-index: 2;
+            }
+
+            .carousel {
+                margin-top: 0;
+            }
+        </style>
+                
+        
+        
+        <!-- CSS for Particles -->
+        <style>
+            .wave-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1
+            }
+        
+            .particle {
+                position: absolute;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                animation: float 6s infinite ease-in-out;
+            }
+        
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0); opacity: 1; }
+                25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
+                50% { transform: translateY(10px) translateX(15px); opacity: 0.6; }
+                75% { transform: translateY(-15px) translateX(-15px); opacity: 0.8; }
+                100% { transform: translateY(0) translateX(0); opacity: 1; }
+            }
+        </style>
+        
     </div>
 </div>
-
-<!-- Styles for Particles and Waves -->
-<style>
-    .wave-container {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        animation: float 6s infinite ease-in-out;
-        pointer-events: none;
-        z-index: 2; /* Ensures particles appear above the wave */
-    }
-
-    @keyframes float {
-        0% { transform: translateY(0) translateX(0); opacity: 1; }
-        25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
-        50% { transform: translateY(10px) translateX(15px); opacity: 0.6; }
-        75% { transform: translateY(-15px) translateX(-15px); opacity: 0.8; }
-        100% { transform: translateY(0) translateX(0); opacity: 1; }
-    }
-</style>
 
 <div id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-16 mb-16 bg-white p-12 rounded-xl shadow-2xl">
     <!-- Title Section -->
@@ -92,13 +114,14 @@
                 <p class="font-nunito font-semibold text-xl text-[#0E3995] mb-6">
                     Ayo bergabung dengan WIJA BACKBONE dan jadilah bagian dari pergerakan untuk memperluas jangkauan internet cepat dan berkualitas.
                 </p>
-                <div class="mt-6 flex justify-center w-full md:justify-start">
+                <div class="mt-6 flex justify-center items-center w-full">
                     <a href="https://wa.me/6285179709387"
-                    id="joinButton"
-                    class="bg-orange-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
+                       id="joinButton"
+                       class="bg-orange-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
                         Mulai Bergabung
                     </a>
                 </div>
+                
             </div>
 
             <!-- Right Content - Single Image -->
@@ -114,6 +137,12 @@
 <!-- Testimonials Section -->
 <div class="w-full main-carousel py-16 mt-16 bg-[#0E3995]">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                    <!-- Star Icons -->
+        <div class="flex justify-center mb-2">
+            @for ($i = 0; $i < 5; $i++)
+                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1" alt="star">
+            @endfor
+        </div>
         <!-- Rating Title -->
         <h2 class="font-nunito font-bold text-white text-4xl text-center mb-4">
             <span id="rating" class="rolling-number">4.85</span> / 5 Rating Pelanggan
@@ -255,28 +284,38 @@
         </p>
         <div class="flex items-center gap-6 mb-6">
             <a href="https://facebook.com" target="_blank">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/facebook.svg') }}" class="w-5 h-5 object-contain" alt="Facebook">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                    <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M22.675 0H1.325C.594 0 0 .594 0 1.326v21.348C0 23.406.594 24 1.326 24H12.82v-9.294H9.691V11.29h3.128V8.717c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.796.143v3.244l-1.918.001c-1.504 0-1.795.714-1.795 1.763v2.311h3.587l-.467 3.416h-3.12V24h6.116c.729 0 1.324-.594 1.324-1.326V1.326C24 .594 23.406 0 22.675 0z"/>
+                    </svg>
                 </div>
             </a>
             <a href="https://instagram.com" target="_blank">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/instagram.svg') }}" class="w-5 h-5 object-contain" alt="Instagram">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                    <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.334 3.608 1.309.975.976 1.247 2.243 1.309 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.334 2.633-1.309 3.608-.976.975-2.243 1.247-3.608 1.309-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.334-3.608-1.309-.975-.976-1.247-2.243-1.309-3.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.062-1.366.334-2.633 1.309-3.608.976-.975 2.243-1.247 3.608-1.309 1.265-.058 1.645-.07 4.849-.07m0-2.163C8.755 0 8.333.014 7.052.072 5.766.129 4.557.352 3.607 1.302 2.656 2.253 2.433 3.461 2.376 4.747.418 8.302.418 15.698 2.376 19.253c.057 1.286.28 2.494 1.231 3.444.95.951 2.159 1.173 3.445 1.23 1.281.058 1.703.072 4.848.072s3.567-.014 4.848-.072c1.286-.057 2.494-.279 3.445-1.23.951-.95 1.174-2.158 1.231-3.444.058-1.281.072-1.703.072-4.848s-.014-3.567-.072-4.848c-.057-1.286-.28-2.494-1.231-3.444-.951-.951-2.159-1.173-3.445-1.23-1.281-.058-1.703-.072-4.848-.072zm0 5.838c-3.403 0-6.163 2.76-6.163 6.163s2.76 6.163 6.163 6.163 6.163-2.76 6.163-6.163-2.76-6.163-6.163-6.163zm0 10.123c-2.185 0-3.96-1.775-3.96-3.96s1.775-3.96 3.96-3.96 3.96 1.775 3.96 3.96-1.775 3.96-3.96 3.96zm6.406-11.845c-.796 0-1.443-.647-1.443-1.443s.647-1.443 1.443-1.443 1.443.647 1.443 1.443-.647 1.443-1.443 1.443z"/>
+                    </svg>
                 </div>
             </a>
             <a href="https://wa.me/your-number" target="_blank">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="w-5 h-5 object-contain" alt="Instagram">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
+                    </svg>
                 </div>
             </a>
             <a href="https://youtube.com" target="_blank">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/youtube.svg') }}" class="w-5 h-5 object-contain" alt="YouTube">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M23.499 6.203c-.273-1.032-1.077-1.837-2.109-2.109C19.528 3.5 12 3.5 12 3.5s-7.528 0-9.39.594c-1.032.273-1.837 1.077-2.109 2.109C0 8.064 0 12 0 12s0 3.936.501 5.797c.273 1.032 1.077 1.837 2.109 2.109C4.472 20.5 12 20.5 12 20.5s7.528 0 9.39-.594c1.032-.273 1.837-1.077 2.109-2.109.501-1.861.501-5.797.501-5.797s0-3.936-.501-5.797zm-13.908 9.44V8.358l6.253 3.643-6.253 3.642z"/>
+                    </svg>
                 </div>
             </a>
             <a href="https://tiktok.com" target="_blank">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/tiktok.svg') }}" class="w-5 h-5 object-contain" alt="TikTok">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
+                    </svg>
                 </div>
             </a>
         </div>

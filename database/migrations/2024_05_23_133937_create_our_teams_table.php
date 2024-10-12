@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('occupation');
             $table->string('name');
             $table->string('avatar');
+            $table->string('team');
             $table->string('location');
             $table->softDeletes();
             $table->timestamps();
