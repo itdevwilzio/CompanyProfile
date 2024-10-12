@@ -5,21 +5,23 @@
             <x-navbar></x-navbar>
         </div>
     </div>
-
+  
+        <!-- Main content area grows to fill the space -->
+        <main class="flex-grow">
   <div id="Products" class="container mx-auto flex flex-col gap-20 mt-20">
     <div class="container mx-auto px-4">
-      <p class="text-center text-gray-200">Nikmati layanan WILZIO Home Internet dengan 3 langkah mudah</p>
+      <p class="text-center text-primary">Nikmati layanan WILZIO Home Internet dengan 3 langkah mudah</p>
       <div class="flex text-white mx-auto max-w-md justify-around items-center my-5">
         <div data-step='1'
-          class="h-9 w-9 rounded-full border-[3px] border-white flex items-center justify-center font-bold bg-white text-blue-500 step-active">
+          class="h-9 w-9 rounded-full border-[3px] border-primary flex items-center justify-center font-bold bg-primary text-white step-active">
           1</div>
         <div class="grow h-0.5 bg-gray-300"></div>
         <div data-step='2'
-          class="h-9 w-9 rounded-full border-[3px] border-white flex items-center justify-center font-bold bg-white text-blue-500">
+          class="h-9 w-9 rounded-full border-[3px] border-primary flex items-center justify-center font-bold bg-primary text-white">
           2</div>
         <div class="grow h-0.5 bg-gray-300"></div>
         <div data-step='3'
-          class="h-9 w-9 rounded-full border-[3px] border-white flex items-center justify-center font-bold bg-white text-blue-500">
+          class="h-9 w-9 rounded-full border-[3px] border-primary flex items-center justify-center font-bold bg-primary text-white">
           3</div>
       </div>
       <div id="stepper" class="flex justify-center flex-col gap-8 items-center">
@@ -87,6 +89,7 @@
         @endif
       </div>
     </div>
+  </main>
     {{-- End Section Product --}}
 
     
