@@ -80,9 +80,9 @@
                 <!-- Preview Image -->
                 <img id="preview" class="w-full h-auto rounded-xl mt-3 hidden" />
                 <!-- Buttons: Batal & Selanjutnya -->
-                <div class="flex gap-4 mt-5">
-                    <button type="button" class="w-1/2 p-3 bg-primary text-white rounded-full">Batal</button>
-                    <button type="submit" class="w-1/2 p-3 bg-green-600 text-white rounded-full">Selanjutnya</button>
+                <div class="flex flex-col gap-4 mt-5">
+                    <button type="submit" class="p-3 bg-green-600 text-white rounded-full">Selanjutnya</button>
+                    <button type="button" class="p-3 bg-primary text-white rounded-full">Batal</button>
                 </div>
             </form>
           </div>
