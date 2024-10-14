@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Full Screen Wave and Particle Section -->
-<div id="header" class="relative w-full overflow-hidden">
+<div id="header" class="relative w-full overflow-hidden bg-[#0E3995]">
     <!-- Container for Carousel and Particles -->
     <div class="container max-w-[1130px] mx-auto relative pt-2 z-10 main-carousel">
         <x-navbar></x-navbar>
@@ -18,7 +18,7 @@
         </div>
         
         <!-- Carousel Section -->
-        <section id="wave-particles" class="relative w-full h-auto  overflow-hidden">
+        <section id="wave-particles" class="relative w-full h-auto  overflow-hidden mt-28">
             <!-- Carousel Container -->
             {{-- <div class="container mx-auto relative pt-0 z-10 main-carousel "> --}}
                 <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">

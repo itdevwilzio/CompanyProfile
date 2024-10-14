@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/permanent-marker':
+        specifier: ^5.1.0
+        version: 5.1.0
+      sweetalert2:
+        specifier: ^11.14.0
+        version: 11.14.2
       swiper:
-        specifier: ^11.1.9
-        version: 11.1.12
+        specifier: ^11.1.14
+        version: 11.1.14
     devDependencies:
       '@tailwindcss/forms':
         specifier: ^0.5.2
@@ -180,6 +186,9 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/permanent-marker@5.1.0':
+    resolution: {integrity: sha512-3/MjWzWh39Qw/+wczYoKQoyfUX3fDabmqw9LKMa9v//5AbogqHGMFIe3hzw90Ql4ALcHXEu1bU3jgDM8vPN50A==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -745,8 +754,11 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swiper@11.1.12:
-    resolution: {integrity: sha512-PUkCToYAZMB4kP7z+YfPnkMHOMwMO71g8vUhz2o5INGIgIMb6Sb0XiP6cEJFsiFTd7FRDn5XCbg+KVKPDZqXLw==}
+  sweetalert2@11.14.2:
+    resolution: {integrity: sha512-ZJcnp+akKLFDdwTJkayZCMWfdEOxxchInuJ8gz/Xlx/nrdTfAM3Sb+NBbBNdqcfXn0h1CamN+VKDxjP8xbWqrg==}
+
+  swiper@11.1.14:
+    resolution: {integrity: sha512-VbQLQXC04io6AoAjIUWuZwW4MSYozkcP9KjLdrsG/00Q/yiwvhz9RQyt0nHXV10hi9NVnDNy1/wv7Dzq1lkOCQ==}
     engines: {node: '>= 4.7.0'}
 
   tailwindcss@3.4.10:
@@ -901,6 +913,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@fontsource/permanent-marker@5.1.0': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -1426,7 +1440,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swiper@11.1.12: {}
+  sweetalert2@11.14.2: {}
+
+  swiper@11.1.14: {}
 
   tailwindcss@3.4.10:
     dependencies:

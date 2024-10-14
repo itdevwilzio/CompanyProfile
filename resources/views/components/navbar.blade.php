@@ -1,4 +1,4 @@
-<nav class="w-full bg-white shadow-lg py-4">
+<nav class="w-full bg-white py-4">
     <!-- Container for centering content -->
     <div class="container mx-auto flex items-center justify-between px-8">
         <!-- Logo and Company Info -->
