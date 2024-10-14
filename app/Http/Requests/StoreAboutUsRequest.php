@@ -8,10 +8,10 @@ class StoreAboutUsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     */
+    */
     public function authorize(): bool
     {
-        return true;
+        return true;  // Set this to true to allow the request
     }
 
     /**
@@ -22,10 +22,11 @@ class StoreAboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'keypoints.*' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],  // Name is required, max 255 chars
+            'description' => ['nullable', 'string'],  // Description is optional
+            'type' => ['required', 'string', 'max:255'],  // Type is required, max 255 chars
+            'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],  // Thumbnail is required, must be an image
+            'keypoints.*' => ['required', 'string', 'max:255'],  // Each keypoint must be a string, max 255 chars
         ];
     }
 }

@@ -26,52 +26,50 @@
                             value="{{ $about->name }}" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
-
+                
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <img src="{{ Storage::url($about->thumbnail) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
-                            autocomplete="thumbnail" />
+                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
-
+                
                     <div class="mt-4">
-                        <x-input-label for="type" :value="__('type')" />
-
-                        <select name="type" id="type"
-                            class="w-full py-3 pl-3 border rounded-lg border-slate-300">
-                            <option value="Visions">Visions</option>
-                            <option value="Missions">Missions</option>
+                        <x-input-label for="type" :value="__('Type')" />
+                        <select name="type" id="type" class="w-full py-3 pl-3 border rounded-lg border-slate-300">
+                            <option value="Visions" {{ $about->type == 'Visions' ? 'selected' : '' }}>Visions</option>
+                            <option value="Missions" {{ $about->type == 'Missions' ? 'selected' : '' }}>Missions</option>
                         </select>
-
                         <x-input-error :messages="$errors->get('type')" class="mt-2" />
                     </div>
-
+                
                     <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
-
+                
                     <div class="mt-4">
-
-                        <div class="flex flex-col gap-y-5">
-                            <x-input-label for="keypoints" :value="__('keypoints')" />
-                            @forelse ($about->keypoints as $keypoint)
-                                <input type="text" class="py-3 border rounded-lg border-slate-300"
-                                    value="{{ $keypoint->keypoint }}" name="keypoints[]">
-                            @empty
-                            @endforelse
-
-                        </div>
+                        <x-input-label for="keypoint" :value="__('Keypoint')" />
+                        <x-text-input id="keypoint" class="block w-full mt-1" type="text" name="keypoint"
+                                      value="{{ old('keypoint', $about->keypoint) }}" required autofocus />
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
                     </div>
-
+                
                     <div class="flex items-center justify-end mt-4">
-
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update About
                         </button>
                     </div>
                 </form>
 
+                <script>
+                    document.getElementById('addKeypoint').addEventListener('click', function() {
+                        const container = document.querySelector('.keypoints-container');
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.name = 'keypoints[]';
+                        input.classList.add('py-3', 'border', 'rounded-lg', 'border-slate-300', 'mt-2');
+                        container.appendChild(input);
+                    });
+                </script>
             </div>
         </div>
     </div>

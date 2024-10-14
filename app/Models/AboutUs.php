@@ -9,17 +9,11 @@ class AboutUs extends Model
 {
     use HasFactory;
 
-     // Define the fillable fields
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'description',
         'thumbnail',
         'type',
         'keypoints',
-    ];
-
-    // Cast keypoints to JSON
-    protected $casts = [
-        'keypoints' => 'array',
     ];
 }

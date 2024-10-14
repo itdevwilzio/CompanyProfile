@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
-Route::get('/aboutus', [FrontController::class, 'aboutus'])->name('front.aboutus');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
 Route::get('/location/{location}', [FrontController::class, 'locationOrder'])->name('front.location_order');

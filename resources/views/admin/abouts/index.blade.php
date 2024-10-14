@@ -22,6 +22,7 @@
                                 class="rounded-2xl object-cover w-[90px] h-[90px]">
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $about->name }}</h3>
+                                <p class="text-md text-gray-700">{{ $about->keypoint }}</p> <!-- Single keypoint display -->
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
@@ -30,7 +31,7 @@
                         </div>
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $about->created_at }}</h3>
+                            <h3 class="text-xl font-bold text-indigo-950">{{ $about->created_at->format('d M, Y') }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
                             <a href="{{ route('admin.abouts.edit', $about) }}"
@@ -47,7 +48,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>belum ada data terbaru</p>
+                    <p>No data available</p>
                 @endforelse
             </div>
         </div>
