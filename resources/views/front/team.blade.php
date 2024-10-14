@@ -12,30 +12,32 @@
         </div>
     </div>
 
-
     <!-- Born For Indonesia Section -->
     <section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+
+            
             <!-- Text Section -->
             <div class="w-full lg:w-1/2 text-white lg:pr-10">
+                
                 <h2 class="font-nunito font-bold text-4xl mb-6">
-                    {{ $about->name }}
+                    Born For Indonesia
                 </h2>
                 <p class="font-nunito text-base leading-7 mb-8">
-                    {{ $about->description }}
+                    PT Pasifik Wija Teknologi adalah perusahaan teknologi yang didirikan oleh putra-putri Kalimantan Utara dengan tujuan membawa manfaat bagi masyarakat Indonesia, khususnya di daerah terpencil yang belum terjangkau oleh penyedia layanan lainnya.
                 </p>
             </div>
 
             <!-- Image Section -->
             <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
                 <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
-                    <img src="{{ $about->thumbnail ? Storage::url($about->thumbnail) : asset('default-image.png') }}" 
-                    class="object-cover w-full h-full" alt="Vision Image">
+                    <img src="{{ asset('assets/teams/athletic.png') }}" 
+                        class="object-cover w-full h-full"
+                        alt="Telecom Tower">
                 </div>
             </div>
         </div>
     </section>
-
 
 
     <!-- Identitas Produk Section -->
