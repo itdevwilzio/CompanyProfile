@@ -2821,6 +2821,14 @@ select {
 }
 
 @media (min-width: 768px) {
+
+    h1 {
+        text-align: center;
+    }
+    .aspect-ratio-box {
+        width: 80%; /* Shrink the container width */
+    }
+
     .md\:inset-0 {
         top: 0;
         right: 0;

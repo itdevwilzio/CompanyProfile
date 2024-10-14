@@ -108,6 +108,10 @@
 
     /* Responsive styling for smaller screens */
     @media (max-width: 640px) {
+
+        h1 {
+        text-align: center;
+    }
         .whatsapp-float {
             width: 50px;
             height: 50px;
