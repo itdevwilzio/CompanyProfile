@@ -32,7 +32,7 @@ export default {
                 'lg': '18px', // Roboto
                 'xl': '20px', // Nunito
                 '2xl': '24px', // Nunito
-                '3xl': '46px', // Nunito
+                '3xl': '36px', // Nunito
                 '4xl': '48px', // Permanent Marker
             },
             colors: {

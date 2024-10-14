@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\CompanyAboutController;
 use App\Http\Controllers\CompanyStatisticController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HeroSectionController;
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
-Route::get('/about', [FrontController::class, 'about'])->name('front.about');
+Route::get('/aboutus', [FrontController::class, 'aboutus'])->name('front.aboutus');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
 Route::get('/location/{location}', [FrontController::class, 'locationOrder'])->name('front.location_order');
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::middleware('can:manage abouts')->group(function () {
-            Route::resource('abouts', CompanyAboutController::class);
+            Route::resource('abouts', AboutUsController::class);
         });
 
         Route::middleware('can:manage appointments')->group(function () {

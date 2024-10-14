@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TentangKami extends Model
+class AboutUs extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,13 @@ class TentangKami extends Model
      protected $fillable = [
         'name',
         'description',
-        'logo',
-        'apjii_registered',
+        'thumbnail',
+        'type',
+        'keypoints',
+    ];
+
+    // Cast keypoints to JSON
+    protected $casts = [
+        'keypoints' => 'array',
     ];
 }
