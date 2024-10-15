@@ -53,36 +53,6 @@
         background-color: #128C7E;
     }
 
-    /* Modal styles (if used) */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 10000;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        max-width: 300px;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .modal .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: transparent;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
     /* WhatsApp modal buttons */
     .whatsapp-modal-btn {
         display: flex;
@@ -104,7 +74,7 @@
 
     .whatsapp-modal-btn:hover {
         background-color: #128C7E;
-    }
+    } */
 
     /* Responsive styling for smaller screens */
     @media (max-width: 640px) {
@@ -180,37 +150,6 @@
             cursor: pointer;
         }
 
-        /* Button inside modal */
-        .whatsapp-modal-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #25D366;
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .whatsapp-modal-btn i {
-            margin-right: 10px;
-            font-size: 24px;
-        }
-
-        .whatsapp-modal-btn:hover {
-            background-color: #128C7E;
-        }
-
-        /* Close modal button */
-        .close-modal {
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
         /* Responsive enhancements for smaller screens */
         @media (max-width: 640px) {
             .whatsapp-float {
@@ -257,9 +196,6 @@
         </svg>
     </div> --}}
 
-    @stack('before-scripts')
-    {{-- Scripts go here --}}
-    @stack('after-scripts')
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

@@ -139,10 +139,11 @@ class FrontController extends Controller
 
     public function confirmOrderVoucher(Request $request, Location $location, VoucherPackage $voucher) 
     {
-        // dd($request->all(), $location, $voucher);
+
         $BOT_TOKEN = env('BOT_TOKEN_2');
+        dd($BOT_TOKEN);
         $CHAT_ID = env('CHAT_ID_2');
-        // dd($BOT_TOKEN, $CHAT_ID);
+        dd($BOT_TOKEN, $CHAT_ID);
 
         // Save files
         $imagePath = $request->file('bukti_pembayaran')->store('private/images');
@@ -190,6 +191,7 @@ class FrontController extends Controller
                 ]
             ]
         ]);
+        dd($response->getBody()->getContents());
 
         return redirect()->route('front.location')->with('success', 'Pembelian voucher berhasil. Silahkan tunggu konfirmasi Admin');
     }

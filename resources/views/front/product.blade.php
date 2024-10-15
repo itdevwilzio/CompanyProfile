@@ -29,7 +29,7 @@
         @if (session()->has('success_order'))
         <div class="max-w-sm w-full flex flex-col items-center bg-white shadow-lg rounded-lg p-5">
             <img src="/assets/icons/check.png" class="w-20 h-auto">
-            <h1 class="text-center font-bold mt-5">Permintan Pemasangan Dikirim</h1>
+            <h1 class="text-center font-bold mt-5">Permintaan Pemasangan Dikirim</h1>
             <p class="text-center my-4">Kami akan segera menghubungi Anda</p>
           </div>
         @else
