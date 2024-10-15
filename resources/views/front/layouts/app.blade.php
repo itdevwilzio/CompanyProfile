@@ -102,7 +102,7 @@
             width: 60px;
             height: 60px;
             background-color: #25D366;
-            color: white;
+            color: green;
             border-radius: 50%;
             text-align: center;
             font-size: 25px;
@@ -120,15 +120,17 @@
             background-color: #128C7E;
         }
 
-        /* Modal styles */
+        /* Testimonial Modal styles */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
+            display: none; /* This will be overridden by flex when visible */
+            align-items: center; /* To center vertically */
+            justify-content: center; /* To center horizontally */
+            position: fixed; /* So it's above everything else */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
         }
 
         .modal-content {
@@ -188,14 +190,6 @@
     </div>
 
     @yield('content')
-
-    {{-- <!-- Wave SVG at the Bottom -->
-    <div class="wave-container">
-        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#312ECB" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-    </div> --}}
-
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

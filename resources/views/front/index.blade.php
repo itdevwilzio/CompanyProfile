@@ -249,28 +249,38 @@
 {{-- Modal Script --}}
 @push('after-scripts')
 <script>
-    function openModal(index) {
-        const modal = document.getElementById('modal-' + index);
-        if (modal) {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex'); // Ensure the modal is displayed using flex layout
-        }
-        
-        // Close modal when clicking outside the content
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal(index);
+    // script openModal testimonial
+    document.addEventListener('DOMContentLoaded', function() {
+        function openModal(index) {
+            console.log("Opening modal for index: ", index); // Debugging line
+            const modal = document.getElementById('modal-' + index);
+            if (modal) {
+                console.log("Modal found: ", modal); // Debugging line
+                modal.classList.remove('hidden');
+                modal.classList.add('flex'); // Ensure the modal is displayed using flex layout
             }
-        });
-    }
 
-    function closeModal(index) {
-        const modal = document.getElementById('modal-' + index);
-        if (modal) {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex'); // Hide the modal
+            // Close modal when clicking outside the content
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal(index);
+                }
+            });
         }
-    }
+
+        function closeModal(index) {
+            console.log("Closing modal for index: ", index); // Debugging line
+            const modal = document.getElementById('modal-' + index);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex'); // Hide the modal
+            }
+        }
+
+        // Make functions globally accessible for inline usage
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+    });
 </script>
 @endpush
 
@@ -360,27 +370,5 @@
         joinButton.style.transform = 'scale(0.9)';
     });
 
-    function openModal(index) {
-        const modal = document.getElementById('modal-' + index);
-        if (modal) {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex'); // Ensure the modal is displayed using flex layout
-        }
-        
-        // Close modal when clicking outside the content
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal(index);
-            }
-        });
-    }
-
-    function closeModal(index) {
-        const modal = document.getElementById('modal-' + index);
-        if (modal) {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex'); // Hide the modal
-        }
-    }
 </script>
 @endpush
