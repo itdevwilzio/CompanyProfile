@@ -46,7 +46,7 @@
             
             <!-- Logo Section with Hover Effect -->
             <div class="relative w-full lg:w-1/2 text-white flex justify-center items-center bg-white p-4 rounded-lg">
-                <img src="{{ asset('assets/teams/logo-Biru-V2.png') }}" 
+                <img src="{{ asset('assets/teams/blue-rounded.png') }}" 
                 class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom filter brightness-150" 
                 alt="Wija Backbone Logo">
             </div>
@@ -129,7 +129,7 @@
             <!-- Image Section with Hover Effect -->
             <div class="w-full lg:w-1/2 flex justify-center">
                 <img src="{{ asset('assets/teams/Thank-min.png') }}" 
-                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" 
+                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
                     alt="Super Team Image">
             </div>
             <!-- Text Section with Hover Effect -->

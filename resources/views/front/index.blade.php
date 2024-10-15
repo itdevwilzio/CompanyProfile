@@ -158,7 +158,7 @@
             @forelse ($testimonials as $testimonial)
             <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
                 <!-- Testimonial Info -->
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-4">
                     <!-- Avatar -->
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
                         <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
@@ -169,8 +169,8 @@
                         <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
                     </div>
                     <!-- WhatsApp Icon -->
-                    <div class="ml-auto">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" onclick="openModal({{ $loop->index }})">
+                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full">
+                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer"data-open-modal="{{ $loop->index }}">
                     </div>
                 </div>
 
@@ -184,27 +184,47 @@
                     @endfor
                 </div>
 
-                <!-- Testimonial Text -->
+                <!-- Testimonial Text with Modal Trigger -->
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
-                    <!-- Link to trigger modal -->
-                    <a href="javascript:void(0);" class="text-[#0E3995] font-semibold" onclick="openModal('{{ $loop->index }}')">...Lihat selengkapnya</a>
+                        <!-- Link to trigger modal -->
+                        <a href="javascript:void(0);" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">...Lihat selengkapnya</a>
+
+                        <!-- Modal -->
+                        <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
+                            <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                            <div class="modal-container relative mx-auto max-w-xl mt-20">
+                                <div class="modal-content bg-white rounded-lg shadow-lg relative">
+                                    <div class="modal-header py-4 px-6 border-b border-gray-200">
+                                        <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
+                                        <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700" data-modal-toggle="modal-{{ $loop->index }}">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-6 py-4">
+                                        {{ $testimonial->message }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 </p>
             </div>
 
-            <!-- Full Testimonial Modal -->
-            <div id="modal-{{ $loop->index }}" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
-                    <!-- Thumbnail Image -->
-                    <div class="w-full h-auto mb-4">
-                        <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
+                <!-- Full Testimonial Modal -->
+                <div id="modal-{{ $loop->index }}" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
+                        <!-- Thumbnail Image -->
+                        <div class="w-full h-auto mb-4">
+                            <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
+                        </div>
+                        <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModal({{ $loop->index }})">&times;</button>
                     </div>
-                    <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModal({{ $loop->index }})">&times;</button>
                 </div>
-            </div>
-            @empty
-            <p class="text-center text-white">Belum ada data terbaru</p>
+                @empty
+                <p class="text-center text-white">Belum ada data terbaru</p>
             @endforelse
         </div>
     </div>
@@ -249,39 +269,77 @@
 {{-- Modal Script --}}
 @push('after-scripts')
 <script>
-    // script openModal testimonial
-    document.addEventListener('DOMContentLoaded', function() {
-        function openModal(index) {
-            console.log("Opening modal for index: ", index); // Debugging line
-            const modal = document.getElementById('modal-' + index);
-            if (modal) {
-                console.log("Modal found: ", modal); // Debugging line
+    document.addEventListener('DOMContentLoaded', function () {
+        // Open modal when the trigger is clicked
+        document.querySelectorAll('.modal-open').forEach(function (trigger) {
+            trigger.addEventListener('click', function () {
+                const modalId = trigger.getAttribute('data-modal-target');
+                const modal = document.getElementById(modalId);
                 modal.classList.remove('hidden');
-                modal.classList.add('flex'); // Ensure the modal is displayed using flex layout
-            }
+            });
+        });
 
-            // Close modal when clicking outside the content
-            modal.addEventListener('click', function(event) {
+        // Close modal when the close button or the overlay is clicked
+        document.querySelectorAll('.modal-close').forEach(function (closeButton) {
+            closeButton.addEventListener('click', function () {
+                const modalId = closeButton.getAttribute('data-modal-toggle');
+                const modal = document.getElementById(modalId);
+                modal.classList.add('hidden');
+            });
+        });
+
+        // Close modal when clicking outside the modal content
+        document.querySelectorAll('.modal').forEach(function (modal) {
+            modal.addEventListener('click', function (event) {
                 if (event.target === modal) {
-                    closeModal(index);
+                    modal.classList.add('hidden');
                 }
             });
-        }
-
-        function closeModal(index) {
-            console.log("Closing modal for index: ", index); // Debugging line
-            const modal = document.getElementById('modal-' + index);
-            if (modal) {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex'); // Hide the modal
-            }
-        }
-
-        // Make functions globally accessible for inline usage
-        window.openModal = openModal;
-        window.closeModal = closeModal;
+        });
     });
+
 </script>
+@endpush
+
+@push('styles')
+<style>
+.modal {
+    display: none;
+}
+
+.modal.open {
+    display: block;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+</style>
 @endpush
 
 <!-- Footer Section -->

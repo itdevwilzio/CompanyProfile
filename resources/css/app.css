@@ -22,10 +22,6 @@
         pointer-events: none; /* Disable interactions for Flickity when the modal is open in testimonial */
     }
 
-    .modal {
-        pointer-events: auto; /* Ensure the modal catches click events in testimonial */
-    }
-
     .text-cp-black {
         --tw-text-opacity: 1;
         color: rgb(8 7 53 / var(--tw-text-opacity));
@@ -55,6 +51,45 @@
         --tw-bg-opacity: 1;
         background-color: rgb(242 248 255 / var(--tw-bg-opacity));
     }
+    /* app.css atau styles.css */
+
+    .modal {
+        display: none;
+    }
+
+    .modal.open {
+        display: block;
+    }
+
+    .modal-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-container {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .modal-content {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        position: relative;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
     .step-active {
         @apply !text-yellow-400 !bg-transparent;
     }
