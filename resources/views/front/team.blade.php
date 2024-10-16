@@ -18,7 +18,7 @@
             @forelse ($abouts as $about)
             
             <!-- Text Section -->
-            <div class="w-full lg:w-1/2 text-white lg:pr-10">
+            <div class="w-full lg:w-1/2 text-white lg:pr-10  transition-all duration-300 hover:text-black">
                 <h2 class="font-nunito font-bold text-4xl mb-6">
                     {{ $about->name }}
                 </h2>
