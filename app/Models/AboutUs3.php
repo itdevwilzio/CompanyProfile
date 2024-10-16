@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class AboutUs3 extends Model
 {
     use HasFactory;
+
+    
+    protected $fillable = [
+        'name',
+        'description',
+        'thumbnail',
+        'type',
+        'keypoints',
+    ];
 }
+

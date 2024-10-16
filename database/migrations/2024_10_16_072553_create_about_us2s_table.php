@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('about_us2s', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('description2')->nullable();
+            $table->text('description3')->nullable();
+            $table->text('description4')->nullable();
+            $table->text('description5')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->json('keypoints');
             $table->timestamps();
         });
     }

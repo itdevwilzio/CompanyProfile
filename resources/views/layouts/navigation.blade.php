@@ -67,6 +67,9 @@
                                 <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
                                     {{ __('About Us Line 1') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.abouts2.index')" class="text-primary">
+                                    {{ __('About Us Line 2') }}
+                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.abouts3.index')" class="text-primary">
                                     {{ __('About Us Line 3') }}
                                 </x-dropdown-link>

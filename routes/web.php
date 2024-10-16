@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AboutUs2Controller;
 use App\Http\Controllers\AboutUs3Controller;
 use App\Http\Controllers\AboutUs4Controller;
 use App\Http\Controllers\AppointmentController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontController::class, 'team'])->name('front.about');
+Route::get('/about2', [FrontController::class, 'team'])->name('front.about2');
 Route::get('/about3', [FrontController::class, 'team'])->name('front.about3');
 Route::get('/about4', [FrontController::class, 'team'])->name('front.about4');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
@@ -67,6 +69,9 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('can:manage abouts')->group(function () {
             Route::resource('abouts', AboutUsController::class);
+        });
+        Route::middleware('can:manage abouts')->group(function () {
+            Route::resource('abouts2', AboutUs2Controller::class);
         });
         Route::middleware('can:manage abouts')->group(function () {
             Route::resource('abouts3', AboutUs3Controller::class);

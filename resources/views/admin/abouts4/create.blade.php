@@ -33,6 +33,14 @@
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
+                    <!-- Description Input -->
+                    <div class="mt-4">
+                        <x-input-label for="description" :value="__('Description')" />
+                        <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
+                                  name="description" rows="4" placeholder="Write a description">{{ old('description') }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                    </div>
+
                     <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoint</h3>
 
                     <div class="mt-4">

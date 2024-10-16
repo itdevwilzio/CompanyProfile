@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('New About') }}
+            {{ __('Edit Line 2') }}
         </h2>
     </x-slot>
 
@@ -17,46 +17,59 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.abouts.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.abouts.update', $about) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            :value="old('name')" required autofocus autocomplete="name" />
+                            value="{{ $about->name }}" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
-
+                
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
-                            autofocus autocomplete="thumbnail" />
+                        <img src="{{ Storage::url($about->thumbnail) }}" alt=""
+                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
-                    <!-- Description Input -->
+                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Description</h3>
+                
                     <div class="mt-4">
                         <x-input-label for="description" :value="__('Description')" />
-                        <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
-                                  name="description" rows="4" placeholder="Write a description">{{ old('description') }}</textarea>
+                        <x-text-input id="description" class="block w-full mt-1" type="text" name="description"
+                                      value="{{ old('description', $about->description) }}" required autofocus />
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
-
-                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoint</h3>
-
+                
+                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
+                
                     <div class="mt-4">
                         <x-input-label for="keypoint" :value="__('Keypoint')" />
-                        <input type="text" class="py-3 border rounded-lg border-slate-300"
-                               placeholder="Write your keypoint" name="keypoint" value="{{ old('keypoint') }}">
+                        <x-text-input id="keypoint" class="block w-full mt-1" type="text" name="keypoint"
+                                      value="{{ old('keypoint', $about->keypoint) }}" required autofocus />
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
                     </div>
-
+                
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
-                            Add New About
+                            Update About
                         </button>
                     </div>
                 </form>
 
+                <script>
+                    document.getElementById('addKeypoint').addEventListener('click', function() {
+                        const container = document.querySelector('.keypoints-container');
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.name = 'keypoints[]';
+                        input.classList.add('py-3', 'border', 'rounded-lg', 'border-slate-300', 'mt-2');
+                        container.appendChild(input);
+                    });
+                </script>
             </div>
         </div>
     </div>

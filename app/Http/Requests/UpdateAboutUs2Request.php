@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAboutUsRequest extends FormRequest
+class UpdateAboutUs2Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-    */
+     */
     public function authorize(): bool
     {
-        return true;  // Set this to true to allow the request
+        return false;
     }
 
     /**
@@ -22,10 +22,15 @@ class StoreAboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
+            //
             'name' => ['required', 'string', 'max:255'],  // Name is required, max 255 chars
             'description' => ['nullable', 'string'],  // Description is optional
+            'description2' => ['nullable', 'string'], 
+            'description3' => ['nullable', 'string'], 
+            'description4' => ['nullable', 'string'],
+            'description5' => ['nullable', 'string'],
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],  // Thumbnail is required, must be an image
-            'keypoints.*' => ['required', 'string', 'max:255'],  // Each keypoint must be a string, max 255 chars
+            'keypoints.*' => ['required', 'string'],  // Each keypoint must be a string, max 255 chars
         ];
     }
 }
