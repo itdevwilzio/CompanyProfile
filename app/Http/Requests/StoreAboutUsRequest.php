@@ -24,9 +24,8 @@ class StoreAboutUsRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],  // Name is required, max 255 chars
             'description' => ['nullable', 'string'],  // Description is optional
-            'type' => ['required', 'string', 'max:255'],  // Type is required, max 255 chars
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],  // Thumbnail is required, must be an image
-            'keypoints.*' => ['required', 'string', 'max:255'],  // Each keypoint must be a string, max 255 chars
+            'keypoints.*' => ['required', 'string'],  // Each keypoint must be a string, max 255 chars
         ];
     }
 }

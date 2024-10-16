@@ -18,7 +18,6 @@ class CreateAboutUsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->string('type');
             $table->json('keypoints');
             $table->timestamps();
         });

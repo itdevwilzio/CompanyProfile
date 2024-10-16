@@ -18,16 +18,7 @@ class AboutUsSeeder extends Seeder
             'name' => 'Vision',
             'description' => 'Our vision is to empower people through innovative technology.',
             'thumbnail' => 'vision-thumbnail.png', // Add a valid path or filename if needed
-            'type' => 'Visions',
             'keypoints' => json_encode(['Innovative', 'Future-Oriented', 'Empowering']),
-        ]);
-
-        AboutUs::create([
-            'name' => 'Mission',
-            'description' => 'Our mission is to deliver the best service to our clients in remote areas.',
-            'thumbnail' => 'mission-thumbnail.png', // Add a valid path or filename if needed
-            'type' => 'Missions',
-            'keypoints' => json_encode(['Customer-Centric', 'Reliable', 'Sustainable']),
         ]);
     }
 }

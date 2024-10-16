@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
         $this->call(OurTeamSeeder::class);
         $this->call(OurPrincipleSeeder::class);
-        $this->call(TestimonialSeeder::class);
-        $this->call(LocationSeeder::class);
+        // $this->call(TestimonialSeeder::class);
+        // $this->call(LocationSeeder::class);
         $this->call(AboutUsSeeder::class);
     }
 }

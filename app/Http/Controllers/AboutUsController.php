@@ -84,11 +84,11 @@ class AboutUsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AboutUs $aboutSection)
+    public function destroy(AboutUs $about)
     {
         // Use transaction to ensure atomicity
-        DB::transaction(function () use ($aboutSection) {
-            $aboutSection->delete();
+        DB::transaction(function () use ($about) {
+            $about->delete();
         });
 
         return redirect()->route('admin.abouts.index')->with('success', 'Section deleted successfully');

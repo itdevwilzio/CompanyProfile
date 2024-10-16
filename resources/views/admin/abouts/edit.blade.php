@@ -35,15 +35,6 @@
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
                 
-                    <div class="mt-4">
-                        <x-input-label for="type" :value="__('Type')" />
-                        <select name="type" id="type" class="w-full py-3 pl-3 border rounded-lg border-slate-300">
-                            <option value="Visions" {{ $about->type == 'Visions' ? 'selected' : '' }}>Visions</option>
-                            <option value="Missions" {{ $about->type == 'Missions' ? 'selected' : '' }}>Missions</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('type')" class="mt-2" />
-                    </div>
-                
                     <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
                 
                     <div class="mt-4">

@@ -22,16 +22,15 @@ class UpdateAboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],  // Name is required, max 255 chars
-            'description' => ['nullable', 'string'],  // Description is optional
-            'type' => ['required', 'string', 'max:255'],  // Type is required, max 255 chars
+            'name' => ['nullable', 'string', 'max:255'],  // Name is required, max 255 chars
+            'description' => ['nullable', 'string'],  // Description is optional // Type is required, max 255 chars
 
             // Thumbnail is required and must be an image (png, jpg, jpeg)
-            'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'thumbnail' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
 
             // Keypoints validation
-            'keypoints' => ['required', 'array'],  // Keypoints must be an array
-            'keypoints.*' => ['required', 'string', 'max:255'],  // Each keypoint must be a string, max 255 chars
+            'keypoints' => ['nullable', 'array'],  // Keypoints must be an array
+            'keypoints.*' => ['nullable', 'string'],  // Each keypoint must be a string
         ];
     }
 }

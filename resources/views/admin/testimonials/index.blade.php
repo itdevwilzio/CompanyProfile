@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>belum ada data terbaru</p>
+                    <p>Belum ada data terbaru</p>
                 @endforelse
             </div>
         </div>

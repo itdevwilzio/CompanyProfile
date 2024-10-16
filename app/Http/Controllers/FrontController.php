@@ -27,6 +27,7 @@ class FrontController extends Controller
         $principles = OurPrinciple::take(6)->get();
         $products = Product::take(3)->get();
         $teams = OurTeam::take(3)->get();
+        $abouts = AboutUs::all();
         $testimonials = Testimonial::take(4)->get();
         $hero_section = HeroSection::orderByDesc('id')->get();
 
@@ -35,10 +36,10 @@ class FrontController extends Controller
 
     public function team()
     {
-        $about = AboutUs::all();
+        $abouts = AboutUs::all();
         $teams = OurTeam::all();
 
-        return view('front.team', compact('about', 'teams'));
+        return view('front.team', compact('abouts', 'teams'));
     }
 
     public function product()

@@ -22,7 +22,7 @@
                                 class="rounded-2xl object-cover w-[90px] h-[90px]">
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $about->name }}</h3>
-                                <p class="text-md text-gray-700">{{ $about->keypoint }}</p> <!-- Single keypoint display -->
+                                <p class="text-md text-gray-700">{{ $about->keypoint }}</p>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
@@ -38,11 +38,12 @@
                                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                 Edit
                             </a>
-                            <form action="{{ route('admin.abouts.destroy', $about) }}" method="POST">
+                            <form id="delete-client-form-{{ $about->id }}" action="{{ route('admin.abouts.destroy', $about) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
-                                    Delete
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn" 
+                                   data-id="{{ $about->id }}">
+                                        Delete
                                 </button>
                             </form>
                         </div>
@@ -53,4 +54,37 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Add event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const aboutId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-client-form-${aboutId}`);
+
+                    // Trigger SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "This action is irreversible!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </x-app-layout>
