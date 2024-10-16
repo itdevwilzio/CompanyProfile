@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                {{ __('Manage About') }}
+                {{ __('Manage Line 1') }}
             </h2>
             <a href="{{ route('admin.abouts.create') }}"
                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
@@ -17,17 +17,20 @@
 
                 @forelse ($abouts as $about)
                     <div class="flex flex-row items-center justify-between item-card">
-                        <div class="flex flex-row items-center gap-x-3">
+                        <div class="flex flex-row items-center gap-x-1">
                             <img src="{{ Storage::url($about->thumbnail) }}" alt=""
                                 class="rounded-2xl object-cover w-[90px] h-[90px]">
                             <div class="flex flex-col">
+                                <p class="text-sm text-slate-500">Title</p>
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $about->name }}</h3>
                                 <p class="text-md text-gray-700">{{ $about->keypoint }}</p>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
-                            <p class="text-sm text-slate-500">Type</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $about->type }}</h3>
+                            <p class="text-sm text-slate-500">Description</p>
+                            <h3 class="text-xl font-bold text-indigo-950">
+                                {{ \Illuminate\Support\Str::limit($about->description, 100, '...') }}
+                            </h3>
                         </div>
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Date</p>

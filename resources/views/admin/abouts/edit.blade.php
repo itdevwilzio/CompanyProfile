@@ -34,6 +34,15 @@
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
+
+                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Description</h3>
+                
+                    <div class="mt-4">
+                        <x-input-label for="description" :value="__('Description')" />
+                        <x-text-input id="description" class="block w-full mt-1" type="text" name="description"
+                                      value="{{ old('description', $about->description) }}" required autofocus />
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                    </div>
                 
                     <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
                 

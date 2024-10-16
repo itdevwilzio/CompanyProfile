@@ -23,8 +23,7 @@
                     {{ $about->name }}
                 </h2>
                 <p class="font-nunito text-base leading-7 mb-8">
-                    {{-- {{ $about->keypoint }} --}}
-                    PT Pasifik Wija Teknologi adalah perusahaan teknologi yang didirikan oleh putra-putri Kalimantan Utara untuk membawa manfaat bagi masyarakat Indonesia, khususnya di daerah terpencil yang belum terjangkau oleh provider lain.
+                    {{ $about->description }}
                 </p>
             </div>
 
