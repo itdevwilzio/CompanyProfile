@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUs3Controller;
+use App\Http\Controllers\AboutUs4Controller;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CompanyStatisticController;
 use App\Http\Controllers\FrontController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontController::class, 'team'])->name('front.about');
 Route::get('/about3', [FrontController::class, 'team'])->name('front.about3');
+Route::get('/about4', [FrontController::class, 'team'])->name('front.about4');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
@@ -68,6 +70,9 @@ Route::middleware('auth')->group(function () {
         });
         Route::middleware('can:manage abouts')->group(function () {
             Route::resource('abouts3', AboutUs3Controller::class);
+        });
+        Route::middleware('can:manage abouts')->group(function () {
+            Route::resource('abouts4', AboutUs4Controller::class);
         });
 
         Route::middleware('can:manage appointments')->group(function () {

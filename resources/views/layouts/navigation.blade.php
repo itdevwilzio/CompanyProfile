@@ -65,10 +65,13 @@
                                 </x-dropdown-link>
                                 <!-- Link for About Us -->
                                 <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
-                                    {{ __('About Us') }}
+                                    {{ __('About Us Line 1') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
-                                    {{ __('About Us') }}
+                                <x-dropdown-link :href="route('admin.abouts3.index')" class="text-primary">
+                                    {{ __('About Us Line 3') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.abouts4.index')" class="text-primary">
+                                    {{ __('About Us Line 4') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
