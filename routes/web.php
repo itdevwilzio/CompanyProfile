@@ -12,6 +12,7 @@ use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectClientController;
+use App\Http\Controllers\ProductIdentityController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VoucherPackageController;
 use App\Http\Controllers\SuperTeamController;
@@ -21,6 +22,7 @@ Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontController::class, 'team'])->name('front.about');
 Route::get('/certification', [FrontController::class, 'showCertifications'])->name('front.certifications');
 Route::get('/super-team', [FrontController::class, 'showSuperTeam'])->name('front.super_teams');
+Route::get('/product-identity', [FrontController::class, 'showProductIdentity'])->name('front.product_identity');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
@@ -83,6 +85,11 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('can:manage certifications')->group(function () {
             Route::resource('certifications', OurCertificationController::class);
+        });
+
+        
+        Route::middleware('can:manage product identities')->group(function () {
+            Route::resource('product_identities', ProductIdentityController::class);
         });
 
         // Route::middleware('can:product identities')->group(function () {

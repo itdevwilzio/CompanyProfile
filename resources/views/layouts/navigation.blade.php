@@ -73,6 +73,9 @@
                                 <x-dropdown-link :href="route('admin.super_teams.index')" class="text-primary">
                                     {{ __('Super Teams') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
+                                    {{ __('Product Identity') }}
+                                </x-dropdown-link>
 
                             </x-slot>
                         </x-dropdown>
