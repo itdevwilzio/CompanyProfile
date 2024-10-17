@@ -9,14 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('about_us4s', function (Blueprint $table) {
+        Schema::create('our_certifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->json('keypoints');
+            $table->string('title');
+            $table->text('description');
+            $table->string('logo')->nullable(); // For storing the path to the APJII logo or other logos
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us4s');
+        Schema::dropIfExists('certifications');
     }
 };

@@ -9,23 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('about_us3s', function (Blueprint $table) {
+        Schema::create('super_teams', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->json('keypoints');
+            $table->string('title'); // The title, e.g., "Super Team"
+            $table->text('description'); // Detailed description of the team
+            $table->string('image')->nullable(); // For storing the path to the image
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us3s');
+        Schema::dropIfExists('super_teams');
     }
 };

@@ -1,15 +1,13 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\AboutUs2Controller;
-use App\Http\Controllers\AboutUs3Controller;
-use App\Http\Controllers\AboutUs4Controller;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CompanyStatisticController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OurPrincipleController;
+use App\Http\Controllers\OurCertificationController;
 use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -20,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontController::class, 'team'])->name('front.about');
-Route::get('/about2', [FrontController::class, 'team'])->name('front.about2');
-Route::get('/about3', [FrontController::class, 'team'])->name('front.about3');
-Route::get('/about4', [FrontController::class, 'team'])->name('front.about4');
+Route::get('/teams', [OurCertificationController::class, 'showCertifications'])->name('front.teams');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
@@ -70,15 +66,6 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage abouts')->group(function () {
             Route::resource('abouts', AboutUsController::class);
         });
-        Route::middleware('can:manage abouts')->group(function () {
-            Route::resource('abouts2', AboutUs2Controller::class);
-        });
-        Route::middleware('can:manage abouts')->group(function () {
-            Route::resource('abouts3', AboutUs3Controller::class);
-        });
-        Route::middleware('can:manage abouts')->group(function () {
-            Route::resource('abouts4', AboutUs4Controller::class);
-        });
 
         Route::middleware('can:manage appointments')->group(function () {
             Route::resource('appointments', AppointmentController::class);
@@ -91,6 +78,20 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage locations')->group(function () {
             Route::resource('locations', LocationController::class);
         });
+
+        Route::middleware('can:manage certifications')->group(function () {
+            Route::resource('certifications', OurCertificationController::class);
+        });
+
+        // Route::middleware('can:product identities')->group(function () {
+        //     Route::resource('product_identities', CertificationController::class);
+        // });
+
+        // Route::middleware('can:manage super teams')->group(function () {
+        //     Route::resource('super_teams', CertificationController::class);
+        // });
+
+
 
         // Route::middleware('can:manage voucher packages')->group(function () {
             Route::resource('locations/{location}/voucher_packages', VoucherPackageController::class);

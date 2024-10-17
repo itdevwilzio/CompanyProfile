@@ -104,7 +104,7 @@
     </section>
 
     <!-- APJII Certification Section -->
-    <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">
+    {{-- <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             <!-- Text Section with Hover Effect -->
             <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-black">
@@ -122,6 +122,32 @@
                     alt="APJII Logo">
                 </div>
             </div>
+        </div>
+    </section> --}}
+    <section id="teams" class="w-full py-16 bg-primary relative overflow-hidden">
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            @forelse ($certifications as $certification)
+                <!-- Text Section -->
+                <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
+                    <h2 class="font-nunito font-bold text-4xl mb-6">
+                        {{ $certification->title }}
+                    </h2>
+                    <p class="font-nunito text-base leading-7 mb-8">
+                        {{ $certification->description }}
+                    </p>
+                </div>
+
+                <!-- Image Section -->
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+                    <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                        <img src="{{ Storage::url($certification->logo) }}" 
+                             class="object-cover w-full h-full"
+                             alt="{{ $certification->title }}">
+                    </div>
+                </div>
+            @empty
+                <p class="text-white">No certifications available</p>
+            @endforelse
         </div>
     </section>
 

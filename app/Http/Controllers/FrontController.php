@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Models\Appointment;
 use App\Models\AboutUs;
+use App\Models\OurCertification;
 use App\Models\CompanyStatistic;
 use App\Models\HeroSection;
 use App\Models\Location;
@@ -28,18 +29,20 @@ class FrontController extends Controller
         $products = Product::take(3)->get();
         $teams = OurTeam::take(3)->get();
         $abouts = AboutUs::all();
+        $certifications = OurCertification::all();
         $testimonials = Testimonial::take(4)->get();
         $hero_section = HeroSection::orderByDesc('id')->get();
 
-        return view('front.index', compact('principles', 'products', 'teams', 'testimonials', 'hero_section'));
+        return view('front.index', compact('principles', 'certifications', 'products', 'teams', 'testimonials', 'hero_section'));
     }
 
     public function team()
     {
         $abouts = AboutUs::all();
         $teams = OurTeam::all();
+        $certifications = OurCertification::all();
 
-        return view('front.team', compact('abouts', 'teams'));
+        return view('front.team', compact('abouts', 'teams', 'certifications'));
     }
 
     public function product()
