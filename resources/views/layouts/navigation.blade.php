@@ -70,6 +70,9 @@
                                 <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
                                     {{ __('Certifications') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.super_teams.index')" class="text-primary">
+                                    {{ __('Super Teams') }}
+                                </x-dropdown-link>
 
                             </x-slot>
                         </x-dropdown>

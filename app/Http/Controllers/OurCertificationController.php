@@ -52,7 +52,7 @@ class OurCertificationController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('certifacitions');
+            $data['logo'] = $request->file('logo')->store('certifacitions', 'public');
         }
 
         $certification->update($data);

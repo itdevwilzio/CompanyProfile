@@ -11,6 +11,7 @@ use App\Models\HeroSection;
 use App\Models\Location;
 use App\Models\OurPrinciple;
 use App\Models\OurTeam;
+use App\Models\SuperTeam;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\VoucherPackage;
@@ -30,10 +31,12 @@ class FrontController extends Controller
         $teams = OurTeam::take(3)->get();
         $abouts = AboutUs::all();
         $certifications = OurCertification::all();
+        $super_teams= SuperTeam::all();
+
         $testimonials = Testimonial::take(4)->get();
         $hero_section = HeroSection::orderByDesc('id')->get();
 
-        return view('front.index', compact('principles', 'certifications', 'products', 'teams', 'testimonials', 'hero_section'));
+        return view('front.index', compact('principles', 'certifications', 'super_teams', 'products', 'teams', 'testimonials', 'hero_section'));
     }
 
     public function team()
@@ -41,8 +44,9 @@ class FrontController extends Controller
         $abouts = AboutUs::all();
         $teams = OurTeam::all();
         $certifications = OurCertification::all();
+        $super_teams= SuperTeam::all();
 
-        return view('front.team', compact('abouts', 'teams', 'certifications'));
+        return view('front.team', compact('abouts', 'teams', 'certifications', 'super_teams'));
     }
 
     public function product()

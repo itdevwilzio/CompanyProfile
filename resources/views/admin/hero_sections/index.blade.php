@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center justify-between px-4 lg:px-8">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Manage Hero Sections') }}
             </h2>
@@ -12,15 +12,15 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="w-full px-4 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         @forelse ($hero_sections as $hero_section)
-                            <div class="swiper-slide flex flex-row items-center justify-between item-card p-10">
-                                <div class="flex flex-row items-center gap-x-3">
+                            <div class="swiper-slide flex flex-row items-center justify-between p-10 gap-x-6">
+                                <div class="flex flex-row items-center gap-x-6">
                                     <img src="{{ Storage::url($hero_section->banner) }}" alt=""
-                                        class="rounded-2xl object-cover w-[90px] h-[90px]">
+                                        class="rounded-2xl object-cover w-[100px] h-[100px]">
                                     <div class="flex flex-col">
                                         <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->heading }}</h3>
                                     </div>
@@ -29,7 +29,7 @@
                                     <p class="text-sm text-slate-500">Date</p>
                                     <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->created_at->format('Y-m-d') }}</h3>
                                 </div>
-                                <div class="flex-row items-center hidden md:flex gap-x-3">
+                                <div class="flex-row items-center hidden md:flex gap-x-4">
                                     <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
                                         class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                         Edit

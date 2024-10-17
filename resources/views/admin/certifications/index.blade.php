@@ -12,19 +12,18 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
 
                 @forelse ($certifications as $certification)
-                    <div class="flex flex-row items-center justify-between item-card">
-                        <div class="flex flex-row items-center gap-x-4">
+                    <div class="flex flex-row items-center justify-between item-card p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
+                        <div class="flex flex-row items-center gap-x-6">
                             <img src="{{ $certification->logo ? Storage::url($certification->logo) : asset('assets/placeholder.png') }}" 
                                 alt="{{ $certification->title }}" 
-                                class="rounded-2xl object-cover w-[90px] h-[90px]">
+                                class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
                                 <p class="text-sm text-slate-500">Title</p>
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $certification->title }}</h3>
-
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
@@ -48,13 +47,13 @@
                                 @method('DELETE')
                                 <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn" 
                                    data-id="{{ $certification->id }}">
-                                        Delete
+                                    Delete
                                 </button>
                             </form>
                         </div>
                     </div>
                 @empty
-                    <p>No certifications available</p>
+                    <p class="text-center text-gray-500">No certifications available</p>
                 @endforelse
             </div>
         </div>

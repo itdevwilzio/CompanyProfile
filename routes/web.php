@@ -14,11 +14,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectClientController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VoucherPackageController;
+use App\Http\Controllers\SuperTeamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontController::class, 'team'])->name('front.about');
-Route::get('/teams', [OurCertificationController::class, 'showCertifications'])->name('front.teams');
+Route::get('/certification', [FrontController::class, 'showCertifications'])->name('front.certifications');
+Route::get('/super-team', [FrontController::class, 'showSuperTeam'])->name('front.super_teams');
 Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
@@ -87,9 +89,9 @@ Route::middleware('auth')->group(function () {
         //     Route::resource('product_identities', CertificationController::class);
         // });
 
-        // Route::middleware('can:manage super teams')->group(function () {
-        //     Route::resource('super_teams', CertificationController::class);
-        // });
+        Route::middleware('can:manage super teams')->group(function () {
+            Route::resource('super_teams', SuperTeamController::class);
+        });
 
 
 

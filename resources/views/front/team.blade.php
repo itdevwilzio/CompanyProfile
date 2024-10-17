@@ -103,28 +103,7 @@
         </div>
     </section>
 
-    <!-- APJII Certification Section -->
-    {{-- <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">
-        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            <!-- Text Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-black">
-                
-                <h2 class="font-nunito font-bold text-4xl mb-4">Resmi Terdaftar di APJII</h2>
-                <p class="text-lg leading-7 mb-4">
-                    Kami telah terdaftar secara resmi sebagai Penyedia Layanan Internet (Internet Service Provider/ISP) di Asosiasi Penyelenggara Jasa Internet Indonesia (APJII). Dengan komitmen yang kuat untuk memberikan layanan internet terbaik, kami bertekad untuk mempercepat kemajuan teknologi di seluruh Indonesia.
-                </p>
-            </div>
-            <!-- Image Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 flex justify-center">
-                <div class="relative w-full aspect-[13/7]">
-                    <img src="{{ asset('assets/teams/APJII.png') }}" 
-                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
-                    alt="APJII Logo">
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <section id="teams" class="w-full py-16 bg-primary relative overflow-hidden">
+    <section id="certification" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             @forelse ($certifications as $certification)
                 <!-- Text Section -->
@@ -152,26 +131,49 @@
     </section>
 
     <!-- Super Team Section -->
+
     <section id="super-team" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            <!-- Image Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 flex justify-center">
-                <img src="{{ asset('assets/teams/Thank-min.png') }}" 
-                    class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
-                    alt="Super Team Image">
-            </div>
-            <!-- Text Section with Hover Effect -->
-            <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
-                <h2 class="font-nunito font-bold text-4xl mb-4">Super Team</h2>
-                <p class="text-lg leading-7 mb-4">
-                    Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas dan handal bagi pelanggan di seluruh Indonesia. Kami berfokus pada inovasi dan kepuasan pelanggan untuk memastikan setiap layanan yang kami berikan memenuhi standar tertinggi.
-                </p>
-                <p class="text-lg leading-7">
-                    Kami terus melakukan pengembangan dan inovasi untuk memenuhi kebutuhan pelanggan, serta memegang teguh nilai-nilai profesionalisme, integritas, dan kejujuran dalam menjalankan bisnis. Komitmen ini menjadi landasan utama kami dalam memberikan layanan terbaik dan membangun kepercayaan jangka panjang dengan pelanggan.
-                </p>
-            </div>
+            @forelse($super_teams as $super_team)
+                <!-- Image Section with Hover Effect -->
+                <div class="w-full lg:w-1/2 flex justify-center">
+                    @if($super_team->image)
+                        <img src="{{ Storage::url($super_team->image) }}" 
+                                class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
+                                alt="{{ $super_team->title }}">
+                    @else
+                        <img src="{{ asset('assets/teams/Thank-min.png') }}" 
+                                class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
+                                alt="Super Team Image">
+                    @endif
+                </div>
+
+                <!-- Text Section with Hover Effect -->
+                <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
+                    <h2 class="font-nunito font-bold text-4xl mb-4">{{ $super_team->title }}</h2>
+                    <p class="text-lg leading-7 mb-4">
+                        {{ $super_team->description }}
+                    </p>
+                    <p class="text-lg leading-7">
+                        {{ $super_team->additional_info }}
+                    </p>
+                </div>
+            @empty
+                <!-- Display this if there are no super teams -->
+                <div class="w-full text-center text-white">
+                    <h2 class="font-nunito font-bold text-4xl mb-4">Super Team</h2>
+                    <p class="text-lg leading-7 mb-4">
+                        Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas dan handal bagi pelanggan di seluruh Indonesia. Kami berfokus pada inovasi dan kepuasan pelanggan untuk memastikan setiap layanan yang kami berikan memenuhi standar tertinggi.
+                    </p>
+                    <p class="text-lg leading-7">
+                        Kami terus melakukan pengembangan dan inovasi untuk memenuhi kebutuhan pelanggan, serta memegang teguh nilai-nilai profesionalisme, integritas, dan kejujuran dalam menjalankan bisnis. Komitmen ini menjadi landasan utama kami dalam memberikan layanan terbaik dan membangun kepercayaan jangka panjang dengan pelanggan.
+                    </p>
+                </div>
+            @endforelse
         </div>
     </section>
+
+    
 
     <section id="teams" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
