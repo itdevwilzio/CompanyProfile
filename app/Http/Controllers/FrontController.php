@@ -13,6 +13,7 @@ use App\Models\OurPrinciple;
 use App\Models\OurTeam;
 use App\Models\SuperTeam;
 use App\Models\Product;
+use App\Models\ProductIdentity;
 use App\Models\Testimonial;
 use App\Models\VoucherPackage;
 use GuzzleHttp\Client;
@@ -30,13 +31,10 @@ class FrontController extends Controller
         $products = Product::take(3)->get();
         $teams = OurTeam::take(3)->get();
         $abouts = AboutUs::all();
-        $certifications = OurCertification::all();
-        $super_teams= SuperTeam::all();
-
         $testimonials = Testimonial::take(4)->get();
         $hero_section = HeroSection::orderByDesc('id')->get();
 
-        return view('front.index', compact('principles', 'certifications', 'super_teams', 'products', 'teams', 'testimonials', 'hero_section'));
+        return view('front.index', compact('principles','products', 'teams', 'testimonials', 'hero_section'));
     }
 
     public function team()
@@ -45,8 +43,9 @@ class FrontController extends Controller
         $teams = OurTeam::all();
         $certifications = OurCertification::all();
         $super_teams= SuperTeam::all();
+        $product_identities = ProductIdentity::all();
 
-        return view('front.team', compact('abouts', 'teams', 'certifications', 'super_teams'));
+        return view('front.team', compact('abouts', 'teams', 'certifications', 'super_teams', 'product_identities'));
     }
 
     public function product()

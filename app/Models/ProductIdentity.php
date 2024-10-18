@@ -14,5 +14,10 @@ class ProductIdentity extends Model
         'description',
         'logo',
         'details',
+        'vision',
+        'mission',
+        'contentl1',
+        'contentl2',
+        'contentl3',
     ];
 }

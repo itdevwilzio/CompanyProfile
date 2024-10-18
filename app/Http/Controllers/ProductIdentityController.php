@@ -35,7 +35,7 @@ class ProductIdentityController extends Controller
 
         // Handle file upload
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('logos', 'public');
+            $data['logo'] = $request->file('logo')->store('product_identities', 'public');
         }
 
         ProductIdentity::create($data);

@@ -29,6 +29,11 @@ class UpdateProductIdentityRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'details' => 'nullable|string',
+            'vision' => 'nullable|string',
+            'mission' => 'nullable|string',
+            'contentl1' => 'nullable|string',
+            'contentl2' => 'nullable|string',
+            'contentl3' => 'nullable|string',
         ];
 
         // If the request is for storing, require the logo; otherwise, make it optional for updates
@@ -49,12 +54,17 @@ class UpdateProductIdentityRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'The name field is required.',
-            'description.required' => 'The description field is required.',
+            'name.required' => 'The product name is required.',
+            'name.string' => 'The product name must be a valid string.',
+            'name.max' => 'The product name may not be greater than 255 characters.',
+            
+            'description.required' => 'The description is required.',
+            'description.string' => 'The description must be a valid string.',
+
             'logo.required' => 'Please upload a logo image.',
             'logo.image' => 'The logo must be an image.',
             'logo.mimes' => 'The logo must be a file of type: jpeg, png, jpg, gif.',
-            'logo.max' => 'The logo size must not exceed 2MB.',
+            'logo.max' => 'The logo size may not be greater than 2MB.',
         ];
     }
 }

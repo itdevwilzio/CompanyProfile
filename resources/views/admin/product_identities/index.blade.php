@@ -14,28 +14,29 @@
     <div class="py-12">
         <div class="px-4 lg:px-8">
             <div class="flex flex-col p-10 bg-white shadow-sm sm:rounded-lg gap-y-5">
-                @forelse ($product_identities as $product_identity)
+                @forelse ($product_identities as $productIdentity)
                     <div class="flex flex-row items-center justify-between p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
                         <div class="flex flex-row items-center gap-x-6">
-                            <img src="{{ Storage::url($product_identity->logo) }}" alt="{{ $product_identity->name }}"
+                            <img src="{{ Storage::url($productIdentity->logo) }}" alt="{{ $productIdentity->name }}"
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $product_identity->name }}</h3>
+                                <p class="text-sm text-slate-500">Judul</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $productIdentity->name }}</h3>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
-                            <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $product_identity->created_at->format('d M, Y') }}</h3>
+                            <p class="text-sm text-slate-500">Created Date</p>
+                            <h3 class="text-xl font-bold text-indigo-950">{{ $productIdentity->created_at->format('d M, Y') }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-4">
-                            <a href="{{ route('admin.product_identities.edit', $product_identity) }}"
+                            <a href="{{ route('admin.product_identities.edit', $productIdentity) }}"
                                 class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full">
                                 Edit
                             </a>
-                            <form id="delete-product-identity-form-{{ $product_identity->id }}" action="{{ route('admin.product_identities.destroy', $product_identity) }}" method="POST">
+                            <form id="delete-product-identity-form-{{ $productIdentity->id }}" action="{{ route('admin.product_identities.destroy', $productIdentity) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full delete-btn" data-id="{{ $product_identity->id }}">
+                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full delete-btn" data-id="{{ $productIdentity->id }}">
                                     Delete
                                 </button>
                             </form>

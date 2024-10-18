@@ -44,7 +44,7 @@ class OurCertificationController extends Controller
 
     public function edit(OurCertification $certification)
     {
-        return view('admin.certifications.edit', compact('certification'));
+        return view('admin.certifications.edit', compact('certifications'));
     }
 
     public function update(UpdateCertificationRequest $request, OurCertification $certification)
@@ -52,7 +52,7 @@ class OurCertificationController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('certifacitions', 'public');
+            $data['logo'] = $request->file('logo')->store('certificitions', 'public');
         }
 
         $certification->update($data);

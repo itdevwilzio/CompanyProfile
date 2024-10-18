@@ -125,7 +125,7 @@
                 <div class="mt-6 flex justify-center items-center w-full">
                     <a href="https://wa.me/6285179709387"
                        id="joinButton"
-                       class="bg-orange-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
+                       class="bg-orange-500 font-semibold text-primary px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
                         Mulai Bergabung
                     </a>
                 </div>
@@ -278,33 +278,39 @@
 @push('after-scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Open modal when the trigger is clicked
-        document.querySelectorAll('.modal-open').forEach(function (trigger) {
-            trigger.addEventListener('click', function () {
-                const modalId = trigger.getAttribute('data-modal-target');
-                const modal = document.getElementById(modalId);
+    // Open modal when the trigger is clicked
+    document.querySelectorAll('.modal-open').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+            const modalId = trigger.getAttribute('data-modal-target');
+            console.log('Opening modal:', modalId);  // Debugging line
+            const modal = document.getElementById(modalId);
+            if (modal) {
                 modal.classList.remove('hidden');
-            });
-        });
-
-        // Close modal when the close button or the overlay is clicked
-        document.querySelectorAll('.modal-close').forEach(function (closeButton) {
-            closeButton.addEventListener('click', function () {
-                const modalId = closeButton.getAttribute('data-modal-toggle');
-                const modal = document.getElementById(modalId);
-                modal.classList.add('hidden');
-            });
-        });
-
-        // Close modal when clicking outside the modal content
-        document.querySelectorAll('.modal').forEach(function (modal) {
-            modal.addEventListener('click', function (event) {
-                if (event.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
+            }
         });
     });
+
+    // Close modal when the close button or the overlay is clicked
+    document.querySelectorAll('.modal-close').forEach(function (closeButton) {
+        closeButton.addEventListener('click', function () {
+            const modalId = closeButton.getAttribute('data-modal-toggle');
+            console.log('Closing modal:', modalId);  // Debugging line
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+
+    // Close modal when clicking outside the modal content
+    document.querySelectorAll('.modal').forEach(function (modal) {
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+});
 
 </script>
 @endpush

@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.product_identity.update', $product_identity) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.product_identities.update', $productIdentity) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -25,7 +25,7 @@
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            :value="old('name', $product_identity->name)" required autofocus autocomplete="name" />
+                            :value="old('name', $productIdentity->name)" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
@@ -33,7 +33,7 @@
                     <div class="mt-4">
                         <x-input-label for="description" :value="__('Description')" />
                         <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
-                                  name="description" rows="4" required>{{ old('description', $product_identity->description) }}</textarea>
+                                  name="description" rows="4" required>{{ old('description', $productIdentity->description) }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
@@ -41,8 +41,48 @@
                     <div class="mt-4">
                         <x-input-label for="details" :value="__('Details')" />
                         <textarea id="details" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
-                                  name="details" rows="4">{{ old('details', $product_identity->details) }}</textarea>
+                                  name="details" rows="4">{{ old('details', $productIdentity->details) }}</textarea>
                         <x-input-error :messages="$errors->get('details')" class="mt-2" />
+                    </div>
+
+                     <!-- Vision Input -->
+                     <div class="mt-4">
+                        <x-input-label for="vision" :value="__('Vision')" />
+                        <textarea id="vision" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                  name="vision" rows="4">{{ old('vision', $productIdentity->vision) }}</textarea>
+                        <x-input-error :messages="$errors->get('vision')" class="mt-2" />
+                    </div>
+
+                    <!-- Mission Input -->
+                    <div class="mt-4">
+                        <x-input-label for="mission" :value="__('Mission')" />
+                        <textarea id="mission" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                  name="mission" rows="4">{{ old('mission', $productIdentity->mission) }}</textarea>
+                        <x-input-error :messages="$errors->get('mission')" class="mt-2" />
+                    </div>
+
+                    <!-- Content Level 1 Input -->
+                    <div class="mt-4">
+                        <x-input-label for="contentl1" :value="__('Content Level 1')" />
+                        <textarea id="contentl1" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                  name="contentl1" rows="4">{{ old('contentl1', $productIdentity->contentl1) }}</textarea>
+                        <x-input-error :messages="$errors->get('contentl1')" class="mt-2" />
+                    </div>
+
+                    <!-- Content Level 2 Input -->
+                    <div class="mt-4">
+                        <x-input-label for="contentl2" :value="__('Content Level 2')" />
+                        <textarea id="contentl2" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                  name="contentl2" rows="4">{{ old('contentl2', $productIdentity->contentl2) }}</textarea>
+                        <x-input-error :messages="$errors->get('contentl2')" class="mt-2" />
+                    </div>
+
+                    <!-- Content Level 3 Input -->
+                    <div class="mt-4">
+                        <x-input-label for="contentl3" :value="__('Content Level 3')" />
+                        <textarea id="contentl3" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                  name="contentl3" rows="4">{{ old('contentl3', $productIdentity->contentl3) }}</textarea>
+                        <x-input-error :messages="$errors->get('contentl3')" class="mt-2" />
                     </div>
 
                     <!-- Logo Input -->
@@ -51,11 +91,11 @@
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
 
-                        @if ($product_identity->logo)
+                        @if ($productIdentity->logo)
                             <div class="mt-4">
                                 <p class="text-sm text-slate-500">Current Logo:</p>
-                                <img src="{{ Storage::url($product_identity->logo) }}" 
-                                     alt="{{ $product_identity->name }}" class="w-32 h-32 rounded-md">
+                                <img src="{{ Storage::url($productIdentity->logo) }}" 
+                                     alt="{{ $productIdentity->name }}" class="w-32 h-32 rounded-md">
                             </div>
                         @endif
                     </div>

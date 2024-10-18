@@ -17,7 +17,13 @@ return new class extends Migration
             $table->text('description'); // Description of the product
             $table->string('logo')->nullable(); // Path to the logo image
             $table->text('details')->nullable(); // Additional details, optional
+            $table->text('vision')->nullable(); // Vision of the product, optional
+            $table->text('mission')->nullable(); // Mission of the product, optional
+            $table->text('contentl1')->nullable(); // Content for section 1, optional
+            $table->text('contentl2')->nullable(); // Content for section 1, optional
+            $table->text('contentl3')->nullable(); // Content for section 1, optional
             $table->timestamps(); // Created at and updated at timestamps
+     
         });
     }
 
