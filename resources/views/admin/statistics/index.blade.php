@@ -34,10 +34,10 @@
                                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                 Edit
                             </a>
-                            <form action="{{ route('admin.statistics.destroy', $statistic) }}" method="POST">
+                            <form action="{{ route('admin.statistics.destroy', $statistic) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn">
                                     Delete
                                 </button>
                             </form>
@@ -49,4 +49,35 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Add event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const form = this.closest('form'); // Get the closest form element
+
+                    // Trigger SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak dapat mengembalikan data ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#0C3C94',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </x-app-layout>

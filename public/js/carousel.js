@@ -3,7 +3,7 @@ $(document).ready(function(){
       contain: true,
       autoPlay: 4000,
       prevNextButtons: false,
-      pageDots: false,
+      pageDots: true,
       wrapAround: true,
     });
 

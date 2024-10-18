@@ -1,4 +1,10 @@
 <x-guest-layout>
+    <!-- Logo -->
+    <div class="flex justify-center mb-4">
+        <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo" class="h-16 w-auto">
+    </div>
+
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -40,7 +46,7 @@
             @endif
 
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('log in') }}
             </x-primary-button>
         </div>
     </form>

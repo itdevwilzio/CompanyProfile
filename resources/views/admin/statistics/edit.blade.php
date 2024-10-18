@@ -17,8 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.statistics.update', $statistic) }}"
-                    enctype="multipart/form-data">
+                <form id="update-statistic-form" method="POST" action="{{ route('admin.statistics.update', $statistic) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
@@ -29,7 +28,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="icon" :value="__('icon')" />
+                        <x-input-label for="icon" :value="__('Icon')" />
                         <img src="{{ Storage::url($statistic->icon) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="icon" class="block w-full mt-1" type="file" name="icon" autofocus
@@ -38,15 +37,14 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="goal" :value="__('goal')" />
+                        <x-input-label for="goal" :value="__('Goal')" />
                         <x-text-input id="goal" class="block w-full mt-1" type="text" name="goal"
                             value="{{ $statistic->goal }}" required autofocus autocomplete="goal" />
                         <x-input-error :messages="$errors->get('goal')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Statistic
                         </button>
                     </div>
@@ -55,4 +53,25 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to update this statistic!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-statistic-form').submit(); // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

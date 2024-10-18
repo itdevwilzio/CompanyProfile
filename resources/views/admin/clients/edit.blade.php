@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.clients.update', $client) }}" enctype="multipart/form-data">
+                <form id="update-client-form" method="POST" action="{{ route('admin.clients.update', $client) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
@@ -28,14 +28,14 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="occupation" :value="__('occupation')" />
+                        <x-input-label for="occupation" :value="__('Occupation')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
                             value="{{ $client->occupation }}" required autofocus autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('avatar')" />
+                        <x-input-label for="avatar" :value="__('Avatar')" />
                         <img src="{{ Storage::url($client->avatar) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" autofocus
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('logo')" />
+                        <x-input-label for="logo" :value="__('Logo')" />
                         <img src="{{ Storage::url($client->logo) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" autofocus
@@ -53,8 +53,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Client
                         </button>
                     </div>
@@ -63,4 +62,25 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to update this client's details!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-client-form').submit(); // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

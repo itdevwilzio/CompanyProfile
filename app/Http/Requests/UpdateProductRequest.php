@@ -30,6 +30,7 @@ class UpdateProductRequest extends FormRequest
             'tagline4' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric', 'min:0'],
             'thumbnail' => ['sometimes', 'image', 'mimes:png,jpg,jpeg'],
+            'about' => ['required', 'string', 'max:65535'],
         ];
     }
 }

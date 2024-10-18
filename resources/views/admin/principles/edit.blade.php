@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.principles.update', $principle) }}"
+                <form id="update-form" method="POST" action="{{ route('admin.principles.update', $principle) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -46,7 +46,7 @@
 
                     <div class="flex items-center justify-end mt-4">
 
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button type="button" id="update-btn" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Principle
                         </button>
                     </div>
@@ -55,4 +55,26 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('update-btn').addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Make sure the changes are correct!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0C3C94',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-form').submit();  // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

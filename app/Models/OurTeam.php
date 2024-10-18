@@ -14,6 +14,7 @@ class OurTeam extends Model
         'avatar',
         'name',
         'occupation',
+        'team',
         'location'
     ];
 }

@@ -1,525 +1,82 @@
-@extends('front.layouts.app')
+@extends('layouts.app')
+
 @section('content')
-    <div id="header" class="bg-[#F6F7FA] relative">
-        <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
-            <x-navbar></x-navbar>
-            {{-- @forelse ($hero_section as $hero)
-                <input type="hidden" name="path_video" id="path_video" value="{{ $hero->path_video }}">
-                <div id="Hero" class="flex flex-col gap-[30px] mt-20 pb-20">
-                    <div class="flex items-center bg-white p-[8px_16px] gap-[10px] rounded-full w-fit">
-                        <div class="flex w-5 h-5 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/crown.svg') }}" class="object-contain" alt="icon">
-                        </div>
-                        <p class="text-sm font-semibold">{{ $hero->achievement }}</p>
-                    </div>
-                    <div class="flex flex-col gap-[10px]">
-                        <h1 class="font-extrabold text-[50px] leading-[65px] max-w-[536px]">{{ $hero->heading }}</h1>
-                        <p class="text-cp-light-grey leading-[30px] max-w-[437px]">{{ $hero->subheading }}</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <a href=""
-                            class="bg-cp-dark-blue p-5 w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Explore
-                            Now</a>
-                        <button class="bg-cp-black p-5 w-fit rounded-xl font-bold text-white flex items-center gap-[10px]"
-                            onclick="{modal.show()}">
-                            <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                                <img src="{{ asset('assets/icons/play-circle.svg') }}" class="object-contain w-full h-full"
-                                    alt="icon">
-                            </div>
-                            <span>Watch Video</span>
-                        </button>
-                    </div>
-                </div>
-        </div>
-        <div class="absolute w-[43%] h-full top-0 right-0 overflow-hidden z-0">
-            <img src="{{ asset(Storage::url($hero->banner)) }}" class="object-cover w-full h-full" alt="banner">
-        </div>
-    @empty
-        @endforelse --}}
-    </div>
-
-
-
-
-    {{-- <div id="Clients" class="container max-w-[1130px] mx-auto flex flex-col justify-center text-center gap-5 mt-20">
-        <h2 class="text-lg font-bold">Trusted by 500+ Top Leaders Worldwide</h2>
-        <div class="flex flex-wrap justify-center gap-5 logo-container">
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-54.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-52.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-55.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-44.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-51.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-55.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-52.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-54.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-            <div
-                class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
-                <div class="overflow-hidden h-9">
-                    <img src="{{ asset('assets/logo/logo-51.svg') }}" class="object-contain w-full h-full" alt="logo">
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div id="Stats" class="w-full mt-20 bg-cp-black">
-        <div class="container max-w-[1000px] mx-auto py-10">
-            <div class="flex flex-wrap items-center justify-between p-[10px]">
-                @forelse ($statistics as $statistic)
-                    <div class="card w-[200px] flex flex-col items-center gap-[10px] text-center">
-                        <div class="w-[55px] h-[55px] flex shrink-0 overflow-hidden">
-                            <img src="{{ asset(Storage::url($statistic->icon)) }}" class="object-contain w-full h-full"
-                                alt="icon">
-                        </div>
-                        <p class="text-cp-pale-orange font-bold text-4xl leading-[54px]">{{ $statistic->goal }}</p>
-                        <p class="text-cp-light-grey">{{ $statistic->name }}</p>
-                    </div>
-                @empty
-                    <p>Belum ada data terbaru</p>
-                @endforelse
-            </div>
-        </div>
-    </div> --}}
-    <div id="Products" class="container max-w-[1130px] mx-auto flex flex-col gap-20 mt-20">
-    <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @forelse ($products as $product)
-            <div class="product flex flex-col items-center bg-white shadow-lg rounded-lg overflow-hidden">
-                <div class="w-full h-[200px] flex overflow-hidden">
-                    <img src="{{ asset(Storage::url($product->thumbnail)) }}" class="object-cover w-full h-full" alt="thumbnail">
-                </div>
-                <div class="flex flex-col gap-4 p-4 text-center">
-                    <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
-                        {{ $product->tagline }}
-                    </p>
-                    <h2 class="font-bold text-lg">{{ $product->name }}</h2>
-                    <p class="text-cp-light-grey">{{ $product->about }}</p>
-                    <a href="{{ route('front.appointment') }}"
-                       class="bg-cp-dark-blue p-3 w-full rounded-xl hover:shadow-lg transition-all duration-300 font-bold text-white">
-                        Book Appointment
-                    </a>
-                </div>
-            </div>
-        @empty
-            <p class="col-span-full text-center">Belum ada data terbaru</p>
-        @endforelse
-    </div>
-</div>
-
-    </div>
-    {{-- <div id="Teams" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20">
-        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] items-center">
-            <div class="flex flex-col gap-[14px] items-center">
-                <p class="badge w-fit bg-cp-dark-blue text-white p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR POWERFUL TEAM</p>
-                <h2 class="font-bold text-4xl leading-[45px] text-center">We Share Same Dreams <br> Change The World
-                </h2>
-            </div>
-            <div
-                class="teams-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
-                @forelse ($teams as $team)
-                    <div
-                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] px-[29px] gap-[30px] rounded-[20px] border border-white hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300">
-                        <div
-                            class="w-[100px] h-[100px] flex shrink-0 items-center justify-center rounded-full bg-[linear-gradient(150.55deg,_#007AFF_8.72%,_#312ECB_87.11%)]">
-                            <div class="w-[90px] h-[90px] rounded-full overflow-hidden">
-                                <img src="{{ asset(Storage::url($team->avatar)) }}"
-                                    class="object-cover object-center w-full h-full" alt="photo">
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-1 text-center">
-                            <p class="font-bold text-xl leading-[30px]">{{ $team->name }}</p>
-                            <p class="text-cp-light-grey">{{ $team->occupation }}</p>
-                        </div>
-                        <div class="flex items-center justify-center gap-[10px]">
-                            <div class="flex w-6 h-6 shrink-0">
-                                <img src="{{ asset('assets/icons/global.svg') }}" alt="icon">
-                            </div>
-                            <p class="font-semibold text-cp-dark-blue">{{ $team->location }}</p>
-                        </div>
-                    </div>
-                @empty
-                    <p>Belum ada data terbaru</p>
-                @endforelse
-                <a href="{{ route('front.team') }}" class="view-all-card">
-                    <div
-                        class="card bg-white flex flex-col h-full justify-center items-center p-[30px] gap-[30px] rounded-[20px] border border-white hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300">
-                        <div class="w-[60px] h-[60px] flex shrink-0">
-                            <img src="{{ asset('assets/icons/profile-2user.svg') }}" alt="icon">
-                        </div>
-                        <div class="flex flex-col gap-1 text-center">
-                            <p class="font-bold text-xl leading-[30px]">View All</p>
-                            <p class="text-cp-light-grey">Our Great People</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div> --}}
-    <div id="Testimonials" class="w-full flex flex-col gap-[50px] items-center mt-20">
-        <div class="flex flex-col gap-[14px] items-center">
-            <p
-                class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                SUCCESS CLIENTS</p>
-            <h2 class="font-bold text-4xl leading-[45px] text-center">Our Satisfied Clients<br>From Worldwide Company
-            </h2>
-        </div>
-        <div class="w-full main-carousel">
-            @forelse ($testimonials as $testimonial)
-                <div
-                    class="carousel-card container max-w-[1130px] w-full flex flex-wrap justify-between items-center lg:mx-[calc((100vw-1130px)/2)]">
-                    <div class="testimonial-container flex flex-col gap-[112px] w-[565px]">
-                        <div class="flex flex-col gap-[30px]">
-                            <div class="overflow-hidden h-9">
-                                <img src="{{ asset(Storage::url($testimonial->client->logo)) }}" class="object-contain"
-                                    alt="icon">
-                            </div>
-                            <div class="relative pt-[27px] pl-[30px]">
-                                <div class="absolute top-0 left-0">
-                                    <img src="{{ asset('assets/icons/quote.svg') }}" alt="icon">
-                                </div>
-                                <p class="font-semibold text-2xl leading-[46px] relative z-10">{{ $testimonial->message }}
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pl-[30px]">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-[60px] h-[60px] flex shrink-0 rounded-full overflow-hidden">
-                                        <img src="{{ asset(Storage::url($testimonial->client->avatar)) }}"
-                                            class="object-cover w-full h-full" alt="photo">
-                                    </div>
-                                    <div class="flex flex-col justify-center gap-1">
-                                        <p class="font-bold">{{ $testimonial->client->name }}</p>
-                                        <p class="text-sm text-cp-light-grey">{{ $testimonial->client->occupation }}</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-nowrap">
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                    <div class="flex w-6 h-6 shrink-0">
-                                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" alt="star">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-center h-4 gap-2 carousel-indicator shrink-0">
-                        </div>
-                    </div>
-                    <div class="testimonial-thumbnail w-[470px] h-[550px] rounded-[20px] overflow-hidden bg-[#D9D9D9]">
-                        <img src="{{ asset(Storage::url($testimonial->thumbnail)) }}"
-                            class="object-cover object-center w-full h-full" alt="thumbnail">
-                    </div>
-                </div>
-            @empty
-                <p>Belum ada data terbaru</p>
-            @endforelse
-        </div>
-    </div>
-    {{-- <div id="Awards" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col gap-[14px]">
-                <p
-                    class="badge w-fit bg-cp-pale-blue text-cp-light-blue p-[8px_16px] rounded-full uppercase font-bold text-sm">
-                    OUR AWARDS</p>
-                <h2 class="font-bold text-4xl leading-[45px]">We’ve Dedicated Our<br>Best Team Efforts</h2>
-            </div>
-            <a href="" class="bg-cp-black p-[14px_20px] w-fit rounded-xl font-bold text-white">Explore More</a>
-        </div>
-        <div
-            class="awards-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] justify-center">
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Solid Fundamental Crafter Async</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Bali, 2020</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Most Crowded Yet Harmony Place</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Shanghai, 2021</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Small Things Made Much Big Impacts</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Zurich, 2022</p>
-            </div>
-            <div
-                class="card bg-white flex flex-col h-full p-[30px] gap-[30px] rounded-[20px] border border-[#E8EAF2] hover:border-cp-dark-blue transition-all duration-300">
-                <div class="w-[55px] h-[55px] flex shrink-0">
-                    <img src="{{ asset('assets/icons/cup-blue.svg') }}" alt="icon">
-                </div>
-                <hr class="border-[#E8EAF2]">
-                <p class="font-bold text-xl leading-[30px]">Teamwork and Solidarity</p>
-                <hr class="border-[#E8EAF2]">
-                <p class="text-cp-light-grey">Bandung, 2023</p>
-            </div>
-        </div>
-    </div> --}}
-    <div id="FAQ" class="bg-[#F6F7FA] w-full py-20 px-[10px] mt-20 -mb-20">
-        <div class="container max-w-[1000px] mx-auto">
-            <div class="flex flex-col lg:flex-row gap-[50px] sm:gap-[70px] items-center">
-                <div class="flex flex-col gap-[30px]">
-                    <div class="flex flex-col gap-[10px]">
-                        <h2 class="font-bold text-4xl leading-[45px]">Frequently Asked Questions</h2>
-                    </div>
-                    <a href="{{ route('front.appointment') }}"
-                        class="p-5 font-bold text-white bg-cp-black rounded-xl w-fit">Contact
-                        Us</a>
-                </div>
-                <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-1">
-                            <span class="font-bold text-lg leading-[27px] text-left">Can installments be beneficial for
-                                both?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-1" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-2">
-                            <span class="font-bold text-lg leading-[27px] text-left">What kind of framework you popular
-                                with?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-2" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-3">
-                            <span class="font-bold text-lg leading-[27px] text-left">What insurance provider do you
-                                use?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-3" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full p-5 bg-white rounded-2xl">
-                        <button class="flex items-center justify-between gap-1 accordion-button"
-                            data-accordion="accordion-faq-4">
-                            <span class="font-bold text-lg leading-[27px] text-left">What if we have other
-                                questions?</span>
-                            <div class="flex arrow w-9 h-9 shrink-0">
-                                <img src="{{ asset('assets/icons/arrow-circle-down.svg') }}"
-                                    class="transition-all duration-300" alt="icon">
-                            </div>
-                        </button>
-                        <div id="accordion-faq-4" class="accordion-content hide">
-                            <p class="leading-[30px] text-cp-light-grey pt-[14px]">We want to protect our and clients
-                                assets to the max level so that we chose the best one from Jakarta, Indonesia will also
-                                protect post building finished completed ahead one.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="relative w-full mt-20 overflow-hidden bg-cp-black">
-        <div
-            class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-center pt-[100px] pb-[220px] relative z-10">
-            <div class="flex flex-col gap-10 items-start">
-                <!-- Company Logo and Info -->
-                <div class="flex items-center gap-3">
-                    <div class="flex shrink-0 h-[43px] overflow-hidden">
-                        <img src="{{ asset('assets/logo/logo.svg') }}" class="object-contain w-full h-full" alt="Company logo">
-                    </div>
-                    <div class="flex flex-col">
-                        <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">Wilzio</p>
-                        <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-                    </div>
-                </div>
-
-                <!-- Social Media Icons -->
-                <div class="flex items-center justify-center gap-4">
-                    <a href="https://youtube.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/youtube.svg') }}" class="object-contain w-full h-full" alt="YouTube">
-                        </div>
-                    </a>
-                    <a href="https://wa.me/your-number" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/whatsapp.svg') }}" class="object-contain w-full h-full" alt="WhatsApp">
-                        </div>
-                    </a>
-                    <a href="https://facebook.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/facebook.svg') }}" class="object-contain w-full h-full" alt="Facebook">
-                        </div>
-                    </a>
-                    <a href="https://instagram.com" target="_blank">
-                        <div class="flex w-6 h-6 overflow-hidden shrink-0">
-                            <img src="{{ asset('assets/icons/instagram.svg') }}" class="object-contain w-full h-full" alt="Instagram">
-                        </div>
-                    </a>
-                </div>
+    <!-- Born For Indonesia Section -->
+    <section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            <!-- Text Section -->
+            <div class="w-full lg:w-1/2 text-white lg:pr-10">
+                <h2 class="font-nunito font-bold text-4xl mb-6">{{ $aboutSections->where('type', 'Visions')->first()->name }}</h2>
+                <p class="font-nunito text-base leading-7 mb-8">
+                    {{ $aboutSections->where('type', 'Visions')->first()->description }}
+                </p>
             </div>
 
-            {{-- <div class="flex flex-wrap gap-[50px]">
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Products</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">General
-                        Contract</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Building
-                        Assessment</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">3D Paper
-                        Builder</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Legal
-                        Constructions</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">About</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">We’re
-                        Hiring</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Our Big
-                        Purposes</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Investor
-                        Relations</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Media
-                        Press</a>
-                </div>
-                <div class="flex flex-col w-[200px] gap-3">
-                    <p class="text-lg font-bold text-white">Useful Links</p>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Privacy
-                        & Policy</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Terms &
-                        Conditions</a>
-                    <a href="contact.html" class="transition-all duration-300 text-cp-light-grey hover:text-white">Contact
-                        Us</a>
-                    <a href="" class="transition-all duration-300 text-cp-light-grey hover:text-white">Download
-                        Template</a>
-                </div>
-            </div> --}}
-        </div>
-        <div class="absolute -bottom-[135px] w-full">
-            <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">WILZIO</p>
-        </div>
-    </footer>
-    <div id="video-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative w-full max-h-full p-4 lg:w-1/2">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-[20px] overflow-hidden shadow">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5">
-                    <h3 class="text-xl font-semibold text-cp-black">
-                        Company Profile Video
-                    </h3>
-                    <button type="button"
-                        class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
-                        onclick="{modal.hide()}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="">
-                    <!-- video src added from the js script (modal-video.js) to prevent video running in the backgroud -->
-                    <iframe id="videoFrame" class="aspect-[16/9]" width="100%" src=""
-                        title="Demo Project Laravel Portfolio" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- Image Section -->
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+                <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                    <img src="{{ Storage::url($aboutSections->where('type', 'Visions')->first()->thumbnail) }}" class="object-cover w-full h-full" alt="Vision Image">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Identitas Produk Section -->
+    <section id="product-identity" class="w-full py-16">
+        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-10">
+            <!-- Logo Section with Hover Effect -->
+            <div class="relative w-full lg:w-1/2 text-white flex justify-center items-center bg-white p-4 rounded-lg">
+                <img src="{{ asset('assets/teams/logo-Biru-V2.png') }}" class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom filter brightness-150" alt="Wija Backbone Logo">
+            </div>
+            
+            <!-- Description Section -->
+            <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
+                <h2 class="font-nunito font-bold text-4xl mb-2">{{ $aboutSections->where('type', 'Missions')->first()->name }}</h2>
+                <p class="text-lg leading-7 mb-2">{{ $aboutSections->where('type', 'Missions')->first()->description }}</p>
+
+                <!-- Keypoints Section -->
+                <ul class="list-disc ml-5 mt-3 text-lg leading-7">
+                    @foreach($aboutSections->where('type', 'Missions')->first()->keypoints as $keypoint)
+                        <li>{{ $keypoint }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- APJII Certification Section -->
+    <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">
+        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            <!-- Text Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 text-white transition-all duration-300 hover:text-black">
+                <h2 class="font-nunito font-bold text-4xl mb-4">Resmi Terdaftar di APJII</h2>
+                <p class="text-lg leading-7 mb-4">
+                    Kami telah terdaftar secara resmi sebagai Penyedia Layanan Internet (ISP) di Asosiasi Penyelenggara Jasa Internet Indonesia (APJII).
+                </p>
+            </div>
+            <!-- Image Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <div class="relative w-full aspect-[13/7]">
+                    <img src="{{ asset('assets/teams/APJII.png') }}" class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" alt="APJII Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Super Team Section -->
+    <section id="super-team" class="w-full py-16">
+        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            <!-- Image Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="{{ asset('assets/teams/Thank-min.png') }}" class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105" alt="Super Team Image">
+            </div>
+            <!-- Text Section with Hover Effect -->
+            <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
+                <h2 class="font-nunito font-bold text-4xl mb-4">Super Team</h2>
+                <p class="text-lg leading-7 mb-4">
+                    Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas.
+                </p>
+            </div>
+        </div>
+    </section>
 @endsection
-
-@push('after-scripts')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <!-- JavaScript -->
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
-    <script src="{{ asset('js/carousel.js') }}"></script>
-    <script src="{{ asset('js/accordion.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script src="{{ asset('js/modal-video.js') }}"></script>
-@endpush

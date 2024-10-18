@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.locations.update', $location) }}" enctype="multipart/form-data">
+                <form id="update-location-form" method="POST" action="{{ route('admin.locations.update', $location) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
@@ -37,8 +37,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Location
                         </button>
                     </div>
@@ -47,4 +46,25 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to update this location!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-location-form').submit(); // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>
