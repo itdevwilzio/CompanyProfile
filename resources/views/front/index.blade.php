@@ -177,8 +177,8 @@
                         <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
                     </div>
                     <!-- WhatsApp Icon -->
-                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer"data-open-modal="{{ $loop->index }}">
+                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
+                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
                     </div>
                 </div>
 
@@ -196,45 +196,54 @@
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
                         <!-- Link to trigger modal -->
-                        <a href="javascript:void(0);" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">...Lihat selengkapnya</a>
-
-                        <!-- Modal -->
-                        <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
-                            <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-                            <div class="modal-container relative mx-auto max-w-xl mt-20">
-                                <div class="modal-content bg-white rounded-lg shadow-lg relative">
-                                    <div class="modal-header py-4 px-6 border-b border-gray-200">
-                                        <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
-                                        <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700" data-modal-toggle="modal-{{ $loop->index }}">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body px-6 py-4">
-                                        {{ $testimonial->message }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button onclick="openModalTestimonial({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
                     @endif
                 </p>
             </div>
-
-                <!-- Full Testimonial Modal -->
-                <div id="modal-{{ $loop->index }}" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
-                        <!-- Thumbnail Image -->
-                        <div class="w-full h-auto mb-4">
-                            <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
-                        </div>
-                        <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModal({{ $loop->index }})">&times;</button>
-                    </div>
-                </div>
-                @empty
+ 
+            @empty
                 <p class="text-center text-white">Belum ada data terbaru</p>
             @endforelse
         </div>
+
+        @foreach ($testimonials as $testimonial)
+        {{-- Modal thumbnail --}}
+            <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
+                    <!-- Thumbnail Image -->
+                    <div class="w-full h-auto mb-4">
+                        <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
+                    </div>
+                    <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModalThumbnail({{ $loop->index }})">&times;</button>
+                </div>
+            </div>
+
+            {{-- Modal testimonial --}}
+            <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-testimonial-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
+                <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="modal-container relative mx-auto max-w-2xl mt-20">
+                    <div class="modal-content bg-white rounded-lg shadow-lg relative">
+                        <div class="modal-header py-4 px-6 border-b border-gray-200">
+                            <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
+                            {{-- <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700" data-modal-toggle="modal-{{ $loop->index }}">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button> --}}
+                        </div>
+                        <div class="modal-body px-6 py-4">
+                            <p>
+                                {{ $testimonial->message }}
+                            </p>
+                            <button class="modal-close size-8 text-xl rounded-full flex items-center justify-center" onclick="closeModalTestimonial({{ $loop->index }})" data-modal-toggle="modal-{{ $loop->index }}">
+                                &times;
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 
@@ -273,6 +282,44 @@
     
     
 </div>
+
+<script>
+    function openModalTestimonial(index) {
+        const modal = document.getElementById(`modal-testimonial-${index}`);
+        if (modal) {
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            modal.style.display = 'flex';
+        }
+    }
+
+    function closeModalTestimonial(index) {
+        const modal = document.getElementById(`modal-testimonial-${index}`);
+        if (modal) {
+            modal.classList.remove('flex')
+            modal.classList.add('hidden')
+            modal.style.display = 'none';
+        }
+    }
+
+    function openModalThumbnail(index) {
+        const modal = document.getElementById(`modal-${index}`);
+        if (modal) {
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            modal.style.display = 'flex';
+        }
+    }
+
+    function closeModalThumbnail(index) {
+        const modal = document.getElementById(`modal-${index}`);
+        if (modal) {
+            modal.classList.remove('flex')
+            modal.classList.add('hidden')
+            modal.style.display = 'none';
+        }
+    }
+</script>
 
 {{-- Modal Script --}}
 @push('after-scripts')

@@ -137,7 +137,7 @@
             background-color: white;
             border-radius: 10px;
             padding: 20px;
-            max-width: 300px;
+            max-width: 500px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
