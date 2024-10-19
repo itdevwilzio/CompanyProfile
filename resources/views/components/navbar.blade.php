@@ -50,7 +50,7 @@
             <a href="{{ route('front.team') }}">Tentang Kami</a>
         </li>
         <li class="font-roboto transition-all duration-300 hover:text-cp-dark-blue">
-            <a href="">Client Area</a>
+            <a href="{{ route('/login') }}">Client Area</a>
         </li>
     </ul>
 </nav>
