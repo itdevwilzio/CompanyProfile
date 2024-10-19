@@ -184,7 +184,7 @@
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
                         <!-- Link to trigger modal -->
-                        <button onclick="openModalTestimonial({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
+                        <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
                     @endif
                 </p>
             </div>
