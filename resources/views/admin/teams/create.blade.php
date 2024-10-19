@@ -41,12 +41,15 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="team" :value="__('team')" />
-                        <x-text-input id="team" class="block w-full mt-1" type="text" name="team"
-                            :value="old('team')" required autofocus autocomplete="team" />
+                        <x-input-label for="team" :value="__('Team')" />
+                        <select id="team" name="team" class="block w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required autofocus>
+                            <option value="">-- Pilih Tim --</option>
+                            <option value="Pimpinan" {{ old('team') == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
+                            <option value="IT & Administrative Team" {{ old('team') == 'IT & Administrative Team' ? 'selected' : '' }}>IT & Administrative Team</option>
+                            <option value="Technician Team" {{ old('team') == 'Technician Team' ? 'selected' : '' }}>Technician Team</option>
+                        </select>
                         <x-input-error :messages="$errors->get('team')" class="mt-2" />
                     </div>
-
                     <div class="mt-4">
                         <x-input-label for="avatar" :value="__('avatar')" />
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" required

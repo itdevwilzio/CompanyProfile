@@ -48,22 +48,34 @@
     </div>
 
     <!-- SweetAlert2 Script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You are about to update this location!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('update-location-form').submit(); // Submit the form if confirmed
-                }
+   <!-- SweetAlert2 Script -->
+   <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Add event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const teamId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-team-form-${teamId}`);
+
+                    // Show SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#0C3C94',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
+                        }
+                    });
+                });
             });
         });
     </script>

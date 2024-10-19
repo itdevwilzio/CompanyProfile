@@ -60,7 +60,8 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+   <!-- SweetAlert2 Script -->
+   <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Select all delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
@@ -68,19 +69,19 @@
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const aboutId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-client-form-${aboutId}`);
+                    const teamId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-team-form-${teamId}`);
 
-                    // Trigger SweetAlert confirmation
+                    // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: "This action is irreversible!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

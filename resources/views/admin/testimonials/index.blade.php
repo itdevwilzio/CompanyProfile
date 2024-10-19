@@ -47,4 +47,36 @@
             </div>
         </div>
     </div>
+
+        <!-- SweetAlert2 Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select all delete buttons
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+    
+                // Add event listener to each delete button
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const teamId = this.getAttribute('data-id');
+                        const form = document.getElementById(`delete-team-form-${teamId}`);
+    
+                        // Show SweetAlert confirmation
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Anda tidak akan bisa mengembalikan ini!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#0C3C94',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();  // Submit the form if confirmed
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
 </x-app-layout>
