@@ -19,6 +19,7 @@
                             <img src="{{ Storage::url($team->avatar) }}" alt="{{ $team->name }}"
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
+                                <p class="text-sm text-slate-500">Nama</p>
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $team->name }}</h3>
                             </div>
                         </div>
@@ -62,14 +63,14 @@
 
                     // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

@@ -44,7 +44,7 @@ class OurCertificationController extends Controller
 
     public function edit(OurCertification $certification)
     {
-        return view('admin.certifications.edit', compact('certifications'));
+        return view('admin.certifications.edit', compact('certification'));
     }
 
     public function update(UpdateCertificationRequest $request, OurCertification $certification)

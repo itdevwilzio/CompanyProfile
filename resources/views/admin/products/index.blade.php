@@ -49,28 +49,30 @@
     </div>
 
     <!-- SweetAlert2 Script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
 
+            // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const productId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-product-form-${productId}`);
+                    const teamId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-team-form-${teamId}`);
 
+                    // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit();
+                            form.submit();  // Submit the form if confirmed
                         }
                     });
                 });

@@ -43,8 +43,12 @@
 
                     <div class="mt-4">
                         <x-input-label for="team" :value="__('Team')" />
-                        <x-text-input id="team" class="block w-full mt-1" type="text" name="team"
-                            value="{{ $team->team }}" required autofocus autocomplete="team" />
+                        <select id="team" name="team" class="block w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required autofocus>
+                            <option value="">-- Pilih Tim --</option>
+                            <option value="Pimpinan" {{ old('team') == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
+                            <option value="IT & Administrative Team" {{ old('team') == 'IT & Administrative Team' ? 'selected' : '' }}>IT & Administrative Team</option>
+                            <option value="Technician Team" {{ old('team') == 'Technician Team' ? 'selected' : '' }}>Technician Team</option>
+                        </select>
                         <x-input-error :messages="$errors->get('team')" class="mt-2" />
                     </div>
 
@@ -69,23 +73,35 @@
     </div>
 
     <!-- SweetAlert2 Script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You are about to update this team's details!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('update-team-form').submit(); // Submit the form if confirmed
-                }
+
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all delete buttons
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+
+        // Add event listener to each delete button
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const teamId = this.getAttribute('data-id');
+                const form = document.getElementById(`delete-team-form-${teamId}`);
+
+                // Show SweetAlert confirmation
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak akan bisa mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0C3C94',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();  // Submit the form if confirmed
+                    }
+                });
             });
         });
-    </script>
+    });
+</script>
 </x-app-layout>
