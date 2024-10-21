@@ -9,10 +9,10 @@
 
         <!-- Wave SVG Positioned Above the Carousel but outside the container -->
         <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
-    
-            
+
+
         </div>
-        
+
     <!-- Carousel Section -->
     <section id="wave-particles" class="relative w-full h-auto overflow-hidden mt-4">
         <!-- Carousel Container -->
@@ -58,9 +58,9 @@
                 margin-top: 0;
             }
         </style>
-                
-        
-        
+
+
+
         <!-- CSS for Particles -->
         <style>
             .wave-container {
@@ -71,14 +71,14 @@
                 height: 100%;
                 z-index: -1
             }
-        
+
             .particle {
                 position: absolute;
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 50%;
                 animation: float 6s infinite ease-in-out;
             }
-        
+
             @keyframes float {
                 0% { transform: translateY(0) translateX(0); opacity: 1; }
                 25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
@@ -87,7 +87,7 @@
                 100% { transform: translateY(0) translateX(0); opacity: 1; }
             }
         </style>
-        
+
     </div>
 </div>
 
@@ -97,7 +97,7 @@
     <h2 class="font-permanent text-5xl font-bold text-center text-[#0E3995]">
         Buka Peluang Baru dengan Koneksi Internet Terbaik
     </h2>
-    
+
     <!-- Content Section -->
     <div class="flex flex-col items-center md:flex-row justify-between gap-10">
         <!-- Left Content -->
@@ -119,7 +119,7 @@
 
         <!-- Right Content - Single Image -->
         <div class="md:w-7/12">
-            <img src="{{ asset('assets/joins/cover1.jpg') }}" 
+            <img src="{{ asset('assets/joins/cover1.jpg') }}"
                  alt="cover image"
                  class="rounded-lg shadow-lg w-full h-auto object-cover">
         </div>
@@ -135,12 +135,12 @@
                 <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1" alt="star">
             @endfor
         </div>
-        
+
         <!-- Rating Title -->
         <h2 class="font-nunito font-bold text-white text-4xl text-center mb-4">
             <span id="rating" class="rolling-number">4.85</span> / 5 Rating Pelanggan
         </h2>
-        
+
         <!-- Main Heading -->
         <h3 class="font-nunito font-bold text-[#ff9802] text-3xl text-center mb-12">
             Apa Kata Mereka?
@@ -157,13 +157,13 @@
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
                         <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
                     </div>
-                    
+
                     <!-- Client Info -->
                     <div>
                         <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
                         <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
                     </div>
-                    
+
                     <!-- WhatsApp Icon -->
                     <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
                         <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
@@ -173,7 +173,7 @@
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
-                        $randomStars = rand(4, 5); 
+                        $randomStars = rand(4, 5);
                     @endphp
                     @for($i = 0; $randomStars > $i; $i++)
                         <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-5 h-5" alt="star">
@@ -195,38 +195,73 @@
 
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}
-            <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
-                    <!-- Thumbnail Image -->
-                    <div class="w-full h-auto mb-4">
-                        <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
-                    </div>
-                    <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModalThumbnail({{ $loop->index }})">&times;</button>
+        <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div class="bg-white p-8 rounded-lg w-full max-w-3/4 h-3/4 overflow-y-auto relative">
+                <!-- Image Container -->
+                <div class="w-full h-full flex items-center justify-center mb-4">
+                    <!-- Large Image with adjusted size -->
+                    <img id="image-{{ $loop->index }}"
+                        src="{{ Storage::url($testimonial->thumbnail) }}"
+                        alt="Client Thumbnail"
+                        class="object-contain max-w-full max-h-[120vh] rounded-lg">
+                </div>
+
+                <!-- Circular Buttons in the Top Right Corner -->
+                <div class="absolute top-4 right-4 flex space-x-3">
+                    <!-- Fullscreen Button -->
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleFullscreen({{ $loop->index }})">
+                        ⬜ <!-- Fullscreen Icon -->
+                    </button>
+
+                    <!-- Zoom In/Out Buttons -->
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomIn({{ $loop->index }})">
+                        ➕ <!-- Zoom In Icon -->
+                    </button>
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomOut({{ $loop->index }})">
+                        ➖ <!-- Zoom Out Icon -->
+                    </button>
+
+                    <!-- Share to Social Media Button -->
+                    <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="shareImage({{ $loop->index }})">
+                        📤 <!-- Share Icon -->
+                    </button>
+
+                    <!-- Close Button -->
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200" onclick="closeModalThumbnail({{ $loop->index }})">
+                        &times; <!-- Close Icon -->
+                    </button>
                 </div>
             </div>
+        </div>
 
             {{-- Modal testimonial --}}
             <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-testimonial-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
                 <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-                <div class="modal-container relative mx-auto max-w-2xl mt-20">
-                    <div class="modal-content bg-white rounded-lg shadow-lg relative">
-                        <div class="modal-header py-4 px-6 border-b border-gray-200">
+
+                <div class="modal-container relative mx-auto w-full h-full flex items-center justify-center">
+                    <div class="modal-content bg-white rounded-lg shadow-lg relative w-full h-full">
+                        <div class="modal-header py-4 px-6 border-b border-gray-200 flex justify-between items-center">
                             <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
-                            {{-- <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700" data-modal-toggle="modal-{{ $loop->index }}">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button> --}}
+
+                            <!-- Three buttons (Close, Minimize, Fullscreen Toggle) -->
+                            <div class="flex space-x-3">
+                                <button class="modal-close bg-red-500 text-white p-2 rounded-full" onclick="closeModalTestimonial({{ $loop->index }})">
+                                    &times; <!-- Close Button -->
+                                </button>
+                                <button class="minimize-modal bg-yellow-500 text-white p-2 rounded-full" onclick="minimizeModalTestimonial({{ $loop->index }})">
+                                    _ <!-- Minimize Button -->
+                                </button>
+                                <button class="fullscreen-toggle bg-green-500 text-white p-2 rounded-full" onclick="toggleFullscreen({{ $loop->index }})">
+                                    ⬜ <!-- Fullscreen Toggle Button -->
+                                </button>
+                            </div>
                         </div>
-                        <div class="modal-body px-6 py-4">
+
+                        <div class="modal-body px-6 py-4 h-full overflow-auto">
                             <p>
                                 {{ $testimonial->message }}
                             </p>
-                            <button class="modal-close size-8 text-xl rounded-full flex items-center justify-center" onclick="closeModalTestimonial({{ $loop->index }})" data-modal-toggle="modal-{{ $loop->index }}">
-                                &times;
-                            </button>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -243,7 +278,7 @@
             Keunggulan Kami
         </p>
     </div>
-    
+
 
     <div class="flex flex-wrap items-center gap-[20px] justify-center">
         @forelse ($principles as $principle)
@@ -252,7 +287,7 @@
             <div class="thumbnail w-full max-h-[150px] sm:w-[200px] sm:h-[200px] flex items-center justify-center overflow-hidden mt-2">
                 <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-full h-full" alt="thumbnails">
             </div>
-    
+
             <!-- Content Section -->
             <div class="flex flex-col items-center text-center gap-[10px] flex-grow">
                 <div class="flex flex-col gap-[5px] items-center">
@@ -265,17 +300,70 @@
         <p>Belum ada data terbaru</p>
         @endforelse
     </div>
-    
-    
+
+
 </div>
 
 <script>
+    function closeModalThumbnail(index) {
+        document.getElementById('modal-' + index).classList.add('hidden');
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen(index) {
+        const modal = document.getElementById('modal-' + index);
+        if (!document.fullscreenElement) {
+            modal.requestFullscreen().catch(err => console.log(err));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    // Zoom In Functionality
+    function zoomIn(index) {
+        const img = document.getElementById('image-' + index);
+        let currentWidth = img.clientWidth;
+        img.style.width = currentWidth + 100 + "px"; // Increase width by 100px
+    }
+
+    // Zoom Out Functionality
+    function zoomOut(index) {
+        const img = document.getElementById('image-' + index);
+        let currentWidth = img.clientWidth;
+        img.style.width = currentWidth - 100 + "px"; // Decrease width by 100px
+    }
+
+    // Share Image to Social Media (Using Web Share API if supported)
+    function shareImage(index) {
+        const imgSrc = document.getElementById('image-' + index).src;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Check out this image!',
+                text: 'Here is a testimonial image from our client.',
+                url: imgSrc
+            }).then(() => {
+                console.log('Image shared successfully');
+            }).catch(err => console.log('Error sharing the image:', err));
+        } else {
+            alert('Sharing is not supported on your browser.');
+        }
+    }
     function openModalTestimonial(index) {
         const modal = document.getElementById(`modal-testimonial-${index}`);
         if (modal) {
             modal.classList.remove('hidden')
             modal.classList.add('flex')
             modal.style.display = 'flex';
+
+            lightGallery(document.getElementById(`lightgallery-thumbnail-${index}`), {
+                plugins: [lgFullscreen, lgZoom, lgShare],
+                mode: 'lg-fade',
+                speed: 500,
+                zoom: true,
+                share: true,
+                fullscreen: true,
+                preload: 1,
+            });
         }
     }
 
@@ -289,12 +377,32 @@
     }
 
     function openModalThumbnail(index) {
-        const modal = document.getElementById(`modal-${index}`);
-        if (modal) {
-            modal.classList.remove('hidden')
-            modal.classList.add('flex')
-            modal.style.display = 'flex';
+   const modal = document.getElementById(`modal-${index}`);
+    if (modal) {
+        // Show the modal by changing its classes and styles
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.style.display = 'flex';
+
+        // Initialize LightGallery for the thumbnail modal
+        const galleryElement = document.getElementById(`lightgallery-thumbnail-${index}`);
+
+        // Ensure that LightGallery is initialized only once
+        if (!galleryElement.lightGalleryInstance) {
+            galleryElement.lightGalleryInstance = lightGallery(galleryElement, {
+                plugins: [lgFullscreen, lgZoom, lgShare], // Optional for commercial use
+                mode: 'lg-fade',
+                speed: 500,
+                zoom: true,
+                share: true,
+                fullscreen: true,
+                preload: 1,
+            });
+        } else {
+            // If already initialized, just refresh the gallery
+            galleryElement.lightGalleryInstance.refresh();
         }
+    }
     }
 
     function closeModalThumbnail(index) {
@@ -303,6 +411,12 @@
             modal.classList.remove('flex')
             modal.classList.add('hidden')
             modal.style.display = 'none';
+        }
+
+        // Destroy LightGallery when the modal is closed
+        const galleryInstance = document.getElementById(`lightgallery-thumbnail-${index}`);
+        if (galleryInstance && galleryInstance.lgData) {
+            galleryInstance.lgData.destroy(true);
         }
     }
 </script>
@@ -458,6 +572,15 @@
 <script src="{{ asset('js/carousel.js') }}"></script>
 <script src="{{ asset('js/accordion.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css" />
+
+<!-- LightGallery JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+
+<!-- Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/share/lg-share.min.js"></script>
 <script>
     // Join Button hover and scale effect
     const joinButton = document.getElementById('joinButton');

@@ -87,7 +87,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('certifications', OurCertificationController::class);
         });
 
-        
+
         Route::middleware('can:manage product identities')->group(function () {
             Route::resource('product_identities', ProductIdentityController::class);
         });
@@ -99,8 +99,6 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage super teams')->group(function () {
             Route::resource('super_teams', SuperTeamController::class);
         });
-
-
 
         // Route::middleware('can:manage voucher packages')->group(function () {
             Route::resource('locations/{location}/voucher_packages', VoucherPackageController::class);
