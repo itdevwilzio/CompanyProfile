@@ -41,14 +41,14 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
-                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoint</h3>
+                    {{-- <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoint</h3>
 
                     <div class="mt-4">
                         <x-input-label for="keypoint" :value="__('Keypoint')" />
                         <input type="text" class="py-3 border rounded-lg border-slate-300"
                                placeholder="Write your keypoint" name="keypoint" value="{{ old('keypoint') }}">
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
-                    </div>
+                    </div> --}}
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">

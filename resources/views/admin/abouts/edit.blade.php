@@ -44,14 +44,14 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                 
-                    <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
+                    {{-- <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
                 
                     <div class="mt-4">
                         <x-input-label for="keypoint" :value="__('Keypoint')" />
                         <x-text-input id="keypoint" class="block w-full mt-1" type="text" name="keypoint"
                                       value="{{ old('keypoint', $about->keypoint) }}" required autofocus />
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
-                    </div>
+                    </div> --}}
                 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
