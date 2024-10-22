@@ -196,44 +196,55 @@
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}
         <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 flex justify-center items-center z-50">
-            <div class="bg-gray-950/80 p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
+            <div class="bg-transparent p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
                 <!-- Image Container -->
                 
 
                 <!-- Circular Buttons in the Top Right Corner -->
-                <div class="flex space-x-3 justify-end">
+                <ul class="flex space-x-3 justify-end z-10">
                     <!-- Fullscreen Button -->
+                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleFullscreen({{ $loop->index }})">
                         ⬜ <!-- Fullscreen Icon -->
-                    </button>
+                    </button></li>
 
                     <!-- Zoom In/Out Buttons -->
+                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomIn({{ $loop->index }})">
                         ➕ <!-- Zoom In Icon -->
-                    </button>
+                    </button></li>
+                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomOut({{ $loop->index }})">
                         ➖ <!-- Zoom Out Icon -->
-                    </button>
+                    </button></li>
 
                     <!-- Share to Social Media Button -->
-                    <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="shareImage({{ $loop->index }})">
-                        📤 <!-- Share Icon -->
-                    </button>
+                    <li class="relative">
+                        <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center dropshare-{{$loop->index}}" onclick="ShowHideShare(event, {{ $loop->index }})">
+                            📤 <!-- Share Icon -->
+                        </button>
+                        <ul class="p-2 bg-white mt-2 shadow-md rounded-md absolute left-3/4 -translate-x-3/4 min-w-[200px] dropsharebox-{{$loop->index}} hidden">
+                            <li class="py-3 px-2">Bagikan di Facebook</li>
+                            <li class="py-3 px-2">Bagikan di Twitter</li>
+                        </ul>
+                    </li>
 
                     <!-- Close Button -->
+                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200" onclick="closeModalThumbnail({{ $loop->index }})">
                         &times; <!-- Close Icon -->
-                    </button>
-                </div>
+                    </button></li>
+                </ul>
 
                 <div class="w-full h-full flex items-center justify-center mb-4">
                     <!-- Large Image with adjusted size -->
                     <img id="image-{{ $loop->index }}"
                         src="{{ Storage::url($testimonial->thumbnail) }}"
                         alt="Client Thumbnail"
-                        class="object-contain h-full rounded-lg">
+                        class="object-contain h-full rounded-lg  z-10">
                 </div>
             </div>
+            <div class="bg-gray-950/80 absolute top-0 left-0 w-full h-full" onclick="closeModalThumbnail({{ $loop->index }})"></div>
         </div>
 
             {{-- Modal testimonial --}}
@@ -242,21 +253,35 @@
 
                 <div class="modal-container relative mx-auto w-full h-full flex items-center justify-center">
                     <div class="modal-content bg-white rounded-lg shadow-lg relative w-full h-full">
-                        <div class="modal-header py-4 px-6 border-b border-gray-200 flex justify-between items-center">
-                            <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
-
-                            <!-- Three buttons (Close, Minimize, Fullscreen Toggle) -->
-                            <div class="flex space-x-3">
-                                <button class="modal-close bg-red-500 text-white p-2 rounded-full" onclick="closeModalTestimonial({{ $loop->index }})">
-                                    &times; <!-- Close Button -->
-                                </button>
-                                <button class="minimize-modal bg-yellow-500 text-white p-2 rounded-full" onclick="minimizeModalTestimonial({{ $loop->index }})">
-                                    _ <!-- Minimize Button -->
-                                </button>
-                                <button class="fullscreen-toggle bg-green-500 text-white p-2 rounded-full" onclick="toggleFullscreen({{ $loop->index }})">
-                                    ⬜ <!-- Fullscreen Toggle Button -->
-                                </button>
+                        <div class="relative inline-block text-left">
+                            <!-- Share Button -->
+                            <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleShareOptions({{ $loop->index }})">
+                                📤 <!-- Share Icon -->
+                            </button>
+                        
+                            <!-- Dropdown Menu for Share Options -->
+                            <div id="share-options-{{ $loop->index }}" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                                <div class="py-1">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail)) }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700">
+                                        Bagikan ke Facebook
+                                    </a>
+                                    <a href="#" onclick="shareToTwitter({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                        Bagikan ke Twitter
+                                    </a>
+                                    <a href="#" onclick="toggleZoom({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
+                                        Zoom In/Out
+                                    </a>
+                                    <a href="#" onclick="downloadImage({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                        Download Gambar
+                                    </a>
+                                    <a href="#" onclick="closeDropdown({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
+                                        Exit
+                                    </a>
+                                </div>
                             </div>
+                        
+                            <!-- Thumbnail Image -->
+                            <img id="image-{{ $loop->index }}" src="{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}" alt="Testimonial Thumbnail" class="w-full h-auto cursor-pointer">
                         </div>
 
                         <div class="modal-body px-6 py-4 h-full overflow-auto">
@@ -337,7 +362,7 @@
 
     // Share Image to Social Media (Using Web Share API if supported)
     function shareImage(index) {
-        const imgSrc = document.getElementById('image-' + index).src;
+    const imgSrc = document.getElementById('image-' + index).src;
         if (navigator.share) {
             navigator.share({
                 title: 'Check out this image!',
@@ -350,6 +375,25 @@
             alert('Sharing is not supported on your browser.');
         }
     }
+
+    function shareToTwitter(index, fileUrl) {
+        const url = encodeURIComponent(fileUrl);
+        const text = encodeURIComponent('Check out this testimonial!');
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    }
+
+    function shareToWhatsApp(index, fileUrl) {
+        const url = encodeURIComponent(fileUrl);
+        window.open(`https://wa.me/?text=${url}`, '_blank');
+    }
+
+    function downloadImage(index, fileUrl) {
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'testimonial-thumbnail.jpg';
+        link.click();
+    }
+
     function openModalTestimonial(index) {
         const modal = document.getElementById(`modal-testimonial-${index}`);
         if (modal) {
@@ -469,6 +513,14 @@
         });
     });
 
+    function ShowHideShare(event, i) {
+        event.preventDefault();
+        
+    let dropshare = event.target.nextElementSibling;
+    console.log(dropshare)
+
+        dropshare.classList.toggle("hidden");
+    }
 </script>
 @endpush
 
