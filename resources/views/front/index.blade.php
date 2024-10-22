@@ -195,19 +195,13 @@
 
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}
-        <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div class="bg-white p-8 rounded-lg w-full max-w-3/4 h-3/4 overflow-y-auto relative">
+        <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 flex justify-center items-center z-50">
+            <div class="bg-gray-950/80 p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
                 <!-- Image Container -->
-                <div class="w-full h-full flex items-center justify-center mb-4">
-                    <!-- Large Image with adjusted size -->
-                    <img id="image-{{ $loop->index }}"
-                        src="{{ Storage::url($testimonial->thumbnail) }}"
-                        alt="Client Thumbnail"
-                        class="object-contain max-w-full max-h-[120vh] rounded-lg">
-                </div>
+                
 
                 <!-- Circular Buttons in the Top Right Corner -->
-                <div class="absolute top-4 right-4 flex space-x-3">
+                <div class="flex space-x-3 justify-end">
                     <!-- Fullscreen Button -->
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleFullscreen({{ $loop->index }})">
                         ⬜ <!-- Fullscreen Icon -->
@@ -230,6 +224,14 @@
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200" onclick="closeModalThumbnail({{ $loop->index }})">
                         &times; <!-- Close Icon -->
                     </button>
+                </div>
+
+                <div class="w-full h-full flex items-center justify-center mb-4">
+                    <!-- Large Image with adjusted size -->
+                    <img id="image-{{ $loop->index }}"
+                        src="{{ Storage::url($testimonial->thumbnail) }}"
+                        alt="Client Thumbnail"
+                        class="object-contain h-full rounded-lg">
                 </div>
             </div>
         </div>
@@ -566,7 +568,7 @@
 
 @endsection
 
-@push('after-scripts')
+{{-- @push('after-scripts')
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
 <script src="{{ asset('js/carousel.js') }}"></script>
@@ -608,3 +610,4 @@
 
 </script>
 @endpush
+ --}}

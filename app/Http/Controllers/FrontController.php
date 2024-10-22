@@ -95,7 +95,9 @@ class FrontController extends Controller
         *Permintaan Pemasangan Baru*\n\nNama : ".$nama."\nNomor WA : ".$no_wa."\nProduk : ".$product_name;
 
         $BOT_TOKEN = env('BOT_TOKEN_2');
+
         $USER_ID = env('CHAT_ID_2');
+
         $client = new Client();
         $response = $client->post("https://api.telegram.org/bot{$BOT_TOKEN}/sendPhoto", [
             'multipart' => [

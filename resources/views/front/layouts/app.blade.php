@@ -255,6 +255,7 @@
             }
         });
     </script>
+    @stack('after-scripts')
 </body>
 
 </html>
