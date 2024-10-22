@@ -68,8 +68,8 @@
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const aboutId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-client-form-${aboutId}`);
+                    const teamId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-team-form-${teamId}`);
 
                     // Trigger SweetAlert confirmation
                     Swal.fire({
