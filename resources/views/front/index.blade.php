@@ -4,7 +4,7 @@
 <!-- Full Screen Wave and Particle Section -->
 <div id="header" class="relative w-full overflow-hidden bg-[#0E3995]">
     <!-- Container for Carousel and Particles -->
-    <div class="container max-w-[1130px] mx-auto relative pt-2 z-10 main-carousel">
+    <div class="container max-w-[1130px] mx-auto relative pt-2 z-10">
         <x-navbar></x-navbar>
 
         <!-- Wave SVG Positioned Above the Carousel but outside the container -->
@@ -275,7 +275,7 @@
 </div>
 
 {{-- Modal Script --}}
-@push('after-scripts')
+{{-- @push('after-scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Open modal when the trigger is clicked
@@ -307,7 +307,7 @@
     });
 
 </script>
-@endpush
+@endpush --}}
 
 @push('styles')
 <style>
@@ -404,7 +404,7 @@
 
 
 @endsection
-
+{{-- 
 @push('after-scripts')
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
@@ -438,3 +438,4 @@
 
 </script>
 @endpush
+ --}}

@@ -82,7 +82,7 @@
                 <!-- Buttons: Batal & Selanjutnya -->
                 <div class="flex flex-col gap-4 mt-5">
                     <button type="submit" class="p-3 bg-green-600 text-white rounded-full">Selanjutnya</button>
-                    <button type="button" class="p-3 bg-primary text-white rounded-full">Batal</button>
+                    <button type="button" class="p-3 bg-primary text-white rounded-full" onclick="backToStep1()">Batal</button>
                 </div>
             </form>
           </div>
@@ -213,7 +213,7 @@
                     if (step == $(this).data('step')) {
                         $(this).addClass('step-active');
                         $('#form-pemesanan').slideDown(400); // Show the form for step 2
-                        $('.btn-pilih-paket').text('Batal'); // Change button text to "Batal"
+                        $('.btn-pilih-paket').addClass("hidden").text('Batal'); // Change button text to "Batal"
                     } else {
                         $(this).removeClass('step-active');
                     }
@@ -228,10 +228,13 @@
                 if (step == $(this).data('step')) {
                     $(this).addClass('step-active');
                     $('#form-pemesanan').slideUp(400); // Hide the form when going back to step 1
-                    $('.btn-pilih-paket').text('Pilih Paket'); // Change button text back to "Pilih Paket"
+                    $('.btn-pilih-paket').removeClass("hidden").text('Pilih Paket'); // Change button text back to "Pilih Paket"
                 } else {
                     $(this).removeClass('step-active');
                 }
+            });
+            $('[data-product-id]').each(function() {
+                $(this).show(400); // Show all products again
             });
         }
 
