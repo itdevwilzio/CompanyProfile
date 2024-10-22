@@ -60,7 +60,7 @@
                     
                             <x-slot name="content">
                                 <!-- Link for Tim Kami -->
-                                <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
+                                {{-- <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
                                     {{ __('Tim Kami') }}
                                 </x-dropdown-link>
                                 <!-- Link for About Us -->
@@ -75,7 +75,7 @@
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.abouts4.index')" class="text-primary">
                                     {{ __('About Us Line 4') }}
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
                             </x-slot>
                         </x-dropdown>
                     </div>
