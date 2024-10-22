@@ -59,23 +59,23 @@
                             </x-slot>
                     
                             <x-slot name="content">
-                                <!-- Link for Tim Kami -->
-                                {{-- <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
-                                    {{ __('Tim Kami') }}
-                                </x-dropdown-link>
-                                <!-- Link for About Us -->
-                                <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
-                                    {{ __('About Us Line 1') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.abouts2.index')" class="text-primary">
-                                    {{ __('About Us Line 2') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.abouts3.index')" class="text-primary">
-                                    {{ __('About Us Line 3') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.abouts4.index')" class="text-primary">
-                                    {{ __('About Us Line 4') }}
-                                </x-dropdown-link> --}}
+                              {{-- <!-- Link for Tim Kami -->
+                              <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
+                                {{ __('Tim Kami') }}
+                            </x-dropdown-link>
+                            <!-- Link for About Us -->
+                            <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
+                                {{ __('About Us') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
+                                {{ __('Certifications') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.super_teams.index')" class="text-primary">
+                                {{ __('Super Teams') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
+                                {{ __('Product Identity') }}
+                            </x-dropdown-link> --}}
                             </x-slot>
                         </x-dropdown>
                     </div>
