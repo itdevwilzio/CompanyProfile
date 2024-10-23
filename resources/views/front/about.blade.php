@@ -8,7 +8,7 @@
             <div class="w-full lg:w-1/2 text-white lg:pr-10">
                 <h2 class="font-nunito font-bold text-4xl mb-6">{{ $aboutSections->where('type', 'Visions')->first()->name }}</h2>
                 <p class="font-nunito text-base leading-7 mb-8">
-                    {{ $aboutSections->where('type', 'Visions')->first()->description }}
+                    {!! $aboutSections->where('type', 'Visions')->first()->description !!}
                 </p>
             </div>
 

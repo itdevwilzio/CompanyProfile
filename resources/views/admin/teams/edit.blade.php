@@ -45,19 +45,19 @@
                         <x-input-label for="team" :value="__('Team')" />
                         <select id="team" name="team" class="block w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required autofocus>
                             <option value="">-- Pilih Tim --</option>
-                            <option value="Pimpinan" {{ old('team') == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
-                            <option value="IT & Administrative Team" {{ old('team') == 'IT & Administrative Team' ? 'selected' : '' }}>IT & Administrative Team</option>
-                            <option value="Technician Team" {{ old('team') == 'Technician Team' ? 'selected' : '' }}>Technician Team</option>
+                            <option value="Pimpinan" {{ $team->team == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
+                            <option value="IT & Administrative Team" {{ $team->team == 'IT & Administrative Team' ? 'selected' : '' }}>IT & Administrative Team</option>
+                            <option value="Technician Team" {{ $team->team == 'Technician Team' ? 'selected' : '' }}>Technician Team</option>
                         </select>
                         <x-input-error :messages="$errors->get('team')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="avatar" :value="__('Avatar')" />
-                        <img src="{{ Storage::url($team->avatar) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img id="avatar-preview" src="{{ Storage::url($team->avatar) }}" alt="Avatar Preview"
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-3">
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" autofocus
-                            autocomplete="avatar" />
+                            autocomplete="avatar" onchange="previewAvatar(event)" />
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                     </div>
 
@@ -73,35 +73,39 @@
     </div>
 
     <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Select all delete buttons
-        const deleteButtons = document.querySelectorAll('.delete-btn');
+    <!-- Image Preview Script -->
+    <script>
+        function previewAvatar(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const preview = document.getElementById('avatar-preview');
+                preview.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
-        // Add event listener to each delete button
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const teamId = this.getAttribute('data-id');
-                const form = document.getElementById(`delete-team-form-${teamId}`);
+    <!-- SweetAlert2 Form Submission -->
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
 
-                // Show SweetAlert confirmation
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda tidak akan bisa mengembalikan ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#0C3C94',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();  // Submit the form if confirmed
-                    }
-                });
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to update this team member?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-team-form').submit();  // Submit the form if confirmed
+                }
             });
         });
-    });
-</script>
+    </script>
 </x-app-layout>

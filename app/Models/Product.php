@@ -2,23 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+    protected $fillable = ['name', 'slug', 'tagline', 'thumbnail', 'about'];
 
-    protected $fillable = [
-        'name',
-        'tagline',
-        'thumbnail',
-        'about'
-    ];
-
-    public function appointments()
+    public static function boot()
     {
-        return $this->hasMany(Appointment::class);
+        parent::boot();
+
+        static::creating(function ($product) {
+            $product->slug = Str::slug($product->name);
+        });
+
+        static::updating(function ($product) {
+            $product->slug = Str::slug($product->name);
+        });
     }
 }

@@ -17,8 +17,8 @@
                 @forelse ($products as $product)
                     <div class="flex flex-row items-center justify-between p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
                         <div class="flex flex-row items-center gap-x-6">
-                            <img src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}"
-                                class="rounded-2xl object-cover w-[100px] h-[100px]">
+                            <img src="{{ $product->thumbnail ? Storage::url($product->thumbnail) : asset('images/default-thumbnail.png') }}" 
+                                alt="{{ $product->name }}" class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $product->name }}</h3>
                             </div>
@@ -53,13 +53,13 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Select all delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
-
+    
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
-
+                    const productId = this.getAttribute('data-id'); // Get the correct product ID
+                    const form = document.getElementById(`delete-product-form-${productId}`); // Reference the correct form
+    
                     // Show SweetAlert confirmation
                     Swal.fire({
                         title: 'Apakah Anda yakin?',

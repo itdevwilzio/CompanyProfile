@@ -39,8 +39,8 @@
                 
                     <div class="mt-4">
                         <x-input-label for="description" :value="__('Description')" />
-                        <x-text-input id="description" class="block w-full mt-1" type="text" name="description"
-                                      value="{{ old('description', $about->description) }}" required autofocus />
+                        <textarea id="description" class="block w-full mt-1" type="text" name="description" rows="30"
+                                    required autofocus>{{ old('description', $about->description) }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                 
@@ -60,7 +60,11 @@
                     </div>
                 </form>
 
+                <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
                 <script>
+                    /* CEK Editor */
+                    ClassicEditor.create(document.querySelector("#description"));
+
                     document.getElementById('addKeypoint').addEventListener('click', function() {
                         const container = document.querySelector('.keypoints-container');
                         const input = document.createElement('input');

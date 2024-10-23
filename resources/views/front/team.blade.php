@@ -22,7 +22,7 @@
                 {{ $about->name }}
             </h2>
             <p class="font-nunito text-base leading-7 mb-8">
-                {{ $about->description }}
+                {!! $about->description !!}
             </p>
         </div>
 

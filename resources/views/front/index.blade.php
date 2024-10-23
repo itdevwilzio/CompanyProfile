@@ -19,7 +19,7 @@
         <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
             <!-- Carousel Wrapper -->
             <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
-                @forelse ($hero_section as $hero)
+                @foreach ($hero_section as $hero)
                 <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
                     <div class="relative w-full h-full flex justify-center items-center">
                         <img src="{{ Storage::url($hero->banner) }}"
@@ -29,14 +29,7 @@
                             class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
                     </div>
                 </div>
-                @empty
-                <!-- Fallback if no images are available -->
-                <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative">
-                        <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
-                    </div>
-                </div>
-                @endforelse
+                @endforeach
             </div>
         </div>
     </section>
@@ -196,55 +189,44 @@
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}
         <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 flex justify-center items-center z-50">
-            <div class="bg-transparent p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
+            <div class="bg-gray-950/80 p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
                 <!-- Image Container -->
                 
 
                 <!-- Circular Buttons in the Top Right Corner -->
-                <ul class="flex space-x-3 justify-end z-10">
+                <div class="flex space-x-3 justify-end">
                     <!-- Fullscreen Button -->
-                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleFullscreen({{ $loop->index }})">
                         ⬜ <!-- Fullscreen Icon -->
-                    </button></li>
+                    </button>
 
                     <!-- Zoom In/Out Buttons -->
-                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomIn({{ $loop->index }})">
                         ➕ <!-- Zoom In Icon -->
-                    </button></li>
-                    <li>
+                    </button>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomOut({{ $loop->index }})">
                         ➖ <!-- Zoom Out Icon -->
-                    </button></li>
+                    </button>
 
                     <!-- Share to Social Media Button -->
-                    <li class="relative">
-                        <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center dropshare-{{$loop->index}}" onclick="ShowHideShare(event, {{ $loop->index }})">
-                            📤 <!-- Share Icon -->
-                        </button>
-                        <ul class="p-2 bg-white mt-2 shadow-md rounded-md absolute left-3/4 -translate-x-3/4 min-w-[200px] dropsharebox-{{$loop->index}} hidden">
-                            <li class="py-3 px-2">Bagikan di Facebook</li>
-                            <li class="py-3 px-2">Bagikan di Twitter</li>
-                        </ul>
-                    </li>
+                    <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="shareImage({{ $loop->index }})">
+                        📤 <!-- Share Icon -->
+                    </button>
 
                     <!-- Close Button -->
-                    <li>
                     <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200" onclick="closeModalThumbnail({{ $loop->index }})">
                         &times; <!-- Close Icon -->
-                    </button></li>
-                </ul>
+                    </button>
+                </div>
 
                 <div class="w-full h-full flex items-center justify-center mb-4">
                     <!-- Large Image with adjusted size -->
                     <img id="image-{{ $loop->index }}"
                         src="{{ Storage::url($testimonial->thumbnail) }}"
                         alt="Client Thumbnail"
-                        class="object-contain h-full rounded-lg  z-10">
+                        class="object-contain h-full rounded-lg">
                 </div>
             </div>
-            <div class="bg-gray-950/80 absolute top-0 left-0 w-full h-full" onclick="closeModalThumbnail({{ $loop->index }})"></div>
         </div>
 
             {{-- Modal testimonial --}}
@@ -253,35 +235,40 @@
 
                 <div class="modal-container relative mx-auto w-full h-full flex items-center justify-center">
                     <div class="modal-content bg-white rounded-lg shadow-lg relative w-full h-full">
-                        <div class="relative inline-block text-left">
-                            <!-- Share Button -->
-                            <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleShareOptions({{ $loop->index }})">
-                                📤 <!-- Share Icon -->
-                            </button>
-                        
-                            <!-- Dropdown Menu for Share Options -->
-                            <div id="share-options-{{ $loop->index }}" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-                                <div class="py-1">
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail)) }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700">
-                                        Bagikan ke Facebook
-                                    </a>
-                                    <a href="#" onclick="shareToTwitter({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
-                                        Bagikan ke Twitter
-                                    </a>
-                                    <a href="#" onclick="toggleZoom({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
-                                        Zoom In/Out
-                                    </a>
-                                    <a href="#" onclick="downloadImage({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
-                                        Download Gambar
-                                    </a>
-                                    <a href="#" onclick="closeDropdown({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
-                                        Exit
-                                    </a>
+                        <div class="modal-header py-4 px-6 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
+
+                            <!-- Three buttons (Close, Minimize, Fullscreen Toggle) -->
+                            <div class="relative inline-block text-left">
+                                <!-- Share Button -->
+                                <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleShareOptions({{ $loop->index }})">
+                                    📤 <!-- Share Icon -->
+                                </button>
+                            
+                                <!-- Dropdown Menu for Share Options, Centered under the Button -->
+                                <div id="share-options-{{ $loop->index }}" class="hidden absolute left-1/2 transform -translate-x-1/2 mt-4 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                                    <div class="py-1">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail)) }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700">
+                                            Bagikan ke Facebook
+                                        </a>
+                                        <a href="#" onclick="shareToTwitter({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                            Bagikan ke Twitter
+                                        </a>
+                                        <a href="#" onclick="shareToWhatsApp({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                            Bagikan ke WhatsApp
+                                        </a>
+                                        <a href="#" onclick="downloadImage({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                            Download Gambar
+                                        </a>
+                                        <a href="#" onclick="shareImage({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
+                                            Share using Native API
+                                        </a>
+                                    </div>
                                 </div>
+                                
+                                <!-- Thumbnail Image -->
+                                <img id="image-{{ $loop->index }}" src="{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}" alt="Testimonial Thumbnail" class="w-full h-auto">
                             </div>
-                        
-                            <!-- Thumbnail Image -->
-                            <img id="image-{{ $loop->index }}" src="{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}" alt="Testimonial Thumbnail" class="w-full h-auto cursor-pointer">
                         </div>
 
                         <div class="modal-body px-6 py-4 h-full overflow-auto">
@@ -513,14 +500,6 @@
         });
     });
 
-    function ShowHideShare(event, i) {
-        event.preventDefault();
-        
-    let dropshare = event.target.nextElementSibling;
-    console.log(dropshare)
-
-        dropshare.classList.toggle("hidden");
-    }
 </script>
 @endpush
 
@@ -595,7 +574,7 @@
                     </svg>
                 </div>
             </a>
-            <a href="https://youtube.com" target="_blank">
+            <a href="https://www.youtube.com/WIJABACKBONE" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M23.499 6.203c-.273-1.032-1.077-1.837-2.109-2.109C19.528 3.5 12 3.5 12 3.5s-7.528 0-9.39.594c-1.032.273-1.837 1.077-2.109 2.109C0 8.064 0 12 0 12s0 3.936.501 5.797c.273 1.032 1.077 1.837 2.109 2.109C4.472 20.5 12 20.5 12 20.5s7.528 0 9.39-.594c1.032-.273 1.837-1.077 2.109-2.109.501-1.861.501-5.797.501-5.797s0-3.936-.501-5.797zm-13.908 9.44V8.358l6.253 3.643-6.253 3.642z"/>

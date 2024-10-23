@@ -50,7 +50,7 @@
                   <h2 class="font-bold text-lg">{{ $product->name }}</h2>
                   <p class="text-cp-light-grey whitespace-pre-wrap">{{ $product->about }}</p>
                   <button onclick="selectProduct({{ $product->id }})"
-                    class="btn-pilih-paket bg-primary p-3 w-full rounded-full hover:shadow-lg transition-all duration-300 font-bold text-white">
+                    class="btn-pilih-paket bg-primary p-3 w-full rounded-full shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out font-bold text-white">
                     Pilih Paket
                   </button>
                 </div>
@@ -61,30 +61,38 @@
           </div>
           {{-- Step Pemesanan --}}
           <div class="max-w-md w-full hidden" id="form-pemesanan">
-            <form action="{{ route('front.order_product') }}" enctype="multipart/form-data" method="post"
-              class="bg-white rounded-xl p-8 flex flex-col">
-              @csrf
-              <input type="hidden" name="product_id" value="" id="product_id">
-              <label for="nama" class="text-primary font-medium mb-1">Nama Lengkap</label>
-              <input type="text" id="nama" name="nama" required
-                class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
-                placeholder="Masukkan nama lengkap sesuai KTP">
-              <label for="no_wa" class="text-primary font-medium mb-1">Nomor Whatsapp</label>
-              <input type="tel" id="no_wa" name="no_wa" required
-                class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
-                placeholder="Masukkan nomor Whatsapp">
-              <label for="foto_ktp" class="text-primary font-medium mb-1">Foto KTP</label>
-              <input type="file" id="foto_ktp" name="foto_ktp" required
-                class="file:bg-white file:rounded-full file:border-none file:px-3 rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
-                accept="image/*" placeholder="Upload foto KTP">
-                <!-- Preview Image -->
-                <img id="preview" class="w-full h-auto rounded-xl mt-3 hidden" />
-                <!-- Buttons: Batal & Selanjutnya -->
-                <div class="flex flex-col gap-4 mt-5">
-                    <button type="submit" class="p-3 bg-green-600 text-white rounded-full">Selanjutnya</button>
-                    <button type="button" class="p-3 bg-primary text-white rounded-full" onclick="backToStep1()">Batal</button>
-                </div>
-            </form>
+                <form action="{{ route('front.order_product') }}" enctype="multipart/form-data" method="post"
+                    class="bg-white rounded-xl p-8 flex flex-col">
+                    @csrf
+                    <input type="hidden" name="product_id" value="" id="product_id">
+                    
+                    <!-- Nama Lengkap -->
+                    <label for="nama" class="text-primary font-medium mb-1">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required
+                        class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
+                        placeholder="Masukkan nama lengkap sesuai KTP">
+                    
+                    <!-- Nomor Whatsapp -->
+                    <label for="no_wa" class="text-primary font-medium mb-1">Nomor Whatsapp</label>
+                    <input type="tel" id="no_wa" name="no_wa" required
+                        class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
+                        placeholder="Masukkan nomor Whatsapp">
+                    
+                    <!-- Foto KTP -->
+                    <label for="foto_ktp" class="text-primary font-medium mb-1">Foto KTP</label>
+                    <input type="file" id="foto_ktp" name="foto_ktp" required
+                        class="file:bg-white file:rounded-full file:border-none file:px-3 rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
+                        accept="image/*" placeholder="Upload foto KTP">
+                    
+                    <!-- Preview Image -->
+                    <img id="preview" class="w-full h-auto rounded-xl mt-3 hidden" />
+                
+                    <!-- Buttons: Batal & Selanjutnya -->
+                    <div class="flex gap-4 mt-5">
+                        <button type="button" class="w-full p-3 bg-red-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-shadow duration-300" onclick="backToStep1()">Batal</button>
+                        <button type="submit" class="w-full p-3 bg-green-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-shadow duration-300">Selanjutnya</button>
+                    </div>
+                </form>
           </div>
         @endif
       </div>

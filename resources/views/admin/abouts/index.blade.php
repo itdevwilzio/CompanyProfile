@@ -28,7 +28,7 @@
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Description</p>
                             <h3 class="text-xl font-bold text-indigo-950">
-                                {{ \Illuminate\Support\Str::limit($about->description, 100, '...') }}
+                                {{ \Illuminate\Support\Str::limit(strip_tags($about->description), 100, '...') }}
                             </h3>
                         </div>
                         <div class="flex-col hidden md:flex">

@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.hero_sections.update', $heroSection) }}"
+                <form id="hero-section-form" method="POST" action="{{ route('admin.hero_sections.update', $heroSection) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -59,7 +59,6 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Hero Section
                         </button>
@@ -69,4 +68,27 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('hero-section-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit(); // Submit the form if confirmed
+                }
+            })
+        });
+    </script>
 </x-app-layout>

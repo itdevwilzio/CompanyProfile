@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.teams.store') }}" enctype="multipart/form-data">
+                <form id="create-team-form" method="POST" action="{{ route('admin.teams.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
@@ -27,14 +27,14 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="occupation" :value="__('occupation')" />
+                        <x-input-label for="occupation" :value="__('Occupation')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
                             :value="old('occupation')" required autofocus autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="location" :value="__('location')" />
+                        <x-input-label for="location" :value="__('Location')" />
                         <x-text-input id="location" class="block w-full mt-1" type="text" name="location"
                             :value="old('location')" required autofocus autocomplete="location" />
                         <x-input-error :messages="$errors->get('location')" class="mt-2" />
@@ -50,16 +50,18 @@
                         </select>
                         <x-input-error :messages="$errors->get('team')" class="mt-2" />
                     </div>
+
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('avatar')" />
+                        <x-input-label for="avatar" :value="__('Avatar')" />
+                        <!-- Avatar Preview -->
+                        <img id="avatar-preview" class="rounded-2xl object-cover w-[90px] h-[90px] mb-3 hidden" />
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" required
-                            autofocus autocomplete="avatar" />
+                            autofocus autocomplete="avatar" onchange="previewAvatar(event)" />
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Add New Team
                         </button>
                     </div>
@@ -68,4 +70,42 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Image Preview Script -->
+    <script>
+        function previewAvatar(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const preview = document.getElementById('avatar-preview');
+                preview.src = reader.result;
+                preview.classList.remove('hidden'); // Show the preview
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+    <!-- SweetAlert2 Form Submission -->
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to add this new team member?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, add it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('create-team-form').submit();  // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

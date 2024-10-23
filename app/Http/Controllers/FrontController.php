@@ -50,10 +50,10 @@ class FrontController extends Controller
 
     public function product()
     {
-        $testimonials = Testimonial::take(4)->get();
+        
         $products = Product::take(3)->get();
 
-        return view('front.product', compact('products', 'testimonials'));
+        return view('front.product', compact('products'));
     }
 
     public function appointment()

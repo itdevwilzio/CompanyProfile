@@ -16,8 +16,14 @@
                 @forelse ($teams as $team)
                     <div class="flex flex-row items-center justify-between item-card p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
                         <div class="flex flex-row items-center gap-x-6">
-                            <img src="{{ Storage::url($team->avatar) }}" alt="{{ $team->name }}"
-                                class="rounded-2xl object-cover w-[100px] h-[100px]">
+                            <!-- Avatar with fallback if not available -->
+                            @if ($team->avatar)
+                                <img src="{{ Storage::url($team->avatar) }}" alt="{{ $team->name }}"
+                                    class="rounded-2xl object-cover w-[100px] h-[100px]">
+                            @else
+                                <img src="{{ asset('images/default-avatar.png') }}" alt="Default Avatar"
+                                    class="rounded-2xl object-cover w-[100px] h-[100px]">
+                            @endif
                             <div class="flex flex-col">
                                 <p class="text-sm text-slate-500">Nama</p>
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $team->name }}</h3>
@@ -63,14 +69,14 @@
 
                     // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Anda tidak akan bisa mengembalikan ini!",
+                        title: 'Are you sure?',
+                        text: "This action cannot be undone!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#0C3C94',
+                        confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

@@ -36,10 +36,10 @@
 
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <img src="{{ Storage::url($product->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img id="thumbnail-preview" src="{{ Storage::url($product->thumbnail) }}" alt="Thumbnail Preview"
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-3">
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
-                            autocomplete="thumbnail" />
+                            autocomplete="thumbnail" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
@@ -62,35 +62,37 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!-- SweetAlert2 Script -->
-   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Select all delete buttons
-        const deleteButtons = document.querySelectorAll('.delete-btn');
 
-        // Add event listener to each delete button
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const teamId = this.getAttribute('data-id');
-                const form = document.getElementById(`delete-team-form-${teamId}`);
+    <!-- Image Preview Script -->
+    <script>
+        function previewThumbnail(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const preview = document.getElementById('thumbnail-preview');
+                preview.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
-                // Show SweetAlert confirmation
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda tidak akan bisa mengembalikan ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#0C3C94',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();  // Submit the form if confirmed
-                    }
-                });
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to update this product?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-product-form').submit();  // Submit the form if confirmed
+                }
             });
         });
-    });
     </script>
 </x-app-layout>
