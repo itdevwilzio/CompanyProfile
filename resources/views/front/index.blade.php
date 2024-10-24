@@ -1,5 +1,15 @@
 @extends('front.layouts.app')
 
+@section('head')
+    <meta name="description" content="Nikmati koneksi internet terbaik dengan Wilzio. Bergabunglah dengan kami dan menjadi bagian dari gerakan untuk memperluas internet cepat dan andal di seluruh Indonesia.">
+    <meta name="keywords" content="Internet, ISP, Wilzio, Internet Cepat, Internet Andal, Indonesia, Bulungan, Kaltara, Pura Sajau">
+    <meta name="author" content="Wilzio Penyedia Internet">
+    <meta property="og:title" content="Wilzio Penyedia Internet">
+    <meta property="og:description" content="Buka Peluang Baru dengan Koneksi Internet Terbaik. Bergabunglah dengan WIJA BACKBONE untuk internet cepat dan berkualitas.">
+    <meta property="og:image" content="{{ asset('assets/joins/cover1.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 @section('content')
 <!-- Full Screen Wave and Particle Section -->
 <div id="header" class="relative w-full overflow-hidden bg-[#0E3995]">

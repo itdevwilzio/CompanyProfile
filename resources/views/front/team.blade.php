@@ -1,5 +1,15 @@
 @extends('front.layouts.app')
 
+@section('head')
+    <meta name="description" content="Pelajari lebih lanjut tentang Wilzio dan misi kami untuk menyediakan layanan internet berkualitas tinggi. Jelajahi tim super kami, sertifikasi, dan lainnya.">
+    <meta name="keywords" content="Wilzio, Penyedia Internet, Layanan Internet, Tim Super, Sertifikasi, Indonesia">
+    <meta name="author" content="Wilzio Penyedia Internet">
+    <meta property="og:title" content="Tentang Wilzio - Penyedia Internet Terkemuka">
+    <meta property="og:description" content="Wilzio menawarkan layanan internet terbaik di Indonesia. Temukan perjalanan kami, tim super kami, dan sertifikasi yang menjadikan kami pilihan terbaik.">
+    <meta property="og:image" content="{{ asset('assets/teams/Thank-min.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 @section('content')
     <!-- Header Section -->
     <div id="header" class="relative">

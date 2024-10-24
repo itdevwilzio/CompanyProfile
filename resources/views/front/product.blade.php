@@ -1,4 +1,15 @@
 @extends('front.layouts.app')
+
+@section('head')
+    <meta name="description" content="Nikmati layanan WILZIO Home Internet dengan 3 langkah mudah. Pilih paket internet terbaik dan lakukan pemesanan dengan cepat.">
+    <meta name="keywords" content="WILZIO, Home Internet, Internet Packages, Pemesanan Internet, Layanan Internet, Fast Internet">
+    <meta name="author" content="Wilzio Internet Provider">
+    <meta property="og:title" content="Wilzio Home Internet - Pilih Paket dan Pesan Sekarang">
+    <meta property="og:description" content="Nikmati layanan WILZIO Home Internet dengan 3 langkah mudah. Pilih paket internet terbaik dan lakukan pemesanan dengan cepat.">
+    <meta property="og:image" content="{{ asset('assets/icons/check.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 @section('content')
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">

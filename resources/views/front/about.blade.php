@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('front.layouts.app')
+
+@section('head')
+    <meta name="description" content="Lahir untuk Indonesia - Visi dan Misi">
+    <meta name="keywords" content="Visi, Misi, Indonesia, APJII, Penyedia Layanan Internet, Tim Super">
+    <meta name="author" content="Wilzio Penyedia Internet">
+@endsection
 
 @section('content')
     <!-- Born For Indonesia Section -->
