@@ -21,24 +21,36 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
+                    <!-- Heading Input -->
                     <div>
-                        <x-input-label for="heading" :value="__('heading')" />
+                        <x-input-label for="heading" :value="__('Heading')" />
                         <x-text-input id="heading" class="block w-full mt-1" type="text" name="heading"
                             value="{{ $heroSection->heading }}" required autofocus autocomplete="heading" />
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
 
+                    <!-- Banner Input (Optional) -->
                     <div class="mt-4">
-                        <x-input-label for="banner" :value="__('banner')" />
+                        <x-input-label for="banner" :value="__('Banner')" />
                         <img src="{{ Storage::url($heroSection->banner) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
                         <x-text-input id="banner" class="block w-full mt-1" type="file" name="banner" autofocus
                             autocomplete="banner" />
                         <x-input-error :messages="$errors->get('banner')" class="mt-2" />
+                        <p class="text-sm text-gray-500">Leave blank if you don't want to change the banner.</p>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                    <!-- Submit and Cancel Buttons -->
+                    <div class="flex items-center justify-end mt-4 gap-4">
+                        <!-- Cancel Button -->
+                        <a href="{{ route('admin.hero_sections.index') }}" 
+                            class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                            Batal
+                        </a>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Hero Section
                         </button>
                     </div>
@@ -68,7 +80,7 @@
                 if (result.isConfirmed) {
                     this.submit(); // Submit the form if confirmed
                 }
-            })
+            });
         });
     </script>
 </x-app-layout>

@@ -19,6 +19,7 @@
 
                 <form method="POST" action="{{ route('admin.clients.store') }}" enctype="multipart/form-data">
                     @csrf
+                    <!-- Name Input -->
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
@@ -26,6 +27,7 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
+                    <!-- Occupation Input -->
                     <div class="mt-4">
                         <x-input-label for="occupation" :value="__('Occupation')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
@@ -33,18 +35,26 @@
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
+                    <!-- Avatar Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('avatar')" />
+                        <x-input-label for="avatar" :value="__('Avatar')" />
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" required
-                            autofocus autocomplete="avatar" />
+                            onchange="previewImage(event, 'avatar-preview')" />
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+                        
+                        <!-- Avatar Preview -->
+                        <img id="avatar-preview" class="mt-4 rounded-md object-cover w-[200px] h-[200px]" style="display: none;">
                     </div>
 
+                    <!-- Logo Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('logo')" />
+                        <x-input-label for="logo" :value="__('Logo')" />
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required
-                            autofocus autocomplete="logo" />
+                            onchange="previewImage(event, 'logo-preview')" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                        
+                        <!-- Logo Preview -->
+                        <img id="logo-preview" class="mt-4 rounded-md object-cover w-[200px] h-[200px]" style="display: none;">
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -57,4 +67,17 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript to preview images -->
+    <script>
+        function previewImage(event, previewId) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById(previewId);
+                preview.src = reader.result;
+                preview.style.display = 'block'; // Show the image preview
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>

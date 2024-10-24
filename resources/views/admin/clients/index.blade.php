@@ -29,15 +29,17 @@
                             <h3 class="text-xl font-bold text-indigo-950">{{ $client->occupation }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
+                            <!-- Edit Button -->
                             <a href="{{ route('admin.clients.edit', $client) }}"
-                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
+                        
+                            <!-- Delete Button -->
                             <form id="delete-client-form-{{ $client->id }}" action="{{ route('admin.clients.destroy', $client) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn"
-                                    data-id="{{ $client->id }}">
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn" data-id="{{ $client->id }}">
                                     Delete
                                 </button>
                             </form>

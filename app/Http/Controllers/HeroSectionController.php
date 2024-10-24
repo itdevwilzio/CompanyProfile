@@ -71,19 +71,21 @@ class HeroSectionController extends Controller
      */
     public function update(UpdateHeroSectionRequest $request, HeroSection $heroSection)
     {
-        //
         DB::transaction(function () use ($request, $heroSection) {
             $validated = $request->validated();
-
+    
+            // Check if a new banner is uploaded, otherwise keep the existing one
             if ($request->hasFile('banner')) {
                 $bannerPath = $request->file('banner')->store('banners', 'public');
                 $validated['banner'] = $bannerPath;
+            } else {
+                $validated['banner'] = $heroSection->banner; // Keep the old banner if no new one is uploaded
             }
-
+    
             $heroSection->update($validated);
         });
-
-        return redirect()->route('admin.hero_sections.index');
+    
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Hero Section updated successfully.');
     }
 
     /**

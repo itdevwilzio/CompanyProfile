@@ -22,7 +22,7 @@ class SuperTeamController extends Controller
     
     public function edit(SuperTeam $superTeam)
     {
-        return view('admin.super_teams.edit', compact('super_teams'));
+        return view('admin.super_teams.edit', compact('superTeam'));
     }
 
     public function store(StoreSuperTeamRequest $request)

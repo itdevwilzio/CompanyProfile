@@ -29,23 +29,24 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <img id="thumbnail-preview" src="{{ Storage::url($principle->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
+                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <img src="{{ Storage::url($principle->thumbnail) }}" alt=""
+                            class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
-                            autocomplete="thumbnail" onchange="previewThumbnail(event)" />
+                            autocomplete="thumbnail" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="subtitle" :value="__('Subtitle')" />
+                        <x-input-label for="subtitle" :value="__('subtitle')" />
                         <textarea name="subtitle" id="subtitle" cols="30" rows="5"
                             class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
                         <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" id="update-btn" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                    <div class="flex items-center justify-end mt-4">                    
+                        <button type="submit" id="update-btn" 
+                            class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full hover:bg-indigo-800 transition-all duration-300 ease-in-out">
                             Update Principle
                         </button>
                     </div>
@@ -56,15 +57,19 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <!-- SweetAlert2 Script -->
-    <script>
+   <!-- SweetAlert2 Script -->
+   <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const teamId = this.getAttribute('data-id');
                     const form = document.getElementById(`delete-team-form-${teamId}`);
+
+                    // Show SweetAlert confirmation
                     Swal.fire({
                         title: 'Apakah Anda yakin?',
                         text: "Anda tidak akan bisa mengembalikan ini!",
@@ -76,7 +81,7 @@
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit();
+                            form.submit();  // Submit the form if confirmed
                         }
                     });
                 });
@@ -84,15 +89,15 @@
         });
     </script>
 
-    <!-- Image Preview Script -->
-    <script>
-        function previewThumbnail(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const preview = document.getElementById('thumbnail-preview');
-                preview.src = reader.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
+        <!-- Image Preview Script -->
+        <script>
+            function previewThumbnail(event) {
+                const reader = new FileReader();
+                reader.onload = function(){
+                    const preview = document.getElementById('thumbnail-preview');
+                    preview.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
 </x-app-layout>

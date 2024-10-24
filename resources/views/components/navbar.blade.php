@@ -54,8 +54,6 @@
             <a href="">Client Area</a>
         </li>
     </ul>
-    
-    
 </nav>
 
 <!-- Add Script for Toggle Dropdown -->

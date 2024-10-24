@@ -53,7 +53,8 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" 
+                            class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Client
                         </button>
                     </div>
@@ -65,34 +66,23 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!-- SweetAlert2 Script -->
-   <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Select all delete buttons
-            const deleteButtons = document.querySelectorAll('.delete-btn');
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default action (submitting the form)
 
-            // Add event listener to each delete button
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
-
-                    // Show SweetAlert confirmation
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Anda tidak akan bisa mengembalikan ini!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#0C3C94',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
-                        }
-                    });
-                });
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak akan bisa mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-client-form').submit(); // Submit the form if confirmed
+                }
             });
         });
     </script>

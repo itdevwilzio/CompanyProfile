@@ -43,8 +43,13 @@
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('thumbnail')" />
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
-                            autofocus autocomplete="thumbnail" />
+                            autofocus autocomplete="thumbnail" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div class="mt-4">
+                        <img id="thumbnail-preview" class="rounded-md object-cover w-[200px] h-[200px]" style="display: none;">
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -57,4 +62,17 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript to preview thumbnail image -->
+    <script>
+        function previewThumbnail(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('thumbnail-preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';  // Show the image preview
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>
