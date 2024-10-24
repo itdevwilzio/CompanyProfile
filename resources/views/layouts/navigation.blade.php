@@ -59,22 +59,25 @@
                             </x-slot>
                     
                             <x-slot name="content">
-                                <!-- Link for Tim Kami -->
-                                <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
-                                    {{ __('Tim Kami') }}
-                                </x-dropdown-link>
                                 <!-- Link for About Us -->
                                 <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
                                     {{ __('About Us') }}
                                 </x-dropdown-link>
+                                <!-- Link for Certications -->
                                 <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
                                     {{ __('Certifications') }}
                                 </x-dropdown-link>
+                                <!-- Link for Product Identity -->
+                                <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
+                                    {{ __('Product Identity') }}
+                                </x-dropdown-link>
+                                <!-- Link for Super Teamss -->
                                 <x-dropdown-link :href="route('admin.super_teams.index')" class="text-primary">
                                     {{ __('Super Teams') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
-                                    {{ __('Product Identity') }}
+                                <!-- Link for Tim Kami -->
+                                <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
+                                    {{ __('Tim Kami') }}
                                 </x-dropdown-link>
 
                             </x-slot>

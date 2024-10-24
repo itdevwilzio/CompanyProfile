@@ -80,14 +80,15 @@
             event.preventDefault(); // Prevent the default button action
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you want to update this product?",
+                title: 'Apakah Anda yakin?',
+                text: "Apakah Anda ingin memperbarui produk ini?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('update-product-form').submit();  // Submit the form if confirmed

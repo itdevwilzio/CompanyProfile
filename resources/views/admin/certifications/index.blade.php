@@ -29,7 +29,7 @@
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Description</p>
                             <h3 class="text-xl font-bold text-indigo-950">
-                                {{ \Illuminate\Support\Str::limit($certification->description, 100, '...') }}
+                                {{ strip_tags($certification->description) }}
                             </h3>
                         </div>
                         <div class="flex-col hidden md:flex">
@@ -61,7 +61,6 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- SweetAlert2 Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Select all delete buttons
@@ -70,8 +69,8 @@
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
+                    const certificationId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-certification-form-${certificationId}`);
 
                     // Show SweetAlert confirmation
                     Swal.fire({

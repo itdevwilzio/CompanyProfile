@@ -20,7 +20,7 @@
     
     <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all z-[999] mx-auto" id="navbar">
         <button id="close-navbar-mobile"
-            class="h-8 border border-red-400 bg-red-700 px-2 -mr-5 -mt-5 flex items-center justify-center text-white self-end rounded mb-10 lg:hidden">
+            class="h-8 border border-red-400 bg-red-700 px-2 -mr-5 -mt-5 flex items-center justify-center text-white self-end rounded mb-10 lg:hidden transition-colors duration-300 ease-in-out hover:bg-yellow-500">
             <i class="feather icon-x me-1"></i> Close
         </button>
         <li

@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.super_teams.update', $superTeam) }}" enctype="multipart/form-data">
+                <form id="update-super-team-form" method="POST" action="{{ route('admin.super_teams.update', $superTeam) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Super Team
                         </button>
                     </div>
@@ -62,4 +62,27 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda ingin memperbarui Super Team ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-super-team-form').submit();  // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

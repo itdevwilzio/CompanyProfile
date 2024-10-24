@@ -69,14 +69,14 @@
 
                     // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: "This action cannot be undone!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

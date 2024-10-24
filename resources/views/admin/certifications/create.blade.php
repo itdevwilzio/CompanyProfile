@@ -35,11 +35,15 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
-                    <!-- Logo Input -->
+                    <!-- Logo Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="logo" :value="__('Logo')" />
-                        <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required />
+                        <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required
+                                      onchange="previewLogo(event)" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+
+                        <!-- Image Preview -->
+                        <img id="logo-preview" src="#" alt="Logo Preview" class="mt-4 rounded-lg object-cover w-[200px] h-[200px]" style="display: none;">
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -48,8 +52,24 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
+
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector("#description"));
+
+        // Image Preview Script
+        function previewLogo(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('logo-preview');
+                preview.src = reader.result;
+                preview.style.display = 'block'; // Show the image preview
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>

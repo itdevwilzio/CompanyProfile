@@ -111,12 +111,12 @@ textarea {
     letter-spacing: inherit;
     color: inherit;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 button,
 select {
-    text-transform: none
+    text-transform: none;
 }
 
 button,
@@ -125,7 +125,26 @@ input:where([type=reset]),
 input:where([type=submit]) {
     -webkit-appearance: button;
     background-color: transparent;
-    background-image: none
+    background-image: none;
+    /* Add button shadow like the one from your class */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 9999px; /* Full-rounded */
+    padding: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary, #007bff); /* Use your primary color variable or fallback */
+}
+
+/* Add hover glowing shadow */
+button:hover {
+    box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0.8);
+}
+
+/* Optional: Add focus state to give it better accessibility */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
 :-moz-focusring {

@@ -6,123 +6,57 @@
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
             
-            <h2 class="font-nunito font-bold text-white text-4xl text-center mb-12">
+            <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12">
                 Tentang Kami
             </h2>
         </div>
     </div>
 
     <!-- Section: Born for Indonesia -->
-<section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
-    <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-        @forelse ($abouts as $about)
-        <!-- Text Section -->
-        <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
-            <h2 class="font-nunito font-bold text-4xl mb-6">
-                {{ $about->name }}
-            </h2>
-            <p class="font-nunito text-base leading-7 mb-8">
-                {!! $about->description !!}
-            </p>
-        </div>
 
-        <!-- Image Section -->
-        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
-            <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
-                <img src="{{ Storage::url($about->thumbnail) }}" 
-                    class="object-cover w-full h-full"
-                    alt="{{ $about->name }}">
+    <section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
+            @foreach ($abouts as $about)
+            <!-- Text Section -->
+            <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
+                <h2 class="font-nunito font-bold text-4xl mb-6">
+                    {{ $about->name }}
+                </h2>
+                <p class="font-nunito text-base leading-7 mb-8">
+                    {!! $about->description !!}
+                </p>
             </div>
-        </div>
-        @empty
-            <p class="text-white">No about sections available</p>
-        @endforelse
-    </div>
-</section>
-
-<!-- Section: Product Identity -->
-<section id="product-identity" class="w-full py-16">
-    <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-10">
-        @forelse ($product_identities as $product_identity)
-        <!-- Logo Section with Hover Effect -->
-        <div class="relative w-full lg:w-1/2 text-white flex justify-center items-center bg-white p-4 rounded-lg">
-            <img src="{{ Storage::url($product_identity->logo) }}" 
-            class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom filter brightness-150" 
-            alt="{{ $product_identity->name }} Logo">
-        </div>
-        
-        <!-- Description Section -->
-        <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
-            <h2 class="font-nunito font-bold text-4xl mb-2">
-                {{ $product_identity->name }}
-            </h2>
-            <p class="text-lg leading-7 mb-2">
-                {{ $product_identity->description }}
-            </p>
-            
-            <!-- Dropdown Button with Hover Effect -->
-            <div x-data="{ open: false }" class="bg-white text-blue-900 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-[#E8F0FD]">
-                <!-- Accordion Header -->
-                <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
-                    <div class="flex items-center gap-2">
-                        <!-- Icon (Conditional Rendering) -->
-                        <template x-if="!open">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM8 12h8m-4-4v8" />
-                            </svg>
-                        </template>
-                        <template x-if="open">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 2a6 6 0 00-6 6c0 2.22 1.21 4.15 3 5.19V15a1 1 0 001 1h4a1 1 0 001-1v-1.81a6.978 6.978 0 003-5.19 6 6 0 00-6-6zm-1 13h2v2h-2v-2z"/>
-                            </svg>
-                        </template>
-                        <!-- Title -->
-                        <h3 class="font-bold text-lg">{{ __('Arti ' . $product_identity->name . '?') }}</h3>
-                    </div>
-                    <!-- Arrow Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                    </svg>
-                </div>
-            
-                <!-- Accordion Content -->
-                <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-4">
-                    <p class="text-sm mb-4">
-                        {!! $product_identity->contentl1 !!}
-                    </br>
-                        {!! $product_identity->contentl2 !!}
-                    </br>
-                        {!! $product_identity->contentl3 !!}
-                    </p>
+    
+            <!-- Image Section -->
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+                <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                    <img src="{{ Storage::url($about->thumbnail) }}" 
+                        class="object-cover w-full h-full"
+                        alt="{{ $about->name }}">
                 </div>
             </div>
+            @endforeach
         </div>
-        @empty
-            <p>No product identity available</p>
-        @endforelse
-    </div>
-</section>
+    </section>
 
-
-
-    <!-- Identitas Produk Section -->
-    {{-- <section id="product-identity" class="w-full py-16">
+    <!-- Section: Product Identity -->
+    <section id="product-identity" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-10">
-            
+            @foreach ($product_identities as $product_identity)
             <!-- Logo Section with Hover Effect -->
             <div class="relative w-full lg:w-1/2 text-white flex justify-center items-center bg-white p-4 rounded-lg">
-                <img src="{{ asset('assets/teams/blue-rounded.png') }}" 
+                <img src="{{ Storage::url($product_identity->logo) }}" 
                 class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom filter brightness-150" 
-                alt="Wija Backbone Logo">
+                alt="{{ $product_identity->name }} Logo">
             </div>
             
-            <!-- Description Section -->
+            <!-- Product Identity Section -->
             <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
                 <h2 class="font-nunito font-bold text-4xl mb-2">
-                    Identitas Produk
+                    {{ $product_identity->name }}
                 </h2>
                 <p class="text-lg leading-7 mb-2">
-                    WIJA BACKBONE merupakan produk layanan internet utama yang kami tawarkan, dengan menggunakan teknologi terkini, menyediakan koneksi internet cepat, serta harga yang terjangkau.
+                    {!! $product_identity->description !!}
                 </p>
                 
                 <!-- Dropdown Button with Hover Effect -->
@@ -142,7 +76,7 @@
                                 </svg>
                             </template>
                             <!-- Title -->
-                            <h3 class="font-bold text-lg">Arti WIJA BACKBONE ?</h3>
+                            <h3 class="font-bold text-lg">{{ __('Arti ' . $product_identity->name . '?') }}</h3>
                         </div>
                         <!-- Arrow Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -153,45 +87,41 @@
                     <!-- Accordion Content -->
                     <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-4">
                         <p class="text-sm mb-4">
-                            <strong>"WIJA"</strong> berasal dari bahasa Sanskerta yang artinya benih yang berpotensi menjadi luar biasa kuat dan besar di masa depan.
-                        </p>
-                        <p class="text-sm mb-4">
-                            <strong>"BACKBONE"</strong> dalam jaringan adalah pondasi vital yang mendukung koneksi dan akses, mengatur lalu lintas data, dan memastikan kinerja jaringan yang lancar dan andal.
-                        </p>
-                        <p class="text-sm">
-                            Jadi Arti <strong>"WIJA BACKBONE"</strong> adalah sebuah kekuatan dan potensi, untuk menjadi pusat dari jaringan Internet yang tumbuh dan berkembang di masa depan, dengan dasar yang kokoh dan inovatif untuk menjamin kinerja jaringan yang optimal dan terpercaya.
+                            {!! $product_identity->contentl1 !!}
+                        </br>
+                            {!! $product_identity->contentl2 !!}
+                        </br>
+                            {!! $product_identity->contentl3 !!}
                         </p>
                     </div>
                 </div>
-
             </div>
+            @endforeach
         </div>
-    </section> --}}
+    </section>
 
     <section id="certification" class="w-full py-16 bg-primary relative overflow-hidden">
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            @forelse ($certifications as $certification)
+            @foreach ($certifications as $certification)
                 <!-- Text Section -->
                 <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
                     <h2 class="font-nunito font-bold text-4xl mb-6">
                         {{ $certification->title }}
                     </h2>
                     <p class="font-nunito text-base leading-7 mb-8">
-                        {{ $certification->description }}
+                        {!! $certification->description  !!}
                     </p>
                 </div>
-
+    
                 <!-- Image Section -->
                 <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
                     <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
                         <img src="{{ Storage::url($certification->logo) }}" 
-                             class="object-cover w-full h-full"
-                             alt="{{ $certification->title }}">
+                                class="object-cover w-full h-full"
+                                alt="{{ $certification->title }}">
                     </div>
                 </div>
-            @empty
-                <p class="text-white">No certifications available</p>
-            @endforelse
+            @endforeach
         </div>
     </section>
 
@@ -199,7 +129,7 @@
 
     <section id="super-team" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10 text-primary">
-            @forelse($super_teams as $super_team)
+            @foreach($super_teams as $super_team)
                 <!-- Image Section with Hover Effect -->
                 <div class="w-full lg:w-1/2 flex justify-center">
                     @if($super_team->image)
@@ -212,41 +142,31 @@
                                 alt="Super Team Image">
                     @endif
                 </div>
-
+    
                 <!-- Text Section with Hover Effect -->
                 <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
                     <h2 class="font-nunito font-bold text-4xl mb-4">{{ $super_team->title }}</h2>
                     <p class="text-lg leading-7 mb-4">
-                        {{ $super_team->description }}
+                        {!! $super_team->description !!}
                     </p>
                     <p class="text-lg leading-7">
                         {{ $super_team->additional_info }}
                     </p>
                 </div>
-            @empty
-                <!-- Display this if there are no super teams -->
-                <div class="w-full text-center text-primary">
-                    <h2 class="font-nunito font-bold text-4xl mb-4">Super Team</h2>
-                    <p class="text-lg leading-7 mb-4">
-                        Tim kami yang solid dan profesional menggunakan teknologi terkini untuk memberikan layanan internet yang berkualitas dan handal bagi pelanggan di seluruh Indonesia. Kami berfokus pada inovasi dan kepuasan pelanggan untuk memastikan setiap layanan yang kami berikan memenuhi standar tertinggi.
-                    </p>
-                    <p class="text-lg leading-7">
-                        Kami terus melakukan pengembangan dan inovasi untuk memenuhi kebutuhan pelanggan, serta memegang teguh nilai-nilai profesionalisme, integritas, dan kejujuran dalam menjalankan bisnis. Komitmen ini menjadi landasan utama kami dalam memberikan layanan terbaik dan membangun kepercayaan jangka panjang dengan pelanggan.
-                    </p>
-                </div>
-            @endforelse
+            @endforeach
         </div>
     </section>
 
-    
+    <!-- Our Team Section -->
 
+    
     <section id="teams" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
             
             {{-- Section for Pimpinan --}}
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">Pimpinan Kami</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @forelse ($teams->where('team', 'Pimpinan') as $team)
+                @foreach ($teams->where('team', 'Pimpinan') as $team)
                     <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
@@ -255,15 +175,13 @@
                         <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
                         <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
                     </div>
-                @empty
-                    <p class="text-white">No team members available</p>
-                @endforelse
+                @endforeach
             </div>
     
             {{-- Section for IT & Administrative Team --}}
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">IT & Administrative Team</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @forelse ($teams->where('team', 'IT & Administrative Team') as $team)
+                @foreach ($teams->where('team', 'IT & Administrative Team') as $team)
                     <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
@@ -272,15 +190,13 @@
                         <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
                         <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
                     </div>
-                @empty
-                    <p class="text-white">No team members available</p>
-                @endforelse
+                @endforeach
             </div>
     
             {{-- Section for Technician --}}
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">Technician</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @forelse ($teams->where('team', 'Technician') as $team)
+                @foreach ($teams->where('team', 'Technician') as $team)
                     <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
@@ -289,9 +205,7 @@
                         <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
                         <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
                     </div>
-                @empty
-                    <p class="text-white">No team members available</p>
-                @endforelse
+                @endforeach
             </div>
     
         </div>

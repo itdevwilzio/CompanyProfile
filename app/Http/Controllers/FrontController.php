@@ -125,13 +125,7 @@ class FrontController extends Controller
 
     public function location(Request $request) 
     {
-        if ($request->filled('search')) {
-            $locations = Location::where('name', 'LIKE', '%'.$request->search.'%')->get();
-        } else {
-            $locations = Location::all();
-        }
-
-        return view('front.location', compact('locations'));
+        return view('front.location');
     }
 
     public function locationOrder(Location $location)

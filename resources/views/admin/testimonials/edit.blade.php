@@ -17,13 +17,13 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.testimonials.update', $testimonial) }}"
+                <form id="update-testimonial-form" method="POST" action="{{ route('admin.testimonials.update', $testimonial) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    
                     <div class="mt-4">
                         <x-input-label for="project_client" :value="__('project_client')" />
-
                         <select name="project_client_id" id="project_client_id"
                             class="w-full py-3 pl-3 border rounded-lg border-slate-300">
                             <option value="{{ $testimonial->client->id }}">{{ $testimonial->client->name }}</option>
@@ -31,7 +31,6 @@
                                 <option value="{{ $client->id }}">{{ $client->name }}</option>
                             @endforeach
                         </select>
-
                         <x-input-error :messages="$errors->get('project_client')" class="mt-2" />
                     </div>
 
@@ -51,8 +50,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Testimonial
                         </button>
                     </div>
@@ -61,4 +59,27 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda ingin memperbarui Testimonial ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-testimonial-form').submit();  // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

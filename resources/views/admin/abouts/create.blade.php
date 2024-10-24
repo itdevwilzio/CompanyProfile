@@ -29,8 +29,11 @@
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
-                            autofocus autocomplete="thumbnail" />
+                            autofocus autocomplete="thumbnail" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
+                        
+                        <!-- Thumbnail Preview -->
+                        <img id="thumbnail-preview" class="mt-4 rounded-lg object-cover w-[200px] h-[200px]" style="display: none;">
                     </div>
 
                     <!-- Rich Text Editor for Description -->
@@ -47,7 +50,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -55,7 +57,17 @@
     <!-- CKEditor Script -->
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
-        /* CEK Editor */
         ClassicEditor.create(document.querySelector("#description"));
+
+        // Image Preview Script
+        function previewThumbnail(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('thumbnail-preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';  // Show the preview image
+            };
+            reader.readAsDataURL(event.target.files[0]); // Read the file and trigger the event
+        }
     </script>
 </x-app-layout>

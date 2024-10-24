@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.product_identities.update', $productIdentity) }}" enctype="multipart/form-data">
+                <form id="update-product-identity-form" method="POST" action="{{ route('admin.product_identities.update', $productIdentity) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -45,8 +45,8 @@
                         <x-input-error :messages="$errors->get('details')" class="mt-2" />
                     </div>
 
-                     <!-- Vision Input -->
-                     <div class="mt-4">
+                    <!-- Vision Input -->
+                    <div class="mt-4">
                         <x-input-label for="vision" :value="__('Vision')" />
                         <textarea id="vision" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
                                   name="vision" rows="4">{{ old('vision', $productIdentity->vision) }}</textarea>
@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Product Identity
                         </button>
                     </div>
@@ -110,4 +110,41 @@
             </div>
         </div>
     </div>
+
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script>
+        // Initialize CKEditor for each textarea field
+        ClassicEditor.create(document.querySelector("#description"));
+        ClassicEditor.create(document.querySelector("#details"));
+        ClassicEditor.create(document.querySelector("#vision"));
+        ClassicEditor.create(document.querySelector("#mission"));
+        ClassicEditor.create(document.querySelector("#contentl1"));
+        ClassicEditor.create(document.querySelector("#contentl2"));
+        ClassicEditor.create(document.querySelector("#contentl3"));
+    </script>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button action
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Apakah Anda ingin memperbarui identitas produk ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('update-product-identity-form').submit();  // Submit the form if confirmed
+                }
+            });
+        });
+    </script>
 </x-app-layout>

@@ -103,8 +103,7 @@
             </p>
             <div class="mt-6 flex justify-center items-center w-full">
                 <a href="https://wa.me/6285179709387"
-                   id="joinButton"
-                   class="bg-orange-500 font-semibold text-primary px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
+                    class="bg-orange-500 font-roboto text-base font-[700] px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
                     Mulai Bergabung
                 </a>
             </div>
@@ -141,8 +140,8 @@
 
         <!-- Flickity Carousel -->
         <div class="carousel"
-             data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
-            @forelse ($testimonials as $testimonial)
+                data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
+            @foreach ($testimonials as $testimonial)
             <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
                 <!-- Testimonial Info -->
                 <div class="flex items-center gap-4 mb-4">
@@ -150,19 +149,19 @@
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
                         <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
                     </div>
-
+        
                     <!-- Client Info -->
                     <div>
                         <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
                         <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
                     </div>
-
+        
                     <!-- WhatsApp Icon -->
                     <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
                         <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
                     </div>
                 </div>
-
+        
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
@@ -172,7 +171,7 @@
                         <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-5 h-5" alt="star">
                     @endfor
                 </div>
-
+        
                 <!-- Testimonial Text with Modal Trigger -->
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
@@ -181,10 +180,8 @@
                     @endif
                 </p>
             </div>
-            @empty
-            <p class="text-center text-white">Belum ada data terbaru</p>
-            @endforelse
-        </div>
+            @endforeach
+       </div>
 
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}
@@ -295,13 +292,13 @@
 
 
     <div class="flex flex-wrap items-center gap-[20px] justify-center">
-        @forelse ($principles as $principle)
+        @foreach ($principles as $principle)
         <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[10px] overflow-hidden hover:border-cp-dark-blue hover:shadow-xl transition-all duration-300 min-h-[400px] mb-0 shadow-md p-6">
             <!-- Thumbnail Section with Responsive Dimensions -->
             <div class="thumbnail w-full max-h-[150px] sm:w-[200px] sm:h-[200px] flex items-center justify-center overflow-hidden mt-2">
                 <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-full h-full" alt="thumbnails">
             </div>
-
+    
             <!-- Content Section -->
             <div class="flex flex-col items-center text-center gap-[10px] flex-grow">
                 <div class="flex flex-col gap-[5px] items-center">
@@ -310,12 +307,9 @@
                 </div>
             </div>
         </div>
-        @empty
-        <p>Belum ada data terbaru</p>
-        @endforelse
+        @endforeach
     </div>
-
-
+    
 </div>
 
 <script>
@@ -553,21 +547,21 @@
             Ikuti Kami
         </p>
         <div class="flex items-center gap-6 mb-6">
-            <a href="https://facebook.com" target="_blank">
+            <a href="https://www.facebook.com/official.wilzio?rdid=tlsjbpLTbIEiJvdE&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FGjZJNGmKbkjyumXs%2F" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                     <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M22.675 0H1.325C.594 0 0 .594 0 1.326v21.348C0 23.406.594 24 1.326 24H12.82v-9.294H9.691V11.29h3.128V8.717c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.796.143v3.244l-1.918.001c-1.504 0-1.795.714-1.795 1.763v2.311h3.587l-.467 3.416h-3.12V24h6.116c.729 0 1.324-.594 1.324-1.326V1.326C24 .594 23.406 0 22.675 0z"/>
                     </svg>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank">
+            <a href="https://www.instagram.com/official.wilzio/profilecard/?igsh=MW9zazBtYjhmaGEyNg%3D%3D" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                     <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.334 3.608 1.309.975.976 1.247 2.243 1.309 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.334 2.633-1.309 3.608-.976.975-2.243 1.247-3.608 1.309-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.334-3.608-1.309-.975-.976-1.247-2.243-1.309-3.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.062-1.366.334-2.633 1.309-3.608.976-.975 2.243-1.247 3.608-1.309 1.265-.058 1.645-.07 4.849-.07m0-2.163C8.755 0 8.333.014 7.052.072 5.766.129 4.557.352 3.607 1.302 2.656 2.253 2.433 3.461 2.376 4.747.418 8.302.418 15.698 2.376 19.253c.057 1.286.28 2.494 1.231 3.444.95.951 2.159 1.173 3.445 1.23 1.281.058 1.703.072 4.848.072s3.567-.014 4.848-.072c1.286-.057 2.494-.279 3.445-1.23.951-.95 1.174-2.158 1.231-3.444.058-1.281.072-1.703.072-4.848s-.014-3.567-.072-4.848c-.057-1.286-.28-2.494-1.231-3.444-.951-.951-2.159-1.173-3.445-1.23-1.281-.058-1.703-.072-4.848-.072zm0 5.838c-3.403 0-6.163 2.76-6.163 6.163s2.76 6.163 6.163 6.163 6.163-2.76 6.163-6.163-2.76-6.163-6.163-6.163zm0 10.123c-2.185 0-3.96-1.775-3.96-3.96s1.775-3.96 3.96-3.96 3.96 1.775 3.96 3.96-1.775 3.96-3.96 3.96zm6.406-11.845c-.796 0-1.443-.647-1.443-1.443s.647-1.443 1.443-1.443 1.443.647 1.443 1.443-.647 1.443-1.443 1.443z"/>
                     </svg>
                 </div>
             </a>
-            <a href="https://wa.me/your-number" target="_blank">
+            <a href="https://wa.me/6285179709387" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
                         <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
@@ -581,7 +575,7 @@
                     </svg>
                 </div>
             </a>
-            <a href="https://tiktok.com" target="_blank">
+            <a href="https://www.tiktok.com/@wijabackbone" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
@@ -599,46 +593,3 @@
 
 @endsection
 
-{{-- @push('after-scripts')
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
-<script src="{{ asset('js/carousel.js') }}"></script>
-<script src="{{ asset('js/accordion.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css" />
-
-<!-- LightGallery JS -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
-
-<!-- Plugins -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/share/lg-share.min.js"></script>
-<script>
-    // Join Button hover and scale effect
-    const joinButton = document.getElementById('joinButton');
-
-    // Hover effect: Scale down to 90% when mouse enters
-    joinButton.addEventListener('mouseenter', function() {
-        joinButton.style.transition = 'transform 0.3s ease-in-out';
-        joinButton.style.transform = 'scale(0.9)'; // Reduced scale for a smoother effect
-    });
-
-    // Revert to original size when mouse leaves
-    joinButton.addEventListener('mouseleave', function() {
-        joinButton.style.transform = 'scale(1)';
-    });
-
-    // On click, scale slightly down
-    joinButton.addEventListener('mousedown', function() {
-        joinButton.style.transform = 'scale(0.95)'; // Slight scale down on click
-    });
-
-    // On mouse up, return to the hover scale (if hovered)
-    joinButton.addEventListener('mouseup', function() {
-        joinButton.style.transform = 'scale(0.9)';
-    });
-
-</script>
-@endpush
- --}}

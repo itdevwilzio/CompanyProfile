@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.abouts.update', $about) }}" enctype="multipart/form-data">
+                <form id="update-about-form" method="POST" action="{{ route('admin.abouts.update', $about) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div>
@@ -44,34 +44,36 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                 
-                    {{-- <h3 class="mt-4 text-lg font-bold text-indigo-950">Keypoints</h3>
-                
-                    <div class="mt-4">
-                        <x-input-label for="keypoint" :value="__('Keypoint')" />
-                        <x-text-input id="keypoint" class="block w-full mt-1" type="text" name="keypoint"
-                                      value="{{ old('keypoint', $about->keypoint) }}" required autofocus />
-                        <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
-                    </div> --}}
-                
                     <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update About
                         </button>
                     </div>
                 </form>
 
                 <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                 <script>
-                    /* CEK Editor */
+                    /* CKEditor */
                     ClassicEditor.create(document.querySelector("#description"));
 
-                    document.getElementById('addKeypoint').addEventListener('click', function() {
-                        const container = document.querySelector('.keypoints-container');
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.name = 'keypoints[]';
-                        input.classList.add('py-3', 'border', 'rounded-lg', 'border-slate-300', 'mt-2');
-                        container.appendChild(input);
+                    document.getElementById('submit-button').addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent the default button action
+
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Anda ingin memperbarui About ini?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, perbarui!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('update-about-form').submit();  // Submit the form if confirmed
+                            }
+                        });
                     });
                 </script>
             </div>

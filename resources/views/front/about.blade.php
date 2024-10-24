@@ -30,19 +30,24 @@
             </div>
             
             <!-- Description Section -->
-            <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
-                <h2 class="font-nunito font-bold text-4xl mb-2">{{ $aboutSections->where('type', 'Missions')->first()->name }}</h2>
-                <p class="text-lg leading-7 mb-2">{{ $aboutSections->where('type', 'Missions')->first()->description }}</p>
-
-                <!-- Keypoints Section -->
-                <ul class="list-disc ml-5 mt-3 text-lg leading-7">
-                    @foreach($aboutSections->where('type', 'Missions')->first()->keypoints as $keypoint)
-                        <li>{{ $keypoint }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            @if($missionSection = $aboutSections->where('type', 'Missions')->first())
+                <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
+                    <h2 class="font-nunito font-bold text-4xl mb-2">{{ $missionSection->name }}</h2>
+                    <p class="text-lg leading-7 mb-2">{{ $missionSection->description }}</p>
+    
+                    <!-- Keypoints Section -->
+                    @if(is_array($missionSection->keypoints) && count($missionSection->keypoints) > 0)
+                        <ul class="list-disc ml-5 mt-3 text-lg leading-7">
+                            @foreach($missionSection->keypoints as $keypoint)
+                                <li>{{ $keypoint }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            @endif
         </div>
     </section>
+    
 
     <!-- APJII Certification Section -->
     <section id="apjii-registration" class="w-full py-16 bg-primary relative overflow-hidden">

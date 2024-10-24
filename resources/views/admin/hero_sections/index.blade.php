@@ -34,10 +34,10 @@
                                         class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                                         Edit
                                     </a>
-                                    <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST">
+                                    <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST" class="delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                        <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn">
                                             Delete
                                         </button>
                                     </form>
@@ -91,6 +91,30 @@
                     disableOnInteraction: false,
                 },
                 effect: 'slide', // You can change this to 'fade', 'cube', etc.
+            });
+
+            // SweetAlert for Delete Confirmation
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    const form = this.closest('form');
+
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
             });
         });
     </script>

@@ -50,9 +50,10 @@
                   <h2 class="font-bold text-lg">{{ $product->name }}</h2>
                   <p class="text-cp-light-grey whitespace-pre-wrap">{{ $product->about }}</p>
                   <button onclick="selectProduct({{ $product->id }})"
-                    class="btn-pilih-paket bg-primary p-3 w-full rounded-full shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out font-bold text-white">
+                    class="btn-pilih-paket bg-primary p-3 w-full rounded-full shadow-[0_15px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_10px_rgba(0,123,255,0.8)] transition-shadow duration-300 ease-in-out font-bold text-white">
                     Pilih Paket
                   </button>
+                  
                 </div>
               </div>
             @empty

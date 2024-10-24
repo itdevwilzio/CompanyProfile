@@ -37,27 +37,6 @@
                         <x-input-error :messages="$errors->get('banner')" class="mt-2" />
                     </div>
 
-                    <div class="mt-4">
-                        <x-input-label for="subheading" :value="__('subheading')" />
-                        <x-text-input id="subheading" class="block w-full mt-1" type="text" name="subheading"
-                            value="{{ $heroSection->subheading }}" required autofocus autocomplete="subheading" />
-                        <x-input-error :messages="$errors->get('subheading')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="achievement" :value="__('achievement')" />
-                        <x-text-input id="achievement" class="block w-full mt-1" type="text" name="achievement"
-                            value="{{ $heroSection->achievement }}" required autofocus autocomplete="achievement" />
-                        <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="path_video" :value="__('path_video')" />
-                        <x-text-input id="path_video" class="block w-full mt-1" type="text" name="path_video"
-                            value="{{ $heroSection->path_video }}" required autofocus autocomplete="path_video" />
-                        <x-input-error :messages="$errors->get('path_video')" class="mt-2" />
-                    </div>
-
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Hero Section
@@ -77,13 +56,14 @@
             event.preventDefault(); // Prevent form submission
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak akan bisa mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, update it!'
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.submit(); // Submit the form if confirmed
