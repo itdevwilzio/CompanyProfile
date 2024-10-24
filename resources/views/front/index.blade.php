@@ -103,7 +103,7 @@
             </p>
             <div class="mt-6 flex justify-center items-center w-full">
                 <a href="https://wa.me/6285179709387"
-                    class="bg-orange-500 font-roboto text-base font-[700] px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
+                    class="bg-orange-500 font-roboto text-base font-[700] px-8 py-4 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out transform text-white focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
                     Mulai Bergabung
                 </a>
             </div>
@@ -124,7 +124,7 @@
         <!-- Star Icons -->
         <div class="flex justify-center mb-2">
             @for ($i = 0; $i < 5; $i++)
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1" alt="star">
+                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1 star" alt="star" style="--i: {{ $i }}">
             @endfor
         </div>
 
@@ -535,6 +535,7 @@
     right: 10px;
     cursor: pointer;
 }
+
 </style>
 @endpush
 
@@ -585,7 +586,7 @@
         </div>
         <!-- Copyright Section -->
         <p class="text-sm text-white">
-            &copy; {{ date('Y') }} wilzio.com - All Rights Reserved
+            &copy; {{ date('Y') }} Wilzio.com - Semua Hak Cipta Dilindungi
         </p>
     </div>
 </footer>

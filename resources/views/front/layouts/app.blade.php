@@ -199,20 +199,24 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <!-- WhatsApp floating button to open modal -->
-    <div class="whatsapp-float" id="open-whatsapp-modal">
-        <i class="fab fa-whatsapp"></i>
+    <div class="whatsapp-float bg-green-500 text-white fixed bottom-5 right-5 w-16 h-16 rounded-full flex justify-center items-center shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out transform cursor-pointer" id="open-whatsapp-modal">
+        <i class="fab fa-whatsapp text-3xl"></i>
     </div>
 
     <!-- Modal Structure -->
     <div id="whatsapp-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" id="close-modal">&times;</button>
-            <h2 class="mb-4">Chat dengan Tim Wilzio</h2>
-            <a href="https://wa.me/6285179709387" class="whatsapp-modal-btn" target="_blank">
-                <i class="fab fa-whatsapp"></i>Marketing Wilzio
+        <div class="modal-content p-6 rounded-lg shadow-lg">
+            <button class="close-btn text-2xl font-bold" id="close-modal">&times;</button>
+            <h2 class="mb-4 text-xl font-semibold">Chat dengan Tim Wilzio</h2>
+    
+            <!-- Marketing Button -->
+            <a href="https://wa.me/6285179709387" class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out mb-4" target="_blank">
+                <i class="fab fa-whatsapp mr-2"></i>Marketing Wilzio
             </a>
-            <a href="https://wa.me/6285179738286" class="whatsapp-modal-btn" target="_blank">
-                <i class="fab fa-whatsapp"></i>NOC Wilzio
+    
+            <!-- NOC Button -->
+            <a href="https://wa.me/6285179738286" class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out" target="_blank">
+                <i class="fab fa-whatsapp mr-2"></i>NOC Wilzio
             </a>
         </div>
     </div>

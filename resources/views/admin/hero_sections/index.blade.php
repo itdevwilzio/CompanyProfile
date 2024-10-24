@@ -5,7 +5,7 @@
                 {{ __('Manage Hero Sections') }}
             </h2>
             <a href="{{ route('admin.hero_sections.create') }}"
-                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+            class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                 Add New
             </a>
         </div>
