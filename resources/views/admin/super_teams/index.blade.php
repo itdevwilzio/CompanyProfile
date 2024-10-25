@@ -37,15 +37,16 @@
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
                             <a href="{{ route('admin.super_teams.edit', $super_team) }}"
-                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
                             <form id="delete-super-team-form-{{ $super_team->id }}" 
                                 action="{{ route('admin.super_teams.destroy', $super_team) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full delete-btn" 
-                                   data-id="{{ $super_team->id }}">
+                                <button type="button"
+                                    class="px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn"
+                                    data-id="{{ $super_team->id }}">
                                     Delete
                                 </button>
                             </form>
@@ -68,7 +69,7 @@
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-super-team-form-${teamId}`);
+                    const form = document.getElementById(`delete-super-team-form-${superId}`);
 
                     // Show SweetAlert confirmation
                     Swal.fire({

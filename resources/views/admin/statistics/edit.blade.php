@@ -44,7 +44,15 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <!-- Cancel Button -->
+                        <a href="{{ route('admin.statistics.index') }}"
+                            class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out ml-4">
+                            Cancel
+                        </a>
+                    
+                        <!-- Update Button with 3D Effect -->
+                        <button id="submit-button" type="submit"
+                            class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Statistic
                         </button>
                     </div>

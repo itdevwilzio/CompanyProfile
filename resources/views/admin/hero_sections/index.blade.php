@@ -29,13 +29,14 @@
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-4">
                             <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
-                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-indigo-600 before:to-indigo-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30">
                                 Edit
                             </a>
                             <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full delete-btn">
+                                <button type="button" 
+                                    class="px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-red-600 before:to-red-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30">
                                     Delete
                                 </button>
                             </form>

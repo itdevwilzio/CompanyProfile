@@ -149,29 +149,23 @@
         </h3>
 
         <!-- Flickity Carousel -->
-        <div class="carousel"
-                data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
+        <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
             @foreach ($testimonials as $testimonial)
             <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
                 <!-- Testimonial Info -->
                 <div class="flex items-center gap-4 mb-4">
-                    <!-- Avatar -->
+                    <!-- Avatar with optional() helper -->
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
-                        <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
+                        <img src="{{ optional($testimonial->client)->avatar ? Storage::url($testimonial->client->avatar) : asset('assets/default-avatar.png') }}" alt="Client Avatar" class="object-cover w-full h-full">
                     </div>
-        
+
                     <!-- Client Info -->
                     <div>
-                        <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
-                        <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
-                    </div>
-        
-                    <!-- WhatsApp Icon -->
-                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
+                        <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ optional($testimonial->client)->name ?? 'Unknown Client' }}</p>
+                        <p class="text-sm text-[#ff9802]">{{ optional($testimonial->client)->occupation ?? 'Unknown Occupation' }}</p>
                     </div>
                 </div>
-        
+
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
@@ -181,17 +175,17 @@
                         <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-5 h-5" alt="star">
                     @endfor
                 </div>
-        
+
                 <!-- Testimonial Text with Modal Trigger -->
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
-                        <!-- Link to trigger modal -->
                         <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
                     @endif
                 </p>
             </div>
             @endforeach
-       </div>
+        </div>
+    </div>
 
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}

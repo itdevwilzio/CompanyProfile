@@ -38,14 +38,17 @@
                             <h3 class="text-lg font-bold text-indigo-950">{{ $team->location }}</h3> <!-- Reduced font size -->
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-2"> <!-- Reduced gap-x for tighter action buttons -->
+                            <!-- Edit Button with 3D Effect -->
                             <a href="{{ route('admin.teams.edit', $team) }}"
-                               class="px-4 py-2 font-bold text-white bg-primary rounded-full"> <!-- Reduced padding -->
+                               class="px-4 py-2 font-bold text-white bg-primary rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
+                        
+                            <!-- Delete Button with 3D Effect -->
                             <form id="delete-team-form-{{ $team->id }}" action="{{ route('admin.teams.destroy', $team) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full delete-btn" 
+                                <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn" 
                                         data-id="{{ $team->id }}">
                                     Delete
                                 </button>
@@ -73,14 +76,14 @@
 
                     // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel'
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();  // Submit the form if confirmed

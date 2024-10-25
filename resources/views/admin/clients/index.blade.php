@@ -14,7 +14,7 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
-
+    
                 @forelse ($clients as $client)
                     <div class="flex flex-row items-center justify-between item-card">
                         <div class="flex flex-row items-center gap-x-3">
@@ -34,7 +34,7 @@
                                 class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
-                        
+    
                             <!-- Delete Button -->
                             <form id="delete-client-form-{{ $client->id }}" action="{{ route('admin.clients.destroy', $client) }}" method="POST">
                                 @csrf
@@ -46,7 +46,9 @@
                         </div>
                     </div>
                 @empty
-                    <p>No recent data available</p>
+                    <div class="flex justify-center items-center h-48">
+                        <p class="text-gray-500 text-center">No recent data available</p>
+                    </div>
                 @endforelse
             </div>
         </div>
@@ -54,7 +56,6 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- SweetAlert2 Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Select all delete buttons
@@ -63,8 +64,8 @@
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
+                    const clientId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-client-form-${clientId}`);
 
                     // Show SweetAlert confirmation
                     Swal.fire({

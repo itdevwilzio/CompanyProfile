@@ -36,22 +36,28 @@
                             <h3 class="text-xl font-bold text-indigo-950">{{ $about->created_at->format('d M, Y') }}</h3>
                         </div>
                         <div class="flex-row items-center flex gap-x-3">
-                            <a href="{{ route('admin.abouts.edit', $about) }}"
-                                class="px-4 py-2 font-bold text-white bg-indigo-700 rounded-full hover:bg-indigo-800 transition">
-                                Edit
-                            </a>
-                            <form id="delete-client-form-{{ $about->id }}" action="{{ route('admin.abouts.destroy', $about) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full hover:bg-red-800 transition delete-btn" 
-                                    data-id="{{ $about->id }}">
-                                    Delete
-                                </button>
-                            </form>
+                            <div class="flex-row items-center flex gap-x-3">
+                                <!-- Edit Button with 3D Effect -->
+                                <a href="{{ route('admin.abouts.edit', $about) }}"
+                                    class="px-4 py-2 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                                    Edit
+                                </a>
+                            
+                                <!-- Delete Button with 3D Effect -->
+                                <form id="delete-client-form-{{ $about->id }}" action="{{ route('admin.abouts.destroy', $about) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn"
+                                        data-id="{{ $about->id }}">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-gray-500">No data available</p>
+                    <p class="text-center text-gray-500">No recent data available</p>
                 @endforelse
             </div>
         </div>

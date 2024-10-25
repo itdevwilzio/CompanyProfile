@@ -23,10 +23,14 @@
                     @method('PUT')
                     
                     <div class="mt-4">
-                        <x-input-label for="project_client" :value="__('project_client')" />
+                        <x-input-label for="project_client" :value="__('Project Client')" />
                         <select name="project_client_id" id="project_client_id"
                             class="w-full py-3 pl-3 border rounded-lg border-slate-300">
-                            <option value="{{ $testimonial->client->id }}">{{ $testimonial->client->name }}</option>
+                            @if ($testimonial->client)
+                                <option value="{{ $testimonial->client->id }}">{{ $testimonial->client->name }}</option>
+                            @else
+                                <option value="">Select Client</option>
+                            @endif
                             @foreach ($clients as $client)
                                 <option value="{{ $client->id }}">{{ $client->name }}</option>
                             @endforeach
@@ -50,10 +54,19 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <!-- Cancel Button with 3D Effect -->
+                        <a href="{{ route('admin.testimonials.index') }}" 
+                            class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out ml-4">
+                            Cancel
+                        </a>
+                    
+                        <!-- Update Button with 3D Effect -->
+                        <button id="submit-button" type="button"
+                            class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Testimonial
                         </button>
                     </div>
+                    
                 </form>
 
             </div>

@@ -44,9 +44,16 @@
                         <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">                    
+                    <div class="flex items-center justify-end mt-4">
+                        <!-- Cancel Button -->
+                        <a href="{{ route('admin.principles.index') }}"
+                            class="ml-4 px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                            Cancel
+                        </a>
+                    
+                        <!-- Update Button with 3D Effect -->
                         <button type="submit" id="update-btn" 
-                            class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full hover:bg-indigo-800 transition-all duration-300 ease-in-out">
+                            class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Principle
                         </button>
                     </div>

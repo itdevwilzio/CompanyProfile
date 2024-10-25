@@ -17,10 +17,10 @@
                 @forelse ($testimonials as $testimonial)
                     <div class="flex flex-row items-center justify-between p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
                         <div class="flex flex-row items-center gap-x-6">
-                            <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="{{ $testimonial->client->name }}"
+                            <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="{{ optional($testimonial->client)->name }}"
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $testimonial->client->name }}</h3>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ optional($testimonial->client)->name ?? 'Unknown Client' }}</h3>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
@@ -28,15 +28,17 @@
                             <h3 class="text-xl font-bold text-indigo-950">{{ $testimonial->created_at->format('d M, Y') }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-4">
+                            <!-- Edit Button -->
                             <a href="{{ route('admin.testimonials.edit', $testimonial) }}"
                                 class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
-                             </a>
-                        
-                            <form action="{{ route('admin.testimonials.destroy', $testimonial) }}" method="POST" class="inline-block">
+                            </a>
+        
+                            <!-- Delete Button with SweetAlert -->
+                            <form id="delete-testimonials-form-{{ $testimonial->id }}" action="{{ route('admin.testimonials.destroy', $testimonial) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                                <button type="button" class="delete-btn px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out" data-id="{{ $testimonial->id }}">
                                     Delete
                                 </button>
                             </form>
@@ -48,36 +50,39 @@
             </div>
         </div>
     </div>
-
-        <!-- SweetAlert2 Script -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Select all delete buttons
-                const deleteButtons = document.querySelectorAll('.delete-btn');
     
-                // Add event listener to each delete button
-                deleteButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        const teamId = this.getAttribute('data-id');
-                        const form = document.getElementById(`delete-team-form-${teamId}`);
     
-                        // Show SweetAlert confirmation
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: "Anda tidak akan bisa mengembalikan ini!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#0C3C94',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                            cancelButtonText: 'Batal'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit();  // Submit the form if confirmed
-                            }
-                        });
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+    
+            // Add event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const testimonialId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-testimonials-form-${testimonialId}`);
+    
+                    // Show SweetAlert confirmation
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan bisa mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#0C3C94',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
+                        }
                     });
                 });
             });
-        </script>
+        });
+    </script>
+    
 </x-app-layout>

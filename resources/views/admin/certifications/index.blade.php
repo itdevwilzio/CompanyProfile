@@ -37,23 +37,27 @@
                             <h3 class="text-xl font-bold text-indigo-950">{{ $certification->created_at->format('d M, Y') }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
+                            <!-- Edit Button with 3D Effect -->
                             <a href="{{ route('admin.certifications.edit', $certification) }}"
-                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
+                        
+                            <!-- Delete Button with 3D Effect -->
                             <form id="delete-certification-form-{{ $certification->id }}" 
                                 action="{{ route('admin.certifications.destroy', $certification) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full delete-btn" 
-                                   data-id="{{ $certification->id }}">
+                                <button type="button" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn" 
+                                    data-id="{{ $certification->id }}">
                                     Delete
                                 </button>
                             </form>
                         </div>
+                        
                     </div>
                 @empty
-                    <p class="text-center text-gray-500">No certifications available</p>
+                    <p class="text-center text-gray-500">No recent data available</p>
                 @endforelse
             </div>
         </div>

@@ -116,10 +116,6 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-
-                    <x-nav-link :href="route('admin.abouts.index')" :active="request()->routeIs('admin.abouts.index')" class="text-white">
-                        {{ __('About') }}
-                    </x-nav-link>
                 </div>
             </div>
 
