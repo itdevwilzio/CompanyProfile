@@ -68,6 +68,12 @@
                 <p class="text-lg leading-7 mb-2">
                     {!! $product_identity->description !!}
                 </p>
+                <p class="text-lg leading-7 mb-2">
+                    {!! $product_identity->vision !!}
+                </p>
+                <p class="text-lg leading-7 mb-2">
+                    {!! $product_identity->mission !!}
+                </p>
                 
                 <!-- Dropdown Button with Hover Effect -->
                 <div x-data="{ open: false }" class="bg-white text-blue-900 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-[#E8F0FD]">
@@ -206,7 +212,7 @@
             {{-- Section for Technician --}}
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">Technician</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @foreach ($teams->where('team', 'Technician') as $team)
+                @foreach ($teams->where('team', 'Technician Team') as $team)
                     <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 

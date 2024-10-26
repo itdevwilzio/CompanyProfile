@@ -47,7 +47,7 @@
                             <option value="">-- Pilih Tim --</option>
                             <option value="Pimpinan" {{ $team->team == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
                             <option value="IT & Administrative Team" {{ $team->team == 'IT & Administrative Team' ? 'selected' : '' }}>IT & Administrative Team</option>
-                            <option value="Technician Team" {{ $team->team == 'Technician Team' ? 'selected' : '' }}>Technician Team</option>
+                            <option value="Technician Team" {{ $team->team == 'Technician' ? 'selected' : '' }}>Technician Team</option>
                         </select>
                         <x-input-error :messages="$errors->get('team')" class="mt-2" />
                     </div>

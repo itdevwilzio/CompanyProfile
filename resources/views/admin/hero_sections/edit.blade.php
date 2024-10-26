@@ -30,13 +30,13 @@
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
 
-                    <!-- Banner Input (Optional) -->
+                    <!-- Banner Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="banner" :value="__('Banner')" />
-                        <img src="{{ Storage::url($heroSection->banner) }}" alt=""
+                        <img id="banner-preview" src="{{ Storage::url($heroSection->banner) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
                         <x-text-input id="banner" class="block w-full mt-1" type="file" name="banner" autofocus
-                            autocomplete="banner" />
+                            autocomplete="banner" accept="image/*" />
                         <x-input-error :messages="$errors->get('banner')" class="mt-2" />
                         <p class="text-sm text-gray-500">Leave blank if you don't want to change the banner.</p>
                     </div>
@@ -60,10 +60,11 @@
         </div>
     </div>
 
-    <!-- SweetAlert CDN -->
+    <!-- SweetAlert and JavaScript for Banner Preview -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        // SweetAlert confirmation on submit
         document.getElementById('hero-section-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
@@ -81,6 +82,18 @@
                     this.submit(); // Submit the form if confirmed
                 }
             });
+        });
+
+        // JavaScript to preview the selected banner image
+        document.getElementById('banner').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('banner-preview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
         });
     </script>
 </x-app-layout>

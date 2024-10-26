@@ -14,22 +14,16 @@
     <div class="py-16">
         <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col p-12 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-8">
-                @forelse ($super_teams as $super_team)
+                @foreach ($super_teams as $super_team)
                     <div class="flex flex-row items-center justify-between item-card p-6 bg-gray-50 rounded-lg shadow-md gap-x-8">
-                        <div class="flex flex-row items-center gap-x-8">
+                        <div class="flex flex-row items-center gap-x-4">
                             <img src="{{ $super_team->image ? Storage::url($super_team->image) : asset('assets/placeholder.png') }}" 
                                 alt="{{ $super_team->title }}" 
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
-                                <p class="text-sm text-slate-500">Title</p>
                                 <h3 class="text-xl font-bold text-indigo-950">{{ $super_team->title }}</h3>
+                                <p class="text-sm text-slate-500 text-justify">{{ \Illuminate\Support\Str::limit($super_team->description, 100, '...') }}</p>
                             </div>
-                        </div>
-                        <div class="flex-col hidden md:flex">
-                            <p class="text-sm text-slate-500">Description</p>
-                            <h3 class="text-xl font-bold text-indigo-950">
-                                {{ \Illuminate\Support\Str::limit($super_team->description, 100, '...') }}
-                            </h3>
                         </div>
                         <div class="flex-col hidden md:flex md:gap-x-3">
                             <p class="text-sm text-slate-500">Date</p>
@@ -52,9 +46,7 @@
                             </form>
                         </div>
                     </div>
-                @empty
-                    <p class="text-center text-gray-500">No Super Teams available</p>
-                @endforelse
+                @endforeach
             </div>
         </div>
     </div>
@@ -68,7 +60,7 @@
                 // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
+                    const superId = this.getAttribute('data-id');
                     const form = document.getElementById(`delete-super-team-form-${superId}`);
 
                     // Show SweetAlert confirmation

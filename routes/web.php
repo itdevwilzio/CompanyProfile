@@ -104,6 +104,10 @@ Route::middleware('auth')->group(function () {
         // Route::middleware('can:manage voucher packages')->group(function () {
             Route::resource('locations/{location}/voucher_packages', VoucherPackageController::class);
         // });
+
+        Route::fallback(function () {
+            return response()->view('errors.404', [], 404);
+        });
     });
 });
 

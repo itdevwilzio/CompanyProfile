@@ -30,10 +30,14 @@
 
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('thumbnail')" />
-                        <img src="{{ Storage::url($principle->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus
-                            autocomplete="thumbnail" />
+                        <!-- Existing Image Preview -->
+                        <img id="existing-thumbnail" src="{{ Storage::url($principle->thumbnail) }}" alt=""
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
+                        <!-- New Image Preview -->
+                        <img id="thumbnail-preview" src="" alt="Image preview" 
+                             class="rounded-2xl object-cover w-[90px] h-[90px] mb-4 hidden">
+                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" 
+                            autofocus autocomplete="thumbnail" accept="image/*" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
@@ -63,48 +67,41 @@
         </div>
     </div>
 
+    <!-- SweetAlert and Image Preview Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!-- SweetAlert2 Script -->
-   <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Select all delete buttons
-            const deleteButtons = document.querySelectorAll('.delete-btn');
 
-            // Add event listener to each delete button
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
+    <script>
+        // SweetAlert confirmation on submit
+        document.getElementById('update-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
 
-                    // Show SweetAlert confirmation
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Anda tidak akan bisa mengembalikan ini!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#0C3C94',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
-                        }
-                    });
-                });
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak akan bisa mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit(); // Submit the form if confirmed
+                }
             });
         });
-    </script>
 
-        <!-- Image Preview Script -->
-        <script>
-            function previewThumbnail(event) {
-                const reader = new FileReader();
-                reader.onload = function(){
-                    const preview = document.getElementById('thumbnail-preview');
-                    preview.src = reader.result;
-                };
-                reader.readAsDataURL(event.target.files[0]);
-            }
-        </script>
+        // JavaScript to preview the selected thumbnail image
+        function previewThumbnail(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const preview = document.getElementById('thumbnail-preview');
+                const existingThumbnail = document.getElementById('existing-thumbnail');
+                preview.src = reader.result;
+                preview.classList.remove('hidden'); // Show the new preview image
+                existingThumbnail.classList.add('hidden'); // Hide the existing image
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>

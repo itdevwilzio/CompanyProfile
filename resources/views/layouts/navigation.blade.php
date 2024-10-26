@@ -37,9 +37,9 @@
                                 <x-dropdown-link :href="route('admin.principles.index')" class="text-primary">
                                     {{ __('Keunggulan Kami') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.statistics.index')" class="text-primary">
+                                {{-- <x-dropdown-link :href="route('admin.statistics.index')" class="text-primary">
                                     {{ __('Company Stats') }}
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
                             </x-slot>
                         </x-dropdown>
                     </div>
@@ -63,14 +63,15 @@
                                 <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
                                     {{ __('About Us') }}
                                 </x-dropdown-link>
-                                <!-- Link for Certications -->
-                                <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
-                                    {{ __('Certifications') }}
-                                </x-dropdown-link>
                                 <!-- Link for Product Identity -->
                                 <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
                                     {{ __('Product Identity') }}
                                 </x-dropdown-link>
+                                <!-- Link for Certications -->
+                                <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
+                                    {{ __('Certifications') }}
+                                </x-dropdown-link>
+ 
                                 <!-- Link for Super Teamss -->
                                 <x-dropdown-link :href="route('admin.super_teams.index')" class="text-primary">
                                     {{ __('Super Teams') }}

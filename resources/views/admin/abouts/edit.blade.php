@@ -29,9 +29,12 @@
                 
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <img src="{{ Storage::url($about->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus />
+                        <!-- Existing Image Preview -->
+                        <img id="existing-thumbnail" src="{{ Storage::url($about->thumbnail) }}" alt=""
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
+                        <!-- New Image Preview -->
+                        <img id="thumbnail-preview" src="" alt="Image preview" class="rounded-2xl object-cover w-[90px] h-[90px] mb-4 hidden">
+                        <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" autofocus accept="image/*" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
@@ -39,8 +42,7 @@
                 
                     <div class="mt-4">
                         <x-input-label for="description" :value="__('Description')" />
-                        <textarea id="description" class="block w-full mt-1" type="text" name="description" rows="30"
-                                    required autofocus>{{ old('description', $about->description) }}</textarea>
+                        <textarea id="description" class="block w-full mt-1" type="text" name="description" rows="30" required autofocus>{{ old('description', $about->description) }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                 
@@ -65,6 +67,7 @@
                     /* CKEditor */
                     ClassicEditor.create(document.querySelector("#description"));
 
+                    // SweetAlert confirmation on submit
                     document.getElementById('submit-button').addEventListener('click', function(event) {
                         event.preventDefault(); // Prevent the default button action
 
@@ -83,6 +86,19 @@
                             }
                         });
                     });
+
+                    // JavaScript to preview the selected thumbnail image
+                    function previewThumbnail(event) {
+                        const reader = new FileReader();
+                        reader.onload = function(){
+                            const preview = document.getElementById('thumbnail-preview');
+                            const existingThumbnail = document.getElementById('existing-thumbnail');
+                            preview.src = reader.result;
+                            preview.classList.remove('hidden'); // Show the new preview image
+                            existingThumbnail.classList.add('hidden'); // Hide the existing image
+                        };
+                        reader.readAsDataURL(event.target.files[0]);
+                    }
                 </script>
             </div>
         </div>
