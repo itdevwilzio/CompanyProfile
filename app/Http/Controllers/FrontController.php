@@ -31,34 +31,41 @@ class FrontController extends Controller
         $seoTools->setTitle('Beranda | Wilzio Internet Provider');
         $seoTools->setDescription('Selamat datang di Wilzio Internet Provider. Kami menyediakan layanan internet berkualitas untuk kebutuhan rumah dan bisnis Anda.');
         $seoTools->opengraph()->setUrl(route('front.index'));
+        $seoTools->opengraph()->addProperty('location:region', 'Kalimantan Utara');
+        $seoTools->opengraph()->addProperty('location:locality', 'Pura Sajau');
+        $seoTools->opengraph()->addProperty('location:district', 'Tanjung Palas Timur');
+        $seoTools->opengraph()->addProperty('location:city', 'Kab. Bulungan');
         $seoTools->setCanonical(route('front.index'));
     
-        $statistics = CompanyStatistic::take(4)->get();
+
         $principles = OurPrinciple::take(6)->get();
         $products = Product::take(3)->get();
-        $teams = OurTeam::take(3)->get();
-        $abouts = AboutUs::all();
         $testimonials = Testimonial::take(4)->get();
         $hero_section = HeroSection::orderByDesc('id')->get();
     
-        return view('front.index', compact('principles','products', 'teams', 'testimonials', 'hero_section'));
+        return view('front.index', compact('principles','products', 'testimonials', 'hero_section'));
     }
 
     public function team(SEOTools $seoTools)
     {
-        // Settings metadata SEO
-        $seoTools->setTitle('Tim Kami | Wilzio Internet Provider');
-        $seoTools->setDescription('Kenali tim kami yang profesional dan berdedikasi di Wilzio Internet Provider.');
-        $seoTools->opengraph()->setUrl(route('front.team'));
-        $seoTools->setCanonical(route('front.team'));
-    
         // Ambil data untuk ditampilkan di view
         $abouts = AboutUs::all();
         $teams = OurTeam::all();
         $certifications = OurCertification::all();
         $super_teams = SuperTeam::all();
         $product_identities = ProductIdentity::all();
-    
+        
+        // Buat deskripsi dinamis berdasarkan data sertifikasi
+        $certificationNames = $certifications->pluck('name')->join(', ');
+        $description = "Kenali tim kami yang profesional dan berdedikasi di Wilzio Internet Provider. Kami sudah mendapatkan sertifikasi dari APJII dan sertifikasi lainnya: {$certificationNames}.";
+
+        // Pengaturan metadata SEO
+        $seoTools->setTitle('Tim Kami | Wilzio Internet Provider');
+        $seoTools->setDescription($description);
+        $seoTools->opengraph()->setUrl(route('front.team'));
+        $seoTools->opengraph()->addProperty('og:see_also', 'https://apjii.or.id/anggota/infoisp/kalimantan-utara');
+        $seoTools->setCanonical(route('front.team'));
+
         return view('front.team', compact('abouts', 'teams', 'certifications', 'super_teams', 'product_identities'));
     }
 
