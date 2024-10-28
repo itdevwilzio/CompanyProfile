@@ -86,9 +86,18 @@
                     
                     <!-- Nomor Whatsapp -->
                     <label for="no_wa" class="text-primary font-medium mb-1">Nomor Whatsapp</label>
-                    <input type="tel" id="no_wa" name="no_wa" required
-                        class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200"
-                        placeholder="Masukkan nomor Whatsapp">
+                    <input 
+                        type="tel" 
+                        id="no_wa" 
+                        name="no_wa" 
+                        required 
+                        pattern="[0-9]*" 
+                        inputmode="numeric"
+                        class="rounded-full mb-3 bg-primary text-white py-3 px-4 border-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" 
+                        placeholder="Masukkan nomor Whatsapp" 
+                        aria-label="Nomor Whatsapp"
+                    />
+                    
                     
                     <!-- Foto KTP -->
                     <label for="foto_ktp" class="text-primary font-medium mb-1">Foto KTP</label>
