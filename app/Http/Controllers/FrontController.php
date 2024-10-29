@@ -28,13 +28,14 @@ class FrontController extends Controller
     public function index(SEOTools $seoTools)
     {
         // Settings metadata SEO
-        $seoTools->setTitle('Beranda | Wilzio Internet Provider');
+        $seoTools->setTitle('Beranda | Wilzio Internet Provider | 085179709387');
         $seoTools->setDescription('Selamat datang di Wilzio Internet Provider. Kami menyediakan layanan internet berkualitas untuk kebutuhan rumah dan bisnis Anda.');
         $seoTools->opengraph()->setUrl(route('front.index'));
         $seoTools->opengraph()->addProperty('location:region', 'Kalimantan Utara');
         $seoTools->opengraph()->addProperty('location:locality', 'Pura Sajau');
         $seoTools->opengraph()->addProperty('location:district', 'Tanjung Palas Timur');
         $seoTools->opengraph()->addProperty('location:city', 'Kab. Bulungan');
+        $seoTools->opengraph()->addProperty('contact:phone_number', '085179709387'); 
         $seoTools->setCanonical(route('front.index'));
     
 
@@ -60,7 +61,7 @@ class FrontController extends Controller
         $description = "Kenali tim kami yang profesional dan berdedikasi di Wilzio Internet Provider. Kami sudah mendapatkan sertifikasi dari APJII dan sertifikasi lainnya: {$certificationNames}.";
 
         // Pengaturan metadata SEO
-        $seoTools->setTitle('Tim Kami | Wilzio Internet Provider');
+        $seoTools->setTitle('Tim Kami | Wilzio Internet Providerv| 085179709387');
         $seoTools->setDescription($description);
         $seoTools->opengraph()->setUrl(route('front.team'));
         $seoTools->opengraph()->addProperty('og:see_also', 'https://apjii.or.id/anggota/infoisp/kalimantan-utara');
@@ -72,7 +73,7 @@ class FrontController extends Controller
     public function product(SEOTools $seoTools)
     {
         // Atur metadata SEO
-        $seoTools->setTitle('Produk Kami | Wilzio Internet Provider');
+        $seoTools->setTitle('Produk Kami | Wilzio Internet Provider | 085179709387');
         $seoTools->setDescription('Lihat berbagai produk layanan internet yang ditawarkan oleh Wilzio Internet Provider.');
         $seoTools->opengraph()->setUrl(route('front.product'));
         $seoTools->setCanonical(route('front.product'));
@@ -104,7 +105,7 @@ class FrontController extends Controller
     public function orderProduct(Request $request, SEOTools $seoTools)
     {
         // Settings metadata SEO
-        $seoTools->setTitle('Pesan Produk | Wilzio Internet Provider');
+        $seoTools->setTitle('Pesan Produk | Wilzio Internet Provider | 085179709387');
         $seoTools->setDescription('Pesan produk layanan internet Wilzio Internet Provider dengan mudah dan cepat.');
         $seoTools->opengraph()->setUrl(route('front.orderProduct'));
         $seoTools->setCanonical(route('front.orderProduct'));
