@@ -36,7 +36,7 @@
                             srcset="{{ Storage::url($hero->banner) }} 1024w,
                                     {{ Storage::url($hero->banner) }} 640w"
                             sizes="(max-width: 768px) 640px, 1024px"
-                            class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
+                            class="object-cover w-[950px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
                     </div>
                 </div>
                 @endforeach
@@ -51,37 +51,60 @@
                 width: 100%;
                 height: auto;
             }
-
+        
             .carousel-container {
                 position: relative;
                 z-index: 2;
             }
-
+        
             .carousel {
                 margin-top: 0;
             }
-        </style>
-
-
-
-        <!-- CSS for Particles -->
-        <style>
+        
+            .flickity-prev-next-button {
+                width: 40px; /* Adjust size as necessary */
+                height: 40px;
+                background: rgba(255, 255, 255, 0.8); /* Optional: Adds a slight background for better visibility */
+                border-radius: 50%; /* Make the button round */
+                transition: all 0.3s ease; /* Smooth transition */
+            }
+        
+            .flickity-prev-next-button.previous {
+                left: 20px; /* Bring the left arrow even closer to the image */
+            }
+        
+            .flickity-prev-next-button.next {
+                right: 20px; /* Bring the right arrow even closer to the image */
+            }
+        
+            /* Arrow icon styling */
+            .flickity-prev-next-button .flickity-button-icon {
+                fill: #000; /* Set arrow color */
+            }
+        
+            /* Optional: Add hover effect */
+            .flickity-prev-next-button:hover {
+                background: rgba(0, 0, 0, 0.7);
+                fill: #fff;
+            }
+        
+            /* CSS for Particles */
             .wave-container {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: -1
+                z-index: -1;
             }
-
+        
             .particle {
                 position: absolute;
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 50%;
                 animation: float 6s infinite ease-in-out;
             }
-
+        
             @keyframes float {
                 0% { transform: translateY(0) translateX(0); opacity: 1; }
                 25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
@@ -90,7 +113,6 @@
                 100% { transform: translateY(0) translateX(0); opacity: 1; }
             }
         </style>
-
     </div>
 </div>
 
@@ -121,7 +143,7 @@
 
         <!-- Right Content - Single Image -->
         <div class="md:w-7/12">
-            <img src="{{ asset('assets/joins/cover1.jpg') }}"
+            <img src="{{ asset('assets/joins/cover2.jpg') }}"
                  alt="cover image"
                  class="rounded-lg shadow-lg w-full h-auto object-cover">
         </div>
@@ -287,25 +309,24 @@
 
 
 <!-- Principles Section -->
-<div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-    <div class="flex flex-col gap-[14px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[8px_16px] rounded-full uppercase font-nunito font-extrabold text-[46px]">
+<div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
+    <div class="flex flex-col gap-[8px] items-center">
+        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
             Keunggulan Kami
         </p>
     </div>
 
-
-    <div class="flex flex-wrap items-center gap-[20px] justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px] justify-items-center">
         @foreach ($principles as $principle)
-        <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[10px] overflow-hidden hover:border-cp-dark-blue hover:shadow-xl transition-all duration-300 min-h-[400px] mb-0 shadow-md p-6">
+        <div class="card w-full max-w-[575px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[30px] gap-[5px] overflow-hidden hover:border-cp-dark-blue hover:shadow-lg transition-all duration-300 min-h-[250px] mb-0 shadow-md p-4">
             <!-- Thumbnail Section with Responsive Dimensions -->
-            <div class="thumbnail w-full max-h-[150px] sm:w-[200px] sm:h-[200px] flex items-center justify-center overflow-hidden mt-2">
-                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-full h-full" alt="thumbnails">
+            <div class="thumbnail w-full max-h-[150px] flex items-center justify-center overflow-hidden">
+                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-[100px] h-[100px]" alt="thumbnails">
             </div>
-    
+
             <!-- Content Section -->
-            <div class="flex flex-col items-center text-center gap-[10px] flex-grow">
-                <div class="flex flex-col gap-[5px] items-center">
+            <div class="flex flex-col items-center text-center gap-[8px] flex-grow">
+                <div class="flex flex-col gap-[3px] items-center">
                     <p class="title font-bold text-2xl text-[#0D3892]">{{ $principle->name }}</p>
                     <p class="text-base text-[#6B7280]">{{ $principle->subtitle }}</p>
                 </div>
@@ -313,8 +334,10 @@
         </div>
         @endforeach
     </div>
-    
 </div>
+
+
+
 
 <script>
     function closeModalThumbnail(index) {
