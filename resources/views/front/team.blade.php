@@ -8,6 +8,19 @@
     <meta property="og:description" content="Wilzio menawarkan layanan internet terbaik di Indonesia. Temukan perjalanan kami, tim super kami, dan sertifikasi yang menjadikan kami pilihan terbaik.">
     <meta property="og:image" content="{{ asset('assets/teams/Thank-min.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
+
+    <style>
+        /* Canvas overlay for particle effect */
+        #particles-trail-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -15,6 +28,12 @@
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
+
+            <!-- Wave SVG Positioned Above the Carousel but outside the container -->
+            <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
+
+
+            </div>
             
             <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12">
                 Tentang Kami
@@ -48,6 +67,53 @@
             @endforeach
         </div>
     </section>
+
+    @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        tsParticles.load("particles-trail-canvas", {
+            particles: {
+                number: { value: 0 },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.7,
+                    anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: true, speed: 5, size_min: 0.1, sync: false }
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                },
+                line_linked: { enable: false }
+            },
+            interactivity: {
+                events: {
+                    onhover: { enable: true, mode: "trail" },
+                    onclick: { enable: false }
+                },
+                modes: {
+                    trail: {
+                        delay: 0.02,
+                        quantity: 5
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    });
+</script>
+@endsection
 
     <!-- Section: Product Identity -->
     <section id="product-identity" class="w-full py-16">
@@ -175,7 +241,6 @@
 
     <!-- Our Team Section -->
 
-    
     <section id="teams" class="w-full py-16">
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
             

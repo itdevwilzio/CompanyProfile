@@ -52,4 +52,21 @@
             </div>
         </div>
     </div>
+
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector("#description"));
+
+        // Image Preview Script
+        function previewLogo(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('logo-preview');
+                preview.src = reader.result;
+                preview.style.display = 'block'; // Show the image preview
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>

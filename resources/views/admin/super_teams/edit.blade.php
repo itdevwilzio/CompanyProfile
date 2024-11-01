@@ -71,6 +71,12 @@
         </div>
     </div>
 
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector("#description"));
+    </script>
+
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
