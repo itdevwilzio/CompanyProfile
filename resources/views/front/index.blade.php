@@ -299,36 +299,31 @@
 
 
 <!-- Principles Section -->
-<div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
-    <div class="flex flex-col gap-[14px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[8px_16px] rounded-full uppercase font-nunito font-extrabold text-[46px]">
+<div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
+    <div class="flex flex-col gap-[8px] items-center">
+        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
             Keunggulan Kami
         </p>
     </div>
 
-
-    <div class="flex flex-wrap items-center gap-[20px] justify-center">
-        @forelse ($principles as $principle)
-        <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[10px] overflow-hidden hover:border-cp-dark-blue hover:shadow-xl transition-all duration-300 min-h-[400px] mb-0 shadow-md p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px] justify-items-center">
+        @foreach ($principles as $principle)
+        <div class="card w-full max-w-[575px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[30px] gap-[5px] overflow-hidden hover:border-cp-dark-blue hover:shadow-lg transition-all duration-300 min-h-[250px] mb-0 shadow-md p-4">
             <!-- Thumbnail Section with Responsive Dimensions -->
-            <div class="thumbnail w-full max-h-[150px] sm:w-[200px] sm:h-[200px] flex items-center justify-center overflow-hidden mt-2">
-                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-full h-full" alt="thumbnails">
+            <div class="thumbnail w-full max-h-[150px] flex items-center justify-center overflow-hidden">
+                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-[100px] h-[100px]" alt="thumbnails">
             </div>
 
             <!-- Content Section -->
-            <div class="flex flex-col items-center text-center gap-[10px] flex-grow">
-                <div class="flex flex-col gap-[5px] items-center">
+            <div class="flex flex-col items-center text-center gap-[8px] flex-grow">
+                <div class="flex flex-col gap-[3px] items-center">
                     <p class="title font-bold text-2xl text-[#0D3892]">{{ $principle->name }}</p>
                     <p class="text-base text-[#6B7280]">{{ $principle->subtitle }}</p>
                 </div>
             </div>
         </div>
-        @empty
-        <p>Belum ada data terbaru</p>
-        @endforelse
+        @endforeach
     </div>
-
-
 </div>
 
 <script>
