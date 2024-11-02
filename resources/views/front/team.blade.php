@@ -30,10 +30,7 @@
             <x-navbar></x-navbar>
 
             <!-- Wave SVG Positioned Above the Carousel but outside the container -->
-            <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
 
-
-            </div>
             
             <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12">
                 Tentang Kami
@@ -43,30 +40,74 @@
 
     <!-- Section: Born for Indonesia -->
 
-    <section id="born-for-indonesia" class="w-full py-16 bg-primary relative overflow-hidden">
-        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
-            @foreach ($abouts as $about)
-            <!-- Text Section -->
-            <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
-                <h2 class="font-nunito font-bold text-4xl mb-6">
-                    {{ $about->name }}
-                </h2>
-                <p class="font-nunito text-base leading-7 mb-8">
-                    {!! $about->description !!}
-                </p>
-            </div>
+
+    <section id="born-for-indonesia" class="w-full py-24 bg-blue-800 relative overflow-hidden">
+        <!-- First Wave Container -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
+            <svg class="w-full h-16" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path 
+                    class="elementor-shape-fill" 
+                    fill="#ffffff" 
+                    opacity="0.33" 
+                    d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 
+                    c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"
+                />
+            </svg>
+        </div>
+
+        <!-- Second Wave Container -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
+            <svg class="w-full h-20" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path 
+                    class="elementor-shape-fill" 
+                    fill="#ffffff" 
+                    opacity="0.66" 
+                    d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 
+                    s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"
+                />
+            </svg>
+        </div>
+
+        <!-- Third Wave Container -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
+            <svg class="w-full h-24" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                <path 
+                    class="elementor-shape-fill" 
+                    fill="#ffffff" 
+                    opacity="1" 
+                    d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6
+                    C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"
+                />
+            </svg>
+        </div>
     
-            <!-- Image Section -->
-            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
-                <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
-                    <img src="{{ Storage::url($about->thumbnail) }}" 
-                        class="object-cover w-full h-full"
-                        alt="{{ $about->name }}">
+        {{-- Container --}}
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10 relative px-4">
+            @foreach ($abouts as $about)
+                {{-- Text Section --}}
+                <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all duration-300 hover:text-gray-200">
+                    <h2 class="font-nunito font-bold text-4xl mb-6">
+                        {{ $about->name }}
+                    </h2>
+                    <p class="font-nunito text-base leading-7 mb-8">
+                        {!! $about->description !!}
+                    </p>
                 </div>
-            </div>
+    
+                {{-- Image Section --}}
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative z-10">
+                    <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                        <img 
+                            src="{{ Storage::url($about->thumbnail) }}" 
+                            class="object-cover w-full h-full"
+                            alt="{{ $about->name }}"
+                        >
+                    </div>
+                </div>
             @endforeach
         </div>
     </section>
+    
 
     @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>

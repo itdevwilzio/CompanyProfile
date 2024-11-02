@@ -19,8 +19,7 @@
 
         <!-- Wave SVG Positioned Above the Carousel but outside the container -->
         <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
-
-
+            
         </div>
 
     <!-- Carousel Section -->
@@ -46,11 +45,6 @@
 
         <!-- CSS for Carousel and Wave -->
         <style>
-            .wave-container {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
         
             .carousel-container {
                 position: relative;
@@ -120,7 +114,7 @@
 <section id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-12 mb-12 bg-white p-12 rounded-xl shadow-2xl">
     <!-- Title Section -->
     <h2 class="font-permanent text-5xl font-bold text-center text-[#0E3995]">
-        Buka Peluang Baru dengan Koneksi Internet Terbaik
+        Bukan Peluang Baru dengan Koneksi Internet Terbaik
     </h2>
 
     <!-- Content Section -->
