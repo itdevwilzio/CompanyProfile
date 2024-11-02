@@ -110,51 +110,51 @@
     
 
     @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        tsParticles.load("particles-trail-canvas", {
-            particles: {
-                number: { value: 0 },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: {
-                    value: 0.7,
-                    anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            tsParticles.load("particles-trail-canvas", {
+                particles: {
+                    number: { value: 0 },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: {
+                        value: 0.7,
+                        anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: { enable: true, speed: 5, size_min: 0.1, sync: false }
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: "none",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                    },
+                    line_linked: { enable: false }
                 },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: { enable: true, speed: 5, size_min: 0.1, sync: false }
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
-                },
-                line_linked: { enable: false }
-            },
-            interactivity: {
-                events: {
-                    onhover: { enable: true, mode: "trail" },
-                    onclick: { enable: false }
-                },
-                modes: {
-                    trail: {
-                        delay: 0.02,
-                        quantity: 5
+                interactivity: {
+                    events: {
+                        onhover: { enable: true, mode: "trail" },
+                        onclick: { enable: false }
+                    },
+                    modes: {
+                        trail: {
+                            delay: 0.02,
+                            quantity: 5
+                        }
                     }
-                }
-            },
-            retina_detect: true
+                },
+                retina_detect: true
+            });
         });
-    });
-</script>
-@endsection
+    </script>
+    @endsection
 
     <!-- Section: Product Identity -->
     <section id="product-identity" class="w-full py-16">

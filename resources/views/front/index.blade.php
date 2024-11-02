@@ -4,57 +4,42 @@
 <!-- Full Screen Wave and Particle Section -->
 <div id="header" class="relative w-full overflow-hidden bg-[#0E3995]">
     <!-- Container for Carousel and Particles -->
-    <div class="container max-w-[1130px] mx-auto relative pt-2 z-10">
+    <div class="container max-w-[1130px] mx-auto relative pt-2 z-10 main-carousel">
         <x-navbar></x-navbar>
 
         <!-- Wave SVG Positioned Above the Carousel but outside the container -->
         <div class="wave-container w-full absolute top-0 left-0 z-[-1]">
-    
-            
-            <!-- Existing SVG Wave -->
-            {{-- <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#043E8A" fill-opacity="0.33"
-                    d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z">
-                </path>
-                <path fill="#0A47B3" fill-opacity="0.66"
-                    d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z">
-                </path>
-                <path fill="#1565C0"
-                    d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z">
-                </path> --}}
-            </svg>
+
+
         </div>
-        
-        <!-- Carousel Section -->
-        <section id="wave-particles" class="relative w-full h-auto  overflow-hidden mt-28">
-            <!-- Carousel Container -->
-            {{-- <div class="container mx-auto relative pt-0 z-10 main-carousel "> --}}
-                <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
-                    <!-- Carousel Wrapper -->
-                    <div class="carousel w-full"
-                        data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
-                        @forelse ($hero_section as $hero)
-                        <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                            <div class="relative w-full h-full flex justify-center items-center">
-                                <img src="{{ Storage::url($hero->banner) }}"
-                                    srcset="{{ Storage::url($hero->banner) }} 1024w,
-                                            {{ Storage::url($hero->banner) }} 640w"
-                                    sizes="(max-width: 768px) 640px, 1024px"
-                                    class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
-                            </div>
-                        </div>
-                        @empty
-                        <!-- Fallback if no images are available -->
-                        <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                            <div class="relative">
-                                <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
-                            </div>
-                        </div>
-                        @endforelse
+
+    <!-- Carousel Section -->
+    <section id="wave-particles" class="relative w-full h-auto overflow-hidden mt-4">
+        <!-- Carousel Container -->
+        <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
+            <!-- Carousel Wrapper -->
+            <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
+                @forelse ($hero_section as $hero)
+                <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
+                    <div class="relative w-full h-full flex justify-center items-center">
+                        <img src="{{ Storage::url($hero->banner) }}"
+                            srcset="{{ Storage::url($hero->banner) }} 1024w,
+                                    {{ Storage::url($hero->banner) }} 640w"
+                            sizes="(max-width: 768px) 640px, 1024px"
+                            class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
                     </div>
                 </div>
-            {{-- </div> --}}
-        </section>
+                @empty
+                <!-- Fallback if no images are available -->
+                <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                    <div class="relative">
+                        <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
+                    </div>
+                </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
 
         <!-- CSS for Carousel and Wave -->
         <style>
@@ -73,9 +58,9 @@
                 margin-top: 0;
             }
         </style>
-                
-        
-        
+
+
+
         <!-- CSS for Particles -->
         <style>
             .wave-container {
@@ -86,14 +71,14 @@
                 height: 100%;
                 z-index: -1
             }
-        
+
             .particle {
                 position: absolute;
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 50%;
                 animation: float 6s infinite ease-in-out;
             }
-        
+
             @keyframes float {
                 0% { transform: translateY(0) translateX(0); opacity: 1; }
                 25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
@@ -102,59 +87,60 @@
                 100% { transform: translateY(0) translateX(0); opacity: 1; }
             }
         </style>
-        
+
     </div>
 </div>
 
-<div id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-16 mb-16 bg-white p-12 rounded-xl shadow-2xl">
+<!-- Optimized Bangun Section -->
+<section id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-12 mb-12 bg-white p-12 rounded-xl shadow-2xl">
     <!-- Title Section -->
     <h2 class="font-permanent text-5xl font-bold text-center text-[#0E3995]">
         Buka Peluang Baru dengan Koneksi Internet Terbaik
     </h2>
-    
+
     <!-- Content Section -->
     <div class="flex flex-col items-center md:flex-row justify-between gap-10">
-            <!-- Left Content -->
-            <div class="md:w-5/12 text-center md:text-left flex flex-col items-center justify-center md:items-start md:justify-start">
-                <p class="font-nunito font-semibold text-xl text-[#0E3995] mb-4">
-                    Membangun Indonesia lebih maju dimulai dari akses internet yang merata.
-                </p>
-                <p class="font-nunito font-semibold text-xl text-[#0E3995] mb-6">
-                    Ayo bergabung dengan WIJA BACKBONE dan jadilah bagian dari pergerakan untuk memperluas jangkauan internet cepat dan berkualitas.
-                </p>
-                <div class="mt-6 flex justify-center items-center w-full">
-                    <a href="https://wa.me/6285179709387"
-                        class="bg-orange-500 font-roboto text-primary font-[700] px-8 py-4 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out transform focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
-                        Mulai Bergabung
-                    </a>
-
-                </div>
-                
-            </div>
-
-            <!-- Right Content - Single Image -->
-            <div class="md:w-7/12">
-                <img src="{{ asset('assets/joins/cover2.jpg') }}" 
-                    alt="cover image"
-                    class="rounded-lg shadow-lg w-full h-auto object-cover">
+        <!-- Left Content -->
+        <div class="md:w-5/12 text-center md:text-left flex flex-col items-center justify-center md:items-start md:justify-start">
+            <p class="font-nunito font-semibold text-xl text-[#0E3995] mb-4">
+                Membangun Indonesia lebih maju dimulai dari akses internet yang merata.
+            </p>
+            <p class="font-nunito font-semibold text-xl text-[#0E3995] mb-6">
+                Ayo bergabung dengan WIJA BACKBONE dan jadilah bagian dari pergerakan untuk memperluas jangkauan internet cepat dan berkualitas.
+            </p>
+            <div class="mt-6 flex justify-center items-center w-full">
+                <a href="https://wa.me/6285179709387"
+                   id="joinButton"
+                   class="bg-orange-500 font-semibold text-primary px-8 py-4 rounded-full shadow-lg hover:bg-orange-600 hover:shadow-xl transform hover:scale-95 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-400">
+                    Mulai Bergabung
+                </a>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Testimonials Section -->
-<div class="w-full main-carousel py-16 mt-16 bg-[#0E3995]">
+        <!-- Right Content - Single Image -->
+        <div class="md:w-7/12">
+            <img src="{{ asset('assets/joins/cover1.jpg') }}"
+                 alt="cover image"
+                 class="rounded-lg shadow-lg w-full h-auto object-cover">
+        </div>
+    </div>
+</section>
+
+<!-- Optimized Testimonial Section -->
+<section id="testimonials" class="w-full py-16 bg-[#0E3995]">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                    <!-- Star Icons -->
+        <!-- Star Icons -->
         <div class="flex justify-center mb-2">
             @for ($i = 0; $i < 5; $i++)
                 <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1" alt="star">
             @endfor
         </div>
+
         <!-- Rating Title -->
         <h2 class="font-nunito font-bold text-white text-4xl text-center mb-4">
             <span id="rating" class="rolling-number">4.85</span> / 5 Rating Pelanggan
         </h2>
+
         <!-- Main Heading -->
         <h3 class="font-nunito font-bold text-[#ff9802] text-3xl text-center mb-12">
             Apa Kata Mereka?
@@ -171,21 +157,23 @@
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
                         <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
                     </div>
+
                     <!-- Client Info -->
                     <div>
                         <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
                         <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
                     </div>
+
                     <!-- WhatsApp Icon -->
-                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer"data-open-modal="{{ $loop->index }}">
+                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
+                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
                     </div>
                 </div>
 
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
-                        $randomStars = rand(4, 5); 
+                        $randomStars = rand(4, 5);
                     @endphp
                     @for($i = 0; $randomStars > $i; $i++)
                         <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-5 h-5" alt="star">
@@ -196,104 +184,327 @@
                 <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
                     @if(strlen($testimonial->message) > 150)
                         <!-- Link to trigger modal -->
-                        <a href="javascript:void(0);" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">...Lihat selengkapnya</a>
-
-                        <!-- Modal -->
-                        <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
-                            <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-                            <div class="modal-container relative mx-auto max-w-xl mt-20">
-                                <div class="modal-content bg-white rounded-lg shadow-lg relative">
-                                    <div class="modal-header py-4 px-6 border-b border-gray-200">
-                                        <h3 class="modal-title text-lg font-semibold" id="modal-{{ $loop->index }}-title">Testimonial</h3>
-                                        <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700" data-modal-toggle="modal-{{ $loop->index }}">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body px-6 py-4">
-                                        {{ $testimonial->message }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
                     @endif
                 </p>
             </div>
-
-                <!-- Full Testimonial Modal -->
-                <div id="modal-{{ $loop->index }}" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div class="bg-white p-8 rounded-lg w-full md:w-2/3 lg:w-3/4 xl:w-2/3 2xl:w-1/2 max-h-screen overflow-y-auto relative">
-                        <!-- Thumbnail Image -->
-                        <div class="w-full h-auto mb-4">
-                            <img src="{{ Storage::url($testimonial->thumbnail) }}" alt="Client Thumbnail" class="object-cover w-full h-full rounded-lg">
-                        </div>
-                        <button class="absolute top-4 right-4 text-gray-600 text-2xl" onclick="closeModal({{ $loop->index }})">&times;</button>
-                    </div>
-                </div>
-                @empty
-                <p class="text-center text-white">Belum ada data terbaru</p>
+            @empty
+            <p class="text-center text-white">Belum ada data terbaru</p>
             @endforelse
         </div>
-    </div>
-</div>
 
+        @foreach ($testimonials as $testimonial)
+        {{-- Modal thumbnail --}}
+        <div id="modal-{{ $loop->index }}" class="modal fixed inset-0 flex justify-center items-center z-50">
+            <div class="bg-transparent p-8 rounded-lg w-full max-w-3/4 h-full overflow-y-auto relative flex flex-col">
+                <!-- Image Container -->
+                
+
+                <!-- Circular Buttons in the Top Right Corner -->
+                <ul class="flex space-x-3 justify-end z-10">
+                    <!-- Fullscreen Button -->
+                    <li>
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleFullscreen({{ $loop->index }})">
+                        ⬜ <!-- Fullscreen Icon -->
+                    </button></li>
+
+                    <!-- Zoom In/Out Buttons -->
+                    <li>
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomIn({{ $loop->index }})">
+                        ➕ <!-- Zoom In Icon -->
+                    </button></li>
+                    <li>
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="zoomOut({{ $loop->index }})">
+                        ➖ <!-- Zoom Out Icon -->
+                    </button></li>
+
+                    <!-- Share to Social Media Button -->
+                    <li class="relative">
+                        <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center dropshare-{{$loop->index}}" onclick="ShowHideShare(event, {{ $loop->index }})">
+                            📤 <!-- Share Icon -->
+                        </button>
+                        <ul class="p-2 bg-white mt-2 shadow-md rounded-md absolute left-3/4 -translate-x-3/4 min-w-[200px] dropsharebox-{{$loop->index}} hidden">
+                            <li class="py-3 px-2">Bagikan di Facebook</li>
+                            <li class="py-3 px-2">Bagikan di Twitter</li>
+                        </ul>
+                    </li>
+
+                    <!-- Close Button -->
+                    <li>
+                    <button class="bg-primary text-white p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200" onclick="closeModalThumbnail({{ $loop->index }})">
+                        &times; <!-- Close Icon -->
+                    </button></li>
+                </ul>
+
+                <div class="w-full h-full flex items-center justify-center mb-4">
+                    <!-- Large Image with adjusted size -->
+                    <img id="image-{{ $loop->index }}"
+                        src="{{ Storage::url($testimonial->thumbnail) }}"
+                        alt="Client Thumbnail"
+                        class="object-contain h-full rounded-lg  z-10">
+                </div>
+            </div>
+            <div class="bg-gray-950/80 absolute top-0 left-0 w-full h-full" onclick="closeModalThumbnail({{ $loop->index }})"></div>
+        </div>
+
+            {{-- Modal testimonial --}}
+            <div class="modal fixed inset-0 z-50 overflow-y-auto hidden" id="modal-testimonial-{{ $loop->index }}" aria-labelledby="modal-{{ $loop->index }}-title" role="dialog" aria-modal="true">
+                <div class="modal-overlay absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+                <div class="modal-container relative mx-auto w-full h-full flex items-center justify-center">
+                    <div class="modal-content bg-white rounded-lg shadow-lg relative w-full h-full">
+                        <div class="relative inline-block text-left">
+                            <!-- Share Button -->
+                            <button class="bg-yellow-500 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center" onclick="toggleShareOptions({{ $loop->index }})">
+                                📤 <!-- Share Icon -->
+                            </button>
+                        
+                            <!-- Dropdown Menu for Share Options -->
+                            <div id="share-options-{{ $loop->index }}" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                                <div class="py-1">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail)) }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700">
+                                        Bagikan ke Facebook
+                                    </a>
+                                    <a href="#" onclick="shareToTwitter({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                        Bagikan ke Twitter
+                                    </a>
+                                    <a href="#" onclick="toggleZoom({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
+                                        Zoom In/Out
+                                    </a>
+                                    <a href="#" onclick="downloadImage({{ $loop->index }}, '{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}')" class="block px-4 py-2 text-sm text-gray-700">
+                                        Download Gambar
+                                    </a>
+                                    <a href="#" onclick="closeDropdown({{ $loop->index }})" class="block px-4 py-2 text-sm text-gray-700">
+                                        Exit
+                                    </a>
+                                </div>
+                            </div>
+                        
+                            <!-- Thumbnail Image -->
+                            <img id="image-{{ $loop->index }}" src="{{ Storage::url('testimonial/thumbnail/' . $testimonial->thumbnail) }}" alt="Testimonial Thumbnail" class="w-full h-auto cursor-pointer">
+                        </div>
+
+                        <div class="modal-body px-6 py-4 h-full overflow-auto">
+                            <p>
+                                {{ $testimonial->message }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</section>
 
 
 
 <!-- Principles Section -->
-<div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
-    <div class="flex flex-col gap-[8px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
+<div id="OurPrinciples" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+    <div class="flex flex-col gap-[14px] items-center">
+        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[8px_16px] rounded-full uppercase font-nunito font-extrabold text-[46px]">
             Keunggulan Kami
         </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px] justify-items-center">
-        @foreach ($principles as $principle)
-        <div class="card w-full max-w-[575px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[30px] gap-[5px] overflow-hidden hover:border-cp-dark-blue hover:shadow-lg transition-all duration-300 min-h-[250px] mb-0 shadow-md p-4">
+
+    <div class="flex flex-wrap items-center gap-[20px] justify-center">
+        @forelse ($principles as $principle)
+        <div class="card w-[356.67px] flex flex-col items-center bg-white border border-[#E8EAF2] rounded-[20px] gap-[10px] overflow-hidden hover:border-cp-dark-blue hover:shadow-xl transition-all duration-300 min-h-[400px] mb-0 shadow-md p-6">
             <!-- Thumbnail Section with Responsive Dimensions -->
-            <div class="thumbnail w-full max-h-[150px] flex items-center justify-center overflow-hidden">
-                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-[100px] h-[100px]" alt="thumbnails">
+            <div class="thumbnail w-full max-h-[150px] sm:w-[200px] sm:h-[200px] flex items-center justify-center overflow-hidden mt-2">
+                <img src="{{ Storage::url($principle->thumbnail) }}" class="object-cover w-full h-full" alt="thumbnails">
             </div>
 
             <!-- Content Section -->
-            <div class="flex flex-col items-center text-center gap-[8px] flex-grow">
-                <div class="flex flex-col gap-[3px] items-center">
+            <div class="flex flex-col items-center text-center gap-[10px] flex-grow">
+                <div class="flex flex-col gap-[5px] items-center">
                     <p class="title font-bold text-2xl text-[#0D3892]">{{ $principle->name }}</p>
                     <p class="text-base text-[#6B7280]">{{ $principle->subtitle }}</p>
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <p>Belum ada data terbaru</p>
+        @endforelse
     </div>
+
+
 </div>
 
+<script>
+    function closeModalThumbnail(index) {
+        document.getElementById('modal-' + index).classList.add('hidden');
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen(index) {
+        const modal = document.getElementById('modal-' + index);
+        if (!document.fullscreenElement) {
+            modal.requestFullscreen().catch(err => console.log(err));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    // Zoom In Functionality
+    function zoomIn(index) {
+        const img = document.getElementById('image-' + index);
+        let currentWidth = img.clientWidth;
+        img.style.width = currentWidth + 100 + "px"; // Increase width by 100px
+    }
+
+    // Zoom Out Functionality
+    function zoomOut(index) {
+        const img = document.getElementById('image-' + index);
+        let currentWidth = img.clientWidth;
+        img.style.width = currentWidth - 100 + "px"; // Decrease width by 100px
+    }
+
+    // Share Image to Social Media (Using Web Share API if supported)
+    function shareImage(index) {
+    const imgSrc = document.getElementById('image-' + index).src;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Check out this image!',
+                text: 'Here is a testimonial image from our client.',
+                url: imgSrc
+            }).then(() => {
+                console.log('Image shared successfully');
+            }).catch(err => console.log('Error sharing the image:', err));
+        } else {
+            alert('Sharing is not supported on your browser.');
+        }
+    }
+
+    function shareToTwitter(index, fileUrl) {
+        const url = encodeURIComponent(fileUrl);
+        const text = encodeURIComponent('Check out this testimonial!');
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    }
+
+    function shareToWhatsApp(index, fileUrl) {
+        const url = encodeURIComponent(fileUrl);
+        window.open(`https://wa.me/?text=${url}`, '_blank');
+    }
+
+    function downloadImage(index, fileUrl) {
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'testimonial-thumbnail.jpg';
+        link.click();
+    }
+
+    function openModalTestimonial(index) {
+        const modal = document.getElementById(`modal-testimonial-${index}`);
+        if (modal) {
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            modal.style.display = 'flex';
+
+            lightGallery(document.getElementById(`lightgallery-thumbnail-${index}`), {
+                plugins: [lgFullscreen, lgZoom, lgShare],
+                mode: 'lg-fade',
+                speed: 500,
+                zoom: true,
+                share: true,
+                fullscreen: true,
+                preload: 1,
+            });
+        }
+    }
+
+    function closeModalTestimonial(index) {
+        const modal = document.getElementById(`modal-testimonial-${index}`);
+        if (modal) {
+            modal.classList.remove('flex')
+            modal.classList.add('hidden')
+            modal.style.display = 'none';
+        }
+    }
+
+    function openModalThumbnail(index) {
+   const modal = document.getElementById(`modal-${index}`);
+    if (modal) {
+        // Show the modal by changing its classes and styles
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.style.display = 'flex';
+
+        // Initialize LightGallery for the thumbnail modal
+        const galleryElement = document.getElementById(`lightgallery-thumbnail-${index}`);
+
+        // Ensure that LightGallery is initialized only once
+        if (!galleryElement.lightGalleryInstance) {
+            galleryElement.lightGalleryInstance = lightGallery(galleryElement, {
+                plugins: [lgFullscreen, lgZoom, lgShare], // Optional for commercial use
+                mode: 'lg-fade',
+                speed: 500,
+                zoom: true,
+                share: true,
+                fullscreen: true,
+                preload: 1,
+            });
+        } else {
+            // If already initialized, just refresh the gallery
+            galleryElement.lightGalleryInstance.refresh();
+        }
+    }
+    }
+
+    function closeModalThumbnail(index) {
+        const modal = document.getElementById(`modal-${index}`);
+        if (modal) {
+            modal.classList.remove('flex')
+            modal.classList.add('hidden')
+            modal.style.display = 'none';
+        }
+
+        // Destroy LightGallery when the modal is closed
+        const galleryInstance = document.getElementById(`lightgallery-thumbnail-${index}`);
+        if (galleryInstance && galleryInstance.lgData) {
+            galleryInstance.lgData.destroy(true);
+        }
+    }
+</script>
 
 {{-- Modal Script --}}
 @push('after-scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Function to show the modal
+        const showModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        };
+
+        // Function to hide the modal
+        const hideModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        };
+
         // Open modal when the trigger is clicked
-        document.querySelectorAll('.modal-open').forEach(function (trigger) {
+        document.querySelectorAll('.modal-open').forEach(trigger => {
             trigger.addEventListener('click', function () {
                 const modalId = trigger.getAttribute('data-modal-target');
-                const modal = document.getElementById(modalId);
-                modal.classList.remove('hidden');
+                showModal(modalId);
             });
         });
 
         // Close modal when the close button or the overlay is clicked
-        document.querySelectorAll('.modal-close').forEach(function (closeButton) {
+        document.querySelectorAll('.modal-close').forEach(closeButton => {
             closeButton.addEventListener('click', function () {
                 const modalId = closeButton.getAttribute('data-modal-toggle');
-                const modal = document.getElementById(modalId);
-                modal.classList.add('hidden');
+                hideModal(modalId);
             });
         });
 
         // Close modal when clicking outside the modal content
-        document.querySelectorAll('.modal').forEach(function (modal) {
+        document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function (event) {
                 if (event.target === modal) {
                     modal.classList.add('hidden');
@@ -302,6 +513,14 @@
         });
     });
 
+    function ShowHideShare(event, i) {
+        event.preventDefault();
+        
+    let dropshare = event.target.nextElementSibling;
+    console.log(dropshare)
+
+        dropshare.classList.toggle("hidden");
+    }
 </script>
 @endpush
 
@@ -311,7 +530,7 @@
     display: none;
 }
 
-.modal.open {
+.modal-open {
     display: block;
 }
 
@@ -400,13 +619,22 @@
 
 
 @endsection
-{{-- 
-@push('after-scripts')
+
+{{-- @push('after-scripts')
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
 <script src="{{ asset('js/carousel.js') }}"></script>
 <script src="{{ asset('js/accordion.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css" />
+
+<!-- LightGallery JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+
+<!-- Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/share/lg-share.min.js"></script>
 <script>
     // Join Button hover and scale effect
     const joinButton = document.getElementById('joinButton');
