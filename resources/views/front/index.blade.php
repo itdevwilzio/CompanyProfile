@@ -119,7 +119,7 @@
 
         <!-- Right Content - Single Image -->
         <div class="md:w-7/12">
-            <img src="{{ asset('assets/joins/cover1.jpg') }}"
+            <img src="{{ asset('assets/joins/cover2.jpg') }}"
                  alt="cover image"
                  class="rounded-lg shadow-lg w-full h-auto object-cover">
         </div>
