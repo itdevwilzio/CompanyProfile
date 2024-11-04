@@ -19,24 +19,18 @@
         <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
             <!-- Carousel Wrapper -->
             <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
-                @forelse ($hero_section as $hero)
-                <div class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
+                @foreach ($hero_section as $hero)
+                <!-- Link to Hero Section Detail Page -->
+                <a href="{{ route('hero_sections.show', $hero->id) }}" class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
                     <div class="relative w-full h-full flex justify-center items-center">
                         <img src="{{ Storage::url($hero->banner) }}"
-                            srcset="{{ Storage::url($hero->banner) }} 1024w,
-                                    {{ Storage::url($hero->banner) }} 640w"
-                            sizes="(max-width: 768px) 640px, 1024px"
-                            class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
+                             srcset="{{ Storage::url($hero->banner) }} 1024w,
+                                     {{ Storage::url($hero->banner) }} 640w"
+                             sizes="(max-width: 768px) 640px, 1024px"
+                             class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
                     </div>
-                </div>
-                @empty
-                <!-- Fallback if no images are available -->
-                <div class="carousel-cell w-full h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative">
-                        <img src="{{ asset('assets/banners/banner.png') }}" class="object-cover w-full h-full rounded-lg shadow-lg" alt="No banners available">
-                    </div>
-                </div>
-                @endforelse
+                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -148,7 +142,7 @@
 
         <!-- Flickity Carousel -->
         <div class="carousel"
-             data-flickity='{ "wrapAround": true, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
+             data-flickity='{ "wrapAround": false, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
             @forelse ($testimonials as $testimonial)
             <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
                 <!-- Testimonial Info -->

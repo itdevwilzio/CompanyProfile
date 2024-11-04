@@ -23,8 +23,11 @@ class UpdateHeroSectionRequest extends FormRequest
     {
         return [
             //
-            'heading' => ['required', 'string', 'max:255'],
-            'banner' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'heading' => ['nullable', 'string', 'max:255'],
+            'subheading' => ['nullable', 'string', 'max:255'], 
+            'achievement' => ['nullable', 'string',  'max:1000000'],           
+            'banner' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
+            'path_video' => ['nullable', 'string'],
         ];
     }
 }

@@ -25,7 +25,21 @@
                             :value="old('heading')" required autofocus autocomplete="heading" />
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
+                    <div>
+                        <x-input-label for="sub_heading" :value="__('sub_heading')" />
+                        <x-text-input id="sub_heading" class="block w-full mt-1" type="text" name="sub_heading"
+                            :value="old('sub_heading')" required autofocus autocomplete="sub_heading" />
+                        <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
+                    </div>
 
+                    <!-- Achievement Field with CKEditor -->
+                    <div class="mt-4">
+                        <x-input-label for="achievement" :value="__('Achievement')" />
+                        <textarea id="achievement" name="achievement" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Describe achievements">{{ old('achievement') }}</textarea>
+                        <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
+                    </div>
+
+                    <!-- Banner Upload Field -->
                     <div class="mt-4">
                         <x-input-label for="banner" :value="__('banner')" />
                         <x-text-input id="banner" class="block w-full mt-1" type="file" name="banner" required
@@ -44,21 +58,27 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 
-    <!-- Image Preview Script -->
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
+        // Initialize CKEditor for the achievement field
+        ClassicEditor.create(document.querySelector("#achievement")).catch(error => {
+            console.error(error);
+        });
+
+        // Image Preview Script
         function previewBanner(event) {
             const reader = new FileReader();
             reader.onload = function() {
                 const preview = document.getElementById('banner-preview');
                 preview.src = reader.result;
-                preview.style.display = 'block'; // Display the preview image
+                preview.style.display = 'block';  // Show the preview image
             };
-            reader.readAsDataURL(event.target.files[0]);
+            reader.readAsDataURL(event.target.files[0]); // Read the file and trigger the event
         }
     </script>
 </x-app-layout>

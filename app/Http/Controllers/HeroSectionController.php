@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Mews\Purifier\Facades\Purifier;
 use App\Http\Requests\StoreHeroSectionRequest;
 use App\Http\Requests\UpdateHeroSectionRequest;
 use App\Models\HeroSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class HeroSectionController extends Controller
 {
@@ -15,7 +17,6 @@ class HeroSectionController extends Controller
      */
     public function index()
     {
-        //
         $hero_sections = HeroSection::orderByDesc('id')->paginate(10);
         return view('admin.hero_sections.index', compact('hero_sections'));
     }
@@ -25,7 +26,6 @@ class HeroSectionController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.hero_sections.create');
     }
 
@@ -34,19 +34,21 @@ class HeroSectionController extends Controller
      */
     public function store(StoreHeroSectionRequest $request)
     {
-        //
-        DB::transaction(function () use ($request) {
-            $validated = $request->validated();
+        $validated = $request->validated();
 
-            if ($request->hasFile('banner')) {
-                $bannerPath = $request->file('banner')->store('banners', 'public');
-                $validated['banner'] = $bannerPath;
-            }
+        if ($request->hasFile('banner')) {
+            $bannerPath = $request->file('banner')->store('banners', 'public');
+            $validated['banner'] = $bannerPath;
+        }
 
-            $newHeroSection = HeroSection::create($validated);
-        });
+        $validated['path_video'] = $request->input('path_video', null);
 
-        return redirect()->route('admin.hero_sections.index');
+        // Sanitize the 'achievement' field using Purifier
+        $validated['achievement'] = Purifier::clean($validated['achievement']);
+
+        HeroSection::create($validated);
+
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Hero Section created successfully.');
     }
 
     /**
@@ -54,7 +56,11 @@ class HeroSectionController extends Controller
      */
     public function show(HeroSection $heroSection)
     {
-        //
+        // Sanitize the achievement content
+        $heroSection->achievement = Purifier::clean($heroSection->achievement);
+    
+        // Pass the sanitized hero section to the view
+        return view('front.hero_sections.show', compact('heroSection'));
     }
 
     /**
@@ -62,7 +68,6 @@ class HeroSectionController extends Controller
      */
     public function edit(HeroSection $heroSection)
     {
-        //
         return view('admin.hero_sections.edit', compact('heroSection'));
     }
 
@@ -73,18 +78,20 @@ class HeroSectionController extends Controller
     {
         DB::transaction(function () use ($request, $heroSection) {
             $validated = $request->validated();
-    
-            // Check if a new banner is uploaded, otherwise keep the existing one
+
             if ($request->hasFile('banner')) {
                 $bannerPath = $request->file('banner')->store('banners', 'public');
                 $validated['banner'] = $bannerPath;
             } else {
-                $validated['banner'] = $heroSection->banner; // Keep the old banner if no new one is uploaded
+                $validated['banner'] = $heroSection->banner;
             }
-    
+
+            // Remove 'path_video' from validated data
+            unset($validated['path_video']);
+
             $heroSection->update($validated);
         });
-    
+
         return redirect()->route('admin.hero_sections.index')->with('success', 'Hero Section updated successfully.');
     }
 
@@ -93,10 +100,10 @@ class HeroSectionController extends Controller
      */
     public function destroy(HeroSection $heroSection)
     {
-        //
         DB::transaction(function () use ($heroSection) {
             $heroSection->delete();
         });
+        
         return redirect()->route('admin.hero_sections.index');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('hero_sections', function (Blueprint $table) {
-            $table->dropColumn(['achievement', 'subheading', 'path_video']);
+            $table->text('achievement')->change(); // Change achievement to text
         });
     }
 
@@ -22,9 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('hero_sections', function (Blueprint $table) {
-            $table->string('achievement');
-            $table->string('subheading');
-            $table->string('path_video');
+            $table->string('achievement', 255)->nullable()->change(); // Revert back to string if rolled back
         });
     }
 };

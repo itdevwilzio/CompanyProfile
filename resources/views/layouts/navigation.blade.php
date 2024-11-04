@@ -20,7 +20,7 @@
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md bg-white text-black hover:bg-white-700 focus:outline-none transition ease-in-out duration-150">
-                                    <div>Landing Page</div>
+                                    <div>Beranda</div>
         
                                     <div class="ms-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -32,10 +32,16 @@
         
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('admin.hero_sections.index')" class="text-primary">
-                                    {{ __('Hero Section') }}
+                                    {{ __('Banner') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.principles.index')" class="text-primary">
                                     {{ __('Keunggulan Kami') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.testimonials.index')" class="text-primary">
+                                    {{ __('Testimoni') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.clients.index')" class="text-primary">
+                                    {{ __('Client Kami') }}
                                 </x-dropdown-link>
                                 {{-- <x-dropdown-link :href="route('admin.statistics.index')" class="text-primary">
                                     {{ __('Company Stats') }}
@@ -61,15 +67,15 @@
                             <x-slot name="content">
                                 <!-- Link for About Us -->
                                 <x-dropdown-link :href="route('admin.abouts.index')" class="text-primary">
-                                    {{ __('About Us') }}
+                                    {{ __('Born For Indonesia') }}
                                 </x-dropdown-link>
                                 <!-- Link for Product Identity -->
                                 <x-dropdown-link :href="route('admin.product_identities.index')" class="text-primary">
-                                    {{ __('Product Identity') }}
+                                    {{ __('Identitas Product') }}
                                 </x-dropdown-link>
                                 <!-- Link for Certications -->
                                 <x-dropdown-link :href="route('admin.certifications.index')" class="text-primary">
-                                    {{ __('Certifications') }}
+                                    {{ __('Sertifikasi') }}
                                 </x-dropdown-link>
  
                                 <!-- Link for Super Teamss -->
@@ -78,7 +84,7 @@
                                 </x-dropdown-link>
                                 <!-- Link for Tim Kami -->
                                 <x-dropdown-link :href="route('admin.teams.index')" class="text-primary">
-                                    {{ __('Tim Kami') }}
+                                    {{ __('Personal Tim Kami') }}
                                 </x-dropdown-link>
 
                             </x-slot>
@@ -92,7 +98,7 @@
                     <x-nav-link :href="route('admin.locations.index')" :active="request()->routeIs('admin.locations.index')" class="text-white">
                         {{ __('Voucher') }}
                     </x-nav-link>
-
+{{-- 
                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
@@ -108,15 +114,10 @@
                             </x-slot>
         
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('admin.testimonials.index')" class="text-primary">
-                                    {{ __('Testimoni') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('admin.clients.index')" class="text-primary">
-                                    {{ __('Client Kami') }}
-                                </x-dropdown-link>
+
                             </x-slot>
                         </x-dropdown>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

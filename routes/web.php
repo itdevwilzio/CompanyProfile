@@ -33,6 +33,8 @@ Route::post('/location/{location}/confirm-order/{voucher}', [FrontController::cl
 Route::get('/appointment', [FrontController::class, 'appointment'])->name('front.appointment');
 Route::post('/appointment/store', [FrontController::class, 'appointment_store'])->name('front.appointment_store');
 Route::post('/order-product', [FrontController::class, 'orderProduct'])->name('front.order_product');
+Route::get('/hero-sections/{heroSection}', [HeroSectionController::class, 'show'])->name('hero_sections.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

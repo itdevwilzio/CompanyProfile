@@ -40,9 +40,11 @@
                 <!-- Dropdown Menu -->
                 <div id="dropdownMenu" class="hidden absolute lg:w-[200px] mt-2 text-black bg-white shadow-md rounded-md p-3 w-full lg:left-0 lg:top-full z-10">
                     <ul class="flex flex-col grow text-left space-y-2">
+                        {{-- paket home --}}
                         <x-dropdown-link :href="route('front.product')" class="text-black text-xl px-4 py-2 hover:bg-gray-100 block text-left">
                             {{ __('Paket Home') }}
                         </x-dropdown-link>
+                        {{-- paket voucher --}}
                         <x-dropdown-link :href="route('front.location')" class="text-black text-xl  px-4 py-2 hover:bg-gray-100 block text-left">
                             {{ __('Paket Voucher') }}
                         </x-dropdown-link>
@@ -53,9 +55,6 @@
             <!-- Other Navigation Items -->
             <li class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 hover:text-xl {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
                 <a href="{{ route('front.team') }}">Tentang Kami</a>
-            </li>
-            <li class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 hover:text-xl">
-                <a href="#">Client Area</a>
             </li>
         </ul>
     </div>
