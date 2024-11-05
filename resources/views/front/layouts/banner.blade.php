@@ -19,6 +19,12 @@
 
     <!-- Additional CSS -->
     <style>
+        /* Primary background color */
+        body {
+            background-color: #0E3995;
+            color: white; /* Adjust text color for readability */
+        }
+
         /* Centered banner section */
         .banner-section {
             display: flex;
@@ -26,7 +32,7 @@
             align-items: center;
             padding-top: 5rem;
         }
-        
+
         /* Floating WhatsApp button */
         .whatsapp-float {
             position: fixed;
@@ -66,11 +72,11 @@
 
         .modal-content {
             background-color: #fff;
+            color: #0E3995; /* Primary color for text in the modal */
             padding: 20px;
             border-radius: 10px;
             max-width: 500px;
             text-align: center;
-            box-shadow: none; /* Remove shadow */
         }
 
         .modal .close-btn {
@@ -94,14 +100,14 @@
     </style>
 </head>
 
-<body class="font-poppins text-gray-900 bg-gray-100">
+<body class="font-poppins">
     <!-- Banner Layout -->
     <div class="banner-section">
         <div class="text-center max-w-4xl mx-auto">
             <img src="{{ Storage::url($heroSection->banner) }}" alt="Promotion Banner" class="object-cover w-full rounded-3xl">
-            <h1 class="mt-8 text-5xl font-bold text-gray-800">{!! $heroSection->heading !!}</h1>
-            <p class="mt-4 text-lg text-gray-700">{!! $heroSection->subheading !!}</p>
-            <div class="mt-8 text-gray-600 text-justify">
+            <h1 class="mt-8 text-5xl font-bold text-white">{!! $heroSection->heading !!}</h1>
+            <p class="mt-4 text-lg text-white">{!! $heroSection->subheading !!}</p>
+            <div class="mt-8 text-gray-300 text-justify">
                 <p>{!! $heroSection->achievement !!}</p>
             </div>
         </div>

@@ -144,66 +144,66 @@
 
         <!-- Flickity Carousel -->
         <div class="carousel"
-             data-flickity='{ "wrapAround": false, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
-            @forelse ($testimonials as $testimonial)
-            <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
-                <!-- Testimonial Info -->
-                <div class="flex items-center gap-4 mb-4">
-                    <!-- Avatar -->
-                    <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
-                        <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
-                    </div>
-
-                    <!-- Client Info -->
-                    <div>
-                        <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
-                        <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
-                    </div>
-
-                    <!-- WhatsApp Icon -->
-                    <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full btn-open-modal" data-open-modal="{{ $loop->index }}" onclick="openModalThumbnail({{ $loop->index }})">
-                        <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
-                    </div>
-                </div>
-
-                <!-- Star Rating -->
-                <div class="flex items-center mb-6">
-                    @php
-                        // Generate a random rating between 4 and 5, with .5 increments
-                        $randomStars = rand(8, 10) / 2; // This gives 4, 4.5, or 5
-                        $fullStars = floor($randomStars); // Full stars
-                        $isHalfStar = $randomStars > $fullStars; // Check if there's a half star
-                        $totalStars = $fullStars + ($isHalfStar ? 1 : 0); // Total stars to display (including half if present)
-                    @endphp
-            
-                    <!-- Display full stars -->
-                    @for ($i = 0; $i < $fullStars; $i++)
-                        <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
-                    @endfor
-                
-                    <!-- Display half star if needed -->
-                    @if ($isHalfStar)
-                        <img src="{{ asset('assets/icons/half-star.png') }}" class="w-5 h-5 mx-0.5" alt="half star">
-                    @endif
-                
-                    <!-- Fill remaining stars with full stars to ensure a total of 5 stars -->
-                    @for ($i = $totalStars; $i < 5; $i++)
-                        <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
-                    @endfor
-                </div>
-
-                <!-- Testimonial Text with Modal Trigger -->
-                <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
-                    @if(strlen($testimonial->message) > 150)
-                        <!-- Link to trigger modal -->
-                        <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
-                    @endif
-                </p>
-            </div>
-            @empty
-            <p class="text-center text-white">Belum ada data terbaru</p>
-            @endforelse
-        </div>
+        data-flickity='{ "wrapAround": false, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": true }'>
+       @forelse ($testimonials as $testimonial)
+       <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-2 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
+           <!-- Testimonial Info -->
+           <div class="flex items-center gap-4 mb-4">
+               <!-- Avatar -->
+               <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
+                   <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
+               </div>
+   
+               <!-- Client Info -->
+               <div>
+                   <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
+                   <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
+               </div>
+   
+               <!-- WhatsApp Icon -->
+               <div class="absolute top-4 right-4 z-50 bg-green-500 p-1 rounded-full">
+                   <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer">
+               </div>
+           </div>
+   
+           <!-- Star Rating -->
+           <div class="flex items-center mb-6">
+               @php
+                   $randomStars = rand(8, 10) / 2;
+                   $fullStars = floor($randomStars);
+                   $isHalfStar = $randomStars > $fullStars;
+               @endphp
+   
+               <!-- Full stars -->
+               @for ($i = 0; $i < $fullStars; $i++)
+                   <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
+               @endfor
+   
+               <!-- Half star if needed -->
+               @if ($isHalfStar)
+                   <img src="{{ asset('assets/icons/half-star.png') }}" class="w-5 h-5 mx-0.5" alt="half star">
+               @endif
+   
+               <!-- Empty stars -->
+               @for ($i = $fullStars + ($isHalfStar ? 1 : 0); $i < 5; $i++)
+                   <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
+               @endfor
+           </div>
+   
+           <!-- Testimonial Text -->
+           <p class="text-gray-700 text-sm leading-6 mb-6 text-justify">
+               {{ Str::limit($testimonial->message, 150) }}
+               @if(strlen($testimonial->message) > 150)
+                   <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold">Lihat selengkapnya</button>
+               @endif
+           </p>
+       </div>
+       @empty
+       <p class="text-center text-white">Belum ada data terbaru</p>
+       @endforelse
+   </div>
+   
+   
 
         @foreach ($testimonials as $testimonial)
         {{-- Modal thumbnail --}}

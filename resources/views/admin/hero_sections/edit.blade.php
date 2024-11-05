@@ -17,37 +17,39 @@
                     @endforeach
                 @endif
 
-                <form id="hero-section-form" method="POST" action="{{ route('admin.hero_sections.update', $heroSection) }}" enctype="multipart/form-data">
+                <form id="hero-section-form" method="POST"
+                    action="{{ route('admin.hero_sections.update', $heroSection) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
-                    <!-- Heading Input -->
+                    <!-- Heading Input with CKEditor -->
                     <div>
                         <x-input-label for="heading" :value="__('Heading')" />
-                        <x-text-input id="heading" class="block w-full mt-1" type="text" name="heading"
-                            value="{{ old('heading', $heroSection->heading) }}" required autofocus autocomplete="heading" />
+                        <textarea id="heading" class="block w-full mt-1" name="heading">{{ old('heading', $heroSection->heading) }}</textarea>
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
 
-                    <!-- Subheading Input -->
+                    <!-- Subheading Input with CKEditor -->
                     <div>
                         <x-input-label for="sub_heading" :value="__('Sub Heading')" />
-                        <x-text-input id="sub_heading" class="block w-full mt-1" type="text" name="sub_heading"
-                            value="{{ old('sub_heading', $heroSection->sub_heading) }}" required autofocus autocomplete="sub_heading" />
+                        <textarea id="sub_heading" class="block w-full mt-1" name="sub_heading">{{ old('sub_heading', $heroSection->sub_heading) }}</textarea>
                         <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
                     </div>
 
                     <!-- Achievement Field with CKEditor -->
                     <div class="mt-4">
                         <x-input-label for="achievement" :value="__('Achievement')" />
-                        <textarea id="achievement" name="achievement" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Describe achievements">{{ old('achievement', $heroSection->achievement) }}</textarea>
+                        <textarea id="achievement" name="achievement" rows="4"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">{{ old('achievement', $heroSection->achievement) }}</textarea>
                         <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
                     </div>
 
                     <!-- Banner Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="banner" :value="__('Banner')" />
-                        <img id="banner-preview" src="{{ $heroSection->banner ? Storage::url($heroSection->banner) : '' }}" alt="Current Banner" class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
+                        <img id="banner-preview"
+                            src="{{ $heroSection->banner ? Storage::url($heroSection->banner) : '' }}"
+                            alt="Current Banner" class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
                         <x-text-input id="banner" class="block w-full mt-1" type="file" name="banner" autofocus
                             autocomplete="banner" accept="image/*" />
                         <x-input-error :messages="$errors->get('banner')" class="mt-2" />
@@ -56,12 +58,13 @@
 
                     <!-- Submit and Cancel Buttons -->
                     <div class="flex items-center justify-end mt-4 gap-4">
-                        <a href="{{ route('admin.hero_sections.index') }}" 
+                        <a href="{{ route('admin.hero_sections.index') }}"
                             class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Batal
                         </a>
 
-                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                        <button type="submit"
+                            class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Hero Section
                         </button>
                     </div>
@@ -70,7 +73,7 @@
         </div>
     </div>
 
-    <!-- SweetAlert and JavaScript for Banner Preview -->
+    <!-- SweetAlert and CKEditor Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
@@ -107,11 +110,24 @@
             }
         });
 
-        // Initialize CKEditor for the achievement field
-        ClassicEditor
-            .create(document.querySelector('#achievement'))
-            .catch(error => {
-                console.error(error);
-            });
+        // Initialize CKEditor for each field
+        ClassicEditor.create(document.querySelector('#heading'), {
+            toolbar: ['undo', 'redo',
+                '|',
+                'heading',
+                '|',
+                'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+                '|',
+                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                '|',
+                'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                '|',
+                'alignment',
+                '|',
+                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+            ]
+        }).catch(error => console.error(error));
+        ClassicEditor.create(document.querySelector('#sub_heading')).catch(error => console.error(error));
+        ClassicEditor.create(document.querySelector('#achievement')).catch(error => console.error(error));
     </script>
 </x-app-layout>

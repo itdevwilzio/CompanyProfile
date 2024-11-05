@@ -66,10 +66,57 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
         // Initialize CKEditor for the achievement field
-        ClassicEditor.create(document.querySelector("#achievement")).catch(error => {
+       // Initialize CKEditor with Font Color plugin enabled
+    ClassicEditor
+        .create(document.querySelector("#achievement"), {
+            toolbar: [
+                'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 
+                'fontColor', 'fontBackgroundColor', '|', 'undo', 'redo'
+            ],
+            fontColor: {
+                colors: [
+                    {
+                        color: 'hsl(0, 0%, 0%)',
+                        label: 'Black'
+                    },
+                    {
+                        color: 'hsl(0, 75%, 60%)',
+                        label: 'Red'
+                    },
+                    {
+                        color: 'hsl(30, 75%, 60%)',
+                        label: 'Orange'
+                    },
+                    {
+                        color: 'hsl(60, 75%, 60%)',
+                        label: 'Yellow'
+                    },
+                    {
+                        color: 'hsl(90, 75%, 60%)',
+                        label: 'Light Green'
+                    },
+                    {
+                        color: 'hsl(120, 75%, 60%)',
+                        label: 'Green'
+                    },
+                    {
+                        color: 'hsl(180, 75%, 60%)',
+                        label: 'Light Blue'
+                    },
+                    {
+                        color: 'hsl(210, 75%, 60%)',
+                        label: 'Blue'
+                    },
+                    {
+                        color: 'hsl(240, 75%, 60%)',
+                        label: 'Purple'
+                    }
+                ]
+            }
+        })
+        .catch(error => {
             console.error(error);
         });
-
         // Image Preview Script
         function previewBanner(event) {
             const reader = new FileReader();
