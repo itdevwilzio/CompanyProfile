@@ -19,6 +19,7 @@
         "@fontsource/permanent-marker": "^5.1.0",
         "lightgallery": "^2.7.2",
         "sweetalert2": "^11.14.0",
-        "swiper": "^11.1.14"
+        "swiper": "^11.1.14",
+        "three": "^0.170.0"
     }
 }

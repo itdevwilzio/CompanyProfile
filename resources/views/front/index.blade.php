@@ -124,9 +124,11 @@
 <section id="testimonials" class="w-full py-16 bg-[#0E3995]">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <!-- Star Icons -->
+        
         <div class="flex justify-center mb-2">
+            <!-- Display 5 Filled Stars -->
             @for ($i = 0; $i < 5; $i++)
-                <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-6 h-6 mx-1" alt="star">
+                <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
             @endfor
         </div>
 
@@ -167,10 +169,26 @@
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
-                        $randomStars = rand(4, 5);
+                        // Generate a random rating between 4 and 5, with .5 increments
+                        $randomStars = rand(8, 10) / 2; // This gives 4, 4.5, or 5
+                        $fullStars = floor($randomStars); // Full stars
+                        $isHalfStar = $randomStars > $fullStars; // Check if there's a half star
+                        $totalStars = $fullStars + ($isHalfStar ? 1 : 0); // Total stars to display (including half if present)
                     @endphp
-                    @for($i = 0; $randomStars > $i; $i++)
-                        <img src="{{ asset('assets/icons/Star-rating.svg') }}" class="w-5 h-5" alt="star">
+            
+                    <!-- Display full stars -->
+                    @for ($i = 0; $i < $fullStars; $i++)
+                        <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
+                    @endfor
+                
+                    <!-- Display half star if needed -->
+                    @if ($isHalfStar)
+                        <img src="{{ asset('assets/icons/half-star.png') }}" class="w-5 h-5 mx-0.5" alt="half star">
+                    @endif
+                
+                    <!-- Fill remaining stars with full stars to ensure a total of 5 stars -->
+                    @for ($i = $totalStars; $i < 5; $i++)
+                        <img src="{{ asset('assets/icons/star-filled.png') }}" class="w-5 h-5 mx-0.5" alt="filled star">
                     @endfor
                 </div>
 

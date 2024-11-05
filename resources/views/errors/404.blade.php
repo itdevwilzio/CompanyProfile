@@ -1,10 +1,10 @@
 <!-- resources/views/errors/404.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 - Halaman Tidak Ditemukan</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
@@ -13,7 +13,6 @@
         }
 
         .error-container {
-            position: relative;
             text-align: center;
             padding: 50px;
         }
@@ -23,12 +22,22 @@
             font-weight: 900;
             color: #4f46e5;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0; /* Align logo and code closer together */
+        }
+
+        .astronaut {
+            display: inline-block;
+            margin-top: -20px;
+            width: 150px;
+            height: auto;
+            animation: floating 4s infinite ease-in-out;
         }
 
         .error-message {
             font-size: 2rem;
             font-weight: 700;
             color: #374151;
+            margin-top: 10px;
             margin-bottom: 20px;
         }
 
@@ -55,31 +64,21 @@
             transform: translateY(-5px);
         }
 
-        .astronaut {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: floating 4s infinite ease-in-out;
-        }
-
         @keyframes floating {
-            0% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-20px); }
-            100% { transform: translate(-50%, -50%) translateY(0); }
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
-
     </style>
 </head>
 <body>
 
     <div class="error-container">
         <h1 class="error-code">404</h1>
-        <p class="error-message">Page Not Found</p>
-        <p class="error-description">It seems we can't find the page you're looking for.</p>
-        <a href="{{ url('/') }}" class="btn-home">Return Home</a>
-
-        <img src="{{ asset('logo/logo_44.svg') }}" alt="Logo" class="astronaut" width="200" />
+        <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo" class="astronaut" />
+        <p class="error-message">Halaman Tidak Ditemukan</p>
+        <p class="error-description">Sepertinya kami tidak dapat menemukan halaman yang Anda cari.</p>
+        <a href="{{ url('/') }}" class="btn-home">Kembali ke Beranda</a>
     </div>
 
 </body>

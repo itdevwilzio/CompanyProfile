@@ -12,6 +12,8 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4",
+        "spatie/image": "^3.7",
+        "spatie/laravel-image-optimizer": "^1.8",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {
