@@ -21,7 +21,7 @@
                     @csrf
                     <!-- Title Input -->
                     <div>
-                        <x-input-label for="title" :value="__('Title')" />
+                        <x-input-label for="title" :value="__('Judul')" />
                         <x-text-input id="title" class="block w-full mt-1" type="text" name="title"
                             :value="old('title')" required autofocus autocomplete="title" />
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
@@ -29,7 +29,7 @@
 
                     <!-- Description Input -->
                     <div class="mt-4">
-                        <x-input-label for="description" :value="__('Description')" />
+                        <x-input-label for="description" :value="__('Deskripsi')" />
                         <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
                                   name="description" rows="4" placeholder="Write a description">{{ old('description') }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
@@ -37,7 +37,7 @@
 
                     <!-- Logo Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('Logo')" />
+                        <x-input-label for="logo" :value="__('Gambar Sertifikat')" />
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required
                                       onchange="previewLogo(event)" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />

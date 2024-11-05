@@ -39,8 +39,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="subtitle" :value="__('Subtitle')" />
-                        <textarea name="subtitle" id="subtitle" cols="30" rows="5"
-                            class="w-full border border-slate-300 rounded-xl"></textarea>
+                        <textarea name="subtitle" id="subtitle" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl"></textarea>
                         <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
@@ -55,6 +54,9 @@
         </div>
     </div>
 
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+
     <!-- JavaScript for image preview -->
     <script>
         function previewThumbnail(event) {
@@ -66,5 +68,9 @@
             };
             reader.readAsDataURL(event.target.files[0]); // Read the file as a Data URL
         }
+
+        // Initialize CKEditor on 'name' and 'subtitle' fields
+        CKEDITOR.replace('name'); 
+        CKEDITOR.replace('subtitle');
     </script>
 </x-app-layout>

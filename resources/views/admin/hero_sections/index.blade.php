@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row items-center justify-between px-4 lg:px-8">
+        <div class="flex items-center justify-between px-4 lg:px-8">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Manage Hero Sections') }}
             </h2>
             <a href="{{ route('admin.hero_sections.create') }}"
-                class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+               class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                 Add New
             </a>
         </div>
@@ -13,38 +13,59 @@
 
     <div class="py-12">
         <div class="w-full px-4 lg:px-8">
-            <div class="flex flex-col p-10 bg-white shadow-sm sm:rounded-lg gap-y-5">
-                @forelse ($hero_sections as $hero_section)
-                    <div class="flex flex-row items-center justify-between p-6 bg-gray-50 rounded-lg shadow-md gap-x-6">
-                        <div class="flex flex-row items-center gap-x-6">
-                            <img src="{{ Storage::url($hero_section->banner) }}" alt="{{ $hero_section->heading }}"
-                                class="rounded-2xl object-cover w-[100px] h-[100px]">
-                            <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->heading }}</h3>
-                            </div>
-                        </div>
-                        <div class="flex-col hidden md:flex">
-                            <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $hero_section->created_at->format('d M, Y') }}</h3>
-                        </div>
-                        <div class="flex-row items-center hidden md:flex gap-x-4">
-                            <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
-                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-indigo-600 before:to-indigo-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30">
-                                Edit
-                            </a>
-                            <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST" class="delete-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" 
-                                    class="delete-btn px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-red-600 before:to-red-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-center text-gray-500">No recent data available</p>
-                @endforelse
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Banner</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($hero_sections as $hero_section)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <img src="{{ Storage::url($hero_section->banner) }}" alt="{{ $hero_section->heading }}"
+                                         class="rounded-2xl object-cover w-[60px] h-[60px]">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-bold text-indigo-950">{{ $hero_section->heading }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-bold text-indigo-950">{{ $hero_section->created_at->format('d M, Y') }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="flex justify-center gap-x-2">
+                                        <!-- Edit Button -->
+                                        <a href="{{ route('admin.hero_sections.edit', $hero_section) }}"
+                                           class="px-4 py-2 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-indigo-600 before:to-indigo-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30">
+                                            Edit
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <form action="{{ route('admin.hero_sections.destroy', $hero_section) }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button"
+                                                    class="px-4 py-2 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-tl before:from-red-600 before:to-red-500 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-30"
+                                                    data-id="{{ $hero_section->id }}">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-center text-gray-500">
+                                    No recent data available
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -55,7 +76,7 @@
     
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevents form submission on cancel
+                    event.preventDefault();
     
                     const form = this.closest('form');
     

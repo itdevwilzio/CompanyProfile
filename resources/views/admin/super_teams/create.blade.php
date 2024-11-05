@@ -21,25 +21,28 @@
                     @csrf
                     <!-- Title Input -->
                     <div>
-                        <x-input-label for="title" :value="__('Title')" />
+                        <x-input-label for="title" :value="__('Judul')" />
                         <x-text-input id="title" class="block w-full mt-1" type="text" name="title"
-                            :value="old('title')" required autofocus autocomplete="title" />
+                                      :value="old('title')" required autofocus autocomplete="title" />
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
                     <!-- Description Input -->
                     <div class="mt-4">
-                        <x-input-label for="description" :value="__('Description')" />
-                        <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
+                        <x-input-label for="description" :value="__('Deskripsi')" />
+                        <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
                                   name="description" rows="4" placeholder="Write a description">{{ old('description') }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
                     <!-- Image Input -->
                     <div class="mt-4">
-                        <x-input-label for="image" :value="__('Image')" />
-                        <x-text-input id="image" class="block w-full mt-1" type="file" name="image" />
+                        <x-input-label for="image" :value="__('Gambar')" />
+                        <x-text-input id="image" class="block w-full mt-1" type="file" name="image" onchange="previewImage(event)" />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                        
+                        <!-- Image preview placeholder -->
+                        <img id="image-preview" class="mt-4 rounded-lg shadow-md w-[120px] h-[120px]" style="display: none;" alt="Image Preview">
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -59,10 +62,10 @@
         ClassicEditor.create(document.querySelector("#description"));
 
         // Image Preview Script
-        function previewLogo(event) {
+        function previewImage(event) {
             const reader = new FileReader();
             reader.onload = function() {
-                const preview = document.getElementById('logo-preview');
+                const preview = document.getElementById('image-preview');
                 preview.src = reader.result;
                 preview.style.display = 'block'; // Show the image preview
             };

@@ -21,7 +21,7 @@
                     @csrf
                     <!-- Name Input -->
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('Nama Pelanggan')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
                             :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -29,7 +29,7 @@
 
                     <!-- Occupation Input -->
                     <div class="mt-4">
-                        <x-input-label for="occupation" :value="__('Occupation')" />
+                        <x-input-label for="occupation" :value="__('Pekerjaan')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
                             :value="old('occupation')" required autofocus autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
@@ -37,7 +37,7 @@
 
                     <!-- Avatar Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('Avatar')" />
+                        <x-input-label for="avatar" :value="__('Foto Profil')" />
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" required
                             onchange="previewImage(event, 'avatar-preview')" />
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
@@ -48,7 +48,7 @@
 
                     <!-- Logo Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('Logo')" />
+                        <x-input-label for="logo" :value="__('Logo Perusahaan (jika ada)')" />
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required
                             onchange="previewImage(event, 'logo-preview')" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />

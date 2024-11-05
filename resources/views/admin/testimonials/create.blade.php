@@ -21,7 +21,7 @@
                     @csrf
 
                     <div class="mt-4">
-                        <x-input-label for="project_client" :value="__('project_client')" />
+                        <x-input-label for="project_client" :value="__('Nama Klien')" />
 
                         <select name="project_client_id" id="project_client_id"
                             class="w-full py-3 pl-3 border rounded-lg border-slate-300">
@@ -35,13 +35,13 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="message" :value="__('message')" />
+                        <x-input-label for="message" :value="__('Isi Kesan')" />
                         <textarea name="message" id="message" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl"></textarea>
                         <x-input-error :messages="$errors->get('message')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <x-input-label for="thumbnail" :value="__('Screenshot Pesan')" />
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
                             autofocus autocomplete="thumbnail" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />

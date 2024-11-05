@@ -98,11 +98,11 @@
     <!-- Banner Layout -->
     <div class="banner-section">
         <div class="text-center max-w-4xl mx-auto">
-            <img src="{{ Storage::url($heroSection->banner) }}" alt="Promotion Banner" class="object-cover w-full rounded-lg">
-            <h1 class="mt-8 text-5xl font-bold text-gray-800">{{ $heroSection->heading }}</h1>
-            <p class="mt-4 text-lg text-gray-700">{{ $heroSection->subheading }}</p>
+            <img src="{{ Storage::url($heroSection->banner) }}" alt="Promotion Banner" class="object-cover w-full rounded-3xl">
+            <h1 class="mt-8 text-5xl font-bold text-gray-800">{!! $heroSection->heading !!}</h1>
+            <p class="mt-4 text-lg text-gray-700">{!! $heroSection->subheading !!}</p>
             <div class="mt-8 text-gray-600 text-justify">
-                <p>{{ $heroSection->achievement }}</p>
+                <p>{!! $heroSection->achievement !!}</p>
             </div>
         </div>
     </div>

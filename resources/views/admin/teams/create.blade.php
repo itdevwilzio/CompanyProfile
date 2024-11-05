@@ -20,28 +20,28 @@
                 <form id="create-team-form" method="POST" action="{{ route('admin.teams.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('Nama')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
                             :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="occupation" :value="__('Occupation')" />
+                        <x-input-label for="occupation" :value="__('Pekerjaan')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
                             :value="old('occupation')" required autofocus autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="location" :value="__('Location')" />
+                        <x-input-label for="location" :value="__('Lokasi')" />
                         <x-text-input id="location" class="block w-full mt-1" type="text" name="location"
                             :value="old('location')" required autofocus autocomplete="location" />
                         <x-input-error :messages="$errors->get('location')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="team" :value="__('Team')" />
+                        <x-input-label for="team" :value="__('Tim')" />
                         <select id="team" name="team" class="block w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required autofocus>
                             <option value="">-- Pilih Tim --</option>
                             <option value="Pimpinan" {{ old('team') == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('Avatar')" />
+                        <x-input-label for="avatar" :value="__('Foto Profil')" />
                         <!-- Avatar Preview -->
                         <img id="avatar-preview" class="rounded-2xl object-cover w-[90px] h-[90px] mb-3 hidden" />
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" required

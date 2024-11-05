@@ -20,13 +20,13 @@
                 <form method="POST" action="{{ route('admin.hero_sections.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <x-input-label for="heading" :value="__('heading')" />
+                        <x-input-label for="heading" :value="__('Heading')" />
                         <x-text-input id="heading" class="block w-full mt-1" type="text" name="heading"
                             :value="old('heading')" required autofocus autocomplete="heading" />
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="sub_heading" :value="__('sub_heading')" />
+                        <x-input-label for="sub_heading" :value="__('Sub Heading')" />
                         <x-text-input id="sub_heading" class="block w-full mt-1" type="text" name="sub_heading"
                             :value="old('sub_heading')" required autofocus autocomplete="sub_heading" />
                         <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
@@ -34,14 +34,14 @@
 
                     <!-- Achievement Field with CKEditor -->
                     <div class="mt-4">
-                        <x-input-label for="achievement" :value="__('Achievement')" />
-                        <textarea id="achievement" name="achievement" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Describe achievements">{{ old('achievement') }}</textarea>
+                        <x-input-label for="achievement" :value="__('Deskripsi')" />
+                        <textarea id="achievement" name="achievement" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Deskripsi">{{ old('achievement') }}</textarea>
                         <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
                     </div>
 
                     <!-- Banner Upload Field -->
                     <div class="mt-4">
-                        <x-input-label for="banner" :value="__('banner')" />
+                        <x-input-label for="banner" :value="__('Gambar banner')" />
                         <x-text-input id="banner" class="block w-full mt-1" type="file" name="banner" required
                             autofocus autocomplete="banner" onchange="previewBanner(event)" />
                         <x-input-error :messages="$errors->get('banner')" class="mt-2" />

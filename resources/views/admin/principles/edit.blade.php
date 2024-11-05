@@ -21,19 +21,17 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            value="{{ $principle->name }}" required autofocus autocomplete="name" />
+                        <textarea id="name" class="block w-full mt-1" name="name" required autofocus>{{ $principle->name }}</textarea>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('thumbnail')" />
-                        <!-- Existing Image Preview -->
                         <img id="existing-thumbnail" src="{{ Storage::url($principle->thumbnail) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
-                        <!-- New Image Preview -->
                         <img id="thumbnail-preview" src="" alt="Image preview" 
                              class="rounded-2xl object-cover w-[90px] h-[90px] mb-4 hidden">
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" 
@@ -42,20 +40,18 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="subtitle" :value="__('subtitle')" />
+                        <x-input-label for="subtitle" :value="__('Subtitle')" />
                         <textarea name="subtitle" id="subtitle" cols="30" rows="5"
                             class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
                         <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <!-- Cancel Button -->
                         <a href="{{ route('admin.principles.index') }}"
                             class="ml-4 px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Cancel
                         </a>
                     
-                        <!-- Update Button with 3D Effect -->
                         <button type="submit" id="update-btn" 
                             class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Principle
@@ -67,13 +63,14 @@
         </div>
     </div>
 
-    <!-- SweetAlert and Image Preview Scripts -->
+    <!-- CKEditor, SweetAlert, and Image Preview Scripts -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         // SweetAlert confirmation on submit
         document.getElementById('update-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
 
             Swal.fire({
                 title: 'Apakah Anda yakin?',
@@ -86,7 +83,7 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.submit(); // Submit the form if confirmed
+                    this.submit();
                 }
             });
         });
@@ -98,10 +95,14 @@
                 const preview = document.getElementById('thumbnail-preview');
                 const existingThumbnail = document.getElementById('existing-thumbnail');
                 preview.src = reader.result;
-                preview.classList.remove('hidden'); // Show the new preview image
-                existingThumbnail.classList.add('hidden'); // Hide the existing image
+                preview.classList.remove('hidden');
+                existingThumbnail.classList.add('hidden');
             };
             reader.readAsDataURL(event.target.files[0]);
         }
+
+        // Initialize CKEditor on 'name' and 'subtitle' fields
+        CKEDITOR.replace('name');
+        CKEDITOR.replace('subtitle');
     </script>
 </x-app-layout>

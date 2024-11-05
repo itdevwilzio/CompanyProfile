@@ -21,21 +21,21 @@
                     @csrf
                     @method('PUT')
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('Nama')" />
                         <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
                             value="{{ $client->name }}" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="occupation" :value="__('Occupation')" />
+                        <x-input-label for="occupation" :value="__('Pekerjaan')" />
                         <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
                             value="{{ $client->occupation }}" required autofocus autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="avatar" :value="__('Avatar')" />
+                        <x-input-label for="avatar" :value="__('Foto Profil')" />
                         <img src="{{ Storage::url($client->avatar) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" autofocus
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('Logo')" />
+                        <x-input-label for="logo" :value="__('Nama Perusahaan')" />
                         <img src="{{ Storage::url($client->logo) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" autofocus

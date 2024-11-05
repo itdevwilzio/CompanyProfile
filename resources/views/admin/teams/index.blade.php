@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row items-center justify-between px-4 lg:px-8">
+        <div class="flex items-center justify-between px-4 lg:px-8">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Manage Teams') }}
             </h2>
@@ -12,69 +12,72 @@
 
     <div class="py-12">
         <div class="px-4 lg:px-8">
-            <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-4"> <!-- Reduced gap-y -->
-                @forelse ($teams as $team)
-                    <div class="flex flex-row items-center justify-between item-card p-4 bg-gray-50 rounded-lg shadow-md gap-x-4"> <!-- Reduced gap-x -->
-                        <div class="flex flex-row items-center gap-x-4"> <!-- Reduced the gap between avatar and text -->
-                            <!-- Avatar with fallback if not available -->
-                            @if ($team->avatar)
-                                <img src="{{ Storage::url($team->avatar) }}" alt="{{ $team->name }}"
-                                     class="rounded-2xl object-cover w-[80px] h-[80px]"> <!-- Reduced image size -->
-                            @else
-                                <img src="{{ asset('images/default-avatar.png') }}" alt="Default Avatar"
-                                     class="rounded-2xl object-cover w-[80px] h-[80px]"> <!-- Reduced image size -->
-                            @endif
-                            <div class="flex flex-col gap-y-0.5"> <!-- Reduced gap-y to tighten text -->
-                                <p class="text-sm text-slate-500">Name</p>
-                                <h3 class="text-lg font-bold text-indigo-950">{{ $team->name }}</h3> <!-- Reduced font size -->
-                            </div>
-                            <div class="flex flex-col gap-y-0.5"> <!-- Reduced gap-y to tighten text -->
-                                <p class="text-sm text-slate-500">Team</p>
-                                <h3 class="text-lg font-bold text-indigo-950">{{ $team->team }}</h3> <!-- Reduced font size -->
-                            </div>
-                        </div>
-                        <div class="flex-col flex gap-y-0.5"> <!-- Reduced gap-y for better spacing -->
-                            <p class="text-sm text-slate-500">Location</p>
-                            <h3 class="text-lg font-bold text-indigo-950">{{ $team->location }}</h3> <!-- Reduced font size -->
-                        </div>
-                        <div class="flex-row items-center hidden md:flex gap-x-2"> <!-- Reduced gap-x for tighter action buttons -->
-                            <!-- Edit Button with 3D Effect -->
-                            <a href="{{ route('admin.teams.edit', $team) }}"
-                               class="px-4 py-2 font-bold text-white bg-primary rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
-                                Edit
-                            </a>
-                        
-                            <!-- Delete Button with 3D Effect -->
-                            <form id="delete-team-form-{{ $team->id }}" action="{{ route('admin.teams.destroy', $team) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn" 
-                                        data-id="{{ $team->id }}">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-center text-gray-500">No recent data available</p>
-                @endforelse
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avatar</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($teams as $team)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <img src="{{ $team->avatar ? Storage::url($team->avatar) : asset('images/default-avatar.png') }}" alt="{{ $team->name }}" class="rounded-2xl object-cover w-[60px] h-[60px]">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-bold text-indigo-950">{{ $team->name }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-bold text-indigo-950">{{ $team->team }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-bold text-indigo-950">{{ $team->location }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="flex justify-center gap-x-2">
+                                        <!-- Edit Button -->
+                                        <a href="{{ route('admin.teams.edit', $team) }}" class="px-4 py-2 font-bold text-white bg-primary rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
+                                            Edit
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <form id="delete-team-form-{{ $team->id }}" action="{{ route('admin.teams.destroy', $team) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="px-4 py-2 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn" data-id="{{ $team->id }}">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-gray-500">
+                                    No recent data available
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Select all delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
-
-            // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const teamId = this.getAttribute('data-id');
                     const form = document.getElementById(`delete-team-form-${teamId}`);
-
-                    // Show SweetAlert confirmation
                     Swal.fire({
                         title: 'Apakah Anda yakin?',
                         text: "Anda tidak akan bisa mengembalikan ini!",
@@ -86,7 +89,7 @@
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
+                            form.submit();
                         }
                     });
                 });
