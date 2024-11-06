@@ -26,12 +26,8 @@
 @section('content')
     <!-- Header Section -->
     <div id="header" class="relative">
-        <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
+        <div class="container max-w-[960px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
-
-            <!-- Wave SVG Positioned Above the Carousel but outside the container -->
-
-            
             <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12">
                 Tentang Kami
             </h2>
@@ -41,50 +37,21 @@
     <!-- Section: Born for Indonesia -->
 
 
-    <section id="born-for-indonesia" class="w-full py-24 bg-blue-800 relative overflow-hidden">
-        <!-- First Wave Container -->
-        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
-            <svg class="w-full h-16" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                <path 
-                    class="elementor-shape-fill" 
-                    fill="#ffffff" 
-                    opacity="0.33" 
-                    d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 
-                    c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"
-                />
-            </svg>
-        </div>
-
-        <!-- Second Wave Container -->
-        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
-            <svg class="w-full h-20" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                <path 
-                    class="elementor-shape-fill" 
-                    fill="#ffffff" 
-                    opacity="0.66" 
-                    d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 
-                    s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"
-                />
-            </svg>
-        </div>
-
-        <!-- Third Wave Container -->
-        <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
-            <svg class="w-full h-24" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                <path 
-                    class="elementor-shape-fill" 
-                    fill="#ffffff" 
-                    opacity="1" 
-                    d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6
-                    C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"
-                />
+    <section id="born-for-indonesia" class="w-full py-64 bg-blue-800 relative overflow-hidden -mt-32">
+        <!-- Wave SVG Positioned Above the Section -->
+        <div class="w-full absolute z-[1] top-0">
+            <div class="bg-white h-20"></div>
+            <svg width="100%" height="80px" id="svg" preserveAspectRatio="none" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+                <path d="M 0,400 L 0,75 C 48.05771365149833,54.46055000616599 96.11542730299666,33.921100012331976 145,48 C 193.88457269700334,62.078899987668024 243.59600443951166,110.77614995683808 306,110 C 368.40399556048834,109.22385004316192 443.5005549389566,58.9743001603157 491,43 C 538.4994450610434,27.0256998396843 558.4017758046615,45.32664940189912 613,68 C 667.5982241953385,90.67335059810088 756.8923418423973,117.71910223208782 818,105 C 879.1076581576027,92.28089776791218 912.0288568257492,39.79694166974965 958,42 C 1003.9711431742508,44.20305833025035 1062.992230854606,101.09313108891357 1114,109 C 1165.007769145394,116.90686891108643 1208.0022197558267,75.83053397459614 1261,62 C 1313.9977802441733,48.16946602540387 1376.9988901220868,61.58473301270193 1440,75 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.4" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path>
+                <path d="M 0,400 L 0,175 C 40.6115673942533,161.34534467875199 81.2231347885066,147.690689357504 137,146 C 192.7768652114934,144.309310642496 263.7190282402269,154.582587248736 326,159 C 388.2809717597731,163.417412751264 441.9007522505857,161.9789616475521 488,168 C 534.0992477494143,174.0210383524479 572.67796275743,187.50156616105562 621,182 C 669.32203724257,176.49843383894438 727.3873967196943,152.01477370822545 780,153 C 832.6126032803057,153.98522629177455 879.7724503637933,180.43933900604262 941,190 C 1002.2275496362067,199.56066099395738 1077.5228018251328,192.22787026760392 1136,181 C 1194.4771981748672,169.77212973239608 1236.1363423356763,154.64917992354174 1284,153 C 1331.8636576643237,151.35082007645826 1385.931828832162,163.17541003822913 1440,175 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 200)"></path>
+                <path d="M 0,400 L 0,275 C 66.9115797262301,273.18394376618573 133.8231594524602,271.3678875323714 188,268 C 242.1768405475398,264.6321124676286 283.61894191638925,259.71239363669997 337,264 C 390.38105808361075,268.28760636330003 455.701072881983,281.7825379208287 508,292 C 560.298927118017,302.2174620791713 599.5767665556788,309.1574546799852 639,299 C 678.4232334443212,288.8425453200148 717.9918608953016,261.58764335923047 770,248 C 822.0081391046984,234.4123566407695 886.455789863115,234.49197188309282 942,238 C 997.544210136885,241.50802811690718 1044.1849796522383,248.4444691083981 1093,261 C 1141.8150203477617,273.5555308916019 1192.8042915279318,291.73015168331483 1251,295 C 1309.1957084720682,298.26984831668517 1374.597854236034,286.6349241583426 1440,275 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-2" transform="rotate(-180 720 200)"></path>
             </svg>
         </div>
     
-        {{-- Container --}}
+        <!-- Content Container -->
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10 relative px-4">
             @foreach ($abouts as $about)
-                {{-- Text Section --}}
+                <!-- Text Section -->
                 <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all duration-300 hover:text-gray-200">
                     <h2 class="font-nunito font-bold text-4xl mb-6">
                         {{ $about->name }}
@@ -94,7 +61,7 @@
                     </p>
                 </div>
     
-                {{-- Image Section --}}
+                <!-- Image Section -->
                 <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative z-10">
                     <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
                         <img 
@@ -107,6 +74,7 @@
             @endforeach
         </div>
     </section>
+    
     
 
     @section('scripts')

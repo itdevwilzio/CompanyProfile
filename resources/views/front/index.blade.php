@@ -37,7 +37,7 @@
 
         <!-- CSS for Carousel and Wave -->
         <style>
-            .wave-container {
+            .wave-particles {
                 position: relative;
                 width: 100%;
                 height: auto;
@@ -52,36 +52,6 @@
                 margin-top: 0;
             }
         </style>
-
-
-
-        <!-- CSS for Particles -->
-        <style>
-            .wave-container {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1
-            }
-
-            .particle {
-                position: absolute;
-                background-color: rgba(255, 255, 255, 0.8);
-                border-radius: 50%;
-                animation: float 6s infinite ease-in-out;
-            }
-
-            @keyframes float {
-                0% { transform: translateY(0) translateX(0); opacity: 1; }
-                25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
-                50% { transform: translateY(10px) translateX(15px); opacity: 0.6; }
-                75% { transform: translateY(-15px) translateX(-15px); opacity: 0.8; }
-                100% { transform: translateY(0) translateX(0); opacity: 1; }
-            }
-        </style>
-
     </div>
 </div>
 
