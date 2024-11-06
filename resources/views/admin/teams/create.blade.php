@@ -117,22 +117,6 @@
             height: 300,
             versionCheck: false
         });
-        CKEDITOR.replace('team', {
-            toolbar: [
-                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
-                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
-                { name: 'tools', items: ['Maximize'] }
-            ],
-            height: 300,
-            versionCheck: false
-        });
-
         // Image Preview Script
         function previewAvatar(event) {
             const reader = new FileReader();

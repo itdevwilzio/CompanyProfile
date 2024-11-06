@@ -65,6 +65,11 @@
                         @endforelse
                     </tbody>
                 </table>
+                
+                <!-- Pagination Links -->
+                <div class="px-6 py-4 bg-primary text-white">
+                    {{ $teams->links() }}
+                </div>
             </div>
         </div>
     </div>
