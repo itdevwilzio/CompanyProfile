@@ -30,13 +30,13 @@
                                     <img src="{{ $team->avatar ? Storage::url($team->avatar) : asset('images/default-avatar.png') }}" alt="{{ $team->name }}" class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $team->name }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $team->name !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $team->team }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $team->team !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $team->location }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $team->location !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex justify-center gap-x-2">

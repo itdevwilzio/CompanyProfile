@@ -17,8 +17,7 @@
                     @endforeach
                 @endif
 
-                <form id="update-form" method="POST" action="{{ route('admin.principles.update', $principle) }}"
-                    enctype="multipart/form-data">
+                <form id="update-form" method="POST" action="{{ route('admin.principles.update', $principle) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     
@@ -29,7 +28,13 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <x-input-label for="subtitle" :value="__('Subtitle')" />
+                        <textarea name="subtitle" id="subtitle" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
+                        <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <img id="existing-thumbnail" src="{{ Storage::url($principle->thumbnail) }}" alt=""
                             class="rounded-2xl object-cover w-[90px] h-[90px] mb-4">
                         <img id="thumbnail-preview" src="" alt="Image preview" 
@@ -37,13 +42,6 @@
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" 
                             autofocus autocomplete="thumbnail" accept="image/*" onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="subtitle" :value="__('Subtitle')" />
-                        <textarea name="subtitle" id="subtitle" cols="30" rows="5"
-                            class="w-full border border-slate-300 rounded-xl">{{ $principle->subtitle }}</textarea>
-                        <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -63,8 +61,8 @@
         </div>
     </div>
 
-    <!-- CKEditor, SweetAlert, and Image Preview Scripts -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <!-- CKEditor 4, SweetAlert, and Image Preview Scripts -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -101,8 +99,37 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        // Initialize CKEditor on 'name' and 'subtitle' fields
-        CKEDITOR.replace('name');
-        CKEDITOR.replace('subtitle');
+        // Initialize CKEditor 4 on 'name' and 'subtitle' fields
+        CKEDITOR.replace('name', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+        CKEDITOR.replace('subtitle', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+
     </script>
 </x-app-layout>

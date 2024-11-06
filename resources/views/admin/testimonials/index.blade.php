@@ -31,7 +31,7 @@
                                          class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ optional($testimonial->client)->name ?? 'Unknown Client' }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! optional($testimonial->client)->name ?? 'Unknown Client' !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-bold text-indigo-950">{{ $testimonial->created_at->format('d M, Y') }}</div>

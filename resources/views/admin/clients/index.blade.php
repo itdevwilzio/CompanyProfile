@@ -30,10 +30,10 @@
                                     <img src="{{ Storage::url($client->avatar) }}" alt="{{ $client->name }}" class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $client->name }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $client->name !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $client->occupation }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $client->occupation !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex justify-center gap-x-2">

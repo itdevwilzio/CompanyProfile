@@ -20,20 +20,21 @@
                 <form id="update-client-form" method="POST" action="{{ route('admin.clients.update', $client) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <!-- Name Input with CKEditor -->
                     <div>
                         <x-input-label for="name" :value="__('Nama')" />
-                        <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            value="{{ $client->name }}" required autofocus autocomplete="name" />
+                        <textarea id="name" class="block w-full mt-1" name="name">{{ old('name', $client->name) }}</textarea>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
+                    <!-- Occupation Input with CKEditor -->
                     <div class="mt-4">
                         <x-input-label for="occupation" :value="__('Pekerjaan')" />
-                        <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
-                            value="{{ $client->occupation }}" required autofocus autocomplete="occupation" />
+                        <textarea id="occupation" class="block w-full mt-1" name="occupation">{{ old('occupation', $client->occupation) }}</textarea>
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
+                    <!-- Avatar Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="avatar" :value="__('Foto Profil')" />
                         <img src="{{ Storage::url($client->avatar) }}" alt=""
@@ -43,6 +44,7 @@
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                     </div>
 
+                    <!-- Logo Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="logo" :value="__('Nama Perusahaan')" />
                         <img src="{{ Storage::url($client->logo) }}" alt=""
@@ -53,7 +55,6 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4 gap-x-4">
-                        <!-- 3D Cancel Button -->
                         <a href="{{ route('admin.clients.index') }}" 
                             class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Cancel
@@ -72,9 +73,10 @@
 
     <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
         document.getElementById('submit-button').addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent the default action (submitting the form)
+            event.preventDefault();
 
             Swal.fire({
                 title: 'Apakah Anda yakin?',
@@ -87,9 +89,41 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('update-client-form').submit(); // Submit the form if confirmed
+                    document.getElementById('update-client-form').submit();
                 }
             });
+        });
+
+        // Initialize CKEditor for each textarea field
+        CKEDITOR.replace('name', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+        CKEDITOR.replace('occupation', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
         });
     </script>
 </x-app-layout>

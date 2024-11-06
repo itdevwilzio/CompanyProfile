@@ -24,22 +24,22 @@
 
                     <!-- Heading Input with CKEditor -->
                     <div>
-                        <x-input-label for="heading" :value="__('Heading')" />
+                        <x-input-label for="heading" :value="__('Judul')" />
                         <textarea id="heading" class="block w-full mt-1" name="heading">{{ old('heading', $heroSection->heading) }}</textarea>
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
 
                     <!-- Subheading Input with CKEditor -->
-                    <div>
+                    {{-- <div>
                         <x-input-label for="sub_heading" :value="__('Sub Heading')" />
                         <textarea id="sub_heading" class="block w-full mt-1" name="sub_heading">{{ old('sub_heading', $heroSection->sub_heading) }}</textarea>
                         <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
-                    </div>
+                    </div> --}}
 
                     <!-- Achievement Field with CKEditor -->
                     <div class="mt-4">
-                        <x-input-label for="achievement" :value="__('Achievement')" />
-                        <textarea id="achievement" name="achievement" rows="4"
+                        <x-input-label for="achievement" :value="__('Deskripsi')" />
+                        <textarea id="achievement" name="achievement" rows="10"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">{{ old('achievement', $heroSection->achievement) }}</textarea>
                         <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
                     </div>
@@ -75,7 +75,7 @@
 
     <!-- SweetAlert and CKEditor Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
 
     <script>
         // SweetAlert confirmation on submit
@@ -110,24 +110,37 @@
             }
         });
 
-        // Initialize CKEditor for each field
-        ClassicEditor.create(document.querySelector('#heading'), {
-            toolbar: ['undo', 'redo',
-                '|',
-                'heading',
-                '|',
-                'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                '|',
-                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                '|',
-                'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                '|',
-                'alignment',
-                '|',
-                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-            ]
-        }).catch(error => console.error(error));
-        ClassicEditor.create(document.querySelector('#sub_heading')).catch(error => console.error(error));
-        ClassicEditor.create(document.querySelector('#achievement')).catch(error => console.error(error));
+        // Initialize CKEditor 4 for each field
+        CKEDITOR.replace('heading', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+
+        CKEDITOR.replace('achievement', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
     </script>
 </x-app-layout>

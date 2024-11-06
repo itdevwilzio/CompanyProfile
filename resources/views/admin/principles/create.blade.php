@@ -22,15 +22,14 @@
 
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            :value="old('name')" required autofocus autocomplete="name" />
+                        <textarea id="name" name="name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" required>{{ old('name') }}</textarea>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
-                            autofocus autocomplete="thumbnail" onchange="previewThumbnail(event)" />
+                            onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                         
                         <!-- Image preview placeholder -->
@@ -39,7 +38,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="subtitle" :value="__('Subtitle')" />
-                        <textarea name="subtitle" id="subtitle" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl"></textarea>
+                        <textarea name="subtitle" id="subtitle" cols="30" rows="5" class="w-full border border-slate-300 rounded-xl">{{ old('subtitle') }}</textarea>
                         <x-input-error :messages="$errors->get('subtitle')" class="mt-2" />
                     </div>
 
@@ -54,11 +53,12 @@
         </div>
     </div>
 
-    <!-- CKEditor Script -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <!-- CKEditor 4 Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
-    <!-- JavaScript for image preview -->
+    <!-- JavaScript for image preview and CKEditor 4 initialization -->
     <script>
+        // Image preview function
         function previewThumbnail(event) {
             const reader = new FileReader();
             reader.onload = function() {
@@ -66,11 +66,39 @@
                 preview.src = reader.result;
                 preview.style.display = 'block'; // Show the image preview
             };
-            reader.readAsDataURL(event.target.files[0]); // Read the file as a Data URL
+            reader.readAsDataURL(event.target.files[0]);
         }
 
-        // Initialize CKEditor on 'name' and 'subtitle' fields
-        CKEDITOR.replace('name'); 
-        CKEDITOR.replace('subtitle');
+        // Initialize CKEditor 4 for both 'name' and 'subtitle' fields
+        CKEDITOR.replace('name', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+        CKEDITOR.replace('subtitle', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
     </script>
 </x-app-layout>

@@ -31,7 +31,7 @@
                                          alt="{{ $product->name }}" class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $product->name }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $product->name !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-bold text-indigo-950">{{ $product->created_at->format('d M, Y') }}</div>

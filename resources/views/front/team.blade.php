@@ -37,7 +37,7 @@
     <!-- Section: Born for Indonesia -->
 
 
-    <section id="born-for-indonesia" class="w-full py-64 bg-blue-800 relative overflow-hidden -mt-32">
+    <section id="born-for-indonesia" class="w-full py-52 bg-blue-800 relative overflow-hidden -mt-32">
         <!-- Wave SVG Positioned Above the Section -->
         <div class="w-full absolute z-[1] top-0">
             <div class="bg-white h-20"></div>

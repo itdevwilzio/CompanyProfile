@@ -22,15 +22,12 @@
 
                     <div class="mt-4">
                         <x-input-label for="project_client" :value="__('Nama Klien')" />
-
-                        <select name="project_client_id" id="project_client_id"
-                            class="w-full py-3 pl-3 border rounded-lg border-slate-300">
+                        <select name="project_client_id" id="project_client_id" class="w-full py-3 pl-3 border rounded-lg border-slate-300">
                             <option value="">Choose project_client</option>
                             @foreach ($clients as $client)
                                 <option value="{{ $client->id }}">{{ $client->name }}</option>
                             @endforeach
                         </select>
-
                         <x-input-error :messages="$errors->get('project_client')" class="mt-2" />
                     </div>
 
@@ -43,7 +40,7 @@
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Screenshot Pesan')" />
                         <x-text-input id="thumbnail" class="block w-full mt-1" type="file" name="thumbnail" required
-                            autofocus autocomplete="thumbnail" onchange="previewThumbnail(event)" />
+                                      onchange="previewThumbnail(event)" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
 
@@ -63,14 +60,33 @@
         </div>
     </div>
 
-    <!-- JavaScript to preview thumbnail image -->
+    <!-- CKEditor 4 Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
+        // Initialize CKEditor 4 for the "message" field
+        CKEDITOR.replace('message', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+
+        // Image Preview Script
         function previewThumbnail(event) {
             const reader = new FileReader();
             reader.onload = function() {
                 const preview = document.getElementById('thumbnail-preview');
                 preview.src = reader.result;
-                preview.style.display = 'block';  // Show the image preview
+                preview.style.display = 'block'; // Show the image preview
             };
             reader.readAsDataURL(event.target.files[0]);
         }

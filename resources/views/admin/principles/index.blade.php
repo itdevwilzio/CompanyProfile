@@ -30,7 +30,7 @@
                                     <img src="{{ Storage::url($principle->thumbnail) }}" alt="{{ $principle->name }}" class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $principle->name }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $principle->name !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-bold text-indigo-950">{{ $principle->created_at->format('d M, Y') }}</div>

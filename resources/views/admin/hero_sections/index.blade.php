@@ -31,7 +31,7 @@
                                          class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $hero_section->heading }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $hero_section->heading !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-bold text-indigo-950">{{ $hero_section->created_at->format('d M, Y') }}</div>

@@ -19,19 +19,17 @@
 
                 <form method="POST" action="{{ route('admin.clients.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <!-- Name Input -->
+                    <!-- Name Input with CKEditor -->
                     <div>
                         <x-input-label for="name" :value="__('Nama Pelanggan')" />
-                        <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            :value="old('name')" required autofocus autocomplete="name" />
+                        <textarea id="name" class="block w-full mt-1" name="name">{{ old('name') }}</textarea>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <!-- Occupation Input -->
+                    <!-- Occupation Input with CKEditor -->
                     <div class="mt-4">
                         <x-input-label for="occupation" :value="__('Pekerjaan')" />
-                        <x-text-input id="occupation" class="block w-full mt-1" type="text" name="occupation"
-                            :value="old('occupation')" required autofocus autocomplete="occupation" />
+                        <textarea id="occupation" class="block w-full mt-1" name="occupation">{{ old('occupation') }}</textarea>
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>
 
@@ -68,8 +66,42 @@
         </div>
     </div>
 
-    <!-- JavaScript to preview images -->
+    <!-- CKEditor 4 Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script>
+        // Initialize CKEditor for each textarea field
+        CKEDITOR.replace('name', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+        CKEDITOR.replace('occupation',{
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
+
+        // JavaScript to preview images
         function previewImage(event, previewId) {
             const reader = new FileReader();
             reader.onload = function() {

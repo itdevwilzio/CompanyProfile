@@ -21,8 +21,8 @@
                                 alt="{{ $super_team->title }}" 
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $super_team->title }}</h3>
-                                <p class="text-sm text-slate-500 text-justify">{{ \Illuminate\Support\Str::limit($super_team->description, 100, '...') }}</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{!! $super_team->title !!}</h3>
+                                <p class="text-sm text-slate-500 text-justify">{!! \Illuminate\Support\Str::limit($super_team->description, 100, '...') !!}</p>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex md:gap-x-3">

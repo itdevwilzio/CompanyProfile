@@ -20,22 +20,22 @@
                 <form method="POST" action="{{ route('admin.hero_sections.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <x-input-label for="heading" :value="__('Heading')" />
+                        <x-input-label for="heading" :value="__('Judul')" />
                         <x-text-input id="heading" class="block w-full mt-1" type="text" name="heading"
                             :value="old('heading')" required autofocus autocomplete="heading" />
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
-                    <div>
+                    {{-- <div>
                         <x-input-label for="sub_heading" :value="__('Sub Heading')" />
                         <x-text-input id="sub_heading" class="block w-full mt-1" type="text" name="sub_heading"
                             :value="old('sub_heading')" required autofocus autocomplete="sub_heading" />
                         <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
-                    </div>
+                    </div> --}}
 
-                    <!-- Achievement Field with CKEditor -->
+                    <!-- Achievement Field with CKEditor 4 -->
                     <div class="mt-4">
                         <x-input-label for="achievement" :value="__('Deskripsi')" />
-                        <textarea id="achievement" name="achievement" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Deskripsi">{{ old('achievement') }}</textarea>
+                        <textarea id="achievement" name="achievement" rows="10" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Deskripsi">{{ old('achievement') }}</textarea>
                         <x-input-error :messages="$errors->get('achievement')" class="mt-2" />
                     </div>
 
@@ -62,24 +62,26 @@
         </div>
     </div>
 
-    <!-- CKEditor Script -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <!-- CKEditor 4 Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script>
-        // Initialize CKEditor for the achievement field
-    ClassicEditor
-        .create(document.querySelector("#achievement"), {
+        // Initialize CKEditor 4 for the achievement field
+        CKEDITOR.replace('achievement', {
             toolbar: [
-            'heading', 'fontSize', 'fontColor', 'fontBackgroundColor', 'fontFamily',
-            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 
-            'alignment', 'bulletedList', 'numberedList', 'outdent', 'indent', 'link', 
-            'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo', 'codeBlock'
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
             ],
-
-            
-        })
-        .catch(error => {
-            console.error(error);
+            height: 300,
+            versionCheck: false
         });
+
         // Image Preview Script
         function previewBanner(event) {
             const reader = new FileReader();

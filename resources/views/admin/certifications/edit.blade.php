@@ -29,7 +29,7 @@
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
-                    <!-- Description Input -->
+                    <!-- Description Input with CKEditor 4 -->
                     <div class="mt-4">
                         <x-input-label for="description" :value="__('Description')" />
                         <textarea id="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" 
@@ -53,13 +53,10 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <!-- Cancel Button with 3D Effect -->
                         <a href="{{ route('admin.certifications.index') }}"
                             class="px-6 py-4 font-bold text-white bg-gray-500 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Cancel
                         </a>
-                    
-                        <!-- Update Button with 3D Effect -->
                         <button id="submit-button" type="button"
                             class="ml-4 px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_6px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Update Certification
@@ -71,16 +68,26 @@
         </div>
     </div>
 
-    <!-- CKEditor Script -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <!-- CKEditor 4 Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
-        ClassicEditor.create(document.querySelector("#description"));
-    </script>
+        CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
 
-    <!-- SweetAlert2 Script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
+        // SweetAlert2 Script
         document.getElementById('submit-button').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default button action
 

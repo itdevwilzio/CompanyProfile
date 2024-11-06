@@ -283,7 +283,7 @@
 <!-- Principles Section -->
 <div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
     <div class="flex flex-col gap-[8px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
+        <p class="badge w-fit text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
             Keunggulan Kami
         </p>
     </div>

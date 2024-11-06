@@ -51,16 +51,16 @@
                 <!-- Adjusted the width and height to make the images smaller squares -->
                 <div class="max-w-sm h-auto flex overflow-hidden">
                   <img src="{{ asset(Storage::url($product->thumbnail)) }}" class="object-cover w-full h-full rounded-lg"
-                    alt="{{ $product->name }}" loading="lazy">
+                    alt="{!! $product->name !!}" loading="lazy">
                   <!-- Lazy loading the image -->
                 </div>
                 <div class="flex flex-col gap-4 p-4 text-center w-full px-8">
                   <p class="badge bg-cp-pale-blue text-cp-light-blue p-2 rounded-full uppercase font-bold text-sm">
                     {{ $product->tagline }}
                   </p>
-                  <h2 class="font-bold text-lg">{{ $product->name }}</h2>
-                  <p class="text-cp-light-grey whitespace-pre-wrap">{{ $product->about }}</p>
-                  <button onclick="selectProduct({{ $product->id }})"
+                  <h2 class="font-bold text-lg">{!! $product->name !!}</h2>
+                  <p class="text-cp-light-grey whitespace-pre-wrap">{!! $product->about !!}</p>
+                  <button onclick="selectProduct({!! $product->id !!})"
                     class="btn-pilih-paket bg-primary p-3 w-full rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out font-bold text-white">
                     Pilih Paket
                   </button>

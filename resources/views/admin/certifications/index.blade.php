@@ -33,7 +33,7 @@
                                          class="rounded-2xl object-cover w-[60px] h-[60px]">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-bold text-indigo-950">{{ $certification->title }}</div>
+                                    <div class="text-sm font-bold text-indigo-950">{!! $certification->title !!}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-700">{{ \Illuminate\Support\Str::limit(strip_tags($certification->description), 100, '...') }}</div>
