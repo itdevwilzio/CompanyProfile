@@ -46,7 +46,7 @@
 
                     <!-- Logo Input with Preview -->
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('Logo Perusahaan (jika ada)')" />
+                        <x-input-label for="logo" :value="__('Logo Perusahaan')" />
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" required
                             onchange="previewImage(event, 'logo-preview')" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />

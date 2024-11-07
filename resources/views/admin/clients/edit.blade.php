@@ -37,20 +37,29 @@
                     <!-- Avatar Input with Preview -->
                     <div class="mt-4">
                         <x-input-label for="avatar" :value="__('Foto Profil')" />
-                        <img src="{{ Storage::url($client->avatar) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <!-- Display the current avatar image with an ID -->
+                        <img id="current-avatar" src="{{ Storage::url($client->avatar) }}" alt="Current Avatar"
+                             class="rounded-2xl object-cover w-[90px] h-[90px]">
+                    
+                        <!-- Preview the new avatar image -->
+                        <img id="avatar-preview" class="rounded-2xl object-cover w-[90px] h-[90px] mt-4" style="display: none;">
+                        
                         <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" autofocus
-                            autocomplete="avatar" />
+                                      autocomplete="avatar" onchange="previewImage(event, 'avatar-preview', 'current-avatar')" />
                         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                     </div>
-
-                    <!-- Logo Input with Preview -->
+                    
                     <div class="mt-4">
                         <x-input-label for="logo" :value="__('Nama Perusahaan')" />
-                        <img src="{{ Storage::url($client->logo) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <!-- Display the current logo image with an ID -->
+                        <img id="current-logo" src="{{ Storage::url($client->logo) }}" alt="Current Logo"
+                             class="rounded-2xl object-cover w-[90px] h-[90px]">
+                    
+                        <!-- Preview the new logo image -->
+                        <img id="logo-preview" class="rounded-2xl object-cover w-[90px] h-[90px] mt-4" style="display: none;">
+                        
                         <x-text-input id="logo" class="block w-full mt-1" type="file" name="logo" autofocus
-                            autocomplete="logo" />
+                                      autocomplete="logo" onchange="previewImage(event, 'logo-preview', 'current-logo')" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                     </div>
 
@@ -125,5 +134,21 @@
             height: 300,
             versionCheck: false
         });
+
+        // Function to preview images
+        function previewImage(event, previewId, currentImageId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById(previewId);
+                    const currentImage = document.getElementById(currentImageId);
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    currentImage.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </x-app-layout>

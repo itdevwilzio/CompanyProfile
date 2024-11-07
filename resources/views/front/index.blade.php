@@ -144,20 +144,29 @@
 
         <!-- Flickity Carousel -->
         <div class="carousel"
-             data-flickity='{ "wrapAround": false, "autoPlay": 3000, "prevNextButtons": false, "pageDots": true, "groupCells": 1 }'>
+            data-flickity='{ "wrapAround": false, "prevNextButtons": false, "pageDots": true, "groupCells": true }'>
             @forelse ($testimonials as $testimonial)
             <div class="carousel-cell bg-white p-8 rounded-lg shadow-md relative mx-4 w-full lg:w-[30%] border border-gray-300 hover:shadow-lg transition-all duration-300 ease-in-out">
                 <!-- Testimonial Info -->
                 <div class="flex items-center gap-4 mb-4">
                     <!-- Avatar -->
                     <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-300">
-                        <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
+                        @if ($testimonial->client && $testimonial->client->avatar)
+                            <img src="{{ Storage::url($testimonial->client->avatar) }}" alt="Client Avatar" class="object-cover w-full h-full">
+                        @else
+                            <!-- Placeholder avatar if no client or avatar exists -->
+                            <img src="{{ asset('assets/icons/default-avatar.png') }}" alt="Default Avatar" class="object-cover w-full h-full">
+                        @endif
                     </div>
 
                     <!-- Client Info -->
                     <div>
-                        <p class="font-nunito font-bold text-lg text-[#0E3995]">{{ $testimonial->client->name }}</p>
-                        <p class="text-sm text-[#ff9802]">{{ $testimonial->client->occupation }}</p>
+                        <p class="font-nunito font-bold text-lg text-primary">
+                            {!! $testimonial->client ? $testimonial->client->name : 'Tanpa Nama' !!}
+                        </p>
+                        <p class="font-nunito font bold text-sm text-[#ff9802]">
+                            {!! $testimonial->client ? $testimonial->client->occupation : 'Wirausaha' !!}
+                        </p>
                     </div>
 
                     <!-- WhatsApp Icon -->
@@ -165,7 +174,6 @@
                         <img src="{{ asset('assets/icons/whatsapp.svg') }}" alt="WhatsApp" class="w-6 h-6 cursor-pointer" data-open-modal="{{ $loop->index }}">
                     </div>
                 </div>
-
                 <!-- Star Rating -->
                 <div class="flex items-center mb-6">
                     @php
@@ -193,7 +201,7 @@
                 </div>
 
                 <!-- Testimonial Text with Modal Trigger -->
-                <p class="text-gray-700 text-sm leading-6 mb-6">{{ Str::limit($testimonial->message, 150) }}
+                <p class="text-gray-700 text-sm leading-6 mb-6">{!! Str::limit($testimonial->message, 150) !!}
                     @if(strlen($testimonial->message) > 150)
                         <!-- Link to trigger modal -->
                         <button onclick="openModalThumbnail({{ $loop->index }})" class="text-[#0E3995] font-semibold modal-open" data-modal-target="modal-{{ $loop->index }}">Lihat selengkapnya</button>
@@ -313,7 +321,7 @@
 <!-- Principles Section -->
 <div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
     <div class="flex flex-col gap-[8px] items-center">
-        <p class="badge w-fit bg-cp-pale-blue text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
+        <p class="badge w-fit text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
             Keunggulan Kami
         </p>
     </div>
