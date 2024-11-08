@@ -27,7 +27,6 @@
 
     <!-- CSS for floating WhatsApp buttons -->
     <style>
-        
        /* WhatsApp button common styles */
        .whatsapp-float {
         position: fixed;
