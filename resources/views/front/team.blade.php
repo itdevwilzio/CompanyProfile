@@ -29,7 +29,7 @@
         <div class="container max-w-[960px] mx-auto relative pt-10 z-10">
             <x-navbar></x-navbar>
             <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12">
-                Tentang Kami
+
             </h2>
         </div>
     </div>
@@ -37,7 +37,7 @@
     <!-- Section: Born for Indonesia -->
 
 
-    <section id="born-for-indonesia" class="w-full py-52 bg-blue-800 relative overflow-hidden -mt-32">
+    <section id="born-for-indonesia" class="w-full py-52 bg-blue-800 relative overflow-hidden -mt-32 z-[0]">
         <!-- Wave SVG Positioned Above the Section -->
         <div class="w-full absolute z-[1] top-0">
             <div class="bg-white h-20"></div>
@@ -47,12 +47,15 @@
                 <path d="M 0,400 L 0,275 C 66.9115797262301,273.18394376618573 133.8231594524602,271.3678875323714 188,268 C 242.1768405475398,264.6321124676286 283.61894191638925,259.71239363669997 337,264 C 390.38105808361075,268.28760636330003 455.701072881983,281.7825379208287 508,292 C 560.298927118017,302.2174620791713 599.5767665556788,309.1574546799852 639,299 C 678.4232334443212,288.8425453200148 717.9918608953016,261.58764335923047 770,248 C 822.0081391046984,234.4123566407695 886.455789863115,234.49197188309282 942,238 C 997.544210136885,241.50802811690718 1044.1849796522383,248.4444691083981 1093,261 C 1141.8150203477617,273.5555308916019 1192.8042915279318,291.73015168331483 1251,295 C 1309.1957084720682,298.26984831668517 1374.597854236034,286.6349241583426 1440,275 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-2" transform="rotate(-180 720 200)"></path>
             </svg>
         </div>
+        <h2 class="font-nunito font-bold text-white text-4xl text-center mb-12">
+            Tentang Kami
+        </h2>
     
         <!-- Content Container -->
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10 relative px-4">
             @foreach ($abouts as $about)
                 <!-- Text Section -->
-                <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all duration-300 hover:text-gray-200">
+                <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all durateion-300 hover:text-gray-200">
                     <h2 class="font-nunito font-bold text-4xl mb-6">
                         {{ $about->name }}
                     </h2>
@@ -157,6 +160,7 @@
                         <div class="flex items-center gap-2">
                             <!-- Icon (Conditional Rendering) -->
                             <template x-if="!open">
+                                
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM8 12h8m-4-4v8" />
                                 </svg>
