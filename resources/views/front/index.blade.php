@@ -627,8 +627,7 @@
         </div>
         <!-- Copyright Section -->
         <p class="text-sm text-white">
-            &copy; {{ date('Y') }} wilzio.com - All Rights Reserved
-        </p>
+            &copy; {{ date('Y') }} wilzio.com 
     </div>
 </footer>
 

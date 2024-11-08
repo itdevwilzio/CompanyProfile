@@ -254,7 +254,7 @@
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
             
             {{-- Section for Pimpinan --}}
-            <h2 class="font-nunito font-bold text-4xl text-primary text-center">Pimpinan Kami</h2>
+            <h2 class="font-nunito text-4xl text-center">Pimpinan Kami</h2>
             <div class="
             grid gap-10 items-center justify-center mx-auto 
             @if ($teams->where('team', 'Pimpinan')->count() == 1) 
@@ -266,13 +266,13 @@
             @endif
         ">
             @foreach ($teams->where('team', 'Pimpinan') as $team)
-                <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center">
                     <img src="{{ asset(Storage::url($team->avatar)) }}" 
                         class="w-[150px] h-[150px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
                         alt="{{ $team->name }}">
-                    <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{!! $team->name !!}</h3>
-                    <p class="text-primary hover:text-white transition-colors duration-300">{!! $team->occupation !!}</p>
-                    <p class="text-sm text-primary hover:text-white transition-colors duration-300">{!! $team->location !!}</p>
+                        <h3 class="font-bold text-primary text-xl">{!! $team->name !!}</h3>
+                    <p class="text-primary ">{!! $team->occupation !!}</p>
+                    <p class="text-sm text-primary">{!! $team->location !!}</p>
                 </div>
             @endforeach
         </div>
@@ -283,28 +283,29 @@
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">IT & Administrative Team</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 @foreach ($teams->where('team', 'IT & Administrative Team') as $team)
-                    <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                    <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
                             alt="{{ $team->name }}">
-                        <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{{ $team->name }}</h3>
-                        <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
-                        <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
+                        <h3 class="font-bold text-primary">{!! $team->name !!}</h3>
+                        <p class="text-primary">{!! $team->occupation !!}</p>
+                        <p class="text-sm text-primary">{!! $team->location !!}</p>
                     </div>
                 @endforeach
             </div>
+            
     
             {{-- Section for Technician --}}
             <h2 class="font-nunito font-bold text-4xl text-primary text-center">Technician</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 @foreach ($teams->where('team', 'Technician Team') as $team)
-                    <div class="border border-[#E8EAF2] text-primary hover:border-white hover:bg-primary hover:scale-105 transition-all duration-300 rounded-lg p-5 text-center text-white">
+                    <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center text-white">
                         <img src="{{ asset(Storage::url($team->avatar)) }}" 
                             class="w-[120px] h-[120px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
                             alt="{{ $team->name }}">
-                        <h3 class="font-bold text-primary text-xl hover:text-white transition-colors duration-300">{{ $team->name }}</h3>
-                        <p class="text-primary hover:text-white transition-colors duration-300">{{ $team->occupation }}</p>
-                        <p class="text-sm text-primary hover:text-white transition-colors duration-300">{{ $team->location }}</p>
+                        <h3 class="font-bold text-primary">{{ $team->name }}</h3>
+                        <p class="text-primary">{{ $team->occupation }}</p>
+                        <p class="text-sm text-primary">{{ $team->location }}</p>
                     </div>
                 @endforeach
             </div>
