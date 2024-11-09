@@ -66,13 +66,6 @@
                 z-index: -1
             }
 
-            .particle {
-                position: absolute;
-                background-color: rgba(255, 255, 255, 0.8);
-                border-radius: 50%;
-                animation: float 6s infinite ease-in-out;
-            }
-
             @keyframes float {
                 0% { transform: translateY(0) translateX(0); opacity: 1; }
                 25% { transform: translateY(-20px) translateX(-10px); opacity: 0.8; }
@@ -627,53 +620,9 @@
         </div>
         <!-- Copyright Section -->
         <p class="text-sm text-white">
-            &copy; {{ date('Y') }} wilzio.com 
+            &copy; {{ date('Y') }} wilzio.com - All Rights Reserved
     </div>
 </footer>
 
 
 @endsection
-
-{{-- @push('after-scripts')
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
-<script src="{{ asset('js/carousel.js') }}"></script>
-<script src="{{ asset('js/accordion.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css" />
-
-<!-- LightGallery JS -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
-
-<!-- Plugins -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/share/lg-share.min.js"></script>
-<script>
-    // Join Button hover and scale effect
-    const joinButton = document.getElementById('joinButton');
-
-    // Hover effect: Scale down to 90% when mouse enters
-    joinButton.addEventListener('mouseenter', function() {
-        joinButton.style.transition = 'transform 0.3s ease-in-out';
-        joinButton.style.transform = 'scale(0.9)'; // Reduced scale for a smoother effect
-    });
-
-    // Revert to original size when mouse leaves
-    joinButton.addEventListener('mouseleave', function() {
-        joinButton.style.transform = 'scale(1)';
-    });
-
-    // On click, scale slightly down
-    joinButton.addEventListener('mousedown', function() {
-        joinButton.style.transform = 'scale(0.95)'; // Slight scale down on click
-    });
-
-    // On mouse up, return to the hover scale (if hovered)
-    joinButton.addEventListener('mouseup', function() {
-        joinButton.style.transform = 'scale(0.9)';
-    });
-
-</script>
-@endpush
- --}}

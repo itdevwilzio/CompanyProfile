@@ -25,3 +25,23 @@ $classes = ($active ?? false)
         </a>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdownToggle = document.getElementById('dropdownToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        // Toggle the dropdown visibility on button click
+        dropdownToggle.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevents click from closing immediately
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>

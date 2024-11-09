@@ -154,42 +154,45 @@
                 </p>
                 
                 <!-- Dropdown Button with Hover Effect -->
-                <div x-data="{ open: false }" class="bg-white text-blue-900 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-[#E8F0FD]">
-                    <!-- Accordion Header -->
-                    <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
-                        <div class="flex items-center gap-2">
-                            <!-- Icon (Conditional Rendering) -->
-                            <template x-if="!open">
-                                
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM8 12h8m-4-4v8" />
-                                </svg>
-                            </template>
-                            <template x-if="open">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 2a6 6 0 00-6 6c0 2.22 1.21 4.15 3 5.19V15a1 1 0 001 1h4a1 1 0 001-1v-1.81a6.978 6.978 0 003-5.19 6 6 0 00-6-6zm-1 13h2v2h-2v-2z"/>
-                                </svg>
-                            </template>
-                            <!-- Title -->
-                            <h3 class="font-bold text-lg">{{ __('Arti ' . $product_identity->name . '?') }}</h3>
+                <div class="mt-3">
+                    <div x-data="{ open: false }" class="bg-white text-blue-900 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-[#E8F0FD]">
+                        <!-- Accordion Header -->
+                        <div class="flex items-center justify-between cursor-pointer" @click="open = !open" @click.away="open = false">
+                            <div class="flex items-center gap-2">
+                                <!-- Icon (Conditional Rendering) -->
+                                <template x-if="!open">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM8 12h8m-4-4v8" />
+                                    </svg>
+                                </template>
+                                <template x-if="open">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 2a6 6 0 00-6 6c0 2.22 1.21 4.15 3 5.19V15a1 1 0 001 1h4a1 1 0 001-1v-1.81a6.978 6.978 0 003-5.19 6 6 0 00-6-6zm-1 13h2v2h-2v-2z"/>
+                                    </svg>
+                                </template>
+                                <!-- Title -->
+                                <h3 class="font-bold text-lg">{{ __('Arti ' . $product_identity->name . '?') }}</h3>
+                            </div>
+                            <!-- Arrow Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </div>
-                        <!-- Arrow Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                
-                    <!-- Accordion Content -->
-                    <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-4">
-                        <p class="text-sm mb-4">
-                            {!! $product_identity->contentl1 !!}
-                        </br>
-                            {!! $product_identity->contentl2 !!}
-                        </br>
-                            {!! $product_identity->contentl3 !!}
-                        </p>
+                    
+                        <!-- Accordion Content -->
+                        <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-4">
+                            <p class="text-sm mb-4">
+                                {!! $product_identity->contentl1 !!}
+                            </br>
+                                {!! $product_identity->contentl2 !!}
+                            </br>
+                                {!! $product_identity->contentl3 !!}
+                            </p>
+                        </div>
                     </div>
                 </div>
+
             </div>
             @endforeach
         </div>
@@ -223,7 +226,7 @@
     <!-- Super Team Section -->
 
     <section id="super-team" class="w-full py-16">
-        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center gap-10 text-primary">
+        <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-start gap-10 text-primary">
             @foreach($super_teams as $super_team)
                 <!-- Image Section with Hover Effect -->
                 <div class="w-full lg:w-1/2 flex justify-center">
@@ -240,13 +243,15 @@
     
                 <!-- Text Section with Hover Effect -->
                 <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
-                    <h2 class="font-nunito font-bold text-4xl mb-4">{{ $super_team->title }}</h2>
-                    <p class="text-lg leading-7 mb-4">
-                        {!! $super_team->description !!}
-                    </p>
-                    <p class="text-lg leading-7">
-                        {{ $super_team->additional_info }}
-                    </p>
+                    <div class="lg:pt-0 pt-4">
+                        <h2 class="font-nunito font-bold text-4xl mb-4">{{ $super_team->title }}</h2>
+                        <p class="text-lg leading-7 mb-4">
+                            {!! $super_team->description !!}
+                        </p>
+                        <p class="text-lg leading-7">
+                            {{ $super_team->additional_info }}
+                        </p>
+                    </div>
                 </div>
             @endforeach
         </div>

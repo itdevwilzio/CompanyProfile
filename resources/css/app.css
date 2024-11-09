@@ -21,6 +21,14 @@
     .flickity-enabled {
         pointer-events: none; /* Disable interactions for Flickity when the modal is open in testimonial */
     }
+    .flickity-page-dots .dot {
+        background: white !important;
+        opacity: 0.5;
+        width: 10px;
+        height: 10px;
+        margin: 0 6px;
+        border-radius: 50%;
+    }
 
     .text-cp-black {
         --tw-text-opacity: 1;

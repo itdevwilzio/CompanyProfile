@@ -29,26 +29,52 @@
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
-         <!-- SweetAlert2 CDN -->
+        <!-- SweetAlert2 CDN -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen">
-            @include('layouts.navigation')
+    <body class="font-sans antialiased flex flex-col min-h-screen">
+        <!-- Navigation -->
+        @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            @yield('content')
+            {{ $slot ?? '' }}
+        </main>
+
+        <!-- Footer -->
+        @section('footer')
+        <footer class="w-full bg-[#0E3995] text-white">
+            <div class="container max-w-7xl mx-auto px-4 py-10">
+                <div class="flex flex-col items-center justify-center">
+                    <!-- Follow Us Section -->
+                    <p class="font-nunito font-bold text-lg mb-4">
+                        Ikuti Kami
+                    </p>
+                    <div class="flex items-center gap-6 mb-6">
+                        <a href="#" target="_blank" class="hover:opacity-80 transition-opacity duration-300">
+                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                                <i class="feather icon-facebook text-[#0E3995]"></i>
+                            </div>
+                        </a>
+                        <!-- Add other social media links as needed -->
                     </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+                    <!-- Copyright Section -->
+                    <p class="text-sm text-center">
+                        &copy; {{ date('Y') }} wilzio.com. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        @show
     </body>
 </html>

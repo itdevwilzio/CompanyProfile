@@ -8,111 +8,146 @@
             </a>
         </div>
 
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex justify-center w-full">
+            <ul class="flex items-center space-x-6">
+                <li class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 {{ request()->routeIs('front.index') ? 'text-cp-dark-blue' : '' }}">
+                    <a href="{{ route('front.index') }}">Beranda</a>
+                </li>
+                <li class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 relative">
+                    <button id="desktopDropdownToggle" class="flex items-center">
+                        <span>Produk
+                        <i id="desktopDropdownIcon" class="feather icon-chevron-down ml-1"></i>
+                    </button>
+                    <div id="desktopDropdownMenu" class="hidden absolute bg-primary text-white rounded-md mt-2 p-3 w-[200px] left-1/2 transform -translate-x-1/2">
+                        <ul class="flex flex-col space-y-2">
+                            <li><a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 block py-2">Paket Home</a></li>
+                            <li><a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 block py-2">Paket Voucher</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
+                    <a href="{{ route('front.team') }}">Tentang Kami</a>
+                </li>
+            </ul>
+        </div>
+
         <!-- Mobile Menu Toggle Button -->
-        <button id="toggle-navbar-mobile" class="flex lg:hidden ml-auto z-[20]">
+        <button id="toggle-sidebar" class="lg:hidden">
             <i class="feather icon-menu text-xl"></i>
         </button>
-
-        <!-- Overlay for Mobile Navbar -->
-        <div class="w-full h-screen fixed bg-black/50 left-0 top-0 hidden lg:hidden z-[15]" id="navbar-overlay"></div>
-
-        <!-- Navbar Items -->
-        <ul class="flex flex-wrap navbar-mobile lg:navbar-desktop transition-all z-[20] mx-auto hidden lg:flex z-[50]"
-            id="navbar">
-            <!-- Close Button for Mobile Navbar -->
-            <button id="close-navbar-mobile"
-                class="h-8 border border-red-400 bg-red-700 px-2 -mr-5 -mt-5 flex items-center justify-center text-white self-end rounded mb-10 lg:hidden shadow-md hover:shadow-sm active:shadow-sm hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out hover:bg-yellow-500 z-[20]">
-                <i class="feather icon-x me-1"></i> Close
-            </button>
-
-            <!-- Menu Items -->
-            <li
-                class="font-roboto font-bold text-base leading-6 transition-all duration-300 hover:text-orange-500 hover:text-xl {{ request()->routeIs('front.index') ? 'lg:bg-white lg:text-cp-dark-blue' : '' }}">
-                <a href="{{ route('front.index') }}">Beranda</a>
-            </li>
-
-            <!-- Dropdown for Produk -->
-            <li
-                class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 hover:text-xl relative z-[20] text-center">
-                <button id="dropdownToggle"
-                    class="font-roboto transition-all duration-300 click:text-cp-dark-blue focus:outline-none">
-                    <span>Produk</span>
-                    <i id="dropdownIcon" class="feather icon-chevron-down ml-1"></i>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <div id="dropdownMenu"
-                    class="hidden absolute bg-primary text-white rounded-md mt-2 p-3 w-[200px] left-1/2 transform -translate-x-1/2 z-[50] text-center">
-                    <ul class="flex flex-col space-y-2">
-                        <li><a href="{{ route('front.product') }}"
-                                class="text-white text-xl px-4 py-2  hover:text-orange-500 hover:text-xl block">Paket
-                                Home</a></li>
-                        <li><a href="{{ route('front.location') }}"
-                                class="text-white text-xl px-4 py-2  hover:text-orange-500 hover:text-xl block">Paket
-                                Voucher</a></li>
-                    </ul>
-                </div>
-            </li>
-
-            <!-- Other Navigation Items -->
-            <li
-                class="font-roboto font-bold text-base transition-all duration-300 hover:text-orange-500 hover:text-xl {{ request()->routeIs('front.team') ? 'text-cp-dark-blue' : '' }}">
-                <a href="{{ route('front.team') }}">Tentang Kami</a>
-            </li>
-        </ul>
     </div>
 </nav>
+
+
+<!-- Sidebar Navigation (for mobile) -->
+<div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-primary shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
+    <div class="p-5">
+        <!-- Close Button -->
+        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-orange-500 transition-colors duration-300">
+            <i class="feather icon-x text-xl"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="flex justify-center mb-6 mt-2">
+            <a href="{{ route('front.index') }}">
+                <img src="{{ asset('assets/logo/logo_wilzio.png') }}" alt="Wilzio Logo" class="h-[60px] w-auto">
+            </a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="mt-10">
+            <ul class="space-y-4">
+                <li>
+                    <a href="{{ route('front.index') }}" class="block py-2 text-lg font-medium text-white hover:text-orange-500 transition-colors duration-300">
+                        Beranda
+                    </a>
+                </li>
+                <li>
+                    <button id="mobileDropdownToggle" class="flex items-center justify-between w-full py-2 text-lg font-medium text-white hover:text-orange-500 transition-colors duration-300">
+                        <span>Produk
+                        <i id="mobileDropdownIcon" class="feather icon-chevron-down ml-2"></i>
+                    </button>
+                    <ul id="mobileDropdownMenu" class="hidden pl-4 mt-2 space-y-2">
+                        <li>
+                            <a href="{{ route('front.product') }}" class="block py-2 text-base text-white hover:text-orange-500 transition-colors duration-300">
+                                Paket Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('front.location') }}" class="block py-2 text-base text-white hover:text-orange-500 transition-colors duration-300">
+                                Paket Voucher
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ route('front.team') }}" class="block py-2 text-lg font-medium text-white hover:text-orange-500 transition-colors duration-300">
+                        Tentang Kami
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
 
 <!-- Script for Dropdown and Mobile Toggle -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
-        const toggleNavbarMobile = document.getElementById('toggle-navbar-mobile');
-        const navbarOverlay = document.getElementById('navbar-overlay');
-        const closeNavbarMobile = document.getElementById('close-navbar-mobile');
-        const navbar = document.getElementById('navbar');
-
-        toggleNavbarMobile.addEventListener('click', function() {
-            navbar.classList.remove('hidden');
-            navbarOverlay.classList.remove('hidden');
-        });
-
-        closeNavbarMobile.addEventListener('click', function() {
-            navbar.classList.add('hidden');
-            navbarOverlay.classList.add('hidden');
-        });
-
-        navbarOverlay.addEventListener('click', function() {
-            navbar.classList.add('hidden');
-            navbarOverlay.classList.add('hidden');
-        });
-
-        // Dropdown menu toggle
-        const dropdownToggle = document.getElementById('dropdownToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        const dropdownIcon = document.getElementById('dropdownIcon');
-
-        dropdownToggle.addEventListener('click', function(event) {
-            event.stopPropagation();
-            dropdownMenu.classList.toggle('hidden');
-
-            // Toggle between chevron-down and chevron-up icons
-            if (dropdownMenu.classList.contains('hidden')) {
-                dropdownIcon.classList.remove('icon-chevron-up');
-                dropdownIcon.classList.add('icon-chevron-down');
-            } else {
-                dropdownIcon.classList.remove('icon-chevron-down');
-                dropdownIcon.classList.add('icon-chevron-up');
-            }
-        });
-
-        // Close the dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
-                dropdownMenu.classList.add('hidden');
-                dropdownIcon.classList.remove('icon-chevron-up');
-                dropdownIcon.classList.add('icon-chevron-down');
-            }
-        });
+        // Desktop dropdown
+        const desktopDropdownToggle = document.getElementById('desktopDropdownToggle');
+        const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+        const desktopDropdownIcon = document.getElementById('desktopDropdownIcon');
+    
+        if (desktopDropdownToggle && desktopDropdownMenu && desktopDropdownIcon) {
+            desktopDropdownToggle.addEventListener('click', function(event) {
+                event.stopPropagation();
+                desktopDropdownMenu.classList.toggle('hidden');
+                desktopDropdownIcon.classList.toggle('icon-chevron-up');
+                desktopDropdownIcon.classList.toggle('icon-chevron-down');
+            });
+    
+            // Close desktop dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!desktopDropdownMenu.contains(event.target) && !desktopDropdownToggle.contains(event.target)) {
+                    desktopDropdownMenu.classList.add('hidden');
+                    desktopDropdownIcon.classList.remove('icon-chevron-up');
+                    desktopDropdownIcon.classList.add('icon-chevron-down');
+                }
+            });
+        }
+    
+        // Mobile sidebar
+        const toggleSidebar = document.getElementById('toggle-sidebar');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+    
+        if (toggleSidebar && sidebar) {
+            toggleSidebar.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+        }
+    
+        if (closeSidebar && sidebar) {
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.add('-translate-x-full');
+            });
+        }
+    
+        // Mobile dropdown
+        const mobileDropdownToggle = document.getElementById('mobileDropdownToggle');
+        const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+        const mobileDropdownIcon = document.getElementById('mobileDropdownIcon');
+    
+        if (mobileDropdownToggle && mobileDropdownMenu && mobileDropdownIcon) {
+            mobileDropdownToggle.addEventListener('click', function() {
+                mobileDropdownMenu.classList.toggle('hidden');
+                mobileDropdownIcon.classList.toggle('icon-chevron-up');
+                mobileDropdownIcon.classList.toggle('icon-chevron-down');
+            });
+        }
     });
-</script>
+    </script>
