@@ -175,7 +175,7 @@
                         </div>
                         <!-- Arrow Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
                 
