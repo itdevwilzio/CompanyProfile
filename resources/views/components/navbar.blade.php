@@ -33,20 +33,22 @@
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="toggle-sidebar" class="lg:hidden">
-            <i class="feather icon-menu text-xl"></i>
+        <button id="open-sidebar" class="md:hidden text-gray-500 hover:text-gray-700">
+            <i class="feather icon-menu text-2xl"></i>
         </button>
+        
     </div>
 </nav>
 
 
 <!-- Sidebar Navigation (for mobile) -->
-<div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-primary shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
+<div id="sidebar" class="fixed top-0 left-0 w-[280px] h-full bg-primary shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
     <div class="p-5">
         <!-- Close Button -->
-        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-orange-500 transition-colors duration-300">
-            <i class="feather icon-x text-xl"></i>
+        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-orange-500 transition-colors duration-300 bg-red-500 hover:bg-red-600 px-3 py-2 rounded">
+            Close <i class="feather icon-x text-xl"></i>
         </button>
+        
 
         <!-- Logo -->
         <div class="flex justify-center mb-6 mt-2">
@@ -97,57 +99,46 @@
 <!-- Script for Dropdown and Mobile Toggle -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Desktop dropdown
-        const desktopDropdownToggle = document.getElementById('desktopDropdownToggle');
-        const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
-        const desktopDropdownIcon = document.getElementById('desktopDropdownIcon');
-    
-        if (desktopDropdownToggle && desktopDropdownMenu && desktopDropdownIcon) {
-            desktopDropdownToggle.addEventListener('click', function(event) {
-                event.stopPropagation();
-                desktopDropdownMenu.classList.toggle('hidden');
-                desktopDropdownIcon.classList.toggle('icon-chevron-up');
-                desktopDropdownIcon.classList.toggle('icon-chevron-down');
-            });
-    
-            // Close desktop dropdown when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!desktopDropdownMenu.contains(event.target) && !desktopDropdownToggle.contains(event.target)) {
-                    desktopDropdownMenu.classList.add('hidden');
-                    desktopDropdownIcon.classList.remove('icon-chevron-up');
-                    desktopDropdownIcon.classList.add('icon-chevron-down');
-                }
-            });
-        }
-    
-        // Mobile sidebar
-        const toggleSidebar = document.getElementById('toggle-sidebar');
-        const closeSidebar = document.getElementById('close-sidebar');
         const sidebar = document.getElementById('sidebar');
-    
-        if (toggleSidebar && sidebar) {
-            toggleSidebar.addEventListener('click', function() {
-                sidebar.classList.toggle('-translate-x-full');
-            });
-        }
-    
-        if (closeSidebar && sidebar) {
-            closeSidebar.addEventListener('click', function() {
-                sidebar.classList.add('-translate-x-full');
-            });
-        }
-    
-        // Mobile dropdown
+        const openButton = document.getElementById('open-sidebar');
+        const closeButton = document.getElementById('close-sidebar');
         const mobileDropdownToggle = document.getElementById('mobileDropdownToggle');
         const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
         const mobileDropdownIcon = document.getElementById('mobileDropdownIcon');
-    
-        if (mobileDropdownToggle && mobileDropdownMenu && mobileDropdownIcon) {
-            mobileDropdownToggle.addEventListener('click', function() {
-                mobileDropdownMenu.classList.toggle('hidden');
-                mobileDropdownIcon.classList.toggle('icon-chevron-up');
-                mobileDropdownIcon.classList.toggle('icon-chevron-down');
-            });
-        }
+
+        // Open sidebar
+        openButton.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        // Close sidebar
+        closeButton.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !openButton.contains(e.target)) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Toggle dropdown menu
+        mobileDropdownToggle.addEventListener('click', () => {
+            mobileDropdownMenu.classList.toggle('hidden');
+            mobileDropdownIcon.classList.toggle('rotate-180');
+        });
     });
-    </script>
+
+    // Add this inside your DOMContentLoaded event listener
+    openButton.addEventListener('click', () => {
+        sidebar.classList.remove('-translate-x-full');
+        document.body.classList.add('overflow-hidden');
+    });
+
+    closeButton.addEventListener('click', () => {
+        sidebar.classList.add('-translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+    });
+
+</script>
