@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductIdentityController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VoucherPackageController;
 use App\Http\Controllers\SuperTeamController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
@@ -110,6 +111,10 @@ Route::middleware('auth')->group(function () {
         Route::fallback(function () {
             return response()->view('errors.404', [], 404);
         });
+
+        //CKEditor Upload
+        Route::post('/upload-image', [UploadController::class, 'upload'])->name('ckeditor.upload');
+
     });
 });
 

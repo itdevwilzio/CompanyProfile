@@ -21,19 +21,24 @@
             <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
                 @foreach ($hero_section as $hero)
                 <!-- Link to Hero Section Detail Page -->
-                <a href="{{ route('hero_sections.show', $hero->id) }}" class="carousel-cell w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                    <div class="relative w-full h-full flex justify-center items-center">
+                <a href="{{ route('hero_sections.show', $hero->id) }}" class="carousel-cell w-full h-[250px] md:h-[400px] lg:h-[500px]">
+                    <div class="relative w-full h-full flex justify-center items-center px-4 md:px-6 lg:px-8">
                         <img src="{{ Storage::url($hero->banner) }}"
                              srcset="{{ Storage::url($hero->banner) }} 1024w,
                                      {{ Storage::url($hero->banner) }} 640w"
-                             sizes="(max-width: 768px) 640px, 1024px"
-                             class="object-cover w-[800px] h-auto rounded-lg shadow-lg" alt="Promo Banner: {{ $hero->description }}" loading="lazy">
+                             sizes="(max-width: 640px) 100vw,
+                                    (max-width: 768px) 640px,
+                                    800px"
+                             class="object-contain w-full md:w-[600px] lg:w-[800px] h-full rounded-lg shadow-lg" 
+                             alt="Promo Banner: {{ $hero->description }}" 
+                             loading="lazy">
                     </div>
                 </a>
                 @endforeach
             </div>
         </div>
     </section>
+    
 
         <!-- CSS for Carousel and Wave -->
         <style>
@@ -79,7 +84,7 @@
 </div>
 
 <!-- Optimized Bangun Section -->
-<section id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-12 mb-12 bg-white p-12 rounded-xl shadow-2xl">
+<section id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-6 mb-6 bg-white p-6 rounded-xl shadow-2xl">
     <!-- Title Section -->
     <h2 class="font-permanent text-5xl font-bold text-center text-[#0E3995]">
         Buka Peluang Baru dengan Koneksi Internet Terbaik
@@ -312,12 +317,14 @@
 
 
 <!-- Principles Section -->
-<div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-20">
-    <div class="flex flex-col gap-[8px] items-center">
-        <p class="badge w-fit text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-[48px]">
+<div id="OurPrinciples" class="container max-w-[1200px] mx-auto flex flex-col gap-[15px] mt-6 md:mt-12">
+    <div class="flex flex-col gap-[8px] items-center px-4 md:px-6">
+        <p class="badge w-fit text-[#0e3995] p-[6px_12px] rounded-full uppercase font-nunito font-extrabold text-3xl md:text-[48px] text-center leading-none whitespace-normal break-words max-w-full overflow-hidden">
             Keunggulan Kami
         </p>
     </div>
+    
+    
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px] justify-items-center">
         @foreach ($principles as $principle)
