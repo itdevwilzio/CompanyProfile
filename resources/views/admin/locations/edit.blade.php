@@ -36,8 +36,14 @@
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
+                    <div class="my-4">
+                        <x-input-label for="description" :value="__('Description')" />
+                        <textarea id="description" class="block w-full mt-1" name="description">{{ old('description', $location->description) }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                    </div>
+
                     <div class="flex items-center justify-end mt-4">
-                        <button id="submit-button" type="button" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                        <button id="submit-button" type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             Update Location
                         </button>
                     </div>
@@ -47,32 +53,45 @@
         </div>
     </div>
 
-    <!-- SweetAlert2 Script -->
-   <!-- SweetAlert2 Script -->
-   <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Select all delete buttons
-            const deleteButtons = document.querySelectorAll('.delete-btn');
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        // Initialize CKEditor for the description field
+        CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
 
-            // Add event listener to each delete button
+        // SweetAlert2 Script for other interactions if necessary
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const teamId = this.getAttribute('data-id');
                     const form = document.getElementById(`delete-team-form-${teamId}`);
-
-                    // Show SweetAlert confirmation
                     Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Anda tidak akan bisa mengembalikan ini!",
+                        title: 'Are you sure?',
+                        text: "This action cannot be undone!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#0C3C94',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
+                        confirmButtonText: 'Yes, delete!',
+                        cancelButtonText: 'Cancel'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
+                            form.submit();
                         }
                     });
                 });

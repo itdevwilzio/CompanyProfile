@@ -16,6 +16,7 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::all();
+        // dd($locations);
 
         return view('admin.locations.index', compact('locations'));
     }
@@ -38,7 +39,8 @@ class LocationController extends Controller
             
             Location::create([
                 'name' => $request->name,
-                'image' => $imagePath
+                'image' => $imagePath,
+                'description' => $request->description
             ]);
         });
 

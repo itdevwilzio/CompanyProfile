@@ -40,29 +40,29 @@
 
 <!-- Sidebar Navigation (for mobile) -->
 <div id="sidebar" class="fixed top-0 right-0 w-[280px] h-full bg-primary shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
-    <div class="p-5">
-    <!-- Close Button -->
-    <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-black transition-colors duration-300 bg-red-500 hover:bg-yellow-400 px-3 py-2 rounded flex items-center gap-2">
-        <span>Close</span> 
-        <i class="feather icon-x text-xl"></i>
-    </button>
+    <div class="flex flex-col items-end p-5"> <!-- Changed to items-end for right alignment -->
+        <!-- Close Button -->
+        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-black transition-colors duration-300 bg-red-500 hover:bg-yellow-400 px-3 py-2 rounded flex items-center gap-2">
+            <span>Close</span> 
+            <i class="feather icon-x text-xl"></i>
+        </button>
         
-        <!-- Logo -->
-        <div class="flex justify-left mb-6 mt-2">
+        <!-- Logo with added top margin -->
+        <div class="flex justify-end mt-10 mb-6"> <!-- Adjusted to align right -->
             <a href="{{ route('front.index') }}">
-                <img src="{{ asset('assets/logo/logo_wilzio.png') }}" alt="Wilzio Logo" class="h-[60px] w-auto">
+                <img src="{{ asset('assets/logo/name.png') }}" alt="Wilzio Logo" class="h-[60px] w-auto">
             </a>
         </div>
 
         <!-- Navigation Menu -->
-        <ul class="flex flex-col space-y-6">
+        <ul class="flex flex-col items-end space-y-6"> <!-- items-end for right alignment -->
             <li><a href="{{ route('front.index') }}" class="text-white hover:text-orange-500 block">Beranda</a></li>
-            <li>
-                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 block flex items-center justify-between w-full">
+            <li class="w-full">
+                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 flex items-center justify-between w-full">
                     <span>Produk</span>
                     <i id="mobileDropdownIcon" class="feather icon-chevron-down"></i>
                 </button>
-                <ul id="mobileDropdownMenu" class="hidden flex-col space-y-2 mt-2 pl-4">
+                <ul id="mobileDropdownMenu" class="hidden flex-col space-y-2 mt-2 pr-4 items-end"> <!-- Right alignment for dropdown menu -->
                     <li><a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 block py-2">Paket Home</a></li>
                     <li><a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 block py-2">Paket Voucher</a></li>
                 </ul>
@@ -71,6 +71,8 @@
         </ul>
     </div>
 </div>
+
+
 
 <!-- Script for Sidebar and Dropdown Toggle -->
 <script>

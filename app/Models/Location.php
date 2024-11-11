@@ -10,7 +10,8 @@ class Location extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'image'
+        'image',
+        'description'
     ];
 
     public function voucher_packages()

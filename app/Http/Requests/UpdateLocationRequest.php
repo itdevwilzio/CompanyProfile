@@ -23,7 +23,8 @@ class UpdateLocationRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'image' => 'image|mimes:png,jpg,jpeg',
+            'image' => 'image|mimes:png,jpg,jpeg|mad:2048',
+            'description' => ['nullable', 'string',  'max:1000000'],   
         ];
     }
 }

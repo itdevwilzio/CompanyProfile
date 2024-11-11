@@ -1,7 +1,5 @@
 @extends('front.layouts.app')
 
-@extends('front.layouts.app')
-
 @section('content')
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 z-10">
@@ -14,21 +12,35 @@
         @if (session()->has('success'))
             <div class="my-5 p-4 bg-green-500 text-white rounded-lg">{{ session('success') }}</div>
         @endif
+
+            
+        {{-- Display Locations --}}
+        @if($locations->isNotEmpty())
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            @foreach ($locations as $location)
+                <div class="bg-primary rounded-lg p-4">
+                    <h2 class="text-lg font-semibold text-yellow-400">{{ $location->name }}</h2>
+                    <img src="{{ asset('storage/' . $location->image) }}" alt="{{ $location->name }}" class="mt-2 rounded-md">
+                    <p class="text-gray-300 mt-4">{!! $location->description !!}</p>
+                    {{-- Additional location details can go here --}}
+                </div>
+            @endforeach
+        </div>
         <h1 class="text-yellow-400 font-bold text-xl text-center mb-10">Beli Voucher Wi-Fi</h1>
 
+    @endif
+    
+    
         {{-- WhatsApp Button Below Text --}}
-        <div class="text-center mt-10 px-4 md:px-0">
+        <div class="text-center mt-10 px-4 md:px-0 flex justify-center">
             <a href="https://wa.me/6285179706639" target="_blank" 
-               class="whatsapp-button bg-green-500 text-white px-4 md:px-8 py-3 md:py-4 text-base md:text-xl rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-400 flex items-center justify-center w-full md:w-auto mx-auto max-w-sm">
-                <i class="fab fa-whatsapp mr-2 text-xl md:text-2xl"></i> 
+               class="whatsapp-button bg-green-500 text-white px-6 lg:px-10 py-3 lg:py-4 text-base lg:text-xl rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-400 flex items-center justify-center w-full md:w-auto max-w-md">
+                <i class="fab fa-whatsapp mr-2 text-xl lg:text-2xl"></i> 
                 <span class="whitespace-normal">Hubungi Customer Service Wilzio
             </a>
         </div>
-
     </div>
-    {{-- End Section Voucher --}}
-
-
+    </div>
     {{-- End Section Voucher --}}
 
     <footer class="w-full mt-10 bg-[#0E3995] text-white">

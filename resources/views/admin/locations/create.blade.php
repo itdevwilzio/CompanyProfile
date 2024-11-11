@@ -32,12 +32,19 @@
                             autofocus autocomplete="image" />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
+
                     <div>
                         <img id="upload-preview" src="" class="mx-auto" alt="Preview" style="display: none; max-width: 100%; height: auto;">
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
+                    <!-- CKEditor Description Field -->
+                    <div class="my-4">
+                        <x-input-label for="description" :value="__('Description')" />
+                        <textarea id="description" class="block w-full mt-1" name="description">{{ old('description') }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                    </div>
 
+                    <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                             Add New Location
                         </button>
@@ -48,7 +55,25 @@
         </div>
     </div>
 
+    <!-- CKEditor Script -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
+        // Initialize CKEditor for the description field
+        CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 300,
+            versionCheck: false
+        });
         document.getElementById('image').addEventListener('change', function(event) {
             const file = event.target.files[0];
             const preview = document.getElementById('upload-preview');

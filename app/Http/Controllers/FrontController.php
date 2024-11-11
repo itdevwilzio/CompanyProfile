@@ -140,7 +140,8 @@ class FrontController extends Controller
 
     public function location(Request $request) 
     {
-        return view('front.location');
+        $locations = Location::all(); // Or any specific query you need
+        return view('front.location', compact('locations'));
     }
 
     public function locationOrder(Location $location)

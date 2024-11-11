@@ -22,9 +22,9 @@ class StoreLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'name' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'name' => ['required|string|max:255'],
+            'image' => ['required|image|max:2048'], // Adjust the max size as needed
+            'description' => ['nullable', 'string',  'max:1000000'],       // Add this line
         ];
     }
 }
