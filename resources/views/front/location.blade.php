@@ -27,7 +27,7 @@
 
     </div>
     {{-- End Section Voucher --}}
-@endsection
+
 
     {{-- End Section Voucher --}}
 
