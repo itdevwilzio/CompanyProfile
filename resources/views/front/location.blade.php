@@ -1,5 +1,7 @@
 @extends('front.layouts.app')
 
+@extends('front.layouts.app')
+
 @section('content')
     <div id="header" class="relative">
         <div class="container max-w-[1130px] mx-auto relative pt-10 sm:pt-6 md:pt-8 lg:pt-10 xl:pt-12 z-10">
@@ -30,8 +32,10 @@
                 <span class="whitespace-normal">Hubungi Customer Service Wilzio</span>
             </a>
         </div>
-
     </div>
+    {{-- End Section Voucher --}}
+@endsection
+
     {{-- End Section Voucher --}}
 
     <footer class="w-full mt-10 sm:mt-6 md:mt-8 bg-[#0E3995] text-white">
@@ -98,7 +102,7 @@
             </p>
         </div>
     </footer>
-@endsection
+
 
 @push('styles')
     <style>

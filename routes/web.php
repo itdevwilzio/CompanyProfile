@@ -28,6 +28,7 @@ Route::get('/team', [FrontController::class, 'team'])->name('front.team');
 Route::get('/product', [FrontController::class, 'product'])->name('front.product');
 Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('front.product.show');
 Route::get('/location', [FrontController::class, 'location'])->name('front.location');
+Route::get('/location/{locationId}/voucher/{voucher_package_id}', [LocationController::class, 'showVoucherPage'])->name('location.voucher.show');
 Route::get('/location/{location}', [FrontController::class, 'locationOrder'])->name('front.location_order');
 Route::post('/location/{location}/order', [FrontController::class, 'locationOrderContinue'])->name('front.location_order_continue');
 Route::post('/location/{location}/confirm-order/{voucher}', [FrontController::class, 'confirmOrderVoucher'])->name('front.confirm_order_voucher');

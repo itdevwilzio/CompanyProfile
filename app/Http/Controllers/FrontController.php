@@ -127,7 +127,7 @@ class FrontController extends Controller
         return redirect()->back()->with('success_order', true);
     }
 
-        public function showVoucherPage($locationId, $voucher_package_id)
+    public function showVoucherPage($locationId, $voucher_package_id)
     {
         $location = Location::findorFail($locationId); // Adjust with the appropriate query or ID
         $voucher = VoucherPackage::findOrFail($voucher_package_id); // Adjust with the appropriate query or ID
