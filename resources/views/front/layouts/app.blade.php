@@ -208,22 +208,28 @@
     </div>
 
     <!-- Modal Structure -->
-    <div id="whatsapp-modal" class="modal">
-        <div class="modal-content p-6 rounded-lg shadow-lg">
-            <button class="close-btn text-2xl font-bold" id="close-modal">&times;</button>
-            <h2 class="mb-4 text-xl font-semibold">Chat dengan Tim Wilzio</h2>
+    <div id="whatsapp-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-content bg-white w-full max-w-sm mx-auto p-4 md:p-6 rounded-lg shadow-lg relative">
+            <button class="close-btn absolute right-3 top-3 text-2xl font-bold text-gray-600 hover:text-gray-800" id="close-modal">&times;</button>
+            <h2 class="mb-4 text-lg md:text-xl font-semibold text-center pt-2">Chat dengan Tim Wilzio</h2>
     
             <!-- Marketing Button -->
-            <a href="https://wa.me/6285179709387" class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out mb-4" target="_blank">
-                <i class="fab fa-whatsapp mr-2"></i>Marketing Wilzio
+            <a href="https://wa.me/6285179709387" 
+                class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-4 md:px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out mb-4 text-sm md:text-base">
+                <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                <span>Marketing Wilzio</span>
             </a>
     
             <!-- NOC Button -->
-            <a href="https://wa.me/6285179738286" class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out" target="_blank">
-                <i class="fab fa-whatsapp mr-2"></i>NOC Wilzio
+            <a href="https://wa.me/6285179738286" 
+                class="whatsapp-modal-btn w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-4 md:px-5 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out mb-4 text-sm md:text-base">
+                <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                <span>NOC Wilzio
             </a>
         </div>
     </div>
+    
+    
 
     <!-- Font Awesome for WhatsApp icon -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer></script>

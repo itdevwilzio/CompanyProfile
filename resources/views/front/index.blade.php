@@ -18,10 +18,10 @@
         <!-- Carousel Container -->
         <div class="carousel-container mt-4 relative overflow-hidden rounded-xl shadow-lg">
             <!-- Carousel Wrapper -->
-            <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true }'>
+            <div class="carousel w-full" data-flickity='{ "wrapAround": true, "autoPlay": 4000, "prevNextButtons": true, "pageDots": true, "pauseAutoPlayOnHover": true, "contain": true }'>
                 @foreach ($hero_section as $hero)
                 <!-- Link to Hero Section Detail Page -->
-                <a href="{{ route('hero_sections.show', $hero->id) }}" class="carousel-cell w-full h-[250px] md:h-[400px] lg:h-[500px]">
+                <a href="{{ route('hero_sections.show', $hero->id) }}" class="carousel-cell w-full h-[250px] md:h-[400px] lg:h-[500px] z-10 relative">
                     <div class="relative w-full h-full flex justify-center items-center px-4 md:px-6 lg:px-8">
                         <img src="{{ Storage::url($hero->banner) }}"
                              srcset="{{ Storage::url($hero->banner) }} 1024w,
@@ -86,7 +86,7 @@
 <!-- Optimized Bangun Section -->
 <section id="Bangun" class="container max-w-[1140px] mx-auto flex flex-col gap-[40px] mt-6 mb-6 bg-white p-6 rounded-xl shadow-2xl">
     <!-- Title Section -->
-    <h2 class="font-permanent text-5xl font-bold text-center text-[#0E3995]">
+    <h2 class="font-permanent text-3xl sm:text-4xl md:text-5xl font-bold text-center text-[#0E3995]">
         Buka Peluang Baru dengan Koneksi Internet Terbaik
     </h2>
 
@@ -131,14 +131,16 @@
         </div>
 
         <!-- Rating Title -->
-        <h2 class="font-nunito font-bold text-white text-4xl text-center mb-4">
+        <h2 class="font-nunito font-bold text-white text-2xl sm:text-3xl md:text-4xl text-center mb-4">
             <span id="rating" class="rolling-number">4.85</span> / 5 Rating Pelanggan
         </h2>
+        
 
         <!-- Main Heading -->
-        <h3 class="font-nunito font-bold text-[#ff9802] text-3xl text-center mb-12">
+        <h3 class="font-nunito font-bold text-[#ff9802] text-xl sm:text-2xl md:text-3xl text-center mb-12">
             Apa Kata Mereka?
         </h3>
+        
 
         <!-- Flickity Carousel -->
         <div class="carousel"
@@ -603,12 +605,10 @@
                     </svg>
                 </div>
             </a>
-            <a href="https://wa.me/6285179709387" target="_blank" rel="noopener noreferrer">
-                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
-                        <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
-                    </svg>
-                </div>
+            <a href="https://wa.me/6285179709387" class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
+                    <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
+                </svg>
             </a>
             <a href="https://www.youtube.com/@official.wilzio" target="_blank">
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">

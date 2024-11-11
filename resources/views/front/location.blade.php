@@ -15,12 +15,14 @@
         <h1 class="text-yellow-400 font-bold text-xl text-center mb-10">Beli Voucher Wi-Fi</h1>
 
         {{-- WhatsApp Button Below Text --}}
-        <div class="text-center mt-10">
+        <div class="text-center mt-10 px-4 md:px-0">
             <a href="https://wa.me/6285179706639" target="_blank" 
-               class="whatsapp-button bg-green-500 text-white px-8 py-4 text-xl rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-400 flex items-center justify-center">
-                <i class="fab fa-whatsapp mr-2"></i> Hubungi Customer Service Wilzio
+               class="whatsapp-button bg-green-500 text-white px-4 md:px-8 py-3 md:py-4 text-base md:text-xl rounded-full shadow-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-400 flex items-center justify-center w-full md:w-auto mx-auto max-w-sm">
+                <i class="fab fa-whatsapp mr-2 text-xl md:text-2xl"></i> 
+                <span class="whitespace-normal">Hubungi Customer Service Wilzio
             </a>
         </div>
+        
     </div>
     {{-- End Section Voucher --}}
 

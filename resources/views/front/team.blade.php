@@ -26,57 +26,58 @@
 @section('content')
     <!-- Header Section -->
     <div id="header" class="relative">
-        <div class="container max-w-[900px] mx-auto relative z-10">
+        <div class="container max-w-[900px] mx-auto relative z-10 mx-2 mt-4">
             <x-navbar></x-navbar>
-            {{-- <h2 class="font-nunito font-bold text-primary text-4xl text-center mb-12 -mt-10">
-
-            </h2> --}}
         </div>
     </div>
 
     <!-- Section: Born for Indonesia -->
 
 
-<section id="born-for-indonesia" class="w-full py-52 bg-blue-800 relative overflow-hidden z-[0]">
-    <!-- Wave SVG Positioned Above the Section -->
-    <div class="w-full absolute z-[1] top-0">
-        <div class="bg-white h-20"></div>
-        <svg width="100%" height="80px" id="svg" preserveAspectRatio="none" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
-            <path d="M 0,400 L 0,75 C 48.05771365149833,54.46055000616599 96.11542730299666,33.921100012331976 145,48 C 193.88457269700334,62.078899987668024 243.59600443951166,110.77614995683808 306,110 C 368.40399556048834,109.22385004316192 443.5005549389566,58.9743001603157 491,43 C 538.4994450610434,27.0256998396843 558.4017758046615,45.32664940189912 613,68 C 667.5982241953385,90.67335059810088 756.8923418423973,117.71910223208782 818,105 C 879.1076581576027,92.28089776791218 912.0288568257492,39.79694166974965 958,42 C 1003.9711431742508,44.20305833025035 1062.992230854606,101.09313108891357 1114,109 C 1165.007769145394,116.90686891108643 1208.0022197558267,75.83053397459614 1261,62 C 1313.9977802441733,48.16946602540387 1376.9988901220868,61.58473301270193 1440,75 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.4" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path>
-            <path d="M 0,400 L 0,175 C 40.6115673942533,161.34534467875199 81.2231347885066,147.690689357504 137,146 C 192.7768652114934,144.309310642496 263.7190282402269,154.582587248736 326,159 C 388.2809717597731,163.417412751264 441.9007522505857,161.9789616475521 488,168 C 534.0992477494143,174.0210383524479 572.67796275743,187.50156616105562 621,182 C 669.32203724257,176.49843383894438 727.3873967196943,152.01477370822545 780,153 C 832.6126032803057,153.98522629177455 879.7724503637933,180.43933900604262 941,190 C 1002.2275496362067,199.56066099395738 1077.5228018251328,192.22787026760392 1136,181 C 1194.4771981748672,169.77212973239608 1236.1363423356763,154.64917992354174 1284,153 C 1331.8636576643237,151.35082007645826 1385.931828832162,163.17541003822913 1440,175 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 200)"></path>
-            <path d="M 0,400 L 0,275 C 66.9115797262301,273.18394376618573 133.8231594524602,271.3678875323714 188,268 C 242.1768405475398,264.6321124676286 283.61894191638925,259.71239363669997 337,264 C 390.38105808361075,268.28760636330003 455.701072881983,281.7825379208287 508,292 C 560.298927118017,302.2174620791713 599.5767665556788,309.1574546799852 639,299 C 678.4232334443212,288.8425453200148 717.9918608953016,261.58764335923047 770,248 C 822.0081391046984,234.4123566407695 886.455789863115,234.49197188309282 942,238 C 997.544210136885,241.50802811690718 1044.1849796522383,248.4444691083981 1093,261 C 1141.8150203477617,273.5555308916019 1192.8042915279318,291.73015168331483 1251,295 C 1309.1957084720682,298.26984831668517 1374.597854236034,286.6349241583426 1440,275 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-2" transform="rotate(-180 720 200)"></path>
-        </svg>
-    </div>
-    <h2 class="font-nunito font-bold text-white text-4xl text-center mb-12">
-        Tentang Kami
-    </h2>
+    <section id="born-for-indonesia" class="w-full py-52 bg-blue-800 relative overflow-hidden z-[0]">
+        <!-- Wave SVG Positioned Above the Section -->
+        <div class="w-full absolute z-[1] top-0">
+            <div class="bg-white h-20"></div>
+            <svg width="100%" height="80px" id="svg" preserveAspectRatio="none" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+                <path d="M 0,400 L 0,75 C 48.05771365149833,54.46055000616599 96.11542730299666,33.921100012331976 145,48 C 193.88457269700334,62.078899987668024 243.59600443951166,110.77614995683808 306,110 C 368.40399556048834,109.22385004316192 443.5005549389566,58.9743001603157 491,43 C 538.4994450610434,27.0256998396843 558.4017758046615,45.32664940189912 613,68 C 667.5982241953385,90.67335059810088 756.8923418423973,117.71910223208782 818,105 C 879.1076581576027,92.28089776791218 912.0288568257492,39.79694166974965 958,42 C 1003.9711431742508,44.20305833025035 1062.992230854606,101.09313108891357 1114,109 C 1165.007769145394,116.90686891108643 1208.0022197558267,75.83053397459614 1261,62 C 1313.9977802441733,48.16946602540387 1376.9988901220868,61.58473301270193 1440,75 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.4" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path>
+                <path d="M 0,400 L 0,175 C 40.6115673942533,161.34534467875199 81.2231347885066,147.690689357504 137,146 C 192.7768652114934,144.309310642496 263.7190282402269,154.582587248736 326,159 C 388.2809717597731,163.417412751264 441.9007522505857,161.9789616475521 488,168 C 534.0992477494143,174.0210383524479 572.67796275743,187.50156616105562 621,182 C 669.32203724257,176.49843383894438 727.3873967196943,152.01477370822545 780,153 C 832.6126032803057,153.98522629177455 879.7724503637933,180.43933900604262 941,190 C 1002.2275496362067,199.56066099395738 1077.5228018251328,192.22787026760392 1136,181 C 1194.4771981748672,169.77212973239608 1236.1363423356763,154.64917992354174 1284,153 C 1331.8636576643237,151.35082007645826 1385.931828832162,163.17541003822913 1440,175 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 200)"></path>
+                <path d="M 0,400 L 0,275 C 66.9115797262301,273.18394376618573 133.8231594524602,271.3678875323714 188,268 C 242.1768405475398,264.6321124676286 283.61894191638925,259.71239363669997 337,264 C 390.38105808361075,268.28760636330003 455.701072881983,281.7825379208287 508,292 C 560.298927118017,302.2174620791713 599.5767665556788,309.1574546799852 639,299 C 678.4232334443212,288.8425453200148 717.9918608953016,261.58764335923047 770,248 C 822.0081391046984,234.4123566407695 886.455789863115,234.49197188309282 942,238 C 997.544210136885,241.50802811690718 1044.1849796522383,248.4444691083981 1093,261 C 1141.8150203477617,273.5555308916019 1192.8042915279318,291.73015168331483 1251,295 C 1309.1957084720682,298.26984831668517 1374.597854236034,286.6349241583426 1440,275 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#ffffff" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-2" transform="rotate(-180 720 200)"></path>
+            </svg>
+        </div>
 
-    <!-- Content Container -->
-    <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10 relative px-4">
-        @foreach ($abouts as $about)
-            <!-- Text Section -->
-            <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all duration-300 hover:text-gray-200">
-                <h2 class="font-nunito font-bold text-4xl mb-6">
-                    {{ $about->name }}
-                </h2>
-                <p class="font-nunito text-base leading-7 mb-8">
-                    {!! $about->description !!}
-                </p>
-            </div>
-
-            <!-- Image Section -->
-            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative z-10">
-                <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
-                    <img 
-                        src="{{ Storage::url($about->thumbnail) }}" 
-                        class="object-cover w-full h-full"
-                        alt="{{ $about->name }}"
-                    >
+        <!-- Content Container -->
+        <h2 class="font-nunito font-bold text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl text-center mb-6 sm:mb-8">
+            Tentang Kami
+        </h2>
+        
+        
+        <!-- Content Container -->
+        <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-10 relative px-4">
+            @foreach ($abouts as $about)
+                <!-- Text Section -->
+                <div class="w-full lg:w-1/2 text-white lg:pr-10 relative z-10 transition-all duration-300 hover:text-gray-200 flex flex-col items-center lg:items-start text-center lg:text-left mb-6 sm:mb-10">
+                    <h3 class="font-nunito font-bold text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6">
+                        {{ $about->name }}
+                    </h3>
+                    <p class="font-nunito text-sm sm:text-base leading-6 sm:leading-7 mb-6 sm:mb-8">
+                        {!! $about->description !!}
+                    </p>
                 </div>
-            </div>
-        @endforeach
-    </div>
-</section>
+        
+                <!-- Image Section -->
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative z-10 mb-6 sm:mb-10">
+                    <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+                        <img 
+                            src="{{ Storage::url($about->thumbnail) }}" 
+                            class="object-cover w-full h-full"
+                            alt="{{ $about->name }}"
+                        >
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+    </section>
 
     
     
@@ -126,7 +127,7 @@
             });
         });
     </script>
-    @endsection
+@endsection
 
     <!-- Section: Product Identity -->
     <section id="product-identity" class="w-full py-16">
@@ -141,18 +142,19 @@
             
             <!-- Product Identity Section -->
             <div class="w-full lg:w-1/2 text-primary lg:text-left flex flex-col justify-center transition-all duration-300 hover:text-black">
-                <h2 class="font-nunito font-bold text-4xl mb-2">
+                <h2 class="font-nunito font-bold text-2xl sm:text-3xl lg:text-4xl mb-2 text-center lg:text-left">
                     {{ $product_identity->name }}
-                </h2>
-                <p class="text-lg leading-7 mb-2">
+                </h2>                                
+                <p class="text-lg leading-7 mb-2 mx-4 lg:mx-0">
                     {!! $product_identity->description !!}
                 </p>
-                <p class="text-lg leading-7 mb-2">
+                <p class="text-lg leading-7 mb-2 mx-4 lg:mx-0">
                     {!! $product_identity->vision !!}
                 </p>
-                <p class="text-lg leading-7 mb-2">
+                <p class="text-lg leading-7 mb-2 mx-4 lg:mx-0">
                     {!! $product_identity->mission !!}
                 </p>
+                
                 
                 <!-- Dropdown Button with Hover Effect -->
                 <div class="mt-3">
@@ -199,12 +201,12 @@
         </div>
     </section>
 
-    <section id="certification" class="w-full py-16 bg-primary relative overflow-hidden">
+    <section id="certification" class="w-full py-8 bg-primary relative overflow-hidden">
         <div class="container max-w-[1140px] mx-auto flex flex-col lg:flex-row items-center gap-10">
             @foreach ($certifications as $certification)
                 <!-- Text Section -->
-                <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black">
-                    <h2 class="font-nunito font-bold text-4xl mb-6">
+                <div class="w-full lg:w-1/2 text-white lg:pr-10 transition-all duration-300 hover:text-black text-center lg:text-left flex flex-col items-center lg:items-start">
+                    <h2 class="font-nunito font-bold text-3xl sm:text-4xl mb-6">
                         {{ $certification->title }}
                     </h2>
                     <p class="font-nunito text-base leading-7 mb-8">
@@ -216,40 +218,43 @@
                 <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
                     <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
                         <img src="{{ Storage::url($certification->logo) }}" 
-                                class="object-cover w-full h-full"
-                                alt="{{ $certification->title }}">
+                             class="object-cover w-full h-full"
+                             alt="{{ $certification->title }}">
                     </div>
                 </div>
             @endforeach
         </div>
     </section>
+    
 
     <!-- Super Team Section -->
 
-    <section id="super-team" class="w-full py-16">
+    <section id="super-team" class="w-full py-16 lg:pb-0"> <!-- Remove bottom padding -->
         <div class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-start gap-10 text-primary">
             @foreach($super_teams as $super_team)
                 <!-- Image Section with Hover Effect -->
-                <div class="w-full lg:w-1/2 flex justify-center">
+                <div class="w-full lg:w-1/2 flex justify-center items-center text-center">
                     @if($super_team->image)
                         <img src="{{ Storage::url($super_team->image) }}" 
-                                class="object-contain text-primary w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
-                                alt="{{ $super_team->title }}">
+                             class="object-contain text-primary w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
+                             alt="{{ $super_team->title }}">
                     @else
                         <img src="{{ asset('assets/teams/Thank-min.png') }}" 
-                                class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
-                                alt="Super Team Image">
+                             class="object-contain w-full rounded-lg transition-transform duration-300 hover:scale-105 shadow-custom" 
+                             alt="Super Team Image">
                     @endif
                 </div>
     
                 <!-- Text Section with Hover Effect -->
-                <div class="w-full lg:w-1/2 text-primary lg:text-right transition-all duration-300 hover:text-black">
+                <div class="w-full lg:w-1/2 text-primary lg:text-right text-center lg:text-left transition-all duration-300 hover:text-black">
                     <div class="lg:pt-0 pt-4">
-                        <h2 class="font-nunito font-bold text-4xl mb-4">{{ $super_team->title }}</h2>
-                        <p class="text-lg leading-7 mb-4">
+                        <h2 class="font-nunito font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+                            {{ $super_team->title }}
+                        </h2>
+                        <p class="text-base sm:text-lg leading-7 mb-4">
                             {!! $super_team->description !!}
                         </p>
-                        <p class="text-lg leading-7">
+                        <p class="text-base sm:text-lg leading-7">
                             {{ $super_team->additional_info }}
                         </p>
                     </div>
@@ -257,40 +262,38 @@
             @endforeach
         </div>
     </section>
-
-    <!-- Our Team Section -->
-
-    <section id="teams" class="w-full py-16">
+    
+    <section id="teams" class="w-full py-16 lg:pt-0"> <!-- Remove top padding -->
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center gap-10">
             
             {{-- Section for Pimpinan --}}
-            <h2 class="font-nunito text-4xl text-center">Pimpinan Kami</h2>
+            <h2 class="font-nunito font-bold text-primary text-3xl sm:text-4xl md:text-5xl mb-4">
+                Pimpinan Kami
+            </h2>
             <div class="
-            grid gap-10 items-center justify-center mx-auto 
-            @if ($teams->where('team', 'Pimpinan')->count() == 1) 
-                grid-cols-1 
-            @elseif ($teams->where('team', 'Pimpinan')->count() == 2) 
-                grid-cols-2 
-            @else 
-                grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-            @endif
-        ">
-            @foreach ($teams->where('team', 'Pimpinan') as $team)
-                <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center">
-                    <img src="{{ asset(Storage::url($team->avatar)) }}" 
-                        class="w-[150px] h-[150px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
-                        alt="{{ $team->name }}">
-                        <h3 class="font-bold text-primary text-xl">{!! $team->name !!}</h3>
-                    <p class="text-primary ">{!! $team->occupation !!}</p>
-                    <p class="text-sm text-primary">{!! $team->location !!}</p>
-                </div>
-            @endforeach
-        </div>
-        
+                grid gap-10 items-center justify-center mx-auto 
+                @if ($teams->where('team', 'Pimpinan')->count() == 1) 
+                    grid-cols-1 
+                @elseif ($teams->where('team', 'Pimpinan')->count() == 2) 
+                    grid-cols-2 
+                @else 
+                    grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+                @endif
+            ">
+                @foreach ($teams->where('team', 'Pimpinan') as $team)
+                    <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center">
+                        <img src="{{ asset(Storage::url($team->avatar)) }}" 
+                            class="w-[150px] h-[150px] max-w-full max-h-full rounded-full mx-auto mb-4 object-cover transition-transform duration-300 hover:scale-110" 
+                            alt="{{ $team->name }}">
+                            <h3 class="font-bold text-primary text-xl">{!! $team->name !!}</h3>
+                        <p class="text-primary ">{!! $team->occupation !!}</p>
+                        <p class="text-sm text-primary">{!! $team->location !!}</p>
+                    </div>
+                @endforeach
+            </div>
             
-    
             {{-- Section for IT & Administrative Team --}}
-            <h2 class="font-nunito font-bold text-4xl text-primary text-center">IT & Administrative Team</h2>
+            <h2 class="font-nunito font-bold text-3xl sm:text-4xl md:text-5xl text-primary text-center">IT & Administrative Team</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 @foreach ($teams->where('team', 'IT & Administrative Team') as $team)
                     <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center">
@@ -303,10 +306,9 @@
                     </div>
                 @endforeach
             </div>
-            
     
             {{-- Section for Technician --}}
-            <h2 class="font-nunito font-bold text-4xl text-primary text-center">Technician</h2>
+            <h2 class="font-nunito font-bold text-3xl sm:text-4xl md:text-5xl text-primary text-center ">Technician</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 @foreach ($teams->where('team', 'Technician Team') as $team)
                     <div class="border border-[#E8EAF2] text-primary transition-all duration-300 rounded-lg p-5 text-center text-white">
@@ -322,6 +324,7 @@
     
         </div>
     </section>
+    
     
 
     <footer class="w-full mt-10 bg-[#0E3995] text-white">
@@ -345,12 +348,10 @@
                         </svg>
                     </div>
                 </a>
-                <a href="https://wa.me/6285179709387" target="_blank" rel="noopener noreferrer">
-                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
-                            <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
-                        </svg>
-                    </div>
+                <a href="https://wa.me/6285179709387" class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M16.002 0C7.164 0 0 7.164 0 16c0 3.074.838 6.06 2.429 8.678l-1.621 6.055a1.177 1.177 0 0 0 1.427 1.427l6.055-1.621A15.946 15.946 0 0 0 16.002 32c8.836 0 16-7.164 16-16 0-8.836-7.164-16-16-16zm9.373 23.873c-.401 1.129-2.012 2.145-2.769 2.243-.756.098-1.429.512-4.827-.998-4.074-1.795-6.616-6.322-6.813-6.619-.197-.295-1.63-2.168-1.63-4.131 0-1.964 1.037-2.936 1.402-3.34.365-.404.803-.512 1.071-.512.268 0 .536.001.768.014.238.015.564-.09.888.677.324.768 1.103 2.658 1.202 2.853.099.197.164.438.014.731-.148.295-.223.473-.438.768-.217.295-.46.66-.64.883-.218.275-.444.573-.193.945.25.372 1.109 1.822 2.383 2.945 1.641 1.454 2.988 1.926 3.368 2.13.379.205.599.184.821-.11.223-.295 1.027-1.25 1.301-1.68.274-.43.547-.357.914-.223.367.134 2.339 1.102 2.744 1.29.405.188.677.29.776.451.1.163.1.965-.301 2.094z"/>
+                    </svg>
                 </a>
                 <a href="https://www.youtube.com/@official.wilzio" target="_blank">
                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
