@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAppointmentRequest;
-use App\Models\Appointment;
 use App\Models\AboutUs;
 use App\Models\OurCertification;
-use App\Models\CompanyStatistic;
 use App\Models\HeroSection;
 use App\Models\Location;
 use App\Models\OurPrinciple;
@@ -84,23 +81,6 @@ class FrontController extends Controller
         return view('front.product', compact('products'));
     }
 
-    public function appointment()
-    {
-        $testimonials = Testimonial::take(4)->get();
-        $products = Product::take(3)->get();
-
-        return view('front.appointment', compact('testimonials', 'products'));
-    }
-
-    public function appointment_store(StoreAppointmentRequest $request)
-    {
-        DB::transaction(function () use ($request) {
-            $validated = $request->validated();
-            $newAppointment = Appointment::create($validated);
-        });
-
-        return redirect()->route('front.index');
-    }
 
     public function orderProduct(Request $request, SEOTools $seoTools)
     {
@@ -146,6 +126,17 @@ class FrontController extends Controller
     
         return redirect()->back()->with('success_order', true);
     }
+
+        public function showVoucherPage($locationId, $voucher_package_id)
+    {
+        $location = Location::findorFail($locationId); // Adjust with the appropriate query or ID
+        $voucher = VoucherPackage::findOrFail($voucher_package_id); // Adjust with the appropriate query or ID
+
+        return view('front.layouts.app', compact('location', 'voucher'));
+    }
+
+
+    
 
     public function location(Request $request) 
     {
