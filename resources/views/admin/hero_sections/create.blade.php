@@ -67,7 +67,6 @@
     <script>
         // Initialize CKEditor 4 for the achievement field
         CKEDITOR.replace('achievement', {
-            filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',  // Use the admin route
             filebrowserUploadMethod: 'form',
             toolbar: [
                 { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
