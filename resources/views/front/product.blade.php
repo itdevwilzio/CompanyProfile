@@ -159,7 +159,7 @@
                 Ikuti Kami
             </p>
             <div class="flex items-center gap-6 mb-6">
-                <a href="https://www.facebook.com/share/GjZJNGmKbkjyumXs/" target="_blank">
+                <a href="https://www.facebook.com/share/GjZJNGmKbkjyumXs/">
                     <div
                         class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                         <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -169,8 +169,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="https://www.instagram.com/official.wilzio/profilecard/?igsh=MW9zazBtYjhmaGEyNg=="
-                    target="_blank">
+                <a href="https://www.instagram.com/official.wilzio/profilecard/?igsh=MW9zazBtYjhmaGEyNg==">
                     <div
                         class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                         <svg class="w-5 h-5 text-[#0E3995] fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +179,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="https://wa.me/6285179709387" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/6285179709387" rel="noopener noreferrer">
                     <div
                         class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current"
@@ -190,7 +189,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="https://www.youtube.com/@official.wilzio" target="_blank">
+                <a href="https://www.youtube.com/@official.wilzio">
                     <div
                         class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current"
@@ -200,7 +199,7 @@
                         </svg>
                     </div>
                 </a>
-                <a href="https://www.tiktok.com/@official.wilzio?_t=8qmDlonzcQ5&_r=1" target="_blank">
+                <a href="https://www.tiktok.com/@official.wilzio?_t=8qmDlonzcQ5&_r=1">
                     <div
                         class="w-10 h-10 rounded-full bg-white flex items-center justify-center transform hover:scale-110 transition-all duration-300 ease-in-out">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0E3995] fill-current"

@@ -56,19 +56,29 @@
 
         <!-- Navigation Menu -->
         <ul class="flex flex-col items-end space-y-6"> <!-- items-end for right alignment -->
-            <li><a href="{{ route('front.index') }}" class="text-white hover:text-orange-500 block">Beranda</a></li>
+            <li>
+                <a href="{{ route('front.index') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Beranda</a>
+            </li>
             <li class="w-full">
-                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 flex items-center justify-between w-full">
+                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform flex items-center justify-between w-full">
                     <span>Produk</span>
                     <i id="mobileDropdownIcon" class="feather icon-chevron-down"></i>
                 </button>
                 <ul id="mobileDropdownMenu" class="hidden flex-col space-y-2 mt-2 pr-4 items-end"> <!-- Right alignment for dropdown menu -->
-                    <li><a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 block py-2">Paket Home</a></li>
-                    <li><a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 block py-2">Paket Voucher</a></li>
+                    <li>
+                        <a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block py-2">Paket Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block py-2">Paket Voucher</a>
+                    </li>
                 </ul>
             </li>
-            <li><a href="{{ route('front.team') }}" class="text-white hover:text-orange-500 block">Tentang Kami</a></li>
+            <li>
+                <a href="{{ route('front.team') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Tentang Kami</a>
+            </li>
         </ul>
+        
+        
     </div>
 </div>
 
