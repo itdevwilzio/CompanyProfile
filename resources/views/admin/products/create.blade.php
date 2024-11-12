@@ -68,39 +68,9 @@
     </div>
 
     <!-- CKEditor 4 and Image Preview Script -->
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script>
-        // Initialize CKEditor 4 for the "about" field
-        CKEDITOR.replace('name', {
-            toolbar: [
-                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
-                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
-                { name: 'tools', items: ['Maximize'] }
-            ],
-            height: 300,
-            versionCheck: false
-        });
-        CKEDITOR.replace('tagline', {
-            toolbar: [
-                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
-                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
-                { name: 'tools', items: ['Maximize'] }
-            ],
-            height: 300,
-            versionCheck: false
-        });
+        // Initialize CKEditor 4 for the "about" field only
         CKEDITOR.replace('about', {
             toolbar: [
                 { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
@@ -117,7 +87,6 @@
             versionCheck: false
         });
 
-
         // Image Preview Script
         function previewThumbnail(event) {
             const reader = new FileReader();
@@ -129,5 +98,4 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-
 </x-app-layout>

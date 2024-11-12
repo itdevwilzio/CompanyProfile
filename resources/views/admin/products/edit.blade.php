@@ -72,39 +72,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- CKEditor 4 Script -->
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script>
-        // Initialize CKEditor 4 for the "about" field
-        CKEDITOR.replace('name', {
-            toolbar: [
-                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
-                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
-                { name: 'tools', items: ['Maximize'] }
-            ],
-            height: 300,
-            versionCheck: false
-        });
-        CKEDITOR.replace('tagline', {
-            toolbar: [
-                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
-                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'] },
-                { name: 'tools', items: ['Maximize'] }
-            ],
-            height: 300,
-            versionCheck: false
-        });
+        // Initialize CKEditor 4 for the "about" field only
         CKEDITOR.replace('about', {
             toolbar: [
                 { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
@@ -137,7 +107,7 @@
 
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: "Apakah Anda ingin memperbarui produk ini?",
+                text: "Anda tidak akan bisa mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
