@@ -21,12 +21,12 @@
                             <img src="{{ Storage::url($location->image) }}" alt="{{ $location->name }}"
                                 class="rounded-2xl object-cover w-[100px] h-[100px]">
                             <div class="flex flex-col">
-                                <h3 class="text-xl font-bold text-indigo-950">{{ $location->name }}</h3>
+                                <h3 class="text-xl font-bold text-indigo-950">{!! $location->name !!}</h3>
                             </div>
                         </div>
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">{{ $location->created_at->format('d M, Y') }}</h3>
+                            <h3 class="text-xl font-bold text-indigo-950">{!! $location->created_at->format('d M, Y') !!}</h3>
                         </div>
                         <div class="flex gap-2 flex-col">
                             <a href="{{ route('admin.voucher_packages.index', $location->id) }}" 
@@ -35,15 +35,18 @@
                             </a>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-4">
+                            <!-- 3D Edit Button -->
                             <a href="{{ route('admin.locations.edit', $location) }}"
-                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full">
+                                class="px-6 py-3 font-bold text-white bg-indigo-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out">
                                 Edit
                             </a>
+
+                            <!-- 3D Delete Button -->
                             <form id="delete-location-form-{{ $location->id }}" 
                                 action="{{ route('admin.locations.destroy', $location) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full delete-btn"
+                                <button type="button" class="px-6 py-3 font-bold text-white bg-red-700 rounded-full shadow-[0_8px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_0_rgba(0,0,0,0.4)] active:shadow-[0_2px_0_rgba(0,0,0,0.6)] hover:translate-y-1 active:translate-y-2 transition-all duration-300 ease-in-out delete-btn"
                                     data-id="{{ $location->id }}">
                                     Delete
                                 </button>
@@ -68,8 +71,8 @@
             // Add event listener to each delete button
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const teamId = this.getAttribute('data-id');
-                    const form = document.getElementById(`delete-team-form-${teamId}`);
+                    const locationId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-location-form-${locationId}`);
 
                     // Show SweetAlert confirmation
                     Swal.fire({

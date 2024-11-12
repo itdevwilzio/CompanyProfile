@@ -31,12 +31,16 @@
             </div>
             <div class="text-center max-w-4xl mx-auto relative pt-20 px-4 sm:px-6 md:px-8">
                 <img src="{{ Storage::url($heroSection->banner) }}" alt="Promotion Banner" class="object-cover w-full rounded-3xl pt-5">
-                <h1 class="mt-8 text-5xl font-bold text-white">{!! $heroSection->heading !!}</h1>
-                <p class="mt-4 text-lg text-white">{!! $heroSection->subheading !!}</p>
-                <div class="mt-8 text-gray-300 text-justify">
+                
+                <!-- Ensure CKEditor content styling is rendered correctly -->
+                <h1 class="mt-8 ck-content">{!! $heroSection->heading !!}</h1>
+                <p class="mt-4 text-lg text-white ck-content">{!! $heroSection->subheading !!}</p>
+                
+                <div class="mt-8 ck-content">
                     <p>{!! $heroSection->achievement !!}</p>
                 </div>
-            </div>            
+            </div>
+                        
         </div>
     </div>
 

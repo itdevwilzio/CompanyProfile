@@ -34,18 +34,35 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $imagePath = $request->file('image')->store('locations', 'public');
-            
-            Location::create([
-                'name' => $request->name,
-                'image' => $imagePath,
-                'description' => $request->description
-            ]);
-        });
-
+        try {
+            DB::transaction(function () use ($request) {
+                // Store image file
+                if ($request->hasFile('image')) {
+                    $imagePath = $request->file('image')->store('locations', 'public');
+    
+                    // Create new location
+                    Location::create([
+                        'name' => $request->name,
+                        'image' => $imagePath,
+                        'description' => $request->description,
+                    ]);
+                } else {
+                    throw new \Exception('Image file not provided.');
+                }
+            });
+    
+            // Redirect with success message
+            return redirect()->route('admin.locations.index')
+                             ->with('success', 'Location added successfully!');
+        } catch (\Exception $e) {
+            // Redirect with error message if something fails
+            return redirect()->back()
+                             ->with('error', 'There was an error while adding the location: ' . $e->getMessage())
+                             ->withInput();
+        }
         return redirect()->route('admin.locations.index');
     }
+
 
     /**
      * Display the specified resource.

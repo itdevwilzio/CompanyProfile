@@ -19,17 +19,17 @@
 
                 <form method="POST" action="{{ route('admin.locations.store') }}" enctype="multipart/form-data">
                     @csrf
+                    <!-- CKEditor Name Field -->
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block w-full mt-1" type="text" name="name"
-                            :value="old('name')" required autofocus autocomplete="name" />
+                        <textarea id="name" class="block w-full mt-1" name="name" required autofocus autocomplete="name">{{ old('name') }}</textarea>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <div class="my-4">
                         <x-input-label for="image" :value="__('Image')" />
                         <x-text-input id="image" class="block w-full mt-1" type="file" name="image" required
-                            autofocus autocomplete="image" />
+                            autofocus autocomplete="image" onchange="previewBanner(event)" />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
@@ -56,10 +56,11 @@
     </div>
 
     <!-- CKEditor Script -->
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script>
         // Initialize CKEditor for the description field
         CKEDITOR.replace('description', {
+            filebrowserUploadMethod: 'form',
             toolbar: [
                 { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
                 { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
@@ -74,20 +75,27 @@
             height: 300,
             versionCheck: false
         });
-        document.getElementById('image').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('upload-preview');
-            
-            if (file) {
-                const reader = new FileReader();
-    
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-    
-                reader.readAsDataURL(file);
-            }
+
+        // Initialize CKEditor for the name field
+        CKEDITOR.replace('name', {
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'styles', items: ['Font', 'FontSize', 'TextColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 100,
+            versionCheck: false
         });
+
+        // Image Preview Script
+        function previewBanner(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('upload-preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';  // Show the preview image
+            };
+            reader.readAsDataURL(event.target.files[0]); // Read the file and trigger the event
+        }
     </script>
 </x-app-layout>

@@ -40,47 +40,47 @@
 
 <!-- Sidebar Navigation (for mobile) -->
 <div id="sidebar" class="fixed top-0 right-0 w-[280px] h-full bg-primary shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
-    <div class="flex flex-col items-end p-5"> <!-- Changed to items-end for right alignment -->
+    <div class="flex flex-col items-end p-5">
         <!-- Close Button -->
-        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-black transition-colors duration-300 bg-red-500 hover:bg-yellow-400 px-3 py-2 rounded flex items-center gap-2">
-            <span>Close</span> 
+        <button id="close-sidebar" class="absolute top-5 right-5 text-white hover:text-black transition-colors duration-300 bg-red-500 hover:bg-yellow-400 px-3 py-2 rounded-lg flex items-center gap-2">
+            <span>Close</span>
             <i class="feather icon-x text-xl"></i>
-        </button>
-        
+        </button>        
+
         <!-- Logo with added top margin -->
-        <div class="flex justify-end mt-10 mb-6"> <!-- Adjusted to align right -->
-            <a href="{{ route('front.index') }}">
-                <img src="{{ asset('assets/logo/name.png') }}" alt="Wilzio Logo" class="h-[60px] w-auto">
-            </a>
-        </div>
+        <div class="flex justify-end mt-10 mb-6"></div>
 
         <!-- Navigation Menu -->
-        <ul class="flex flex-col items-end space-y-6"> <!-- items-end for right alignment -->
+        <ul class="flex flex-col items-end space-y-4 w-full">
             <li>
-                <a href="{{ route('front.index') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Beranda</a>
+                <a href="{{ route('front.index') }}" class="text-white text-right hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Beranda</a>
             </li>
-            <li class="w-full">
-                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform flex items-center justify-between w-full">
-                    <span>Produk</span>
+            <li class="w-full flex flex-col items-end space-y-4">
+                <!-- Dropdown Toggle Button -->
+                <button id="mobileDropdownToggle" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform flex items-center gap-2">
                     <i id="mobileDropdownIcon" class="feather icon-chevron-down"></i>
+                    <span id="mobileDropdownText">Produk</span>
                 </button>
-                <ul id="mobileDropdownMenu" class="hidden flex-col space-y-2 mt-2 pr-4 items-end"> <!-- Right alignment for dropdown menu -->
-                    <li>
-                        <a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block py-2">Paket Home</a>
+                
+                <!-- Dropdown Menu -->
+                <ul id="mobileDropdownMenu" class="hidden flex-col space-y-4 mt-2 w-full"> <!-- Updated space-y-4 for more spacing -->
+                    <li class="flex justify-end">
+                        <a href="{{ route('front.product') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform text-right">Paket Home</a>
                     </li>
-                    <li>
-                        <a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block py-2">Paket Voucher</a>
+                    <li class="flex justify-end">
+                        <a href="{{ route('front.location') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform text-right">Paket Voucher</a>
                     </li>
                 </ul>
             </li>
+            
             <li>
-                <a href="{{ route('front.team') }}" class="text-white hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Tentang Kami</a>
+                <a href="{{ route('front.team') }}" class="text-white text-right hover:text-orange-500 hover:scale-105 hover:font-bold transition-transform block">Tentang Kami</a>
             </li>
         </ul>
-        
-        
     </div>
 </div>
+
+
 
 
 

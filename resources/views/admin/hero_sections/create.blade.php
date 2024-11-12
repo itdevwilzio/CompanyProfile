@@ -19,18 +19,13 @@
 
                 <form method="POST" action="{{ route('admin.hero_sections.store') }}" enctype="multipart/form-data">
                     @csrf
+
+                    <!-- Heading Field with CKEditor 4 -->
                     <div>
                         <x-input-label for="heading" :value="__('Judul')" />
-                        <x-text-input id="heading" class="block w-full mt-1" type="text" name="heading"
-                            :value="old('heading')" required autofocus autocomplete="heading" />
+                        <textarea id="heading" name="heading" class="block w-full mt-1" required>{{ old('heading') }}</textarea>
                         <x-input-error :messages="$errors->get('heading')" class="mt-2" />
                     </div>
-                    {{-- <div>
-                        <x-input-label for="sub_heading" :value="__('Sub Heading')" />
-                        <x-text-input id="sub_heading" class="block w-full mt-1" type="text" name="sub_heading"
-                            :value="old('sub_heading')" required autofocus autocomplete="sub_heading" />
-                        <x-input-error :messages="$errors->get('sub_heading')" class="mt-2" />
-                    </div> --}}
 
                     <!-- Achievement Field with CKEditor 4 -->
                     <div class="mt-4">
@@ -80,6 +75,17 @@
                 { name: 'tools', items: ['Maximize'] }
             ],
             height: 300,
+            versionCheck: false
+        });
+
+        // Initialize CKEditor 4 for the heading field
+        CKEDITOR.replace('heading', {
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'styles', items: ['Font', 'FontSize', 'TextColor'] },
+                { name: 'tools', items: ['Maximize'] }
+            ],
+            height: 100,
             versionCheck: false
         });
 
